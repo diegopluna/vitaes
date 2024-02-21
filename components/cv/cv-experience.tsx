@@ -2,7 +2,6 @@ import { CVExperiencesProps } from "@/types/cv-types";
 import CVSectionHeader from "./cv-section-header";
 
 export default function CVExperience(props: CVExperiencesProps) {
-    console.log(props.experiences)
     return (
         <div className="flex flex-col items-start justify-start w-full mt-4">
             <CVSectionHeader label={props.label} />

@@ -1,5 +1,4 @@
 import CVForm from "@/components/cv/cv-form";
-import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Home() {
   return (
