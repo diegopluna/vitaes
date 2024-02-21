@@ -10,7 +10,12 @@ export async function POST(request: Request): Promise<Response> {
     const page = await browser.newPage()
 
     //TODO: change the url to the actual url of the cv_only page
-    await page.goto(`http://localhost:3000/cv_only/${cvData}`)
+    if (process.env.NODE_ENV === 'development') {
+        await page.goto(`http://localhost:3000/cv_only/${cvData}`)
+    } else {
+        await page.goto(`https://easycv-jet.vercel.app/cv_only/${cvData}`)
+    }
+    // await page.goto(`http://localhost:3000/cv_only/${cvData}`)
     await page.emulateMediaType('screen')
     const pdfBuffer = await page.pdf({format: 'A4'})
     await browser.close()
