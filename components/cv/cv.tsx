@@ -3,6 +3,10 @@ import A4Paper from "../a4-paper";
 import CVHeader from "./cv-header";
 import CVSummary from "./cv-summary";
 import CVExperience from "./cv-experience";
+import CVHonors from "./cv-honors";
+import CVPresentations from "./cv-presentation";
+import CVWritings from "./cv-writing";
+import CVCommittee from "./cv-committee";
 
 export default function CV(props : CVProps) {
     return (
@@ -10,6 +14,10 @@ export default function CV(props : CVProps) {
             <CVHeader {...props.header} />
             {props.summaryEnabled && <CVSummary {...props.summary!} />}
             {props.experienceEnabled && <CVExperience {...props.experience!} />}
+            {props.honorsEnabled && <CVHonors {...props.honors!} />}
+            {props.presentationsEnabled && <CVPresentations {...props.presentations!} />}
+            {props.writingEnabled && <CVWritings {...props.writings!} />}
+            {props.committeeEnabled && <CVCommittee {...props.committees!} />}
         </A4Paper>
     )
 }
