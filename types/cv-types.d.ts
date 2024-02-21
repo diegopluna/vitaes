@@ -95,6 +95,20 @@ export type CVCommitteesProps = {
     committees: CVComitteeProps[];
 }
 
+export type CVEducationProps = {
+    school: string;
+    location: string;
+    degree: string;
+    startDate: string;
+    endDate: string;
+    description: string[];
+}
+
+export type CVEducationsProps = {
+    label: string;
+    educations: CVEducationProps[];
+}
+
 export type CVProps = {
     header: CVHeaderProps;
     summaryEnabled: boolean;
@@ -109,4 +123,6 @@ export type CVProps = {
     writings?: CVWritingsProps;
     committeeEnabled: boolean;
     committees?: CVCommitteesProps;
+    educationEnabled: boolean;
+    educations?: CVEducationsProps;
 }

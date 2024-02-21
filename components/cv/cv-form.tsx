@@ -10,7 +10,7 @@ import { Switch } from "@/components/ui/switch";
 import { PlusCircle, MinusCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CV from "./cv";
-import { CVExperienceProps, CVHeaderProps, CVProps, CVHonorTypeProps, CVPresentationProps, CVWritingProps, CVComitteeProps } from "@/types/cv-types";
+import { CVExperienceProps, CVHeaderProps, CVProps, CVHonorTypeProps, CVPresentationProps, CVWritingProps, CVComitteeProps, CVEducationProps } from "@/types/cv-types";
 import { Textarea } from "@/components/ui/textarea";
 import DisplayFrame from "@/components/display-frame";
 
@@ -166,11 +166,36 @@ export default function CVForm() {
         },
         {
             year: "2013",
-            position: "Organizer & Co‑director",
+            position: "Organizer & Co-director",
             organization: "1st POSTECH Hackathon",
             location: "S.Korea"
         }
     ] as CVComitteeProps[])
+    const [ educationEnabled, setEducationEnabled ] = React.useState(true)
+    const [ educationLabel, setEducationLabel ] = React.useState('Education')
+    const [ educations, setEducations ] = React.useState([
+        {
+            school: "Stanford University",
+            location: "Palo Alto, CA",
+            degree: "Master of Science in Computer Science",
+            startDate: "Sep.2013",
+            endDate: "Jun.2015",
+            description: [
+                "Thesis: 'Deep Learning for Sentiment Analysis'",
+                "GPA: 3.9/4.0"
+            ]
+        },
+        {
+            school: "POSTECH",
+            location: "Pohang, S.Korea",
+            degree: "Bachelor of Science in Computer Science",
+            startDate: "Mar.2009",
+            endDate: "Feb.2013",
+            description: [
+                "GPA: 3.8/4.0"
+            ]
+        }
+    ] as CVEducationProps[])
 
 
     const cvProps: CVProps = {
@@ -224,6 +249,11 @@ export default function CVForm() {
         committees: {
             label: committeeLabel,
             committees
+        },
+        educationEnabled,
+        educations: {
+            label: educationLabel,
+            educations
         }
     }
 
