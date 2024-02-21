@@ -1,6 +1,6 @@
 import { CVProps } from "@/types/cv-types";
 import { encode } from 'urlencode';
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
 import chromium from '@sparticuz/chromium'
 // import chromium from 'chrome-aws-lambda';
 // import playwright from 'playwright-core';
