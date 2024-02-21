@@ -317,6 +317,23 @@ export default function CVForm() {
                 </TabsContent>
             </Tabs>
             <CV {...cvProps} />
+            <Button onClick={async () => {
+                const response = await fetch('/api/pdf', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(cvProps)
+                })
+                const blob = await response.blob()
+                const url = window.URL.createObjectURL(blob)
+                const a = document.createElement('a')
+                a.href = url
+                a.download = `${firstName}-EasyCV.pdf`
+                a.click()
+                window.URL.revokeObjectURL(url)
+            }
+            }>Download</Button>
         </div>
         
     )
