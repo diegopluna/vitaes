@@ -6,6 +6,7 @@ import chromium from '@sparticuz/chromium'
 export async function POST(request: Request): Promise<Response> {
     const data = await request.json() as CVProps
     const cvData = encode(JSON.stringify(data))
+    console.log(cvData)
     chromium.setGraphicsMode = false
     const browser = await puppeteer.launch({
             args: chromium.args,
