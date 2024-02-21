@@ -2,7 +2,7 @@ import React from 'react';
 
 function A4CVOnly({ children } : { children : React.ReactNode }) {
     return (
-      <div className=" h-min-[297mm] w-[210mm] bg-white p-8 text-black">
+      <div className=" h-min-[297mm] w-[210mm] bg-white text-black">
         {children}
       </div>
     );
