@@ -583,86 +583,84 @@ export default function CVForm() {
                                                                 </div>
                                                                 
                                                             </AccordionTrigger>
-                                                            <AccordionContent className="space-y-1">
-                                                                <AccordionContent className="space-y-2">
-                                                                    <div className="flex flex-col space-y-1">
-                                                                        <Label className="ml-1" htmlFor={`experienceTitle-${index}`}>Company Name</Label>
-                                                                        <Input className="w-11/12 ml-1" id={`experienceTitle-${index}`} type="text" value={experience.company} onChange={(e) => {
-                                                                            const newExperiences = experiences.slice()
-                                                                            newExperiences[index].company = e.target.value
-                                                                            setExperiences(newExperiences)
-                                                                        }} />
-                                                                    </div>
-                                                                    <div className="flex flex-col space-y-1">
-                                                                        <Label className="ml-1" htmlFor={`experienceContent-${index}`}>Location</Label>
-                                                                        <Input className="w-11/12 ml-1" id={`experienceContent-${index}`} type="text" value={experience.location} onChange={(e) => {
-                                                                            const newExperiences = experiences.slice()
-                                                                            newExperiences[index].location = e.target.value
-                                                                            setExperiences(newExperiences)
-                                                                        }} />
-                                                                    </div>
-                                                                    <div className="flex flex-col space-y-1">
-                                                                        <Label className="ml-1" htmlFor={`experienceContent-${index}`}>Position</Label>
-                                                                        <Input className="w-11/12 ml-1" id={`experienceContent-${index}`} type="text" value={experience.position} onChange={(e) => {
-                                                                            const newExperiences = experiences.slice()
-                                                                            newExperiences[index].position = e.target.value
-                                                                            setExperiences(newExperiences)
-                                                                        }} />
-                                                                    </div>
-                                                                    <div className="flex flex-col space-y-1">
-                                                                        <Label className="ml-1" htmlFor={`experienceContent-${index}`}>Start Date</Label>
-                                                                        <Input className="w-11/12 ml-1" id={`experienceContent-${index}`} type="text" value={experience.startDate} onChange={(e) => {
-                                                                            const newExperiences = experiences.slice()
-                                                                            newExperiences[index].startDate = e.target.value
-                                                                            setExperiences(newExperiences)
-                                                                        }} />
-                                                                    </div>
-                                                                    <div className="flex flex-col space-y-1">
-                                                                        <Label className="ml-1" htmlFor={`experienceContent-${index}`}>End Date</Label>
-                                                                        <Input className="w-11/12 ml-1" id={`experienceContent-${index}`} type="text" value={experience.endDate} onChange={(e) => {
-                                                                            const newExperiences = experiences.slice()
-                                                                            newExperiences[index].endDate = e.target.value
-                                                                            setExperiences(newExperiences)
-                                                                        }} />
-                                                                    </div>
-                                                                    <div className="flex flex-col space-y-1">
-                                                                        <Label className="ml-1" htmlFor={`experienceContent-${index}`}>Description</Label>
-                                                                        {experience.description.map((description, descriptionIndex) =>  (
-                                                                            <div className="flex flex-row ml-1 w-11/12" key={descriptionIndex}>
-                                                                                <Button 
-                                                                                    variant={'ghost'}
-                                                                                    onClick={
-                                                                                        () => {
-                                                                                            const newExperiences = experiences.slice()
-                                                                                            newExperiences[index].description.splice(descriptionIndex, 1)
-                                                                                            setExperiences(newExperiences)
-                                                                                        }
-                                                                                }>
-                                                                                    <MinusCircle size={16} />
-                                                                                </Button>
-                                                                                <Input key={descriptionIndex} id={`experienceContent-${index}`} type="text" value={description} onChange={(e) => {
-                                                                                    const newExperiences = experiences.slice()
-                                                                                    newExperiences[index].description[descriptionIndex] = e.target.value
-                                                                                    setExperiences(newExperiences)
-                                                                                }} />
-                                                                            </div>
-                                                                        ))}
-                                                                        <Button
-                                                                            className="w-11/12 items-center justify-center" 
-                                                                            variant={'ghost'}
-                                                                            onClick={
-                                                                                () => {
-                                                                                    const newExperiences = experiences.slice()
-                                                                                    newExperiences[index].description.push('')
-                                                                                    setExperiences(newExperiences)
-                                                                                }
-                                                                        }>
-                                                                            <PlusCircle size={16} />
-                                                                        </Button>
-                                                                    </div>                                                    
-                                                                </AccordionContent>
-                                                                
+                                                            <AccordionContent className="space-y-2">
+                                                                <div className="flex flex-col space-y-1">
+                                                                    <Label className="ml-1" htmlFor={`experienceTitle-${index}`}>Company Name</Label>
+                                                                    <Input className="w-11/12 ml-1" id={`experienceTitle-${index}`} type="text" value={experience.company} onChange={(e) => {
+                                                                        const newExperiences = experiences.slice()
+                                                                        newExperiences[index].company = e.target.value
+                                                                        setExperiences(newExperiences)
+                                                                    }} />
+                                                                </div>
+                                                                <div className="flex flex-col space-y-1">
+                                                                    <Label className="ml-1" htmlFor={`experienceContent-${index}`}>Location</Label>
+                                                                    <Input className="w-11/12 ml-1" id={`experienceContent-${index}`} type="text" value={experience.location} onChange={(e) => {
+                                                                        const newExperiences = experiences.slice()
+                                                                        newExperiences[index].location = e.target.value
+                                                                        setExperiences(newExperiences)
+                                                                    }} />
+                                                                </div>
+                                                                <div className="flex flex-col space-y-1">
+                                                                    <Label className="ml-1" htmlFor={`experienceContent-${index}`}>Position</Label>
+                                                                    <Input className="w-11/12 ml-1" id={`experienceContent-${index}`} type="text" value={experience.position} onChange={(e) => {
+                                                                        const newExperiences = experiences.slice()
+                                                                        newExperiences[index].position = e.target.value
+                                                                        setExperiences(newExperiences)
+                                                                    }} />
+                                                                </div>
+                                                                <div className="flex flex-col space-y-1">
+                                                                    <Label className="ml-1" htmlFor={`experienceContent-${index}`}>Start Date</Label>
+                                                                    <Input className="w-11/12 ml-1" id={`experienceContent-${index}`} type="text" value={experience.startDate} onChange={(e) => {
+                                                                        const newExperiences = experiences.slice()
+                                                                        newExperiences[index].startDate = e.target.value
+                                                                        setExperiences(newExperiences)
+                                                                    }} />
+                                                                </div>
+                                                                <div className="flex flex-col space-y-1">
+                                                                    <Label className="ml-1" htmlFor={`experienceContent-${index}`}>End Date</Label>
+                                                                    <Input className="w-11/12 ml-1" id={`experienceContent-${index}`} type="text" value={experience.endDate} onChange={(e) => {
+                                                                        const newExperiences = experiences.slice()
+                                                                        newExperiences[index].endDate = e.target.value
+                                                                        setExperiences(newExperiences)
+                                                                    }} />
+                                                                </div>
+                                                                <div className="flex flex-col space-y-1">
+                                                                    <Label className="ml-1" htmlFor={`experienceContent-${index}`}>Description</Label>
+                                                                    {experience.description.map((description, descriptionIndex) =>  (
+                                                                        <div className="flex flex-row ml-1 w-11/12" key={descriptionIndex}>
+                                                                            <Button 
+                                                                                variant={'ghost'}
+                                                                                onClick={
+                                                                                    () => {
+                                                                                        const newExperiences = experiences.slice()
+                                                                                        newExperiences[index].description.splice(descriptionIndex, 1)
+                                                                                        setExperiences(newExperiences)
+                                                                                    }
+                                                                            }>
+                                                                                <MinusCircle size={16} />
+                                                                            </Button>
+                                                                            <Input key={descriptionIndex} id={`experienceContent-${index}`} type="text" value={description} onChange={(e) => {
+                                                                                const newExperiences = experiences.slice()
+                                                                                newExperiences[index].description[descriptionIndex] = e.target.value
+                                                                                setExperiences(newExperiences)
+                                                                            }} />
+                                                                        </div>
+                                                                    ))}
+                                                                    <Button
+                                                                        className="w-11/12 items-center justify-center" 
+                                                                        variant={'ghost'}
+                                                                        onClick={
+                                                                            () => {
+                                                                                const newExperiences = experiences.slice()
+                                                                                newExperiences[index].description.push('')
+                                                                                setExperiences(newExperiences)
+                                                                            }
+                                                                    }>
+                                                                        <PlusCircle size={16} />
+                                                                    </Button>
+                                                                </div>                                                    
                                                             </AccordionContent>
+                                                                
                                                         </AccordionItem>
                                                     ))}
                                                     </div>
@@ -686,12 +684,396 @@ export default function CVForm() {
                                             <div className="space-y-1">
                                                 <Label htmlFor="honorsLabel">Label</Label>
                                                 <Input id="honorsLabel" type="text" value={honorsLabel} onChange={(e) => setHonorsLabel(e.target.value)} />
+                                                <Button
+                                                    className="w-full items-center justify-center" 
+                                                    variant={'ghost'}
+                                                    onClick={
+                                                        () => setHonorsTypes([...honorsTypes, {
+                                                            label: '',
+                                                            honors: []
+                                                        }])
+                                                }>
+                                                    <PlusCircle />
+                                                </Button>
+                                                <div className="space-y-2">
+                                                    {honorsTypes.map((honorsType, index) => (
+                                                        <div key={index} className="space-y-2 border rounded-lg p-4">
+                                                            <div className="items-center flex flex-row">
+                                                                <Button
+                                                                    variant={'ghost'}
+                                                                    onClick={
+                                                                        () => {
+                                                                            const newHonorsTypes = honorsTypes.slice()
+                                                                            newHonorsTypes.splice(index, 1)
+                                                                            setHonorsTypes(newHonorsTypes)
+                                                                        }
+                                                                }>
+                                                                    <MinusCircle  />
+                                                                </Button>
+                                                                {`Type - ${index+1}`}
+                                                            </div>
+                                                            <Label htmlFor="honorsLabel">Type Name</Label>
+                                                            <Input id="honorsTypeLabel" type="text" value={honorsTypes[index].label} onChange={(e) => setHonorsTypes(
+                                                                honorsTypes.map((honorsType, i) => {
+                                                                    if (i === index) {
+                                                                        return {
+                                                                            ...honorsType,
+                                                                            label: e.target.value
+                                                                        }
+                                                                    }
+                                                                    return honorsType
+                                                                })
+                                                            )} />
+                                                            <Button
+                                                                className="w-full items-center justify-center" 
+                                                                variant={'ghost'}
+                                                                onClick={
+                                                                    () => {
+                                                                        const newHonorsTypes = honorsTypes.slice()
+                                                                        newHonorsTypes[index].honors.push({
+                                                                            year: '',
+                                                                            position: '',
+                                                                            honor: '',
+                                                                            location: ''
+                                                                        })
+                                                                        setHonorsTypes(newHonorsTypes)
+                                                                    }
+                                                            }>
+                                                                <PlusCircle size={20}/>
+                                                            </Button> 
+                                                            <Accordion type="single" collapsible className="w-full">
+                                                                <div className="space-y-2">
+                                                                    {honorsTypes[index].honors.map((honor, honorIndex) => (
+                                                                        <AccordionItem key={honorIndex} value={honorIndex.toString()}>
+                                                                            <AccordionTrigger>
+                                                                                <div className="items-center justify-center">
+                                                                                    <Button
+                                                                                        className="mr-1" 
+                                                                                        variant={'ghost'}
+                                                                                        onClick={
+                                                                                        () => {
+                                                                                            const newHonorsTypes = honorsTypes.slice()
+                                                                                            newHonorsTypes[index].honors.splice(honorIndex, 1)
+                                                                                            setHonorsTypes(newHonorsTypes)
+                                                                                        }
+                                                                                    }>
+                                                                                        <MinusCircle size={20} />
+                                                                                    </Button>
+                                                                                    {`Honor - ${honorIndex+1}`}
+                                                                                </div>
+                                                                            </AccordionTrigger>
+                                                                            <AccordionContent className="space-y-2">
+                                                                                <div className="flex flex-col space-y-1">
+                                                                                    <Label className="ml-1" htmlFor={`honorYear-${honorIndex}`}>Year</Label>
+                                                                                    <Input className="w-11/12 ml-1" id={`honorYear-${honorIndex}`} type="text" value={honor.year} onChange={(e) => {
+                                                                                        const newHonorsTypes = honorsTypes.slice()
+                                                                                        newHonorsTypes[index].honors[honorIndex].year = e.target.value
+                                                                                        setHonorsTypes(newHonorsTypes)
+                                                                                    }} />
+                                                                                </div>
+                                                                                <div className="flex flex-col space-y-1">
+                                                                                    <Label className="ml-1" htmlFor={`honorPosition-${honorIndex}`}>Position</Label>
+                                                                                    <Input className="w-11/12 ml-1" id={`honorPosition-${honorIndex}`} type="text" value={honor.position} onChange={(e) => {
+                                                                                        const newHonorsTypes = honorsTypes.slice()
+                                                                                        newHonorsTypes[index].honors[honorIndex].position = e.target.value
+                                                                                        setHonorsTypes(newHonorsTypes)
+                                                                                    }} />
+                                                                                </div>
+                                                                                <div className="flex flex-col space-y-1">
+                                                                                    <Label className="ml-1" htmlFor={`honorContent-${honorIndex}`}>Honor</Label>
+                                                                                    <Input className="w-11/12 ml-1" id={`honorContent-${honorIndex}`} type="text" value={honor.honor} onChange={(e) => {
+                                                                                        const newHonorsTypes = honorsTypes.slice()
+                                                                                        newHonorsTypes[index].honors[honorIndex].honor = e.target.value
+                                                                                        setHonorsTypes(newHonorsTypes)
+                                                                                    }} />
+                                                                                </div>
+                                                                                <div className="flex flex-col space-y-1">
+                                                                                    <Label className="ml-1" htmlFor={`honorLocation-${honorIndex}`}>Location</Label>
+                                                                                    <Input className="w-11/12 ml-1" id={`honorLocation-${honorIndex}`} type="text" value={honor.location} onChange={(e) => {
+                                                                                        const newHonorsTypes = honorsTypes.slice()
+                                                                                        newHonorsTypes[index].honors[honorIndex].location = e.target.value
+                                                                                        setHonorsTypes(newHonorsTypes)
+                                                                                    }} />
+                                                                                </div>
+                                                                            </AccordionContent>
+                                                                        </AccordionItem>
+                                                                    ))}
+                                                                </div>
+                                                            </Accordion>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                                
                                             </div>
                                         )}
                                     </div>
                                 </CardContent>
                             </Card>
                         </TabsContent>
+                        <TabsContent value="presentation">
+                            <Card>
+                                <CardHeader>Presentations</CardHeader>
+                                <CardContent className="space-y-2">
+                                    <div className="space-y-1">
+                                        <div className="flex items-center justify-between">
+                                            <Label htmlFor="presentationsEnabled">Enabled</Label>
+                                            <Switch checked={presentationsEnabled} onCheckedChange={setPresentationsEnabled} />
+                                        </div>
+                                        {presentationsEnabled && (
+                                            <div className="space-y-2">
+                                                <Label htmlFor="presentationLabel">Label</Label>
+                                                <Input id="presentationLabel" type="text" value={presentationsLabel} onChange={(e) => setPresentationsLabel(e.target.value)} />
+                                                <Button
+                                                    className="w-full items-center justify-center" 
+                                                    variant={'ghost'}
+                                                    onClick={
+                                                        () => setPresentations([...presentations, {
+                                                            event: '',
+                                                            role: '',
+                                                            location: '',
+                                                            date: '',
+                                                            description: []
+                                                        }])
+                                                }>
+                                                    <PlusCircle />
+                                                </Button>
+                                                <Accordion type="single" collapsible className="w-full">
+                                                    <div className="space-y-2">
+                                                        {presentations.map((presentation, index) => (
+                                                            <AccordionItem key={index} value={index.toString()} >
+                                                                <AccordionTrigger>
+                                                                    <div className="items-center justify-center">
+                                                                        <Button
+                                                                            className="mr-1" 
+                                                                            variant={'ghost'}
+                                                                            onClick={
+                                                                            () => {
+                                                                                const newPresentations = presentations.slice()
+                                                                                newPresentations.splice(index, 1)
+                                                                                setPresentations(newPresentations)
+                                                                            }
+                                                                        }>
+                                                                            <MinusCircle size={20} />
+                                                                        </Button>
+                                                                        {`Presentation - ${index+1}`}
+                                                                    </div>
+                                                                </AccordionTrigger>
+                                                                <AccordionContent className="space-y-2">
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`presentationTitle-${index}`}>Event</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`presentationTitle-${index}`} type="text" value={presentation.event} onChange={(e) => {
+                                                                            const newPresentations = presentations.slice()
+                                                                            newPresentations[index].event = e.target.value
+                                                                            setPresentations(newPresentations)
+                                                                        }} />
+                                                                    </div>
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`presentationContent-${index}`}>Role</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`presentationContent-${index}`} type="text" value={presentation.role} onChange={(e) => {
+                                                                            const newPresentations = presentations.slice()
+                                                                            newPresentations[index].role = e.target.value
+                                                                            setPresentations(newPresentations)
+                                                                        }} />
+                                                                    </div>
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`presentationContent-${index}`}>Location</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`presentationContent-${index}`} type="text" value={presentation.location} onChange={(e) => {
+                                                                            const newPresentations = presentations.slice()
+                                                                            newPresentations[index].location = e.target.value
+                                                                            setPresentations(newPresentations)
+                                                                        }} />
+                                                                    </div>
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`presentationContent-${index}`}>Date</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`presentationContent-${index}`} type="text" value={presentation.date} onChange={(e) => {
+                                                                            const newPresentations = presentations.slice()
+                                                                            newPresentations[index].date = e.target.value
+                                                                            setPresentations(newPresentations)
+                                                                        }} />
+                                                                    </div>
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`presentationContent-${index}`}>Description</Label>
+                                                                        {presentation.description.map((description, descriptionIndex) =>  (
+                                                                            <div className="flex flex-row ml-1 w-11/12" key={descriptionIndex}>
+                                                                                <Button 
+                                                                                    variant={'ghost'}
+                                                                                    onClick={
+                                                                                        () => {
+                                                                                            const newPresentations = presentations.slice()
+                                                                                            newPresentations[index].description.splice(descriptionIndex, 1)
+                                                                                            setPresentations(newPresentations)
+                                                                                        }
+                                                                                }>
+                                                                                    <MinusCircle size={16} />
+                                                                                </Button>
+                                                                                <Input key={descriptionIndex} id={`presentationContent-${index}`} type="text" value={description} onChange={(e) => {
+                                                                                    const newPresentations = presentations.slice()
+                                                                                    newPresentations[index].description[descriptionIndex] = e.target.value
+                                                                                    setPresentations(newPresentations)
+                                                                                }} />
+                                                                            </div>
+                                                                        ))}
+                                                                        <Button
+                                                                            className="w-11/12 items-center justify-center" 
+                                                                            variant={'ghost'}
+                                                                            onClick={
+                                                                                () => {
+                                                                                    const newPresentations = presentations.slice()
+                                                                                    newPresentations[index].description.push('')
+                                                                                    setPresentations(newPresentations)
+                                                                                }
+                                                                        }>
+                                                                            <PlusCircle size={16} />
+                                                                        </Button>
+                                                                    </div>
+                                                                </AccordionContent>
+                                                            </AccordionItem>
+                                                        ))}
+                                                    </div> 
+                                                </Accordion>
+                                            </div>
+                                        )}
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </TabsContent>
+                        <TabsContent value="writing">
+                            <Card>
+                                <CardHeader>Writings</CardHeader>
+                                <CardContent className="space-y-2">
+                                    <div className="space-y-1">
+                                        <div className="flex items-center justify-between">
+                                            <Label htmlFor="writingEnabled">Enabled</Label>
+                                            <Switch checked={writingEnabled} onCheckedChange={setWritingEnabled} />
+                                        </div>  
+                                        {writingEnabled && (
+                                            <div className="space-y-1">
+                                                <Label htmlFor="writingLabel">Label</Label>
+                                                <Input id="writingLabel" type="text" value={writingLabel} onChange={(e) => setWritingLabel(e.target.value)} />
+                                                <Button
+                                                    className="w-full items-center justify-center" 
+                                                    variant={'ghost'}
+                                                    onClick={
+                                                        () => setWritings([...writings, {
+                                                            title: '',
+                                                            role: '',
+                                                            medium: '',
+                                                            startDate: '',
+                                                            endDate: '',
+                                                            descriptions: []
+                                                        }])
+                                                }>
+                                                    <PlusCircle />
+                                                </Button>
+                                                <Accordion type="single" collapsible className="w-full">
+                                                    <div className="space-y-2">
+                                                        {writings.map((writing, index) => (
+                                                            <AccordionItem key={index} value={index.toString()} >
+                                                                <AccordionTrigger>
+                                                                    <div className="items-center justify-center">
+                                                                        <Button
+                                                                            className="mr-1" 
+                                                                            variant={'ghost'}
+                                                                            onClick={
+                                                                            () => {
+                                                                                const newWritings = writings.slice()
+                                                                                newWritings.splice(index, 1)
+                                                                                setWritings(newWritings)
+                                                                            }
+                                                                        }>
+                                                                            <MinusCircle size={20} />
+                                                                        </Button>
+                                                                        {`Writing - ${index+1}`}
+                                                                    </div>
+                                                                </AccordionTrigger>
+                                                                <AccordionContent className="space-y-2">
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`writingTitle-${index}`}>Title</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`writingTitle-${index}`} type="text" value={writing.title} onChange={(e) => {
+                                                                            const newWritings = writings.slice()
+                                                                            newWritings[index].title = e.target.value
+                                                                            setWritings(newWritings)
+                                                                        }} />
+                                                                    </div>
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`writingContent-${index}`}>Role</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`writingContent-${index}`} type="text" value={writing.role} onChange={(e) => {
+                                                                            const newWritings = writings.slice()
+                                                                            newWritings[index].role = e.target.value
+                                                                            setWritings(newWritings)
+                                                                        }} />
+                                                                    </div>                                                                
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`writingContent-${index}`}>Medium</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`writingContent-${index}`} type="text" value={writing.medium} onChange={(e) => {
+                                                                            const newWritings = writings.slice()
+                                                                            newWritings[index].medium = e.target.value
+                                                                            setWritings(newWritings)
+                                                                        }} />
+                                                                    </div>
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`writingContent-${index}`}>Start Date</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`writingContent-${index}`} type="text" value={writing.startDate} onChange={(e) => {
+                                                                            const newWritings = writings.slice()
+                                                                            newWritings[index].startDate = e.target.value
+                                                                            setWritings(newWritings)
+                                                                        }} />
+                                                                    </div>
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`writingContent-${index}`}>End Date</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`writingContent-${index}`} type="text" value={writing.endDate} onChange={(e) => {
+                                                                            const newWritings = writings.slice()
+                                                                            newWritings[index].endDate = e.target.value
+                                                                            setWritings(newWritings)
+                                                                        }} />
+                                                                    </div> 
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`writingContent-${index}`}>Description</Label>
+                                                                        {writing.descriptions.map((description, descriptionIndex) =>  (
+                                                                            <div className="flex flex-row ml-1 w-11/12" key={descriptionIndex}>
+                                                                                <Button 
+                                                                                    variant={'ghost'}
+                                                                                    onClick={
+                                                                                        () => {
+                                                                                            const newWritings = writings.slice()
+                                                                                            newWritings[index].descriptions.splice(descriptionIndex, 1)
+                                                                                            setWritings(newWritings)
+                                                                                        }
+                                                                                }>
+                                                                                    <MinusCircle size={16} />
+                                                                                </Button>
+                                                                                <Input key={descriptionIndex} id={`writingContent-${index}`} type="text" value={description} onChange={(e) => {
+                                                                                    const newWritings = writings.slice()
+                                                                                    newWritings[index].descriptions[descriptionIndex] = e.target.value
+                                                                                    setWritings(newWritings)
+                                                                                }} />
+                                                                            </div>
+                                                                        ))}
+                                                                        <Button
+                                                                            className="w-11/12 items-center justify-center" 
+                                                                            variant={'ghost'}
+                                                                            onClick={
+                                                                                () => {
+                                                                                    const newWritings = writings.slice()
+                                                                                    newWritings[index].descriptions.push('')
+                                                                                    setWritings(newWritings)
+                                                                                }
+                                                                        }>
+                                                                            <PlusCircle size={16} />
+                                                                        </Button>
+                                                                    </div> 
+                                                                </AccordionContent>    
+                                                            </AccordionItem>
+                                                        ))}
+                                                        </div>
+                                                    </Accordion>
+                                            </div>
+                                        )}
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </TabsContent>
+                        
                     </Tabs>
                 </div>
             </ResizablePanel>
