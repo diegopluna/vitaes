@@ -201,6 +201,34 @@ export default function CVForm() {
             ]
         }
     ] as CVEducationProps[])
+    const [ extracurricularEnabled, setExtracurricularEnabled ] = React.useState(true)
+    const [ extracurricularLabel, setExtracurricularLabel ] = React.useState('Extracurricular Activities')
+    const [ extracurriculars, setExtracurriculars ] = React.useState([
+        {
+            role: "Core Member & President at 2013",
+            organization: "PoApper (Developers' Network of POSTECH)",
+            location: "Pohang, S.Korea",
+            startDate: "Jun. 2010",
+            endDate: "Jun. 2017",
+            description: [
+                "Reformed the society focusing on software engineering and building network on and off campus.",
+                "Proposed various marketing and network activities to raise awareness."
+            ]
+        },
+        {
+            role: "Member",
+            organization: "PLUS (Laboratory for UNIX Security in POSTECH)",
+            location: "Pohang, S.Korea",
+            startDate: "Sep. 2010",
+            endDate: "Oct. 2011",
+            description: [
+                "Gained expertise in hacking & security areas, especially about internal of operating system based on UNIX and several exploit techniques.",
+                "Participated on several hacking competition and won a good award.",
+                "Conducted periodic security checks on overall IT system as a member of POSTECH CERT.",
+                "Conducted penetration testing commissioned by national agency and corporation."
+            ]
+        }
+    ])
     const [ loading, setLoading ] = React.useState(false)
 
     
@@ -260,6 +288,11 @@ export default function CVForm() {
         educations: {
             label: educationLabel,
             educations
+        },
+        extracurricularEnabled,
+        extracurriculars: {
+            label: extracurricularLabel,
+            extracurriculars
         }
     }
 
@@ -1285,6 +1318,142 @@ export default function CVForm() {
                                                                                     const newEducations = educations.slice()
                                                                                     newEducations[index].description.push('')
                                                                                     setEducations(newEducations)
+                                                                                }
+                                                                        }>
+                                                                            <PlusCircle size={16} />
+                                                                        </Button>
+                                                                    </div>
+                                                                </AccordionContent>
+                                                            </AccordionItem>
+                                                        ))}
+                                                    </div>
+                                                </Accordion>
+                                            </div>
+                                        )}
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </TabsContent>
+                        <TabsContent value="extracurricular">
+                            <Card>
+                                <CardHeader>Extracurricular</CardHeader>
+                                <CardContent className="space-y-2">
+                                    <div className="space-y-1">
+                                        <div className="flex items-center justify-between">
+                                            <Label htmlFor="extracurricularEnabled">Enabled</Label>
+                                            <Switch checked={extracurricularEnabled} onCheckedChange={setExtracurricularEnabled} />
+                                        </div>
+                                        {extracurricularEnabled && (
+                                            <div className="space-y-1">
+                                                <Label htmlFor="extracurricularLabel">Label</Label>
+                                                <Input id="extracurricularLabel" type="text" value={extracurricularLabel} onChange={(e) => setExtracurricularLabel(e.target.value)} />
+                                                <Button
+                                                    className="w-full items-center justify-center" 
+                                                    variant={'ghost'}
+                                                    onClick={
+                                                        () => setExtracurriculars([...extracurriculars, {
+                                                            role: '',
+                                                            organization: '',
+                                                            startDate: '',
+                                                            endDate: '',
+                                                            location: '',
+                                                            description: []
+                                                        }])
+                                                }>
+                                                    <PlusCircle />
+                                                </Button>
+                                                <Accordion type="single" collapsible className="w-full">
+                                                    <div className="space-y-2">
+                                                        {extracurriculars.map((extracurricular, index) => (
+                                                            <AccordionItem key={index} value={index.toString()}>
+                                                                <AccordionTrigger>
+                                                                    <div className="items-center justify-center">
+                                                                        <Button
+                                                                            className="mr-1" 
+                                                                            variant={'ghost'}
+                                                                            onClick={
+                                                                            () => {
+                                                                                const newExtracurriculars = extracurriculars.slice()
+                                                                                newExtracurriculars.splice(index, 1)
+                                                                                setExtracurriculars(newExtracurriculars)
+                                                                            }
+                                                                        }>
+                                                                            <MinusCircle size={20} />
+                                                                        </Button>
+                                                                        {`Extracurricular - ${index+1}`}
+                                                                    </div>
+                                                                </AccordionTrigger>
+                                                                <AccordionContent className="space-y-2">
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`extracurricularRole-${index}`}>Role</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`extracurricularRole-${index}`} type="text" value={extracurricular.role} onChange={(e) => {
+                                                                            const newExtracurriculars = extracurriculars.slice()
+                                                                            newExtracurriculars[index].role = e.target.value
+                                                                            setExtracurriculars(newExtracurriculars)
+                                                                        }} />
+                                                                    </div>
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`extracurricularOrganization-${index}`}>Organization</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`extracurricularOrganization-${index}`} type="text" value={extracurricular.organization} onChange={(e) => {
+                                                                            const newExtracurriculars = extracurriculars.slice()
+                                                                            newExtracurriculars[index].organization = e.target.value
+                                                                            setExtracurriculars(newExtracurriculars)
+                                                                        }} />
+                                                                    </div>
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`extracurricularStartDate-${index}`}>Start Date</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`extracurricularStartDate-${index}`} type="text" value={extracurricular.startDate} onChange={(e) => {
+                                                                            const newExtracurriculars = extracurriculars.slice()
+                                                                            newExtracurriculars[index].startDate = e.target.value
+                                                                            setExtracurriculars(newExtracurriculars)
+                                                                        }} />
+                                                                    </div>
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`extracurricularEndDate-${index}`}>End Date</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`extracurricularEndDate-${index}`} type="text" value={extracurricular.endDate} onChange={(e) => {
+                                                                            const newExtracurriculars = extracurriculars.slice()
+                                                                            newExtracurriculars[index].endDate = e.target.value
+                                                                            setExtracurriculars(newExtracurriculars)
+                                                                        }} />
+                                                                    </div>
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`extracurricularLocation-${index}`}>Location</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`extracurricularLocation-${index}`} type="text" value={extracurricular.location} onChange={(e) => {
+                                                                            const newExtracurriculars = extracurriculars.slice()
+                                                                            newExtracurriculars[index].location = e.target.value
+                                                                            setExtracurriculars(newExtracurriculars)
+                                                                        }} />
+                                                                    </div>
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`extracurricularContent-${index}`}>Description</Label>
+                                                                        {extracurricular.description.map((description, descriptionIndex) =>  (
+                                                                            <div className="flex flex-row ml-1 w-11/12" key={descriptionIndex}>
+                                                                                <Button 
+                                                                                    variant={'ghost'}
+                                                                                    onClick={
+                                                                                        () => {
+                                                                                            const newExtracurriculars = extracurriculars.slice()
+                                                                                            newExtracurriculars[index].description.splice(descriptionIndex, 1)
+                                                                                            setExtracurriculars(newExtracurriculars)
+                                                                                        }
+                                                                                }>
+                                                                                    <MinusCircle size={16} />
+                                                                                </Button>
+                                                                                <Input key={descriptionIndex} id={`extracurricularContent-${index}`} type="text" value={description} onChange={(e) => {
+                                                                                    const newExtracurriculars = extracurriculars.slice()
+                                                                                    newExtracurriculars[index].description[descriptionIndex] = e.target.value
+                                                                                    setExtracurriculars(newExtracurriculars)
+                                                                                }} />
+                                                                            </div>
+                                                                        ))}
+                                                                        <Button
+                                                                            className="w-11/12 items-center justify-center" 
+                                                                            variant={'ghost'}
+                                                                            onClick={
+                                                                                () => {
+                                                                                    const newExtracurriculars = extracurriculars.slice()
+                                                                                    newExtracurriculars[index].description.push('')
+                                                                                    setExtracurriculars(newExtracurriculars)
                                                                                 }
                                                                         }>
                                                                             <PlusCircle size={16} />

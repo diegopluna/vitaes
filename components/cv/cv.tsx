@@ -8,6 +8,7 @@ import CVPresentations from "./cv-presentation";
 import CVWritings from "./cv-writing";
 import CVCommittee from "./cv-committee";
 import CVEducation from "./cv-education";
+import CVExtracurricular from "./cv-extracurricular";
 
 export default function CV(props : CVProps) {
     return (
@@ -20,6 +21,7 @@ export default function CV(props : CVProps) {
             {props.writingEnabled && <CVWritings {...props.writings!} />}
             {props.committeeEnabled && <CVCommittee {...props.committees!} />}
             {props.educationEnabled && <CVEducation {...props.educations!} />}
+            {props.extracurricularEnabled && <CVExtracurricular {...props.extracurriculars!} />}
         </A4Paper>
     )
 }
