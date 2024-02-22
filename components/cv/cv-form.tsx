@@ -1,18 +1,23 @@
 "use client"
 
 import * as React from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
-import { PlusCircle, MinusCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import CV from "./cv";
-import { CVExperienceProps, CVHeaderProps, CVProps, CVHonorTypeProps, CVPresentationProps, CVWritingProps, CVComitteeProps, CVEducationProps } from "@/types/cv-types";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { CVExperienceProps, CVHeaderProps, CVProps, CVHonorTypeProps, CVPresentationProps, CVWritingProps, CVComitteeProps, CVEducationProps } from "@/types/cv-types";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
+import CV from "@/components/cv/cv";
 import DisplayFrame from "@/components/display-frame";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Briefcase, GraduationCap, Languages, Loader2, Medal, NotebookPen, Pen, PencilRuler, Presentation, ScrollText, UserRound, UsersRound, PlusCircle, MinusCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
+
+
 
 export default function CVForm() {
     const [alignment, setAlignment] = React.useState('center')
@@ -196,8 +201,9 @@ export default function CVForm() {
             ]
         }
     ] as CVEducationProps[])
+    const [ loading, setLoading ] = React.useState(false)
 
-
+    
     const cvProps: CVProps = {
         header: {
             alignment: alignment as CVHeaderProps['alignment'],
@@ -257,287 +263,451 @@ export default function CVForm() {
         }
     }
 
-    return (
-        <div className="flex space-x-10">
-            <div className="flex flex-col p-6">
-                <Tabs defaultValue="header" className="w-[600px]">
-                    <TabsList className="grid w-full grid-cols-4">
-                        <TabsTrigger value="header">Header</TabsTrigger>
-                        <TabsTrigger value="summary">Summary</TabsTrigger>
-                        <TabsTrigger value="experience">Experience</TabsTrigger>
-                        <TabsTrigger value="honors">Honors</TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="header">
-                        <Card>
-                            <CardHeader>Header</CardHeader>
-                            <CardContent className="space-y-2">
-                                <div className="space-y-1">
-                                    <Label htmlFor="alignment">Alignment</Label>
-                                    <Select value={alignment} onValueChange={setAlignment}>
-                                        <SelectTrigger>
-                                            <SelectValue placeholder="Select the header alignment" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectGroup>
-                                                <SelectItem value="start">Left</SelectItem>
-                                                <SelectItem value="center">Center</SelectItem>
-                                                <SelectItem value="end">Right</SelectItem>
-                                            </SelectGroup>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                                <div className="space-y-1">
-                                    <Label htmlFor="firstName">First Name</Label>
-                                    <Input id="firstName" type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-                                </div>
-                                <div className="space-y-1">
-                                    <Label htmlFor="lastName">Last Name</Label>
-                                    <Input id="lastName" type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="flex items-center justify-between">
-                                        <Label htmlFor="phone">Phone</Label>
-                                        <Switch checked={phoneEnabled} onCheckedChange={setPhoneEnabled} />
-                                    </div>
-                                    {phoneEnabled && (
-                                        <Input placeholder="Phone" id="phone" type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
-                                    )}
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="flex items-center justify-between">
-                                        <Label htmlFor="email">Email</Label>
-                                        <Switch checked={emailEnabled} onCheckedChange={setEmailEnabled} />
-                                    </div>
-                                    {emailEnabled && (
-                                        <Input placeholder="Email" id="email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-                                    )}
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="flex items-center justify-between">
-                                        <Label htmlFor="homepage">Homepage</Label>
-                                        <Switch checked={homepageEnabled} onCheckedChange={setHomepageEnabled} />
-                                    </div>
-                                    {homepageEnabled && (
-                                        <Input placeholder="Homepage" id="homepage" type="text" value={homepage} onChange={(e) => setHomepage(e.target.value)} />
-                                    )}
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="flex items-center justify-between">
-                                        <Label htmlFor="github">Github</Label>
-                                        <Switch checked={githubEnabled} onCheckedChange={setGithubEnabled} />
-                                    </div>
-                                    {githubEnabled && (
-                                        <Input placeholder="Github" id="github" type="text" value={github} onChange={(e) => setGithub(e.target.value)} />
-                                    )}
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="flex items-center justify-between">
-                                        <Label htmlFor="linkedin">Linkedin</Label>
-                                        <Switch checked={linkedinEnabled} onCheckedChange={setLinkedinEnabled} />
-                                    </div>
-                                    {linkedinEnabled && (
-                                        <Input placeholder="Linkedin" id="linkedin" type="text" value={linkedin} onChange={(e) => setLinkedin(e.target.value)} />
-                                    )}
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="flex items-center justify-between">
-                                        <Label htmlFor="gitlab">Gitlab</Label>
-                                        <Switch checked={gitlabEnabled} onCheckedChange={setGitlabEnabled} />
-                                    </div>
-                                    {gitlabEnabled && (
-                                        <Input placeholder="Gitlab" id="gitlab" type="text" value={gitlab} onChange={(e) => setGitlab(e.target.value)} />
-                                    )}
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="flex items-center justify-between">
-                                        <Label htmlFor="twitter">Twitter</Label>
-                                        <Switch checked={twitterEnabled} onCheckedChange={setTwitterEnabled} />
-                                    </div>
-                                    {twitterEnabled && (
-                                        <Input placeholder="Twitter" id="twitter" type="text" value={twitter} onChange={(e) => setTwitter(e.target.value)} />
-                                    )}
-                                </div>
-                                <div className="space-y-1">
-                                    <div className="flex items-center justify-between">
-                                        <Label htmlFor="quote">Quote</Label>
-                                        <Switch checked={quoteEnabled} onCheckedChange={setQuoteEnabled} />
-                                    </div>
-                                    {quoteEnabled && (
-                                        <Input placeholder="Quote" id="quote" type="text" value={quote} onChange={(e) => setQuote(e.target.value)} />
-                                    )}
-                                </div>
+    const downloadCV = async() => {
+        setLoading(true)
+        const response = await fetch('/api/pdf', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cvProps)
+        })
+        const blob = await response.blob()
+        const url = window.URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = `${firstName}-EasyCV.pdf`
+        a.click()
+        window.URL.revokeObjectURL(url)
+        setLoading(false)
+    }
 
-                            </CardContent>
-                        </Card>
-                    </TabsContent>
-                    <TabsContent value="summary">
-                        <Card>
-                            <CardHeader>Summary</CardHeader>
-                            <CardContent className="space-y-2">
-                                <div className="space-y-1">
-                                    <div className="flex flex-row">
-                                        <Label htmlFor="summaryEnabled">Enabled</Label>
-                                        <Switch checked={summaryEnabled} onCheckedChange={setSummaryEnabled} />
+    return (
+        <ResizablePanelGroup
+            direction="horizontal"
+            className="min-w-[1000px] w-full rounded-lg border"
+        >
+            <ResizablePanel 
+                className="min-w-[600px]"
+                defaultSize={50}
+            >
+                <div className="flex h-full items-start justify-center p-6">
+                    <Tabs defaultValue="personal" className="w-full">
+                        <TabsList className="grid w-full grid-cols-11">
+                            <TooltipProvider>
+                                <TabsTrigger value="personal">
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <UserRound />
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            <p>Personal Info & Settings</p>
+                                        </TooltipContent>
+                                    </Tooltip>                   
+                                </TabsTrigger>
+                                <TabsTrigger value="summary">
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <ScrollText />
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            <p>Summary</p>
+                                        </TooltipContent>
+                                    </Tooltip>                         
+                                </TabsTrigger>
+                                <TabsTrigger value="experience">
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <Briefcase />
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            <p>Work Experience</p>
+                                        </TooltipContent>
+                                    </Tooltip>                                 
+                                </TabsTrigger>
+                                <TabsTrigger value="honors">
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <Medal />
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            <p>Honors & Awards</p>
+                                        </TooltipContent>
+                                    </Tooltip> 
+                                </TabsTrigger>
+                                <TabsTrigger value="presentation">
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <Presentation />
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            <p>Presentations</p>
+                                        </TooltipContent>
+                                    </Tooltip>                      
+                                </TabsTrigger>
+                                <TabsTrigger value="writing">
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <Pen />
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            <p>Writings</p>
+                                        </TooltipContent>
+                                    </Tooltip>                            
+                                </TabsTrigger>
+                                <TabsTrigger value="committee">
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <UsersRound />
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            <p>Committees</p>
+                                        </TooltipContent>
+                                    </Tooltip>                      
+                                </TabsTrigger>
+                                <TabsTrigger value="education">
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <GraduationCap />
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            <p>Education</p>
+                                        </TooltipContent>
+                                    </Tooltip>                         
+                                </TabsTrigger>
+                                <TabsTrigger value="extracurricular">
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <NotebookPen />
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            <p>Extracurricular Activities</p>
+                                        </TooltipContent>
+                                    </Tooltip>             
+                                </TabsTrigger>
+                                <TabsTrigger value="projects">
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <PencilRuler />
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            <p>Projects</p>
+                                        </TooltipContent>
+                                    </Tooltip>                    
+                                </TabsTrigger>
+                                <TabsTrigger value="languages">
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <Languages />
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            <p>Languages</p>
+                                        </TooltipContent>
+                                    </Tooltip>                             
+                                </TabsTrigger>
+                            </TooltipProvider>                            
+                        </TabsList>
+                        <TabsContent value="personal">
+                            <Card>
+                                <CardHeader>Personal Info & Settings</CardHeader>
+                                <CardContent className="space-y-2">
+                                    <div className="space-y-1">
+                                        <Label htmlFor="alignment">Alignment</Label>
+                                        <Select value={alignment} onValueChange={setAlignment}>
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="Select the header alignment" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectGroup>
+                                                    <SelectItem value="start">Left</SelectItem>
+                                                    <SelectItem value="center">Center</SelectItem>
+                                                    <SelectItem value="end">Right</SelectItem>
+                                                </SelectGroup>
+                                            </SelectContent>
+                                        </Select>
                                     </div>
-                                    {summaryEnabled && (
-                                        <div className="space-y-1">
-                                            <Label htmlFor="summaryLabel">Label</Label>
-                                            <Input id="summaryLabel" type="text" value={summaryLabel} onChange={(e) => setSummaryLabel(e.target.value)} />
-                                            <Label htmlFor="summaryContent">Content</Label>
-                                            <Textarea id="summaryContent" value={summaryContent} onChange={(e) => setSummaryContent(e.target.value)} />
+                                    <div className="space-y-1">
+                                        <Label htmlFor="firstName">First Name</Label>
+                                        <Input id="firstName" type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                                    </div>
+                                    <div className="space-y-1">
+                                        <Label htmlFor="lastName">Last Name</Label>
+                                        <Input id="lastName" type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                                    </div>
+                                    <div className="space-y-1">
+                                        <div className="flex items-center justify-between">
+                                            <Label htmlFor="phone">Phone</Label>
+                                            <Switch checked={phoneEnabled} onCheckedChange={setPhoneEnabled} />
                                         </div>
-                                    )}
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </TabsContent>
-                    <TabsContent value="experience">
-                        <Card>
-                            <CardHeader>Experience</CardHeader>
-                            <CardContent className="space-y-2">
-                                <div className="space-y-1">
-                                    <div className="flex flex-row">
-                                        <Label htmlFor="experienceEnabled">Enabled</Label>
-                                        <Switch checked={experienceEnabled} onCheckedChange={setExperienceEnabled} />
+                                        {phoneEnabled && (
+                                            <Input placeholder="Phone" id="phone" type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                                        )}
                                     </div>
-                                    {experienceEnabled && (
-                                        <div className="space-y-1">
-                                            <Label htmlFor="experienceLabel">Label</Label>
-                                            <Input id="experienceLabel" type="text" value={experienceLabel} onChange={(e) => setExperienceLabel(e.target.value)} />
-                                            {experiences.map((experience, index) => (
-                                                <div key={index} className="space-y-1">
-                                                    <Button onClick={
-                                                        () => {
-                                                            const newExperiences = experiences.slice()
-                                                            newExperiences.splice(index, 1)
-                                                            setExperiences(newExperiences)
-                                                        }
-                                                    }>
-                                                        <MinusCircle />
-                                                    </Button>
-                                                    <Label htmlFor={`experienceTitle-${index}`}>Company</Label>
-                                                    <Input id={`experienceTitle-${index}`} type="text" value={experience.company} onChange={(e) => {
-                                                        const newExperiences = experiences.slice()
-                                                        newExperiences[index].company = e.target.value
-                                                        setExperiences(newExperiences)
-                                                    }} />
-                                                    <Label htmlFor={`experienceContent-${index}`}>Location</Label>
-                                                    <Input id={`experienceContent-${index}`} type="text" value={experience.location} onChange={(e) => {
-                                                        const newExperiences = experiences.slice()
-                                                        newExperiences[index].location = e.target.value
-                                                        setExperiences(newExperiences)
-                                                    }} />
-                                                    <Label htmlFor={`experienceContent-${index}`}>Position</Label>
-                                                    <Input id={`experienceContent-${index}`} type="text" value={experience.position} onChange={(e) => {
-                                                        const newExperiences = experiences.slice()
-                                                        newExperiences[index].position = e.target.value
-                                                        setExperiences(newExperiences)
-                                                    }} />
-                                                    <Label htmlFor={`experienceContent-${index}`}>Start Date</Label>
-                                                    <Input id={`experienceContent-${index}`} type="text" value={experience.startDate} onChange={(e) => {
-                                                        const newExperiences = experiences.slice()
-                                                        newExperiences[index].startDate = e.target.value
-                                                        setExperiences(newExperiences)
-                                                    }} />
-                                                    <Label htmlFor={`experienceContent-${index}`}>End Date</Label>
-                                                    <Input id={`experienceContent-${index}`} type="text" value={experience.endDate} onChange={(e) => {
-                                                        const newExperiences = experiences.slice()
-                                                        newExperiences[index].endDate = e.target.value
-                                                        setExperiences(newExperiences)
-                                                    }} />
-                                                    <Label htmlFor={`experienceContent-${index}`}>Description</Label>
-                                                    {experience.description.map((description, descriptionIndex) =>  (
-                                                        <div key={descriptionIndex}>
-                                                            <Button onClick={
-                                                                () => {
-                                                                    const newExperiences = experiences.slice()
-                                                                    newExperiences[index].description.splice(descriptionIndex, 1)
-                                                                    setExperiences(newExperiences)
-                                                                }
-                                                            }>
-                                                                <MinusCircle />
-                                                            </Button>
-                                                            <Input key={descriptionIndex} id={`experienceContent-${index}`} type="text" value={description} onChange={(e) => {
-                                                                const newExperiences = experiences.slice()
-                                                                newExperiences[index].description[descriptionIndex] = e.target.value
-                                                                setExperiences(newExperiences)
-                                                            }} />
-                                                        </div>
+                                    <div className="space-y-1">
+                                        <div className="flex items-center justify-between">
+                                            <Label htmlFor="email">Email</Label>
+                                            <Switch checked={emailEnabled} onCheckedChange={setEmailEnabled} />
+                                        </div>
+                                        {emailEnabled && (
+                                            <Input placeholder="Email" id="email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                        )}
+                                    </div>
+                                    <div className="space-y-1">
+                                        <div className="flex items-center justify-between">
+                                            <Label htmlFor="homepage">Homepage</Label>
+                                            <Switch checked={homepageEnabled} onCheckedChange={setHomepageEnabled} />
+                                        </div>
+                                        {homepageEnabled && (
+                                            <Input placeholder="Homepage" id="homepage" type="text" value={homepage} onChange={(e) => setHomepage(e.target.value)} />
+                                        )}
+                                    </div>
+                                    <div className="space-y-1">
+                                        <div className="flex items-center justify-between">
+                                            <Label htmlFor="github">Github</Label>
+                                            <Switch checked={githubEnabled} onCheckedChange={setGithubEnabled} />
+                                        </div>
+                                        {githubEnabled && (
+                                            <Input placeholder="Github" id="github" type="text" value={github} onChange={(e) => setGithub(e.target.value)} />
+                                        )}
+                                    </div>
+                                    <div className="space-y-1">
+                                        <div className="flex items-center justify-between">
+                                            <Label htmlFor="linkedin">Linkedin</Label>
+                                            <Switch checked={linkedinEnabled} onCheckedChange={setLinkedinEnabled} />
+                                        </div>
+                                        {linkedinEnabled && (
+                                            <Input placeholder="Linkedin" id="linkedin" type="text" value={linkedin} onChange={(e) => setLinkedin(e.target.value)} />
+                                        )}
+                                    </div>
+                                    <div className="space-y-1">
+                                        <div className="flex items-center justify-between">
+                                            <Label htmlFor="gitlab">Gitlab</Label>
+                                            <Switch checked={gitlabEnabled} onCheckedChange={setGitlabEnabled} />
+                                        </div>
+                                        {gitlabEnabled && (
+                                            <Input placeholder="Gitlab" id="gitlab" type="text" value={gitlab} onChange={(e) => setGitlab(e.target.value)} />
+                                        )}
+                                    </div>
+                                    <div className="space-y-1">
+                                        <div className="flex items-center justify-between">
+                                            <Label htmlFor="twitter">Twitter</Label>
+                                            <Switch checked={twitterEnabled} onCheckedChange={setTwitterEnabled} />
+                                        </div>
+                                        {twitterEnabled && (
+                                            <Input placeholder="Twitter" id="twitter" type="text" value={twitter} onChange={(e) => setTwitter(e.target.value)} />
+                                        )}
+                                    </div>
+                                    <div className="space-y-1">
+                                        <div className="flex items-center justify-between">
+                                            <Label htmlFor="quote">Quote</Label>
+                                            <Switch checked={quoteEnabled} onCheckedChange={setQuoteEnabled} />
+                                        </div>
+                                        {quoteEnabled && (
+                                            <Input placeholder="Quote" id="quote" type="text" value={quote} onChange={(e) => setQuote(e.target.value)} />
+                                        )}
+                                    </div>
+
+                                </CardContent>
+                            </Card>
+                        </TabsContent>
+                        <TabsContent value="summary">
+                            <Card>
+                                <CardHeader>
+                                    Summary
+                                </CardHeader>
+                                <CardContent className="space-y-2">
+                                    <div className="space-y-1">
+                                        <div className="flex items-center justify-between">
+                                            <Label htmlFor="summaryEnabled">Enabled</Label>
+                                            <Switch checked={summaryEnabled} onCheckedChange={setSummaryEnabled} />
+                                        </div>
+                                        {summaryEnabled && (
+                                            <div className="space-y-1">
+                                                <Label htmlFor="summaryLabel">Label</Label>
+                                                <Input id="summaryLabel" type="text" value={summaryLabel} onChange={(e) => setSummaryLabel(e.target.value)} />
+                                                <Label htmlFor="summaryContent">Content</Label>
+                                                <Textarea id="summaryContent" value={summaryContent} onChange={(e) => setSummaryContent(e.target.value)} />
+                                            </div>
+                                        )}
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </TabsContent>
+                        <TabsContent value="experience">
+                            <Card>
+                                <CardHeader>Experience</CardHeader>
+                                <CardContent className="space-y-2">
+                                    <div className="space-y-1">
+                                        <div className="flex items-center justify-between">
+                                            <Label htmlFor="experienceEnabled">Enabled</Label>
+                                            <Switch checked={experienceEnabled} onCheckedChange={setExperienceEnabled} />
+                                        </div>                               
+                                        {experienceEnabled && (
+                                            <div className="space-y-2">
+                                                <Label htmlFor="experienceLabel">Label</Label>
+                                                <Input id="experienceLabel" type="text" value={experienceLabel} onChange={(e) => setExperienceLabel(e.target.value)} />
+                                                <Button
+                                                    className="w-full items-center justify-center" 
+                                                    variant={'ghost'}
+                                                    onClick={
+                                                        () => setExperiences([...experiences, {
+                                                            company: '',
+                                                            location: '',
+                                                            position: '',
+                                                            startDate: '',
+                                                            endDate: '',
+                                                            description: []
+                                                        }])
+                                                }>
+                                                    <PlusCircle />
+                                                </Button>
+                                                <Accordion type="single" collapsible className="w-full">
+                                                    <div className="space-y-2">                                     
+                                                    {experiences.map((experience, index) => (
+                                                        <AccordionItem key={index} value={index.toString()} >
+                                                            <AccordionTrigger>
+                                                                <div className="items-center justify-center">
+                                                                    <Button
+                                                                        className="mr-1" 
+                                                                        variant={'ghost'}
+                                                                        onClick={
+                                                                        () => {
+                                                                            const newExperiences = experiences.slice()
+                                                                            newExperiences.splice(index, 1)
+                                                                            setExperiences(newExperiences)
+                                                                        }
+                                                                    }>
+                                                                        <MinusCircle size={20} />
+                                                                    </Button>
+                                                                    {`Company - ${index+1}`}
+                                                                </div>
+                                                                
+                                                            </AccordionTrigger>
+                                                            <AccordionContent className="space-y-1">
+                                                                <AccordionContent className="space-y-2">
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`experienceTitle-${index}`}>Company Name</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`experienceTitle-${index}`} type="text" value={experience.company} onChange={(e) => {
+                                                                            const newExperiences = experiences.slice()
+                                                                            newExperiences[index].company = e.target.value
+                                                                            setExperiences(newExperiences)
+                                                                        }} />
+                                                                    </div>
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`experienceContent-${index}`}>Location</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`experienceContent-${index}`} type="text" value={experience.location} onChange={(e) => {
+                                                                            const newExperiences = experiences.slice()
+                                                                            newExperiences[index].location = e.target.value
+                                                                            setExperiences(newExperiences)
+                                                                        }} />
+                                                                    </div>
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`experienceContent-${index}`}>Position</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`experienceContent-${index}`} type="text" value={experience.position} onChange={(e) => {
+                                                                            const newExperiences = experiences.slice()
+                                                                            newExperiences[index].position = e.target.value
+                                                                            setExperiences(newExperiences)
+                                                                        }} />
+                                                                    </div>
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`experienceContent-${index}`}>Start Date</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`experienceContent-${index}`} type="text" value={experience.startDate} onChange={(e) => {
+                                                                            const newExperiences = experiences.slice()
+                                                                            newExperiences[index].startDate = e.target.value
+                                                                            setExperiences(newExperiences)
+                                                                        }} />
+                                                                    </div>
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`experienceContent-${index}`}>End Date</Label>
+                                                                        <Input className="w-11/12 ml-1" id={`experienceContent-${index}`} type="text" value={experience.endDate} onChange={(e) => {
+                                                                            const newExperiences = experiences.slice()
+                                                                            newExperiences[index].endDate = e.target.value
+                                                                            setExperiences(newExperiences)
+                                                                        }} />
+                                                                    </div>
+                                                                    <div className="flex flex-col space-y-1">
+                                                                        <Label className="ml-1" htmlFor={`experienceContent-${index}`}>Description</Label>
+                                                                        {experience.description.map((description, descriptionIndex) =>  (
+                                                                            <div className="flex flex-row ml-1 w-11/12" key={descriptionIndex}>
+                                                                                <Button 
+                                                                                    variant={'ghost'}
+                                                                                    onClick={
+                                                                                        () => {
+                                                                                            const newExperiences = experiences.slice()
+                                                                                            newExperiences[index].description.splice(descriptionIndex, 1)
+                                                                                            setExperiences(newExperiences)
+                                                                                        }
+                                                                                }>
+                                                                                    <MinusCircle size={16} />
+                                                                                </Button>
+                                                                                <Input key={descriptionIndex} id={`experienceContent-${index}`} type="text" value={description} onChange={(e) => {
+                                                                                    const newExperiences = experiences.slice()
+                                                                                    newExperiences[index].description[descriptionIndex] = e.target.value
+                                                                                    setExperiences(newExperiences)
+                                                                                }} />
+                                                                            </div>
+                                                                        ))}
+                                                                        <Button
+                                                                            className="w-11/12 items-center justify-center" 
+                                                                            variant={'ghost'}
+                                                                            onClick={
+                                                                                () => {
+                                                                                    const newExperiences = experiences.slice()
+                                                                                    newExperiences[index].description.push('')
+                                                                                    setExperiences(newExperiences)
+                                                                                }
+                                                                        }>
+                                                                            <PlusCircle size={16} />
+                                                                        </Button>
+                                                                    </div>                                                    
+                                                                </AccordionContent>
+                                                                
+                                                            </AccordionContent>
+                                                        </AccordionItem>
                                                     ))}
-                                                    <Button onClick={
-                                                        () => {
-                                                            const newExperiences = experiences.slice()
-                                                            newExperiences[index].description.push('')
-                                                            setExperiences(newExperiences)
-                                                        }
-                                                    }>
-                                                        <PlusCircle />
-                                                    </Button>
-                                                </div>
-                                            ))}
-                                            <Button onClick={
-                                                () => setExperiences([...experiences, {
-                                                    company: '',
-                                                    location: '',
-                                                    position: '',
-                                                    startDate: '',
-                                                    endDate: '',
-                                                    description: []
-                                                }])
-                                            
-                                            }>
-                                                <PlusCircle />
-                                            </Button>
-                                        </div>
-                                    )}
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </TabsContent>
-                    <TabsContent value="honors">
-                        <Card>
-                            <CardHeader>Honors</CardHeader>
-                            <CardContent className="space-y-2">
-                                <div className="space-y-1">
-                                    <div className="flex flex-row">
-                                        <Label htmlFor="honorsEnabled">Enabled</Label>
-                                        <Switch checked={honorsEnabled} onCheckedChange={setHonorsEnabled} />
+                                                    </div>
+                                                </Accordion>                                              
+                                            </div>
+                                        )}
                                     </div>
-                                    {honorsEnabled && (
-                                        <div className="space-y-1">
-                                            <Label htmlFor="honorsLabel">Label</Label>
-                                            <Input id="honorsLabel" type="text" value={honorsLabel} onChange={(e) => setHonorsLabel(e.target.value)} />
+                                </CardContent>
+                            </Card>
+                        </TabsContent>
+                        <TabsContent value="honors">
+                            <Card>
+                                <CardHeader>Honors</CardHeader>
+                                <CardContent className="space-y-2">
+                                    <div className="space-y-1">
+                                        <div className="flex items-center justify-between">
+                                            <Label htmlFor="honorsEnabled">Enabled</Label>
+                                            <Switch checked={honorsEnabled} onCheckedChange={setHonorsEnabled} />
                                         </div>
-                                    )}
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </TabsContent>
-                </Tabs>
-            </div>
-            <div className="flex flex-col p-6">
+                                        {honorsEnabled && (
+                                            <div className="space-y-1">
+                                                <Label htmlFor="honorsLabel">Label</Label>
+                                                <Input id="honorsLabel" type="text" value={honorsLabel} onChange={(e) => setHonorsLabel(e.target.value)} />
+                                            </div>
+                                        )}
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </TabsContent>
+                    </Tabs>
+                </div>
+            </ResizablePanel>
+            <ResizableHandle withHandle />
+            <ResizablePanel
+                className="min-w-[190mm]"
+                defaultSize={50}
+            >
+                <Button onClick={downloadCV} disabled={loading}>
+                    {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                    {loading ? 'Generating PDF...' : 'Download'}
+                </Button>
                 <DisplayFrame>
                     <CV {...cvProps} />
                 </DisplayFrame>
-                <Button onClick={async () => {
-                    const response = await fetch('/api/pdf', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(cvProps)
-                    })
-                    const blob = await response.blob()
-                    const url = window.URL.createObjectURL(blob)
-                    const a = document.createElement('a')
-                    a.href = url
-                    a.download = `${firstName}-EasyCV.pdf`
-                    a.click()
-                    window.URL.revokeObjectURL(url)
-                }
-                }>Download</Button>
-            </div>
-        </div>
-        
+            </ResizablePanel>
+        </ResizablePanelGroup>
     )
 }
