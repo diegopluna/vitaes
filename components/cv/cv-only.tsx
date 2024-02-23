@@ -9,17 +9,19 @@ import CVCommittee from "./templates/awesome-cv/cv-committee";
 import CVEducation from "./templates/awesome-cv/cv-education";
 import A4CVOnly from "../a4-cvonly";
 
-export default function CVOnly(props : CVProps) {
-    return (
-        <A4CVOnly>
-            <CVHeader {...props.header} />
-            {props.summaryEnabled && <CVSummary {...props.summary!} />}
-            {props.experienceEnabled && <CVExperience {...props.experience!} />}
-            {props.honorsEnabled && <CVHonors {...props.honors!} />}
-            {props.presentationsEnabled && <CVPresentations {...props.presentations!} />}
-            {props.writingEnabled && <CVWritings {...props.writings!} />}
-            {props.committeeEnabled && <CVCommittee {...props.committees!} />}
-            {props.educationEnabled && <CVEducation {...props.educations!} />}
-        </A4CVOnly>
-    )
+export default function CVOnly(props: CVProps) {
+  return (
+    <A4CVOnly>
+      <CVHeader {...props.header} />
+      {props.summaryEnabled && <CVSummary {...props.summary!} />}
+      {props.experienceEnabled && <CVExperience {...props.experience!} />}
+      {props.honorsEnabled && <CVHonors {...props.honors!} />}
+      {props.presentationsEnabled && (
+        <CVPresentations {...props.presentations!} />
+      )}
+      {props.writingEnabled && <CVWritings {...props.writings!} />}
+      {props.committeeEnabled && <CVCommittee {...props.committees!} />}
+      {props.educationEnabled && <CVEducation {...props.educations!} />}
+    </A4CVOnly>
+  );
 }

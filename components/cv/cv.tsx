@@ -10,18 +10,22 @@ import CVCommittee from "./templates/awesome-cv/cv-committee";
 import CVEducation from "./templates/awesome-cv/cv-education";
 import CVExtracurricular from "./templates/awesome-cv/cv-extracurricular";
 
-export default function CV(props : CVProps) {
-    return (
-        <A4Paper>
-            <CVHeader {...props.header} />
-            {props.summaryEnabled && <CVSummary {...props.summary!} />}
-            {props.experienceEnabled && <CVExperience {...props.experience!} />}
-            {props.honorsEnabled && <CVHonors {...props.honors!} />}
-            {props.presentationsEnabled && <CVPresentations {...props.presentations!} />}
-            {props.writingEnabled && <CVWritings {...props.writings!} />}
-            {props.committeeEnabled && <CVCommittee {...props.committees!} />}
-            {props.educationEnabled && <CVEducation {...props.educations!} />}
-            {props.extracurricularEnabled && <CVExtracurricular {...props.extracurriculars!} />}
-        </A4Paper>
-    )
+export default function CV(props: CVProps) {
+  return (
+    <A4Paper>
+      <CVHeader {...props.header} />
+      {props.summaryEnabled && <CVSummary {...props.summary!} />}
+      {props.experienceEnabled && <CVExperience {...props.experience!} />}
+      {props.honorsEnabled && <CVHonors {...props.honors!} />}
+      {props.presentationsEnabled && (
+        <CVPresentations {...props.presentations!} />
+      )}
+      {props.writingEnabled && <CVWritings {...props.writings!} />}
+      {props.committeeEnabled && <CVCommittee {...props.committees!} />}
+      {props.educationEnabled && <CVEducation {...props.educations!} />}
+      {props.extracurricularEnabled && (
+        <CVExtracurricular {...props.extracurriculars!} />
+      )}
+    </A4Paper>
+  );
 }
