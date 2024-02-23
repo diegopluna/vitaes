@@ -1475,10 +1475,10 @@ export default function CVForm() {
             </ResizablePanel>
             <ResizableHandle withHandle />
             <ResizablePanel
-                className="min-w-[190mm]"
+                className="min-w-[190mm] relative"
                 defaultSize={50}
             >
-                <Button onClick={downloadCV} disabled={loading}>
+                <Button variant="secondary" className="right-4 bottom-2 fixed z-10" onClick={downloadCV} disabled={loading}>
                     {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                     {loading ? 'Generating PDF...' : 'Download'}
                 </Button>
