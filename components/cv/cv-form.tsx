@@ -2302,10 +2302,10 @@ export default function CVForm() {
         </div>
       </ResizablePanel>
       <ResizableHandle withHandle />
-      <ResizablePanel className="min-w-[190mm] relative" defaultSize={50}>
+      <ResizablePanel className="min-w-[190mm] flex place-content-center items-center" defaultSize={50}>
         <Button
           variant="secondary"
-          className="right-4 bottom-2 fixed z-10"
+          className="right-4 top-16 fixed z-10"
           onClick={downloadCV}
           disabled={loading}
         >
