@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { ModeToggle } from "@/components/mode-toggle";
+import UserButton from "./user-button";
+import { auth } from "@/auth";
 
-export default function Navbar() {
+export default async function Navbar() {
+    const session = await auth()
     return (
         <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="container flex h-14 max-w-screen-2xl items-center">
@@ -16,6 +19,7 @@ export default function Navbar() {
                     <nav className="flex items-center">
                         <div className="mx-2">
                             <ModeToggle />
+                            <UserButton session={session} />
                         </div>
                     </nav>
                 </div>

@@ -225,7 +225,7 @@ export default function CVForm() {
                 "Gained expertise in hacking & security areas, especially about internal of operating system based on UNIX and several exploit techniques.",
                 "Participated on several hacking competition and won a good award.",
                 "Conducted periodic security checks on overall IT system as a member of POSTECH CERT.",
-                "Conducted penetration testing commissioned by national agency and corporation."
+                "Conducted penetration testing commissioned by national agency and corporation. "
             ]
         }
     ])

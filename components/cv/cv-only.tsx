@@ -1,12 +1,12 @@
 import { CVProps } from "@/types/cv-types";
-import CVHeader from "./cv-header";
-import CVSummary from "./cv-summary";
-import CVExperience from "./cv-experience";
-import CVHonors from "./cv-honors";
-import CVPresentations from "./cv-presentation";
-import CVWritings from "./cv-writing";
-import CVCommittee from "./cv-committee";
-import CVEducation from "./cv-education";
+import CVHeader from "./templates/awesome-cv/cv-header";
+import CVSummary from "./templates/awesome-cv/cv-summary";
+import CVExperience from "./templates/awesome-cv/cv-experience";
+import CVHonors from "./templates/awesome-cv/cv-honors";
+import CVPresentations from "./templates/awesome-cv/cv-presentation";
+import CVWritings from "./templates/awesome-cv/cv-writing";
+import CVCommittee from "./templates/awesome-cv/cv-committee";
+import CVEducation from "./templates/awesome-cv/cv-education";
 import A4CVOnly from "../a4-cvonly";
 
 export default function CVOnly(props : CVProps) {
