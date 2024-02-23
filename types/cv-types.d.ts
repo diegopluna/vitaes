@@ -1,5 +1,7 @@
+export type CVHeaderAlignment = "left" | "center" | "right";
+
 export type CVHeaderProps = {
-    alignment: "start" | "center" | "end";
+    alignment: CVHeaderAlignment;
     firstName: string;
     lastName: string;
     phoneEnabled: boolean;

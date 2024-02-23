@@ -7,24 +7,6 @@ import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  CVExperienceProps,
-  CVHeaderProps,
-  CVProps,
-  CVHonorTypeProps,
-  CVPresentationProps,
-  CVWritingProps,
-  CVComitteeProps,
-  CVEducationProps,
-} from "@/types/cv-types";
-import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
@@ -63,30 +45,12 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 import { useCV } from "./use-cv";
+import { PersonalForm } from "./form/personal-form";
 
 export default function CVForm() {
   const [loading, setLoading] = React.useState(false);
   const {
     cv,
-    setAlignment,
-    setFirstName,
-    setLastName,
-    setPhoneEnabled,
-    setEmailEnabled,
-    setHomepageEnabled,
-    setGithubEnabled,
-    setLinkedinEnabled,
-    setGitlabEnabled,
-    setTwitterEnabled,
-    setQuoteEnabled,
-    setPhone,
-    setEmail,
-    setHomepage,
-    setGithub,
-    setLinkedin,
-    setGitlab,
-    setTwitter,
-    setQuote,
     setSummaryEnabled,
     setSummaryLabel,
     setSummaryContent,
@@ -94,7 +58,6 @@ export default function CVForm() {
     setExperienceLabel,
     setExperiences,
     setHonorsEnabled,
-
     setHonorsLabel,
     setHonorsTypes,
     setPresentationsEnabled,
@@ -256,191 +219,7 @@ export default function CVForm() {
               </TooltipProvider>
             </TabsList>
             <TabsContent value="personal">
-              <Card>
-                <CardHeader>Personal Info & Settings</CardHeader>
-                <CardContent className="space-y-2">
-                  <div className="space-y-1">
-                    <Label htmlFor="alignment">Alignment</Label>
-                    <Select
-                      value={cv.header.alignment}
-                      onValueChange={setAlignment}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select the header alignment" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectItem value="start">Left</SelectItem>
-                          <SelectItem value="center">Center</SelectItem>
-                          <SelectItem value="end">Right</SelectItem>
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-1">
-                    <Label htmlFor="firstName">First Name</Label>
-                    <Input
-                      id="firstName"
-                      type="text"
-                      value={cv.header.firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <Label htmlFor="lastName">Last Name</Label>
-                    <Input
-                      id="lastName"
-                      type="text"
-                      value={cv.header.lastName}
-                      onChange={(e) => setLastName(e.target.value)}
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center justify-between">
-                      <Label htmlFor="phone">Phone</Label>
-                      <Switch
-                        checked={cv.header.phoneEnabled}
-                        onCheckedChange={setPhoneEnabled}
-                      />
-                    </div>
-                    {cv.header.phoneEnabled && (
-                      <Input
-                        placeholder="Phone"
-                        id="phone"
-                        type="text"
-                        value={cv.header.phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                      />
-                    )}
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center justify-between">
-                      <Label htmlFor="email">Email</Label>
-                      <Switch
-                        checked={cv.header.emailEnabled}
-                        onCheckedChange={setEmailEnabled}
-                      />
-                    </div>
-                    {cv.header.emailEnabled && (
-                      <Input
-                        placeholder="Email"
-                        id="email"
-                        type="text"
-                        value={cv.header.email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    )}
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center justify-between">
-                      <Label htmlFor="homepage">Homepage</Label>
-                      <Switch
-                        checked={cv.header.homepageEnabled}
-                        onCheckedChange={setHomepageEnabled}
-                      />
-                    </div>
-                    {cv.header.homepageEnabled && (
-                      <Input
-                        placeholder="Homepage"
-                        id="homepage"
-                        type="text"
-                        value={cv.header.homepage}
-                        onChange={(e) => setHomepage(e.target.value)}
-                      />
-                    )}
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center justify-between">
-                      <Label htmlFor="github">Github</Label>
-                      <Switch
-                        checked={cv.header.githubEnabled}
-                        onCheckedChange={setGithubEnabled}
-                      />
-                    </div>
-                    {cv.header.githubEnabled && (
-                      <Input
-                        placeholder="Github"
-                        id="github"
-                        type="text"
-                        value={cv.header.github}
-                        onChange={(e) => setGithub(e.target.value)}
-                      />
-                    )}
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center justify-between">
-                      <Label htmlFor="linkedin">Linkedin</Label>
-                      <Switch
-                        checked={cv.header.linkedinEnabled}
-                        onCheckedChange={setLinkedinEnabled}
-                      />
-                    </div>
-                    {cv.header.linkedinEnabled && (
-                      <Input
-                        placeholder="Linkedin"
-                        id="linkedin"
-                        type="text"
-                        value={cv.header.linkedin}
-                        onChange={(e) => setLinkedin(e.target.value)}
-                      />
-                    )}
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center justify-between">
-                      <Label htmlFor="gitlab">Gitlab</Label>
-                      <Switch
-                        checked={cv.header.gitlabEnabled}
-                        onCheckedChange={setGitlabEnabled}
-                      />
-                    </div>
-                    {cv.header.gitlabEnabled && (
-                      <Input
-                        placeholder="Gitlab"
-                        id="gitlab"
-                        type="text"
-                        value={cv.header.gitlab}
-                        onChange={(e) => setGitlab(e.target.value)}
-                      />
-                    )}
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center justify-between">
-                      <Label htmlFor="twitter">Twitter</Label>
-                      <Switch
-                        checked={cv.header.twitterEnabled}
-                        onCheckedChange={setTwitterEnabled}
-                      />
-                    </div>
-                    {cv.header.twitterEnabled && (
-                      <Input
-                        placeholder="Twitter"
-                        id="twitter"
-                        type="text"
-                        value={cv.header.twitter}
-                        onChange={(e) => setTwitter(e.target.value)}
-                      />
-                    )}
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center justify-between">
-                      <Label htmlFor="quote">Quote</Label>
-                      <Switch
-                        checked={cv.header.quoteEnabled}
-                        onCheckedChange={setQuoteEnabled}
-                      />
-                    </div>
-                    {cv.header.quoteEnabled && (
-                      <Input
-                        placeholder="Quote"
-                        id="quote"
-                        type="text"
-                        value={cv.header.quote}
-                        onChange={(e) => setQuote(e.target.value)}
-                      />
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
+              <PersonalForm />
             </TabsContent>
             <TabsContent value="summary">
               <Card>

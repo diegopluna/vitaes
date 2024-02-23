@@ -5,60 +5,42 @@ import {
   CVEducationProps,
   CVExperienceProps,
   CVExtracurricularProps,
+  CVHeaderAlignment,
   CVHeaderProps,
   CVHonorTypeProps,
   CVPresentationProps,
   CVProps,
   CVWritingProps,
 } from "@/types/cv-types";
-import { ReactNode, createContext, useContext, useState } from "react";
+import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useState } from "react";
 
 type CVContextData = {
   cv: CVProps;
-    setAlignment: (alignment: string) => void;
-    setFirstName: (firstName: string) => void;
-    setLastName: (lastName: string) => void;
-    setPhoneEnabled: (phoneEnabled: boolean) => void;
-    setPhone: (phone: string) => void;
-    setEmailEnabled: (emailEnabled: boolean) => void;
-    setEmail: (email: string) => void;
-    setHomepageEnabled: (homepageEnabled: boolean) => void;
-    setHomepage: (homepage: string) => void;
-    setGithubEnabled: (githubEnabled: boolean) => void;
-    setGithub: (github: string) => void;
-    setLinkedinEnabled: (linkedinEnabled: boolean) => void;
-    setLinkedin: (linkedin: string) => void;
-    setGitlabEnabled: (gitlabEnabled: boolean) => void;
-    setGitlab: (gitlab: string) => void;
-    setTwitterEnabled: (twitterEnabled: boolean) => void;
-    setTwitter: (twitter: string) => void;
-    setQuoteEnabled: (quoteEnabled: boolean) => void;
-    setQuote: (quote: string) => void;
-    setSummaryEnabled: (summaryEnabled: boolean) => void;
-    setSummaryLabel: (summaryLabel: string) => void;
-    setSummaryContent: (summaryContent: string) => void;
-    setExperienceEnabled: (experienceEnabled: boolean) => void;
-    setExperienceLabel: (experienceLabel: string) => void;
-    setExperiences: (experiences: CVExperienceProps[]) => void;
-    setHonorsEnabled: (honorsEnabled: boolean) => void;
-    setHonorsLabel: (honorsLabel: string) => void;
-    setHonorsTypes: (honorsTypes: CVHonorTypeProps[]) => void;
-    setPresentationsEnabled: (presentationsEnabled: boolean) => void;
-    setPresentationsLabel: (presentationsLabel: string) => void;
-    setPresentations: (presentations: CVPresentationProps[]) => void; 
-    setWritingEnabled: (writingEnabled: boolean) => void;
-    setWritingLabel: (writingLabel: string) => void;
-    setWritings: (writings: CVWritingProps[]) => void;
-    setCommitteeEnabled: (committeeEnabled: boolean) => void;
-    setCommitteeLabel: (committeeLabel: string) => void;
-    setCommittees: (committees: CVComitteeProps[]) => void;
-    setEducationEnabled: (educationEnabled: boolean) => void;
-    setEducationLabel: (educationLabel: string) => void;
-    setEducations: (educations: CVEducationProps[]) => void;
-    setExtracurricularEnabled: (extracurricularEnabled: boolean) => void;
-    setExtracurricularLabel: (extracurricularLabel: string) => void;
-    setExtracurriculars: (extracurriculars: CVExtracurricularProps[]) => void;
-    
+  setSummaryEnabled: (summaryEnabled: boolean) => void;
+  setSummaryLabel: (summaryLabel: string) => void;
+  setSummaryContent: (summaryContent: string) => void;
+  setExperienceEnabled: (experienceEnabled: boolean) => void;
+  setExperienceLabel: (experienceLabel: string) => void;
+  setExperiences: (experiences: CVExperienceProps[]) => void;
+  setHonorsEnabled: (honorsEnabled: boolean) => void;
+  setHonorsLabel: (honorsLabel: string) => void;
+  setHonorsTypes: (honorsTypes: CVHonorTypeProps[]) => void;
+  setPresentationsEnabled: (presentationsEnabled: boolean) => void;
+  setPresentationsLabel: (presentationsLabel: string) => void;
+  setPresentations: (presentations: CVPresentationProps[]) => void;
+  setWritingEnabled: (writingEnabled: boolean) => void;
+  setWritingLabel: (writingLabel: string) => void;
+  setWritings: (writings: CVWritingProps[]) => void;
+  setCommitteeEnabled: (committeeEnabled: boolean) => void;
+  setCommitteeLabel: (committeeLabel: string) => void;
+  setCommittees: (committees: CVComitteeProps[]) => void;
+  setEducationEnabled: (educationEnabled: boolean) => void;
+  setEducationLabel: (educationLabel: string) => void;
+  setEducations: (educations: CVEducationProps[]) => void;
+  setExtracurricularEnabled: (extracurricularEnabled: boolean) => void;
+  setExtracurricularLabel: (extracurricularLabel: string) => void;
+  setExtracurriculars: (extracurriculars: CVExtracurricularProps[]) => void;
+  setCV: Dispatch<SetStateAction<CVProps>>;
 };
 const CVContext = createContext<CVContextData | undefined>(undefined);
 
@@ -71,27 +53,7 @@ export function useCV(): CVContextData {
 }
 
 export function CVContextProvider({ children }: { children: ReactNode }) {
-  const [alignment, setAlignment] = useState("center");
-  const [firstName, setFirstName] = useState("John");
-  const [lastName, setLastName] = useState("Doe");
-  const [phoneEnabled, setPhoneEnabled] = useState(true);
-  const [phone, setPhone] = useState("123-456-7890");
-  const [emailEnabled, setEmailEnabled] = useState(true);
-  const [email, setEmail] = useState("john.doe@example.com");
-  const [homepageEnabled, setHomepageEnabled] = useState(true);
-  const [homepage, setHomepage] = useState("www.johndoe.com");
-  const [githubEnabled, setGithubEnabled] = useState(true);
-  const [github, setGithub] = useState("johndoe");
-  const [linkedinEnabled, setLinkedinEnabled] = useState(true);
-  const [linkedin, setLinkedin] = useState("johndoe");
-  const [gitlabEnabled, setGitlabEnabled] = useState(false);
-  const [gitlab, setGitlab] = useState("");
-  const [twitterEnabled, setTwitterEnabled] = useState(false);
-  const [twitter, setTwitter] = useState("");
-  const [quoteEnabled, setQuoteEnabled] = useState(true);
-  const [quote, setQuote] = useState(
-    "Experienced Software Engineer passionate about solving real-world problems."
-  );
+ 
   const [summaryEnabled, setSummaryEnabled] = useState(true);
   const [summaryLabel, setSummaryLabel] = useState("Summary");
   const [summaryContent, setSummaryContent] = useState(
@@ -231,80 +193,29 @@ export function CVContextProvider({ children }: { children: ReactNode }) {
       location: "S.Korea",
     },
   ] as CVComitteeProps[]);
-  const [educationEnabled, setEducationEnabled] = useState(true);
-  const [educationLabel, setEducationLabel] = useState("Education");
-  const [educations, setEducations] = useState([
-    {
-      school: "Stanford University",
-      location: "Palo Alto, CA",
-      degree: "Master of Science in Computer Science",
-      startDate: "Sep.2013",
-      endDate: "Jun.2015",
-      description: [
-        "Thesis: 'Deep Learning for Sentiment Analysis'",
-        "GPA: 3.9/4.0",
-      ],
-    },
-    {
-      school: "POSTECH",
-      location: "Pohang, S.Korea",
-      degree: "Bachelor of Science in Computer Science",
-      startDate: "Mar.2009",
-      endDate: "Feb.2013",
-      description: ["GPA: 3.8/4.0"],
-    },
-  ] as CVEducationProps[]);
-  const [extracurricularEnabled, setExtracurricularEnabled] = useState(true);
-  const [extracurricularLabel, setExtracurricularLabel] = useState(
-    "Extracurricular Activities"
-  );
-  const [extracurriculars, setExtracurriculars] = useState([
-    {
-      role: "Core Member & President at 2013",
-      organization: "PoApper (Developers' Network of POSTECH)",
-      location: "Pohang, S.Korea",
-      startDate: "Jun. 2010",
-      endDate: "Jun. 2017",
-      description: [
-        "Reformed the society focusing on software engineering and building network on and off campus.",
-        "Proposed various marketing and network activities to raise awareness.",
-      ],
-    },
-    {
-      role: "Member",
-      organization: "PLUS (Laboratory for UNIX Security in POSTECH)",
-      location: "Pohang, S.Korea",
-      startDate: "Sep. 2010",
-      endDate: "Oct. 2011",
-      description: [
-        "Gained expertise in hacking & security areas, especially about internal of operating system based on UNIX and several exploit techniques.",
-        "Participated on several hacking competition and won a good award.",
-        "Conducted periodic security checks on overall IT system as a member of POSTECH CERT.",
-        "Conducted penetration testing commissioned by national agency and corporation. ",
-      ],
-    },
-  ]);
-  const cv: CVProps = {
+
+  // temporary code
+  const [cvNew, setCvNew] = useState<CVProps>({
     header: {
-      alignment: alignment as CVHeaderProps["alignment"],
-      firstName,
-      lastName,
-      phoneEnabled,
-      phone,
-      emailEnabled,
-      email,
-      homepageEnabled,
-      homepage,
-      githubEnabled,
-      github,
-      linkedinEnabled,
-      linkedin,
-      gitlabEnabled,
-      gitlab,
-      twitterEnabled,
-      twitter,
-      quoteEnabled,
-      quote,
+      alignment: "center",
+      firstName: "John",
+      lastName: "Doe",
+      phoneEnabled: true,
+      phone : "123-456-7890",
+      emailEnabled: true,
+      email: "john.doe@example.com",
+      homepageEnabled: true,
+      homepage: "www.johndoe.com",
+      githubEnabled: true,
+      github: "johndoe",
+      linkedinEnabled   : true,
+      linkedin: "johndoe",
+      gitlabEnabled: false,
+      gitlab: "",
+      twitterEnabled: false,
+      twitter: "",
+      quoteEnabled: true,
+      quote: "Experienced Software Engineer passionate about solving real-world problems.",
     },
     summaryEnabled,
     summary: {
@@ -336,38 +247,133 @@ export function CVContextProvider({ children }: { children: ReactNode }) {
       label: committeeLabel,
       committees,
     },
-    educationEnabled,
+    educationEnabled: true,
     educations: {
-      label: educationLabel,
-      educations,
+      label: "Education",
+      educations: [
+        {
+          school: "Stanford University",
+          location: "Palo Alto, CA",
+          degree: "Master of Science in Computer Science",
+          startDate: "Sep.2013",
+          endDate: "Jun.2015",
+          description: [
+            "Thesis: 'Deep Learning for Sentiment Analysis'",
+            "GPA: 3.9/4.0",
+          ],
+        },
+        {
+          school: "POSTECH",
+          location: "Pohang, S.Korea",
+          degree: "Bachelor of Science in Computer Science",
+          startDate: "Mar.2009",
+          endDate: "Feb.2013",
+          description: ["GPA: 3.8/4.0"],
+        },
+      ],
     },
-    extracurricularEnabled,
+    extracurricularEnabled: true,
     extracurriculars: {
-      label: extracurricularLabel,
-      extracurriculars,
+      label: "Extracurricular Activities",
+      extracurriculars: [
+        {
+          role: "Core Member & President at 2013",
+          organization: "PoApper (Developers' Network of POSTECH)",
+          location: "Pohang, S.Korea",
+          startDate: "Jun. 2010",
+          endDate: "Jun. 2017",
+          description: [
+            "Reformed the society focusing on software engineering and building network on and off campus.",
+            "Proposed various marketing and network activities to raise awareness.",
+          ],
+        },
+        {
+          role: "Member",
+          organization: "PLUS (Laboratory for UNIX Security in POSTECH)",
+          location: "Pohang, S.Korea",
+          startDate: "Sep. 2010",
+          endDate: "Oct. 2011",
+          description: [
+            "Gained expertise in hacking & security areas, especially about internal of operating system based on UNIX and several exploit techniques.",
+            "Participated on several hacking competition and won a good award.",
+            "Conducted periodic security checks on overall IT system as a member of POSTECH CERT.",
+            "Conducted penetration testing commissioned by national agency and corporation. ",
+          ],
+        },
+      ],
+    },
+  });
+  const setEducationEnabled = (educationEnabled: boolean) => {
+    setCvNew((prev) => ({ ...prev, educationEnabled }));
+  }
+    const setEducationLabel = (educationLabel: string) => {
+        setCvNew((prev) => ({
+        ...prev,
+        educations: { ...prev.educations, label: educationLabel },
+        }));
+    };
+    const setEducations = (educations: CVEducationProps[]) => {
+        setCvNew((prev) => ({
+        ...prev,
+        educations: { ...prev.educations, educations },
+        }));
+    };
+
+  const setExtracurricularLabel = (extracurricularLabel: string) => {
+    setCvNew((prev) => ({
+      ...prev,
+      extracurriculars: {
+        ...prev.extracurriculars,
+        label: extracurricularLabel,
+      },
+    }));
+  };
+  const setExtracurriculars = (extracurriculars: CVExtracurricularProps[]) => {
+    setCvNew((prev) => ({
+      ...prev,
+      extracurriculars: { ...prev.extracurriculars, extracurriculars },
+    }));
+  };
+  const setExtracurricularEnabled = (extracurricularEnabled: boolean) => {
+    setCvNew((prev) => ({ ...prev, extracurricularEnabled }));
+  };
+  const cv = {
+    ...cvNew,
+    summaryEnabled,
+    summary: {
+      label: summaryLabel,
+      content: summaryContent,
+    },
+    experienceEnabled,
+    experience: {
+      label: experienceLabel,
+      experiences: experiences,
+    },
+    honorsEnabled,
+    honors: {
+      label: honorsLabel,
+      honors: honorsTypes,
+    },
+    presentationsEnabled,
+    presentations: {
+      label: presentationsLabel,
+      presentations,
+    },
+    writingEnabled,
+    writings: {
+      label: writingLabel,
+      writings,
+    },
+    committeeEnabled,
+    committees: {
+      label: committeeLabel,
+      committees,
     },
   };
-  const output= {
+  // end of temporary code
+
+  const output = {
     cv,
-    setAlignment,
-    setFirstName,
-    setLastName,
-    setPhoneEnabled,
-    setPhone,
-    setEmailEnabled,
-    setEmail,
-    setHomepageEnabled,
-    setHomepage,
-    setGithubEnabled,
-    setGithub,
-    setLinkedinEnabled,
-    setLinkedin,
-    setGitlabEnabled,
-    setGitlab,
-    setTwitterEnabled,
-    setTwitter,
-    setQuoteEnabled,
-    setQuote,
     setSummaryEnabled,
     setSummaryLabel,
     setSummaryContent,
@@ -392,6 +398,7 @@ export function CVContextProvider({ children }: { children: ReactNode }) {
     setExtracurricularEnabled,
     setExtracurricularLabel,
     setExtracurriculars,
-  }
+    setCV: setCvNew,
+  };
   return <CVContext.Provider value={output}>{children}</CVContext.Provider>;
 }
