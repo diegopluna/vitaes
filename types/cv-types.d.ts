@@ -25,6 +25,7 @@ export type CVHeaderProps = {
 export type CVSummaryProps = {
     label: string;
     content: string;
+    enabled: boolean;
 }
 
 export type CVExperienceProps = {
@@ -37,6 +38,7 @@ export type CVExperienceProps = {
 }
 
 export type CVExperiencesProps = {
+    enabled: boolean;
     label: string;
     experiences: CVExperienceProps[];
 }
@@ -54,6 +56,7 @@ export type CVHonorTypeProps = {
 }
 
 export type CVHonorsProps = {
+    enabled: boolean;
     label: string;
     honors: CVHonorTypeProps[];
 }
@@ -67,6 +70,7 @@ export type CVPresentationProps = {
 }
 
 export type CVPresentationsProps = {
+    enabled: boolean;
     label: string;
     presentations: CVPresentationProps[];
 }
@@ -81,6 +85,7 @@ export type CVWritingProps = {
 }
 
 export type CVWritingsProps = {
+    enabled: boolean;
     label: string;
     writings: CVWritingProps[];
 }
@@ -93,6 +98,7 @@ export type CVComitteeProps = {
 }
 
 export type CVCommitteesProps = {
+    enabled: boolean;
     label: string;
     committees: CVComitteeProps[];
 }
@@ -108,6 +114,7 @@ export type CVEducationProps = {
 
 export type CVEducationsProps = {
     label: string;
+    enabled: boolean;
     educations: CVEducationProps[];
 }
 
@@ -122,25 +129,18 @@ export type CVExtracurricularProps = {
 
 export type CVExtracurricularsProps = {
     label: string;
+    enabled: boolean;
     extracurriculars: CVExtracurricularProps[];
 }
 
 export type CVProps = {
     header: CVHeaderProps;
-    summaryEnabled: boolean;
     summary: CVSummaryProps;
-    experienceEnabled: boolean;
     experience: CVExperiencesProps;
-    honorsEnabled: boolean;
     honors: CVHonorsProps;
-    presentationsEnabled: boolean;
     presentations: CVPresentationsProps;
-    writingEnabled: boolean;
     writings: CVWritingsProps;
-    committeeEnabled: boolean;
     committees: CVCommitteesProps;
-    educationEnabled: boolean;
     educations: CVEducationsProps;
-    extracurricularEnabled: boolean;
     extracurriculars: CVExtracurricularsProps;
 }

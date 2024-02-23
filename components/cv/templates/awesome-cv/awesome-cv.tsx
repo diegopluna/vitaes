@@ -17,16 +17,16 @@ export default function AwesomeCV({cv}: Props) {
   return (
     <>
       <CVHeader {...cv.header} />
-      {cv.summaryEnabled && <CVSummary {...cv.summary!} />}
-      {cv.experienceEnabled && <CVExperience {...cv.experience!} />}
-      {cv.honorsEnabled && <CVHonors {...cv.honors!} />}
-      {cv.presentationsEnabled && (
+      {cv.summary.enabled && <CVSummary {...cv.summary!} />}
+      {cv.experience.enabled && <CVExperience {...cv.experience!} />}
+      {cv.honors.enabled && <CVHonors {...cv.honors!} />}
+      {cv.presentations.enabled && (
         <CVPresentations {...cv.presentations!} />
       )}
-      {cv.writingEnabled && <CVWritings {...cv.writings!} />}
-      {cv.committeeEnabled && <CVCommittee {...cv.committees!} />}
-      {cv.educationEnabled && <CVEducation {...cv.educations!} />}
-      {cv.extracurricularEnabled && (
+      {cv.writings.enabled && <CVWritings {...cv.writings!} />}
+      {cv.committees.enabled && <CVCommittee {...cv.committees!} />}
+      {cv.educations.enabled && <CVEducation {...cv.educations!} />}
+      {cv.extracurriculars.enabled && (
         <CVExtracurricular {...cv.extracurriculars!} />
       )}
     </>
