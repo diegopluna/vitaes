@@ -1,10 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -26,8 +22,6 @@ import {
   ScrollText,
   UserRound,
   UsersRound,
-  PlusCircle,
-  MinusCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -36,12 +30,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "../ui/accordion";
 import { useCV } from "./use-cv";
 import { PersonalForm } from "./form/personal-form";
 import { SummaryForm } from "./form/summary-form";
