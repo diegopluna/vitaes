@@ -53,7 +53,7 @@ export type CVHonorTypeProps = {
 
 export type CVHonorsProps = {
     label: string;
-    honors?: CVHonorTypeProps[];
+    honors: CVHonorTypeProps[];
 }
 
 export type CVPresentationProps = {
@@ -126,19 +126,19 @@ export type CVExtracurricularsProps = {
 export type CVProps = {
     header: CVHeaderProps;
     summaryEnabled: boolean;
-    summary?: CVSummaryProps;
+    summary: CVSummaryProps;
     experienceEnabled: boolean;
-    experience?: CVExperiencesProps;
+    experience: CVExperiencesProps;
     honorsEnabled: boolean;
-    honors?: CVHonorsProps;
+    honors: CVHonorsProps;
     presentationsEnabled: boolean;
-    presentations?: CVPresentationsProps;
+    presentations: CVPresentationsProps;
     writingEnabled: boolean;
-    writings?: CVWritingsProps;
+    writings: CVWritingsProps;
     committeeEnabled: boolean;
-    committees?: CVCommitteesProps;
+    committees: CVCommitteesProps;
     educationEnabled: boolean;
-    educations?: CVEducationsProps;
+    educations: CVEducationsProps;
     extracurricularEnabled: boolean;
-    extracurriculars?: CVExtracurricularsProps;
+    extracurriculars: CVExtracurricularsProps;
 }

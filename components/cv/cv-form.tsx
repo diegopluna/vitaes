@@ -62,290 +62,57 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
+import { useCV } from "./use-cv";
 
 export default function CVForm() {
-  const [alignment, setAlignment] = React.useState("center");
-  const [firstName, setFirstName] = React.useState("John");
-  const [lastName, setLastName] = React.useState("Doe");
-  const [phoneEnabled, setPhoneEnabled] = React.useState(true);
-  const [phone, setPhone] = React.useState("123-456-7890");
-  const [emailEnabled, setEmailEnabled] = React.useState(true);
-  const [email, setEmail] = React.useState("john.doe@example.com");
-  const [homepageEnabled, setHomepageEnabled] = React.useState(true);
-  const [homepage, setHomepage] = React.useState("www.johndoe.com");
-  const [githubEnabled, setGithubEnabled] = React.useState(true);
-  const [github, setGithub] = React.useState("johndoe");
-  const [linkedinEnabled, setLinkedinEnabled] = React.useState(true);
-  const [linkedin, setLinkedin] = React.useState("johndoe");
-  const [gitlabEnabled, setGitlabEnabled] = React.useState(false);
-  const [gitlab, setGitlab] = React.useState("");
-  const [twitterEnabled, setTwitterEnabled] = React.useState(false);
-  const [twitter, setTwitter] = React.useState("");
-  const [quoteEnabled, setQuoteEnabled] = React.useState(true);
-  const [quote, setQuote] = React.useState(
-    "Experienced Software Engineer passionate about solving real-world problems."
-  );
-  const [summaryEnabled, setSummaryEnabled] = React.useState(true);
-  const [summaryLabel, setSummaryLabel] = React.useState("Summary");
-  const [summaryContent, setSummaryContent] = React.useState(
-    "Experienced software engineer with expertise in web development and a strong background in backend technologies. Proficient in JavaScript, Node.js, and React."
-  );
-  const [experienceEnabled, setExperienceEnabled] = React.useState(true);
-  const [experienceLabel, setExperienceLabel] =
-    React.useState("Work Experience");
-  const [experiences, setExperiences] = React.useState([
-    {
-      company: "ABC Corp",
-      location: "New York, NY",
-      position: "Senior Software Engineer",
-      startDate: "May.2018",
-      endDate: "Dec.2022",
-      description: [
-        "Led a team of developers in the design and implementation of a scalable web application.",
-        "Developed RESTful APIs using Node.js and Express.",
-        "Collaborated with cross-functional teams to deliver high-quality software solutions.",
-      ],
-    },
-    {
-      company: "XYZ Tech",
-      location: "San Francisco, CA",
-      position: "Software Engineer",
-      startDate: "Sep.2015",
-      endDate: "Apr.2018",
-      description: [
-        "Contributed to the development of a cutting-edge machine learning platform.",
-        "Designed and implemented frontend components using React.",
-        "Optimized application performance through code refactoring and performance profiling.",
-      ],
-    },
-  ] as CVExperienceProps[]);
-  const [honorsEnabled, setHonorsEnabled] = React.useState(true);
-  const [honorsLabel, setHonorsLabel] = React.useState("Honors & Awards");
-  const [honorsTypes, setHonorsTypes] = React.useState([
-    {
-      label: "International",
-      honors: [
-        {
-          year: "2018",
-          position: "Finalist",
-          honor: "DEFCON 26th CTF Hacking Competition World Final",
-          location: "Las Vegas, U.S.A.",
-        },
-        {
-          year: "2017",
-          position: "Finalist",
-          honor: "DEFCON 25th CTF Hacking Competition World Final",
-          location: "Las Vegas, U.S.A.",
-        },
-        {
-          year: "2016",
-          position: "Finalist",
-          honor: "DEFCON 24th CTF Hacking Competition World Final",
-          location: "Las Vegas, U.S.A.",
-        },
-      ],
-    },
-    {
-      label: "Domestic",
-      honors: [
-        {
-          year: "2015",
-          position: "3rd Place",
-          honor: "WITHCON Hacking Competition Final",
-          location: "Seoul, S.Korea",
-        },
-        {
-          year: "2017",
-          position: "Silver Prize",
-          honor: "KISA HDCON Hacking Competition Final",
-          location: "Seoul, S.Korea",
-        },
-        {
-          year: "2013",
-          position: "Silver Prize",
-          honor: "KISA HDCON Hacking Competition Final",
-          location: "Seoul, S.Korea",
-        },
-      ],
-    },
-  ] as CVHonorTypeProps[]);
-  const [presentationsEnabled, setPresentationsEnabled] = React.useState(true);
-  const [presentationsLabel, setPresentationsLabel] =
-    React.useState("Presentation");
-  const [presentations, setPresentations] = React.useState([
-    {
-      event: "Tech Conference 2021",
-      role: "Speaker",
-      location: "New York, NY",
-      date: "May.2021",
-      description: [
-        "Presented a talk on the latest trends in web development.",
-        "Discussed the challenges and opportunities in modern web development.",
-      ],
-    },
-  ] as CVPresentationProps[]);
-  const [writingEnabled, setWritingEnabled] = React.useState(true);
-  const [writingLabel, setWritingLabel] = React.useState("Writing");
-  const [writings, setWritings] = React.useState([
-    {
-      title: "Exploring the World of Machine Learning",
-      role: "Author",
-      medium: "Journal",
-      startDate: "Jan.2022",
-      endDate: "Dec.2022",
-      descriptions: [
-        "Published a series of articles on the fundamentals of machine learning.",
-        "Covered topics such as supervised learning, unsupervised learning, and reinforcement learning.",
-      ],
-    },
-    {
-      title: "The Future of Web Development",
-      role: "Co-author",
-      medium: "Blog",
-      startDate: "May.2023",
-      endDate: "Dec.2023",
-      descriptions: [
-        "Co-authored a blog post on the future of web development.",
-        "Discussed the latest trends in web development and the impact of emerging technologies.",
-      ],
-    },
-  ] as CVWritingProps[]);
-  const [committeeEnabled, setCommitteeEnabled] = React.useState(true);
-  const [committeeLabel, setCommitteeLabel] =
-    React.useState("Program Committees");
-  const [committees, setCommittees] = React.useState([
-    {
-      year: "2016",
-      position: "Problem Writer",
-      organization: "2016 CODEGATE Hacking Competition World Final ",
-      location: "S.Korea",
-    },
-    {
-      year: "2013",
-      position: "Organizer & Co-director",
-      organization: "1st POSTECH Hackathon",
-      location: "S.Korea",
-    },
-  ] as CVComitteeProps[]);
-  const [educationEnabled, setEducationEnabled] = React.useState(true);
-  const [educationLabel, setEducationLabel] = React.useState("Education");
-  const [educations, setEducations] = React.useState([
-    {
-      school: "Stanford University",
-      location: "Palo Alto, CA",
-      degree: "Master of Science in Computer Science",
-      startDate: "Sep.2013",
-      endDate: "Jun.2015",
-      description: [
-        "Thesis: 'Deep Learning for Sentiment Analysis'",
-        "GPA: 3.9/4.0",
-      ],
-    },
-    {
-      school: "POSTECH",
-      location: "Pohang, S.Korea",
-      degree: "Bachelor of Science in Computer Science",
-      startDate: "Mar.2009",
-      endDate: "Feb.2013",
-      description: ["GPA: 3.8/4.0"],
-    },
-  ] as CVEducationProps[]);
-  const [extracurricularEnabled, setExtracurricularEnabled] =
-    React.useState(true);
-  const [extracurricularLabel, setExtracurricularLabel] = React.useState(
-    "Extracurricular Activities"
-  );
-  const [extracurriculars, setExtracurriculars] = React.useState([
-    {
-      role: "Core Member & President at 2013",
-      organization: "PoApper (Developers' Network of POSTECH)",
-      location: "Pohang, S.Korea",
-      startDate: "Jun. 2010",
-      endDate: "Jun. 2017",
-      description: [
-        "Reformed the society focusing on software engineering and building network on and off campus.",
-        "Proposed various marketing and network activities to raise awareness.",
-      ],
-    },
-    {
-      role: "Member",
-      organization: "PLUS (Laboratory for UNIX Security in POSTECH)",
-      location: "Pohang, S.Korea",
-      startDate: "Sep. 2010",
-      endDate: "Oct. 2011",
-      description: [
-        "Gained expertise in hacking & security areas, especially about internal of operating system based on UNIX and several exploit techniques.",
-        "Participated on several hacking competition and won a good award.",
-        "Conducted periodic security checks on overall IT system as a member of POSTECH CERT.",
-        "Conducted penetration testing commissioned by national agency and corporation. ",
-      ],
-    },
-  ]);
   const [loading, setLoading] = React.useState(false);
+  const {
+    cv,
+    setAlignment,
+    setFirstName,
+    setLastName,
+    setPhoneEnabled,
+    setEmailEnabled,
+    setHomepageEnabled,
+    setGithubEnabled,
+    setLinkedinEnabled,
+    setGitlabEnabled,
+    setTwitterEnabled,
+    setQuoteEnabled,
+    setPhone,
+    setEmail,
+    setHomepage,
+    setGithub,
+    setLinkedin,
+    setGitlab,
+    setTwitter,
+    setQuote,
+    setSummaryEnabled,
+    setSummaryLabel,
+    setSummaryContent,
+    setExperienceEnabled,
+    setExperienceLabel,
+    setExperiences,
+    setHonorsEnabled,
 
-  const cvProps: CVProps = {
-    header: {
-      alignment: alignment as CVHeaderProps["alignment"],
-      firstName,
-      lastName,
-      phoneEnabled,
-      phone,
-      emailEnabled,
-      email,
-      homepageEnabled,
-      homepage,
-      githubEnabled,
-      github,
-      linkedinEnabled,
-      linkedin,
-      gitlabEnabled,
-      gitlab,
-      twitterEnabled,
-      twitter,
-      quoteEnabled,
-      quote,
-    },
-    summaryEnabled,
-    summary: {
-      label: summaryLabel,
-      content: summaryContent,
-    },
-    experienceEnabled,
-    experience: {
-      label: experienceLabel,
-      experiences: experiences,
-    },
-    honorsEnabled,
-    honors: {
-      label: honorsLabel,
-      honors: honorsTypes,
-    },
-    presentationsEnabled,
-    presentations: {
-      label: presentationsLabel,
-      presentations,
-    },
-    writingEnabled,
-    writings: {
-      label: writingLabel,
-      writings,
-    },
-    committeeEnabled,
-    committees: {
-      label: committeeLabel,
-      committees,
-    },
-    educationEnabled,
-    educations: {
-      label: educationLabel,
-      educations,
-    },
-    extracurricularEnabled,
-    extracurriculars: {
-      label: extracurricularLabel,
-      extracurriculars,
-    },
-  };
+    setHonorsLabel,
+    setHonorsTypes,
+    setPresentationsEnabled,
+    setPresentationsLabel,
+    setPresentations,
+    setWritingEnabled,
+    setWritingLabel,
+    setWritings,
+    setCommitteeEnabled,
+    setCommitteeLabel,
+    setCommittees,
+    setEducationEnabled,
+    setEducationLabel,
+    setEducations,
+    setExtracurricularEnabled,
+    setExtracurricularLabel,
+    setExtracurriculars,
+  } = useCV();
 
   const downloadCV = async () => {
     setLoading(true);
@@ -354,13 +121,13 @@ export default function CVForm() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(cvProps),
+      body: JSON.stringify(cv),
     });
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${firstName}-EasyCV.pdf`;
+    a.download = `${cv.header.firstName}-EasyCV.pdf`;
     a.click();
     window.URL.revokeObjectURL(url);
     setLoading(false);
@@ -494,7 +261,10 @@ export default function CVForm() {
                 <CardContent className="space-y-2">
                   <div className="space-y-1">
                     <Label htmlFor="alignment">Alignment</Label>
-                    <Select value={alignment} onValueChange={setAlignment}>
+                    <Select
+                      value={cv.header.alignment}
+                      onValueChange={setAlignment}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Select the header alignment" />
                       </SelectTrigger>
@@ -512,7 +282,7 @@ export default function CVForm() {
                     <Input
                       id="firstName"
                       type="text"
-                      value={firstName}
+                      value={cv.header.firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                     />
                   </div>
@@ -521,7 +291,7 @@ export default function CVForm() {
                     <Input
                       id="lastName"
                       type="text"
-                      value={lastName}
+                      value={cv.header.lastName}
                       onChange={(e) => setLastName(e.target.value)}
                     />
                   </div>
@@ -529,16 +299,16 @@ export default function CVForm() {
                     <div className="flex items-center justify-between">
                       <Label htmlFor="phone">Phone</Label>
                       <Switch
-                        checked={phoneEnabled}
+                        checked={cv.header.phoneEnabled}
                         onCheckedChange={setPhoneEnabled}
                       />
                     </div>
-                    {phoneEnabled && (
+                    {cv.header.phoneEnabled && (
                       <Input
                         placeholder="Phone"
                         id="phone"
                         type="text"
-                        value={phone}
+                        value={cv.header.phone}
                         onChange={(e) => setPhone(e.target.value)}
                       />
                     )}
@@ -547,16 +317,16 @@ export default function CVForm() {
                     <div className="flex items-center justify-between">
                       <Label htmlFor="email">Email</Label>
                       <Switch
-                        checked={emailEnabled}
+                        checked={cv.header.emailEnabled}
                         onCheckedChange={setEmailEnabled}
                       />
                     </div>
-                    {emailEnabled && (
+                    {cv.header.emailEnabled && (
                       <Input
                         placeholder="Email"
                         id="email"
                         type="text"
-                        value={email}
+                        value={cv.header.email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
                     )}
@@ -565,16 +335,16 @@ export default function CVForm() {
                     <div className="flex items-center justify-between">
                       <Label htmlFor="homepage">Homepage</Label>
                       <Switch
-                        checked={homepageEnabled}
+                        checked={cv.header.homepageEnabled}
                         onCheckedChange={setHomepageEnabled}
                       />
                     </div>
-                    {homepageEnabled && (
+                    {cv.header.homepageEnabled && (
                       <Input
                         placeholder="Homepage"
                         id="homepage"
                         type="text"
-                        value={homepage}
+                        value={cv.header.homepage}
                         onChange={(e) => setHomepage(e.target.value)}
                       />
                     )}
@@ -583,16 +353,16 @@ export default function CVForm() {
                     <div className="flex items-center justify-between">
                       <Label htmlFor="github">Github</Label>
                       <Switch
-                        checked={githubEnabled}
+                        checked={cv.header.githubEnabled}
                         onCheckedChange={setGithubEnabled}
                       />
                     </div>
-                    {githubEnabled && (
+                    {cv.header.githubEnabled && (
                       <Input
                         placeholder="Github"
                         id="github"
                         type="text"
-                        value={github}
+                        value={cv.header.github}
                         onChange={(e) => setGithub(e.target.value)}
                       />
                     )}
@@ -601,16 +371,16 @@ export default function CVForm() {
                     <div className="flex items-center justify-between">
                       <Label htmlFor="linkedin">Linkedin</Label>
                       <Switch
-                        checked={linkedinEnabled}
+                        checked={cv.header.linkedinEnabled}
                         onCheckedChange={setLinkedinEnabled}
                       />
                     </div>
-                    {linkedinEnabled && (
+                    {cv.header.linkedinEnabled && (
                       <Input
                         placeholder="Linkedin"
                         id="linkedin"
                         type="text"
-                        value={linkedin}
+                        value={cv.header.linkedin}
                         onChange={(e) => setLinkedin(e.target.value)}
                       />
                     )}
@@ -619,16 +389,16 @@ export default function CVForm() {
                     <div className="flex items-center justify-between">
                       <Label htmlFor="gitlab">Gitlab</Label>
                       <Switch
-                        checked={gitlabEnabled}
+                        checked={cv.header.gitlabEnabled}
                         onCheckedChange={setGitlabEnabled}
                       />
                     </div>
-                    {gitlabEnabled && (
+                    {cv.header.gitlabEnabled && (
                       <Input
                         placeholder="Gitlab"
                         id="gitlab"
                         type="text"
-                        value={gitlab}
+                        value={cv.header.gitlab}
                         onChange={(e) => setGitlab(e.target.value)}
                       />
                     )}
@@ -637,16 +407,16 @@ export default function CVForm() {
                     <div className="flex items-center justify-between">
                       <Label htmlFor="twitter">Twitter</Label>
                       <Switch
-                        checked={twitterEnabled}
+                        checked={cv.header.twitterEnabled}
                         onCheckedChange={setTwitterEnabled}
                       />
                     </div>
-                    {twitterEnabled && (
+                    {cv.header.twitterEnabled && (
                       <Input
                         placeholder="Twitter"
                         id="twitter"
                         type="text"
-                        value={twitter}
+                        value={cv.header.twitter}
                         onChange={(e) => setTwitter(e.target.value)}
                       />
                     )}
@@ -655,16 +425,16 @@ export default function CVForm() {
                     <div className="flex items-center justify-between">
                       <Label htmlFor="quote">Quote</Label>
                       <Switch
-                        checked={quoteEnabled}
+                        checked={cv.header.quoteEnabled}
                         onCheckedChange={setQuoteEnabled}
                       />
                     </div>
-                    {quoteEnabled && (
+                    {cv.header.quoteEnabled && (
                       <Input
                         placeholder="Quote"
                         id="quote"
                         type="text"
-                        value={quote}
+                        value={cv.header.quote}
                         onChange={(e) => setQuote(e.target.value)}
                       />
                     )}
@@ -680,23 +450,23 @@ export default function CVForm() {
                     <div className="flex items-center justify-between">
                       <Label htmlFor="summaryEnabled">Enabled</Label>
                       <Switch
-                        checked={summaryEnabled}
+                        checked={cv.summaryEnabled}
                         onCheckedChange={setSummaryEnabled}
                       />
                     </div>
-                    {summaryEnabled && (
+                    {cv.summaryEnabled && (
                       <div className="space-y-1">
                         <Label htmlFor="summaryLabel">Label</Label>
                         <Input
                           id="summaryLabel"
                           type="text"
-                          value={summaryLabel}
+                          value={cv.summary?.label}
                           onChange={(e) => setSummaryLabel(e.target.value)}
                         />
                         <Label htmlFor="summaryContent">Content</Label>
                         <Textarea
                           id="summaryContent"
-                          value={summaryContent}
+                          value={cv.summary?.content}
                           onChange={(e) => setSummaryContent(e.target.value)}
                         />
                       </div>
@@ -713,17 +483,17 @@ export default function CVForm() {
                     <div className="flex items-center justify-between">
                       <Label htmlFor="experienceEnabled">Enabled</Label>
                       <Switch
-                        checked={experienceEnabled}
+                        checked={cv.experienceEnabled}
                         onCheckedChange={setExperienceEnabled}
                       />
                     </div>
-                    {experienceEnabled && (
+                    {cv.experienceEnabled && (
                       <div className="space-y-2">
                         <Label htmlFor="experienceLabel">Label</Label>
                         <Input
                           id="experienceLabel"
                           type="text"
-                          value={experienceLabel}
+                          value={cv.experience?.label}
                           onChange={(e) => setExperienceLabel(e.target.value)}
                         />
                         <Button
@@ -731,7 +501,7 @@ export default function CVForm() {
                           variant={"ghost"}
                           onClick={() =>
                             setExperiences([
-                              ...experiences,
+                              ...cv.experience.experiences,
                               {
                                 company: "",
                                 location: "",
@@ -747,198 +517,202 @@ export default function CVForm() {
                         </Button>
                         <Accordion type="single" collapsible className="w-full">
                           <div className="space-y-2">
-                            {experiences.map((experience, index) => (
-                              <AccordionItem
-                                key={index}
-                                value={index.toString()}
-                              >
-                                <AccordionTrigger>
-                                  <div className="items-center justify-center">
-                                    <Button
-                                      className="mr-1"
-                                      variant={"ghost"}
-                                      onClick={() => {
-                                        const newExperiences =
-                                          experiences.slice();
-                                        newExperiences.splice(index, 1);
-                                        setExperiences(newExperiences);
-                                      }}
-                                    >
-                                      <MinusCircle size={20} />
-                                    </Button>
-                                    {`Company - ${index + 1}`}
-                                  </div>
-                                </AccordionTrigger>
-                                <AccordionContent className="space-y-2">
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`experienceTitle-${index}`}
-                                    >
-                                      Company Name
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`experienceTitle-${index}`}
-                                      type="text"
-                                      value={experience.company}
-                                      onChange={(e) => {
-                                        const newExperiences =
-                                          experiences.slice();
-                                        newExperiences[index].company =
-                                          e.target.value;
-                                        setExperiences(newExperiences);
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`experienceContent-${index}`}
-                                    >
-                                      Location
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`experienceContent-${index}`}
-                                      type="text"
-                                      value={experience.location}
-                                      onChange={(e) => {
-                                        const newExperiences =
-                                          experiences.slice();
-                                        newExperiences[index].location =
-                                          e.target.value;
-                                        setExperiences(newExperiences);
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`experienceContent-${index}`}
-                                    >
-                                      Position
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`experienceContent-${index}`}
-                                      type="text"
-                                      value={experience.position}
-                                      onChange={(e) => {
-                                        const newExperiences =
-                                          experiences.slice();
-                                        newExperiences[index].position =
-                                          e.target.value;
-                                        setExperiences(newExperiences);
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`experienceContent-${index}`}
-                                    >
-                                      Start Date
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`experienceContent-${index}`}
-                                      type="text"
-                                      value={experience.startDate}
-                                      onChange={(e) => {
-                                        const newExperiences =
-                                          experiences.slice();
-                                        newExperiences[index].startDate =
-                                          e.target.value;
-                                        setExperiences(newExperiences);
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`experienceContent-${index}`}
-                                    >
-                                      End Date
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`experienceContent-${index}`}
-                                      type="text"
-                                      value={experience.endDate}
-                                      onChange={(e) => {
-                                        const newExperiences =
-                                          experiences.slice();
-                                        newExperiences[index].endDate =
-                                          e.target.value;
-                                        setExperiences(newExperiences);
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`experienceContent-${index}`}
-                                    >
-                                      Description
-                                    </Label>
-                                    {experience.description.map(
-                                      (description, descriptionIndex) => (
-                                        <div
-                                          className="flex flex-row ml-1 w-11/12"
-                                          key={descriptionIndex}
-                                        >
-                                          <Button
-                                            variant={"ghost"}
-                                            onClick={() => {
-                                              const newExperiences =
-                                                experiences.slice();
-                                              newExperiences[
-                                                index
-                                              ].description.splice(
-                                                descriptionIndex,
-                                                1
-                                              );
-                                              setExperiences(newExperiences);
-                                            }}
-                                          >
-                                            <MinusCircle size={16} />
-                                          </Button>
-                                          <Input
+                            {cv.experience.experiences.map(
+                              (experience, index) => (
+                                <AccordionItem
+                                  key={index}
+                                  value={index.toString()}
+                                >
+                                  <AccordionTrigger>
+                                    <div className="items-center justify-center">
+                                      <Button
+                                        className="mr-1"
+                                        variant={"ghost"}
+                                        onClick={() => {
+                                          const newExperiences =
+                                            cv.experience.experiences.slice();
+                                          newExperiences.splice(index, 1);
+                                          setExperiences(newExperiences);
+                                        }}
+                                      >
+                                        <MinusCircle size={20} />
+                                      </Button>
+                                      {`Company - ${index + 1}`}
+                                    </div>
+                                  </AccordionTrigger>
+                                  <AccordionContent className="space-y-2">
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`experienceTitle-${index}`}
+                                      >
+                                        Company Name
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`experienceTitle-${index}`}
+                                        type="text"
+                                        value={experience.company}
+                                        onChange={(e) => {
+                                          const newExperiences =
+                                            cv.experience.experiences.slice();
+                                          newExperiences[index].company =
+                                            e.target.value;
+                                          setExperiences(newExperiences);
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`experienceContent-${index}`}
+                                      >
+                                        Location
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`experienceContent-${index}`}
+                                        type="text"
+                                        value={experience.location}
+                                        onChange={(e) => {
+                                          const newExperiences =
+                                            cv.experience.experiences.slice();
+                                          newExperiences[index].location =
+                                            e.target.value;
+                                          setExperiences(newExperiences);
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`experienceContent-${index}`}
+                                      >
+                                        Position
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`experienceContent-${index}`}
+                                        type="text"
+                                        value={experience.position}
+                                        onChange={(e) => {
+                                          const newExperiences =
+                                            cv.experience.experiences.slice();
+                                          newExperiences[index].position =
+                                            e.target.value;
+                                          setExperiences(newExperiences);
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`experienceContent-${index}`}
+                                      >
+                                        Start Date
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`experienceContent-${index}`}
+                                        type="text"
+                                        value={experience.startDate}
+                                        onChange={(e) => {
+                                          const newExperiences =
+                                            cv.experience.experiences.slice();
+                                          newExperiences[index].startDate =
+                                            e.target.value;
+                                          setExperiences(newExperiences);
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`experienceContent-${index}`}
+                                      >
+                                        End Date
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`experienceContent-${index}`}
+                                        type="text"
+                                        value={experience.endDate}
+                                        onChange={(e) => {
+                                          const newExperiences =
+                                            cv.experience.experiences.slice();
+                                          newExperiences[index].endDate =
+                                            e.target.value;
+                                          setExperiences(newExperiences);
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`experienceContent-${index}`}
+                                      >
+                                        Description
+                                      </Label>
+                                      {experience.description.map(
+                                        (description, descriptionIndex) => (
+                                          <div
+                                            className="flex flex-row ml-1 w-11/12"
                                             key={descriptionIndex}
-                                            id={`experienceContent-${index}`}
-                                            type="text"
-                                            value={description}
-                                            onChange={(e) => {
-                                              const newExperiences =
-                                                experiences.slice();
-                                              newExperiences[index].description[
-                                                descriptionIndex
-                                              ] = e.target.value;
-                                              setExperiences(newExperiences);
-                                            }}
-                                          />
-                                        </div>
-                                      )
-                                    )}
-                                    <Button
-                                      className="w-11/12 items-center justify-center"
-                                      variant={"ghost"}
-                                      onClick={() => {
-                                        const newExperiences =
-                                          experiences.slice();
-                                        newExperiences[index].description.push(
-                                          ""
-                                        );
-                                        setExperiences(newExperiences);
-                                      }}
-                                    >
-                                      <PlusCircle size={16} />
-                                    </Button>
-                                  </div>
-                                </AccordionContent>
-                              </AccordionItem>
-                            ))}
+                                          >
+                                            <Button
+                                              variant={"ghost"}
+                                              onClick={() => {
+                                                const newExperiences =
+                                                  cv.experience.experiences.slice();
+                                                newExperiences[
+                                                  index
+                                                ].description.splice(
+                                                  descriptionIndex,
+                                                  1
+                                                );
+                                                setExperiences(newExperiences);
+                                              }}
+                                            >
+                                              <MinusCircle size={16} />
+                                            </Button>
+                                            <Input
+                                              key={descriptionIndex}
+                                              id={`experienceContent-${index}`}
+                                              type="text"
+                                              value={description}
+                                              onChange={(e) => {
+                                                const newExperiences =
+                                                  cv.experience.experiences.slice();
+                                                newExperiences[
+                                                  index
+                                                ].description[
+                                                  descriptionIndex
+                                                ] = e.target.value;
+                                                setExperiences(newExperiences);
+                                              }}
+                                            />
+                                          </div>
+                                        )
+                                      )}
+                                      <Button
+                                        className="w-11/12 items-center justify-center"
+                                        variant={"ghost"}
+                                        onClick={() => {
+                                          const newExperiences =
+                                            cv.experience.experiences.slice();
+                                          newExperiences[
+                                            index
+                                          ].description.push("");
+                                          setExperiences(newExperiences);
+                                        }}
+                                      >
+                                        <PlusCircle size={16} />
+                                      </Button>
+                                    </div>
+                                  </AccordionContent>
+                                </AccordionItem>
+                              )
+                            )}
                           </div>
                         </Accordion>
                       </div>
@@ -955,17 +729,17 @@ export default function CVForm() {
                     <div className="flex items-center justify-between">
                       <Label htmlFor="honorsEnabled">Enabled</Label>
                       <Switch
-                        checked={honorsEnabled}
+                        checked={cv.honorsEnabled}
                         onCheckedChange={setHonorsEnabled}
                       />
                     </div>
-                    {honorsEnabled && (
+                    {cv.honorsEnabled && (
                       <div className="space-y-1">
                         <Label htmlFor="honorsLabel">Label</Label>
                         <Input
                           id="honorsLabel"
                           type="text"
-                          value={honorsLabel}
+                          value={cv.honors.label}
                           onChange={(e) => setHonorsLabel(e.target.value)}
                         />
                         <Button
@@ -973,7 +747,7 @@ export default function CVForm() {
                           variant={"ghost"}
                           onClick={() =>
                             setHonorsTypes([
-                              ...honorsTypes,
+                              ...cv.honors.honors,
                               {
                                 label: "",
                                 honors: [],
@@ -984,7 +758,7 @@ export default function CVForm() {
                           <PlusCircle />
                         </Button>
                         <div className="space-y-2">
-                          {honorsTypes.map((honorsType, index) => (
+                          {cv.honors.honors.map((honorsType, index) => (
                             <div
                               key={index}
                               className="space-y-2 border rounded-lg p-4"
@@ -993,7 +767,8 @@ export default function CVForm() {
                                 <Button
                                   variant={"ghost"}
                                   onClick={() => {
-                                    const newHonorsTypes = honorsTypes.slice();
+                                    const newHonorsTypes =
+                                      cv.honors.honors.slice();
                                     newHonorsTypes.splice(index, 1);
                                     setHonorsTypes(newHonorsTypes);
                                   }}
@@ -1006,10 +781,10 @@ export default function CVForm() {
                               <Input
                                 id="honorsTypeLabel"
                                 type="text"
-                                value={honorsTypes[index].label}
+                                value={cv.honors.honors[index].label}
                                 onChange={(e) =>
                                   setHonorsTypes(
-                                    honorsTypes.map((honorsType, i) => {
+                                    cv.honors.honors.map((honorsType, i) => {
                                       if (i === index) {
                                         return {
                                           ...honorsType,
@@ -1025,7 +800,8 @@ export default function CVForm() {
                                 className="w-full items-center justify-center"
                                 variant={"ghost"}
                                 onClick={() => {
-                                  const newHonorsTypes = honorsTypes.slice();
+                                  const newHonorsTypes =
+                                    cv.honors.honors.slice();
                                   newHonorsTypes[index].honors.push({
                                     year: "",
                                     position: "",
@@ -1043,7 +819,7 @@ export default function CVForm() {
                                 className="w-full"
                               >
                                 <div className="space-y-2">
-                                  {honorsTypes[index].honors.map(
+                                  {cv.honors.honors[index].honors.map(
                                     (honor, honorIndex) => (
                                       <AccordionItem
                                         key={honorIndex}
@@ -1056,7 +832,7 @@ export default function CVForm() {
                                               variant={"ghost"}
                                               onClick={() => {
                                                 const newHonorsTypes =
-                                                  honorsTypes.slice();
+                                                  cv.honors.honors.slice();
                                                 newHonorsTypes[
                                                   index
                                                 ].honors.splice(honorIndex, 1);
@@ -1083,7 +859,7 @@ export default function CVForm() {
                                               value={honor.year}
                                               onChange={(e) => {
                                                 const newHonorsTypes =
-                                                  honorsTypes.slice();
+                                                  cv.honors.honors.slice();
                                                 newHonorsTypes[index].honors[
                                                   honorIndex
                                                 ].year = e.target.value;
@@ -1105,7 +881,7 @@ export default function CVForm() {
                                               value={honor.position}
                                               onChange={(e) => {
                                                 const newHonorsTypes =
-                                                  honorsTypes.slice();
+                                                  cv.honors.honors.slice();
                                                 newHonorsTypes[index].honors[
                                                   honorIndex
                                                 ].position = e.target.value;
@@ -1127,7 +903,7 @@ export default function CVForm() {
                                               value={honor.honor}
                                               onChange={(e) => {
                                                 const newHonorsTypes =
-                                                  honorsTypes.slice();
+                                                  cv.honors.honors.slice();
                                                 newHonorsTypes[index].honors[
                                                   honorIndex
                                                 ].honor = e.target.value;
@@ -1149,7 +925,7 @@ export default function CVForm() {
                                               value={honor.location}
                                               onChange={(e) => {
                                                 const newHonorsTypes =
-                                                  honorsTypes.slice();
+                                                  cv.honors.honors.slice();
                                                 newHonorsTypes[index].honors[
                                                   honorIndex
                                                 ].location = e.target.value;
@@ -1180,17 +956,17 @@ export default function CVForm() {
                     <div className="flex items-center justify-between">
                       <Label htmlFor="presentationsEnabled">Enabled</Label>
                       <Switch
-                        checked={presentationsEnabled}
+                        checked={cv.presentationsEnabled}
                         onCheckedChange={setPresentationsEnabled}
                       />
                     </div>
-                    {presentationsEnabled && (
+                    {cv.presentationsEnabled && (
                       <div className="space-y-2">
                         <Label htmlFor="presentationLabel">Label</Label>
                         <Input
                           id="presentationLabel"
                           type="text"
-                          value={presentationsLabel}
+                          value={cv.presentations.label}
                           onChange={(e) =>
                             setPresentationsLabel(e.target.value)
                           }
@@ -1200,7 +976,7 @@ export default function CVForm() {
                           variant={"ghost"}
                           onClick={() =>
                             setPresentations([
-                              ...presentations,
+                              ...cv.presentations.presentations,
                               {
                                 event: "",
                                 role: "",
@@ -1215,182 +991,185 @@ export default function CVForm() {
                         </Button>
                         <Accordion type="single" collapsible className="w-full">
                           <div className="space-y-2">
-                            {presentations.map((presentation, index) => (
-                              <AccordionItem
-                                key={index}
-                                value={index.toString()}
-                              >
-                                <AccordionTrigger>
-                                  <div className="items-center justify-center">
-                                    <Button
-                                      className="mr-1"
-                                      variant={"ghost"}
-                                      onClick={() => {
-                                        const newPresentations =
-                                          presentations.slice();
-                                        newPresentations.splice(index, 1);
-                                        setPresentations(newPresentations);
-                                      }}
-                                    >
-                                      <MinusCircle size={20} />
-                                    </Button>
-                                    {`Presentation - ${index + 1}`}
-                                  </div>
-                                </AccordionTrigger>
-                                <AccordionContent className="space-y-2">
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`presentationTitle-${index}`}
-                                    >
-                                      Event
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`presentationTitle-${index}`}
-                                      type="text"
-                                      value={presentation.event}
-                                      onChange={(e) => {
-                                        const newPresentations =
-                                          presentations.slice();
-                                        newPresentations[index].event =
-                                          e.target.value;
-                                        setPresentations(newPresentations);
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`presentationContent-${index}`}
-                                    >
-                                      Role
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`presentationContent-${index}`}
-                                      type="text"
-                                      value={presentation.role}
-                                      onChange={(e) => {
-                                        const newPresentations =
-                                          presentations.slice();
-                                        newPresentations[index].role =
-                                          e.target.value;
-                                        setPresentations(newPresentations);
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`presentationContent-${index}`}
-                                    >
-                                      Location
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`presentationContent-${index}`}
-                                      type="text"
-                                      value={presentation.location}
-                                      onChange={(e) => {
-                                        const newPresentations =
-                                          presentations.slice();
-                                        newPresentations[index].location =
-                                          e.target.value;
-                                        setPresentations(newPresentations);
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`presentationContent-${index}`}
-                                    >
-                                      Date
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`presentationContent-${index}`}
-                                      type="text"
-                                      value={presentation.date}
-                                      onChange={(e) => {
-                                        const newPresentations =
-                                          presentations.slice();
-                                        newPresentations[index].date =
-                                          e.target.value;
-                                        setPresentations(newPresentations);
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`presentationContent-${index}`}
-                                    >
-                                      Description
-                                    </Label>
-                                    {presentation.description.map(
-                                      (description, descriptionIndex) => (
-                                        <div
-                                          className="flex flex-row ml-1 w-11/12"
-                                          key={descriptionIndex}
-                                        >
-                                          <Button
-                                            variant={"ghost"}
-                                            onClick={() => {
-                                              const newPresentations =
-                                                presentations.slice();
-                                              newPresentations[
-                                                index
-                                              ].description.splice(
-                                                descriptionIndex,
-                                                1
-                                              );
-                                              setPresentations(
-                                                newPresentations
-                                              );
-                                            }}
-                                          >
-                                            <MinusCircle size={16} />
-                                          </Button>
-                                          <Input
+                            {cv.presentations.presentations.map(
+                              (presentation, index) => (
+                                <AccordionItem
+                                  key={index}
+                                  value={index.toString()}
+                                >
+                                  <AccordionTrigger>
+                                    <div className="items-center justify-center">
+                                      <Button
+                                        className="mr-1"
+                                        variant={"ghost"}
+                                        onClick={() => {
+                                          const newPresentations =
+                                            cv.presentations.presentations.slice();
+                                          newPresentations.splice(index, 1);
+                                          setPresentations(newPresentations);
+                                        }}
+                                      >
+                                        <MinusCircle size={20} />
+                                      </Button>
+                                      {`Presentation - ${index + 1}`}
+                                    </div>
+                                  </AccordionTrigger>
+                                  <AccordionContent className="space-y-2">
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`presentationTitle-${index}`}
+                                      >
+                                        Event
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`presentationTitle-${index}`}
+                                        type="text"
+                                        value={presentation.event}
+                                        onChange={(e) => {
+                                          const newPresentations =
+                                            cv.presentations.presentations.slice();
+                                          newPresentations[index].event =
+                                            e.target.value;
+                                          setPresentations(newPresentations);
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`presentationContent-${index}`}
+                                      >
+                                        Role
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`presentationContent-${index}`}
+                                        type="text"
+                                        value={presentation.role}
+                                        onChange={(e) => {
+                                          const newPresentations =
+                                            cv.presentations.presentations.slice();
+                                          newPresentations[index].role =
+                                            e.target.value;
+                                          setPresentations(newPresentations);
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`presentationContent-${index}`}
+                                      >
+                                        Location
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`presentationContent-${index}`}
+                                        type="text"
+                                        value={presentation.location}
+                                        onChange={(e) => {
+                                          const newPresentations =
+                                            cv.presentations.presentations.slice();
+                                          newPresentations[index].location =
+                                            e.target.value;
+                                          setPresentations(newPresentations);
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`presentationContent-${index}`}
+                                      >
+                                        Date
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`presentationContent-${index}`}
+                                        type="text"
+                                        value={presentation.date}
+                                        onChange={(e) => {
+                                          const newPresentations =
+                                            cv.presentations.presentations.slice();
+                                          newPresentations[index].date =
+                                            e.target.value;
+                                          setPresentations(newPresentations);
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`presentationContent-${index}`}
+                                      >
+                                        Description
+                                      </Label>
+                                      {presentation.description.map(
+                                        (description, descriptionIndex) => (
+                                          <div
+                                            className="flex flex-row ml-1 w-11/12"
                                             key={descriptionIndex}
-                                            id={`presentationContent-${index}`}
-                                            type="text"
-                                            value={description}
-                                            onChange={(e) => {
-                                              const newPresentations =
-                                                presentations.slice();
-                                              newPresentations[
-                                                index
-                                              ].description[descriptionIndex] =
-                                                e.target.value;
-                                              setPresentations(
-                                                newPresentations
-                                              );
-                                            }}
-                                          />
-                                        </div>
-                                      )
-                                    )}
-                                    <Button
-                                      className="w-11/12 items-center justify-center"
-                                      variant={"ghost"}
-                                      onClick={() => {
-                                        const newPresentations =
-                                          presentations.slice();
-                                        newPresentations[
-                                          index
-                                        ].description.push("");
-                                        setPresentations(newPresentations);
-                                      }}
-                                    >
-                                      <PlusCircle size={16} />
-                                    </Button>
-                                  </div>
-                                </AccordionContent>
-                              </AccordionItem>
-                            ))}
+                                          >
+                                            <Button
+                                              variant={"ghost"}
+                                              onClick={() => {
+                                                const newPresentations =
+                                                  cv.presentations.presentations.slice();
+                                                newPresentations[
+                                                  index
+                                                ].description.splice(
+                                                  descriptionIndex,
+                                                  1
+                                                );
+                                                setPresentations(
+                                                  newPresentations
+                                                );
+                                              }}
+                                            >
+                                              <MinusCircle size={16} />
+                                            </Button>
+                                            <Input
+                                              key={descriptionIndex}
+                                              id={`presentationContent-${index}`}
+                                              type="text"
+                                              value={description}
+                                              onChange={(e) => {
+                                                const newPresentations =
+                                                  cv.presentations.presentations.slice();
+                                                newPresentations[
+                                                  index
+                                                ].description[
+                                                  descriptionIndex
+                                                ] = e.target.value;
+                                                setPresentations(
+                                                  newPresentations
+                                                );
+                                              }}
+                                            />
+                                          </div>
+                                        )
+                                      )}
+                                      <Button
+                                        className="w-11/12 items-center justify-center"
+                                        variant={"ghost"}
+                                        onClick={() => {
+                                          const newPresentations =
+                                            cv.presentations.presentations.slice();
+                                          newPresentations[
+                                            index
+                                          ].description.push("");
+                                          setPresentations(newPresentations);
+                                        }}
+                                      >
+                                        <PlusCircle size={16} />
+                                      </Button>
+                                    </div>
+                                  </AccordionContent>
+                                </AccordionItem>
+                              )
+                            )}
                           </div>
                         </Accordion>
                       </div>
@@ -1407,17 +1186,17 @@ export default function CVForm() {
                     <div className="flex items-center justify-between">
                       <Label htmlFor="writingEnabled">Enabled</Label>
                       <Switch
-                        checked={writingEnabled}
+                        checked={cv.writingEnabled}
                         onCheckedChange={setWritingEnabled}
                       />
                     </div>
-                    {writingEnabled && (
+                    {cv.writingEnabled && (
                       <div className="space-y-1">
                         <Label htmlFor="writingLabel">Label</Label>
                         <Input
                           id="writingLabel"
                           type="text"
-                          value={writingLabel}
+                          value={cv.writings.label}
                           onChange={(e) => setWritingLabel(e.target.value)}
                         />
                         <Button
@@ -1425,7 +1204,7 @@ export default function CVForm() {
                           variant={"ghost"}
                           onClick={() =>
                             setWritings([
-                              ...writings,
+                              ...cv.writings.writings,
                               {
                                 title: "",
                                 role: "",
@@ -1441,7 +1220,7 @@ export default function CVForm() {
                         </Button>
                         <Accordion type="single" collapsible className="w-full">
                           <div className="space-y-2">
-                            {writings.map((writing, index) => (
+                            {cv.writings.writings.map((writing, index) => (
                               <AccordionItem
                                 key={index}
                                 value={index.toString()}
@@ -1452,7 +1231,8 @@ export default function CVForm() {
                                       className="mr-1"
                                       variant={"ghost"}
                                       onClick={() => {
-                                        const newWritings = writings.slice();
+                                        const newWritings =
+                                          cv.writings.writings.slice();
                                         newWritings.splice(index, 1);
                                         setWritings(newWritings);
                                       }}
@@ -1476,7 +1256,8 @@ export default function CVForm() {
                                       type="text"
                                       value={writing.title}
                                       onChange={(e) => {
-                                        const newWritings = writings.slice();
+                                        const newWritings =
+                                          cv.writings.writings.slice();
                                         newWritings[index].title =
                                           e.target.value;
                                         setWritings(newWritings);
@@ -1496,7 +1277,8 @@ export default function CVForm() {
                                       type="text"
                                       value={writing.role}
                                       onChange={(e) => {
-                                        const newWritings = writings.slice();
+                                        const newWritings =
+                                          cv.writings.writings.slice();
                                         newWritings[index].role =
                                           e.target.value;
                                         setWritings(newWritings);
@@ -1516,7 +1298,8 @@ export default function CVForm() {
                                       type="text"
                                       value={writing.medium}
                                       onChange={(e) => {
-                                        const newWritings = writings.slice();
+                                        const newWritings =
+                                          cv.writings.writings.slice();
                                         newWritings[index].medium =
                                           e.target.value;
                                         setWritings(newWritings);
@@ -1536,7 +1319,8 @@ export default function CVForm() {
                                       type="text"
                                       value={writing.startDate}
                                       onChange={(e) => {
-                                        const newWritings = writings.slice();
+                                        const newWritings =
+                                          cv.writings.writings.slice();
                                         newWritings[index].startDate =
                                           e.target.value;
                                         setWritings(newWritings);
@@ -1556,7 +1340,8 @@ export default function CVForm() {
                                       type="text"
                                       value={writing.endDate}
                                       onChange={(e) => {
-                                        const newWritings = writings.slice();
+                                        const newWritings =
+                                          cv.writings.writings.slice();
                                         newWritings[index].endDate =
                                           e.target.value;
                                         setWritings(newWritings);
@@ -1580,7 +1365,7 @@ export default function CVForm() {
                                             variant={"ghost"}
                                             onClick={() => {
                                               const newWritings =
-                                                writings.slice();
+                                                cv.writings.writings.slice();
                                               newWritings[
                                                 index
                                               ].descriptions.splice(
@@ -1599,7 +1384,7 @@ export default function CVForm() {
                                             value={description}
                                             onChange={(e) => {
                                               const newWritings =
-                                                writings.slice();
+                                                cv.writings.writings.slice();
                                               newWritings[index].descriptions[
                                                 descriptionIndex
                                               ] = e.target.value;
@@ -1613,7 +1398,8 @@ export default function CVForm() {
                                       className="w-11/12 items-center justify-center"
                                       variant={"ghost"}
                                       onClick={() => {
-                                        const newWritings = writings.slice();
+                                        const newWritings =
+                                          cv.writings.writings.slice();
                                         newWritings[index].descriptions.push(
                                           ""
                                         );
@@ -1642,17 +1428,17 @@ export default function CVForm() {
                     <div className="flex items-center justify-between">
                       <Label htmlFor="committeeEnabled">Enabled</Label>
                       <Switch
-                        checked={committeeEnabled}
+                        checked={cv.committeeEnabled}
                         onCheckedChange={setCommitteeEnabled}
                       />
                     </div>
-                    {committeeEnabled && (
+                    {cv.committeeEnabled && (
                       <div className="space-y-1">
                         <Label htmlFor="committeeLabel">Label</Label>
                         <Input
                           id="committeeLabel"
                           type="text"
-                          value={committeeLabel}
+                          value={cv.committees.label}
                           onChange={(e) => setCommitteeLabel(e.target.value)}
                         />
                         <Button
@@ -1660,7 +1446,7 @@ export default function CVForm() {
                           variant={"ghost"}
                           onClick={() =>
                             setCommittees([
-                              ...committees,
+                              ...cv.committees.committees,
                               {
                                 year: "",
                                 position: "",
@@ -1674,116 +1460,118 @@ export default function CVForm() {
                         </Button>
                         <Accordion type="single" collapsible className="w-full">
                           <div className="space-y-2">
-                            {committees.map((committee, index) => (
-                              <AccordionItem
-                                key={index}
-                                value={index.toString()}
-                              >
-                                <AccordionTrigger>
-                                  <div className="items-center justify-center">
-                                    <Button
-                                      className="mr-1"
-                                      variant={"ghost"}
-                                      onClick={() => {
-                                        const newCommittees =
-                                          committees.slice();
-                                        newCommittees.splice(index, 1);
-                                        setCommittees(newCommittees);
-                                      }}
-                                    >
-                                      <MinusCircle size={20} />
-                                    </Button>
-                                    {`Committee - ${index + 1}`}
-                                  </div>
-                                </AccordionTrigger>
-                                <AccordionContent className="space-y-2">
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`committeeYear-${index}`}
-                                    >
-                                      Year
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`committeeYear-${index}`}
-                                      type="text"
-                                      value={committee.year}
-                                      onChange={(e) => {
-                                        const newCommittees =
-                                          committees.slice();
-                                        newCommittees[index].year =
-                                          e.target.value;
-                                        setCommittees(newCommittees);
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`committeePosition-${index}`}
-                                    >
-                                      Position
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`committeePosition-${index}`}
-                                      type="text"
-                                      value={committee.position}
-                                      onChange={(e) => {
-                                        const newCommittees =
-                                          committees.slice();
-                                        newCommittees[index].position =
-                                          e.target.value;
-                                        setCommittees(newCommittees);
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`committeeOrganization-${index}`}
-                                    >
-                                      Organization
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`committeeOrganization-${index}`}
-                                      type="text"
-                                      value={committee.organization}
-                                      onChange={(e) => {
-                                        const newCommittees =
-                                          committees.slice();
-                                        newCommittees[index].organization =
-                                          e.target.value;
-                                        setCommittees(newCommittees);
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`committeeLocation-${index}`}
-                                    >
-                                      Location
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`committeeLocation-${index}`}
-                                      type="text"
-                                      value={committee.location}
-                                      onChange={(e) => {
-                                        const newCommittees =
-                                          committees.slice();
-                                        newCommittees[index].location =
-                                          e.target.value;
-                                        setCommittees(newCommittees);
-                                      }}
-                                    />
-                                  </div>
-                                </AccordionContent>
-                              </AccordionItem>
-                            ))}
+                            {cv.committees.committees.map(
+                              (committee, index) => (
+                                <AccordionItem
+                                  key={index}
+                                  value={index.toString()}
+                                >
+                                  <AccordionTrigger>
+                                    <div className="items-center justify-center">
+                                      <Button
+                                        className="mr-1"
+                                        variant={"ghost"}
+                                        onClick={() => {
+                                          const newCommittees =
+                                            cv.committees.committees.slice();
+                                          newCommittees.splice(index, 1);
+                                          setCommittees(newCommittees);
+                                        }}
+                                      >
+                                        <MinusCircle size={20} />
+                                      </Button>
+                                      {`Committee - ${index + 1}`}
+                                    </div>
+                                  </AccordionTrigger>
+                                  <AccordionContent className="space-y-2">
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`committeeYear-${index}`}
+                                      >
+                                        Year
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`committeeYear-${index}`}
+                                        type="text"
+                                        value={committee.year}
+                                        onChange={(e) => {
+                                          const newCommittees =
+                                            cv.committees.committees.slice();
+                                          newCommittees[index].year =
+                                            e.target.value;
+                                          setCommittees(newCommittees);
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`committeePosition-${index}`}
+                                      >
+                                        Position
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`committeePosition-${index}`}
+                                        type="text"
+                                        value={committee.position}
+                                        onChange={(e) => {
+                                          const newCommittees =
+                                            cv.committees.committees.slice();
+                                          newCommittees[index].position =
+                                            e.target.value;
+                                          setCommittees(newCommittees);
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`committeeOrganization-${index}`}
+                                      >
+                                        Organization
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`committeeOrganization-${index}`}
+                                        type="text"
+                                        value={committee.organization}
+                                        onChange={(e) => {
+                                          const newCommittees =
+                                            cv.committees.committees.slice();
+                                          newCommittees[index].organization =
+                                            e.target.value;
+                                          setCommittees(newCommittees);
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`committeeLocation-${index}`}
+                                      >
+                                        Location
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`committeeLocation-${index}`}
+                                        type="text"
+                                        value={committee.location}
+                                        onChange={(e) => {
+                                          const newCommittees =
+                                            cv.committees.committees.slice();
+                                          newCommittees[index].location =
+                                            e.target.value;
+                                          setCommittees(newCommittees);
+                                        }}
+                                      />
+                                    </div>
+                                  </AccordionContent>
+                                </AccordionItem>
+                              )
+                            )}
                           </div>
                         </Accordion>
                       </div>
@@ -1800,17 +1588,17 @@ export default function CVForm() {
                     <div className="flex items-center justify-between">
                       <Label htmlFor="educationEnabled">Enabled</Label>
                       <Switch
-                        checked={educationEnabled}
+                        checked={cv.educationEnabled}
                         onCheckedChange={setEducationEnabled}
                       />
                     </div>
-                    {educationEnabled && (
+                    {cv.educationEnabled && (
                       <div className="space-y-1">
                         <Label htmlFor="educationLabel">Label</Label>
                         <Input
                           id="educationLabel"
                           type="text"
-                          value={educationLabel}
+                          value={cv.educations.label}
                           onChange={(e) => setEducationLabel(e.target.value)}
                         />
                         <Button
@@ -1818,7 +1606,7 @@ export default function CVForm() {
                           variant={"ghost"}
                           onClick={() =>
                             setEducations([
-                              ...educations,
+                              ...cv.educations.educations,
                               {
                                 degree: "",
                                 school: "",
@@ -1834,198 +1622,202 @@ export default function CVForm() {
                         </Button>
                         <Accordion type="single" collapsible className="w-full">
                           <div className="space-y-2">
-                            {educations.map((education, index) => (
-                              <AccordionItem
-                                key={index}
-                                value={index.toString()}
-                              >
-                                <AccordionTrigger>
-                                  <div className="items-center justify-center">
-                                    <Button
-                                      className="mr-1"
-                                      variant={"ghost"}
-                                      onClick={() => {
-                                        const newEducations =
-                                          educations.slice();
-                                        newEducations.splice(index, 1);
-                                        setEducations(newEducations);
-                                      }}
-                                    >
-                                      <MinusCircle size={20} />
-                                    </Button>
-                                    {`Education - ${index + 1}`}
-                                  </div>
-                                </AccordionTrigger>
-                                <AccordionContent className="space-y-2">
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`educationDegree-${index}`}
-                                    >
-                                      Degree
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`educationDegree-${index}`}
-                                      type="text"
-                                      value={education.degree}
-                                      onChange={(e) => {
-                                        const newEducations =
-                                          educations.slice();
-                                        newEducations[index].degree =
-                                          e.target.value;
-                                        setEducations(newEducations);
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`educationSchool-${index}`}
-                                    >
-                                      School
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`educationSchool-${index}`}
-                                      type="text"
-                                      value={education.school}
-                                      onChange={(e) => {
-                                        const newEducations =
-                                          educations.slice();
-                                        newEducations[index].school =
-                                          e.target.value;
-                                        setEducations(newEducations);
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`educationStartDate-${index}`}
-                                    >
-                                      Start Date
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`educationStartDate-${index}`}
-                                      type="text"
-                                      value={education.startDate}
-                                      onChange={(e) => {
-                                        const newEducations =
-                                          educations.slice();
-                                        newEducations[index].startDate =
-                                          e.target.value;
-                                        setEducations(newEducations);
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`educationEndDate-${index}`}
-                                    >
-                                      End Date
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`educationEndDate-${index}`}
-                                      type="text"
-                                      value={education.endDate}
-                                      onChange={(e) => {
-                                        const newEducations =
-                                          educations.slice();
-                                        newEducations[index].endDate =
-                                          e.target.value;
-                                        setEducations(newEducations);
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`educationLocation-${index}`}
-                                    >
-                                      Location
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`educationLocation-${index}`}
-                                      type="text"
-                                      value={education.location}
-                                      onChange={(e) => {
-                                        const newEducations =
-                                          educations.slice();
-                                        newEducations[index].location =
-                                          e.target.value;
-                                        setEducations(newEducations);
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`educationContent-${index}`}
-                                    >
-                                      Description
-                                    </Label>
-                                    {education.description.map(
-                                      (description, descriptionIndex) => (
-                                        <div
-                                          className="flex flex-row ml-1 w-11/12"
-                                          key={descriptionIndex}
-                                        >
-                                          <Button
-                                            variant={"ghost"}
-                                            onClick={() => {
-                                              const newEducations =
-                                                educations.slice();
-                                              newEducations[
-                                                index
-                                              ].description.splice(
-                                                descriptionIndex,
-                                                1
-                                              );
-                                              setEducations(newEducations);
-                                            }}
-                                          >
-                                            <MinusCircle size={16} />
-                                          </Button>
-                                          <Input
+                            {cv.educations.educations.map(
+                              (education, index) => (
+                                <AccordionItem
+                                  key={index}
+                                  value={index.toString()}
+                                >
+                                  <AccordionTrigger>
+                                    <div className="items-center justify-center">
+                                      <Button
+                                        className="mr-1"
+                                        variant={"ghost"}
+                                        onClick={() => {
+                                          const newEducations =
+                                            cv.educations.educations.slice();
+                                          newEducations.splice(index, 1);
+                                          setEducations(newEducations);
+                                        }}
+                                      >
+                                        <MinusCircle size={20} />
+                                      </Button>
+                                      {`Education - ${index + 1}`}
+                                    </div>
+                                  </AccordionTrigger>
+                                  <AccordionContent className="space-y-2">
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`educationDegree-${index}`}
+                                      >
+                                        Degree
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`educationDegree-${index}`}
+                                        type="text"
+                                        value={education.degree}
+                                        onChange={(e) => {
+                                          const newEducations =
+                                            cv.educations.educations.slice();
+                                          newEducations[index].degree =
+                                            e.target.value;
+                                          setEducations(newEducations);
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`educationSchool-${index}`}
+                                      >
+                                        School
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`educationSchool-${index}`}
+                                        type="text"
+                                        value={education.school}
+                                        onChange={(e) => {
+                                          const newEducations =
+                                            cv.educations.educations.slice();
+                                          newEducations[index].school =
+                                            e.target.value;
+                                          setEducations(newEducations);
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`educationStartDate-${index}`}
+                                      >
+                                        Start Date
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`educationStartDate-${index}`}
+                                        type="text"
+                                        value={education.startDate}
+                                        onChange={(e) => {
+                                          const newEducations =
+                                            cv.educations.educations.slice();
+                                          newEducations[index].startDate =
+                                            e.target.value;
+                                          setEducations(newEducations);
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`educationEndDate-${index}`}
+                                      >
+                                        End Date
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`educationEndDate-${index}`}
+                                        type="text"
+                                        value={education.endDate}
+                                        onChange={(e) => {
+                                          const newEducations =
+                                            cv.educations.educations.slice();
+                                          newEducations[index].endDate =
+                                            e.target.value;
+                                          setEducations(newEducations);
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`educationLocation-${index}`}
+                                      >
+                                        Location
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`educationLocation-${index}`}
+                                        type="text"
+                                        value={education.location}
+                                        onChange={(e) => {
+                                          const newEducations =
+                                            cv.educations.educations.slice();
+                                          newEducations[index].location =
+                                            e.target.value;
+                                          setEducations(newEducations);
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`educationContent-${index}`}
+                                      >
+                                        Description
+                                      </Label>
+                                      {education.description.map(
+                                        (description, descriptionIndex) => (
+                                          <div
+                                            className="flex flex-row ml-1 w-11/12"
                                             key={descriptionIndex}
-                                            id={`educationContent-${index}`}
-                                            type="text"
-                                            value={description}
-                                            onChange={(e) => {
-                                              const newEducations =
-                                                educations.slice();
-                                              newEducations[index].description[
-                                                descriptionIndex
-                                              ] = e.target.value;
-                                              setEducations(newEducations);
-                                            }}
-                                          />
-                                        </div>
-                                      )
-                                    )}
-                                    <Button
-                                      className="w-11/12 items-center justify-center"
-                                      variant={"ghost"}
-                                      onClick={() => {
-                                        const newEducations =
-                                          educations.slice();
-                                        newEducations[index].description.push(
-                                          ""
-                                        );
-                                        setEducations(newEducations);
-                                      }}
-                                    >
-                                      <PlusCircle size={16} />
-                                    </Button>
-                                  </div>
-                                </AccordionContent>
-                              </AccordionItem>
-                            ))}
+                                          >
+                                            <Button
+                                              variant={"ghost"}
+                                              onClick={() => {
+                                                const newEducations =
+                                                  cv.educations.educations.slice();
+                                                newEducations[
+                                                  index
+                                                ].description.splice(
+                                                  descriptionIndex,
+                                                  1
+                                                );
+                                                setEducations(newEducations);
+                                              }}
+                                            >
+                                              <MinusCircle size={16} />
+                                            </Button>
+                                            <Input
+                                              key={descriptionIndex}
+                                              id={`educationContent-${index}`}
+                                              type="text"
+                                              value={description}
+                                              onChange={(e) => {
+                                                const newEducations =
+                                                  cv.educations.educations.slice();
+                                                newEducations[
+                                                  index
+                                                ].description[
+                                                  descriptionIndex
+                                                ] = e.target.value;
+                                                setEducations(newEducations);
+                                              }}
+                                            />
+                                          </div>
+                                        )
+                                      )}
+                                      <Button
+                                        className="w-11/12 items-center justify-center"
+                                        variant={"ghost"}
+                                        onClick={() => {
+                                          const newEducations =
+                                            cv.educations.educations.slice();
+                                          newEducations[index].description.push(
+                                            ""
+                                          );
+                                          setEducations(newEducations);
+                                        }}
+                                      >
+                                        <PlusCircle size={16} />
+                                      </Button>
+                                    </div>
+                                  </AccordionContent>
+                                </AccordionItem>
+                              )
+                            )}
                           </div>
                         </Accordion>
                       </div>
@@ -2042,17 +1834,17 @@ export default function CVForm() {
                     <div className="flex items-center justify-between">
                       <Label htmlFor="extracurricularEnabled">Enabled</Label>
                       <Switch
-                        checked={extracurricularEnabled}
+                        checked={cv.extracurricularEnabled}
                         onCheckedChange={setExtracurricularEnabled}
                       />
                     </div>
-                    {extracurricularEnabled && (
+                    {cv.extracurricularEnabled && (
                       <div className="space-y-1">
                         <Label htmlFor="extracurricularLabel">Label</Label>
                         <Input
                           id="extracurricularLabel"
                           type="text"
-                          value={extracurricularLabel}
+                          value={cv.extracurriculars.label}
                           onChange={(e) =>
                             setExtracurricularLabel(e.target.value)
                           }
@@ -2062,7 +1854,7 @@ export default function CVForm() {
                           variant={"ghost"}
                           onClick={() =>
                             setExtracurriculars([
-                              ...extracurriculars,
+                              ...cv.extracurriculars.extracurriculars,
                               {
                                 role: "",
                                 organization: "",
@@ -2078,218 +1870,221 @@ export default function CVForm() {
                         </Button>
                         <Accordion type="single" collapsible className="w-full">
                           <div className="space-y-2">
-                            {extracurriculars.map((extracurricular, index) => (
-                              <AccordionItem
-                                key={index}
-                                value={index.toString()}
-                              >
-                                <AccordionTrigger>
-                                  <div className="items-center justify-center">
-                                    <Button
-                                      className="mr-1"
-                                      variant={"ghost"}
-                                      onClick={() => {
-                                        const newExtracurriculars =
-                                          extracurriculars.slice();
-                                        newExtracurriculars.splice(index, 1);
-                                        setExtracurriculars(
-                                          newExtracurriculars
-                                        );
-                                      }}
-                                    >
-                                      <MinusCircle size={20} />
-                                    </Button>
-                                    {`Extracurricular - ${index + 1}`}
-                                  </div>
-                                </AccordionTrigger>
-                                <AccordionContent className="space-y-2">
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`extracurricularRole-${index}`}
-                                    >
-                                      Role
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`extracurricularRole-${index}`}
-                                      type="text"
-                                      value={extracurricular.role}
-                                      onChange={(e) => {
-                                        const newExtracurriculars =
-                                          extracurriculars.slice();
-                                        newExtracurriculars[index].role =
-                                          e.target.value;
-                                        setExtracurriculars(
-                                          newExtracurriculars
-                                        );
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`extracurricularOrganization-${index}`}
-                                    >
-                                      Organization
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`extracurricularOrganization-${index}`}
-                                      type="text"
-                                      value={extracurricular.organization}
-                                      onChange={(e) => {
-                                        const newExtracurriculars =
-                                          extracurriculars.slice();
-                                        newExtracurriculars[
-                                          index
-                                        ].organization = e.target.value;
-                                        setExtracurriculars(
-                                          newExtracurriculars
-                                        );
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`extracurricularStartDate-${index}`}
-                                    >
-                                      Start Date
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`extracurricularStartDate-${index}`}
-                                      type="text"
-                                      value={extracurricular.startDate}
-                                      onChange={(e) => {
-                                        const newExtracurriculars =
-                                          extracurriculars.slice();
-                                        newExtracurriculars[index].startDate =
-                                          e.target.value;
-                                        setExtracurriculars(
-                                          newExtracurriculars
-                                        );
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`extracurricularEndDate-${index}`}
-                                    >
-                                      End Date
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`extracurricularEndDate-${index}`}
-                                      type="text"
-                                      value={extracurricular.endDate}
-                                      onChange={(e) => {
-                                        const newExtracurriculars =
-                                          extracurriculars.slice();
-                                        newExtracurriculars[index].endDate =
-                                          e.target.value;
-                                        setExtracurriculars(
-                                          newExtracurriculars
-                                        );
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`extracurricularLocation-${index}`}
-                                    >
-                                      Location
-                                    </Label>
-                                    <Input
-                                      className="w-11/12 ml-1"
-                                      id={`extracurricularLocation-${index}`}
-                                      type="text"
-                                      value={extracurricular.location}
-                                      onChange={(e) => {
-                                        const newExtracurriculars =
-                                          extracurriculars.slice();
-                                        newExtracurriculars[index].location =
-                                          e.target.value;
-                                        setExtracurriculars(
-                                          newExtracurriculars
-                                        );
-                                      }}
-                                    />
-                                  </div>
-                                  <div className="flex flex-col space-y-1">
-                                    <Label
-                                      className="ml-1"
-                                      htmlFor={`extracurricularContent-${index}`}
-                                    >
-                                      Description
-                                    </Label>
-                                    {extracurricular.description.map(
-                                      (description, descriptionIndex) => (
-                                        <div
-                                          className="flex flex-row ml-1 w-11/12"
-                                          key={descriptionIndex}
-                                        >
-                                          <Button
-                                            variant={"ghost"}
-                                            onClick={() => {
-                                              const newExtracurriculars =
-                                                extracurriculars.slice();
-                                              newExtracurriculars[
-                                                index
-                                              ].description.splice(
-                                                descriptionIndex,
-                                                1
-                                              );
-                                              setExtracurriculars(
-                                                newExtracurriculars
-                                              );
-                                            }}
-                                          >
-                                            <MinusCircle size={16} />
-                                          </Button>
-                                          <Input
+                            {cv.extracurriculars.extracurriculars.map(
+                              (extracurricular, index) => (
+                                <AccordionItem
+                                  key={index}
+                                  value={index.toString()}
+                                >
+                                  <AccordionTrigger>
+                                    <div className="items-center justify-center">
+                                      <Button
+                                        className="mr-1"
+                                        variant={"ghost"}
+                                        onClick={() => {
+                                          const newExtracurriculars =
+                                            cv.extracurriculars.extracurriculars.slice();
+                                          newExtracurriculars.splice(index, 1);
+                                          setExtracurriculars(
+                                            newExtracurriculars
+                                          );
+                                        }}
+                                      >
+                                        <MinusCircle size={20} />
+                                      </Button>
+                                      {`Extracurricular - ${index + 1}`}
+                                    </div>
+                                  </AccordionTrigger>
+                                  <AccordionContent className="space-y-2">
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`extracurricularRole-${index}`}
+                                      >
+                                        Role
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`extracurricularRole-${index}`}
+                                        type="text"
+                                        value={extracurricular.role}
+                                        onChange={(e) => {
+                                          const newExtracurriculars =
+                                            cv.extracurriculars.extracurriculars.slice();
+                                          newExtracurriculars[index].role =
+                                            e.target.value;
+                                          setExtracurriculars(
+                                            newExtracurriculars
+                                          );
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`extracurricularOrganization-${index}`}
+                                      >
+                                        Organization
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`extracurricularOrganization-${index}`}
+                                        type="text"
+                                        value={extracurricular.organization}
+                                        onChange={(e) => {
+                                          const newExtracurriculars =
+                                            cv.extracurriculars.extracurriculars.slice();
+                                          newExtracurriculars[
+                                            index
+                                          ].organization = e.target.value;
+                                          setExtracurriculars(
+                                            newExtracurriculars
+                                          );
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`extracurricularStartDate-${index}`}
+                                      >
+                                        Start Date
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`extracurricularStartDate-${index}`}
+                                        type="text"
+                                        value={extracurricular.startDate}
+                                        onChange={(e) => {
+                                          const newExtracurriculars =
+                                            cv.extracurriculars.extracurriculars.slice();
+                                          newExtracurriculars[index].startDate =
+                                            e.target.value;
+                                          setExtracurriculars(
+                                            newExtracurriculars
+                                          );
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`extracurricularEndDate-${index}`}
+                                      >
+                                        End Date
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`extracurricularEndDate-${index}`}
+                                        type="text"
+                                        value={extracurricular.endDate}
+                                        onChange={(e) => {
+                                          const newExtracurriculars =
+                                            cv.extracurriculars.extracurriculars.slice();
+                                          newExtracurriculars[index].endDate =
+                                            e.target.value;
+                                          setExtracurriculars(
+                                            newExtracurriculars
+                                          );
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`extracurricularLocation-${index}`}
+                                      >
+                                        Location
+                                      </Label>
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`extracurricularLocation-${index}`}
+                                        type="text"
+                                        value={extracurricular.location}
+                                        onChange={(e) => {
+                                          const newExtracurriculars =
+                                            cv.extracurriculars.extracurriculars.slice();
+                                          newExtracurriculars[index].location =
+                                            e.target.value;
+                                          setExtracurriculars(
+                                            newExtracurriculars
+                                          );
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`extracurricularContent-${index}`}
+                                      >
+                                        Description
+                                      </Label>
+                                      {extracurricular.description.map(
+                                        (description, descriptionIndex) => (
+                                          <div
+                                            className="flex flex-row ml-1 w-11/12"
                                             key={descriptionIndex}
-                                            id={`extracurricularContent-${index}`}
-                                            type="text"
-                                            value={description}
-                                            onChange={(e) => {
-                                              const newExtracurriculars =
-                                                extracurriculars.slice();
-                                              newExtracurriculars[
-                                                index
-                                              ].description[descriptionIndex] =
-                                                e.target.value;
-                                              setExtracurriculars(
-                                                newExtracurriculars
-                                              );
-                                            }}
-                                          />
-                                        </div>
-                                      )
-                                    )}
-                                    <Button
-                                      className="w-11/12 items-center justify-center"
-                                      variant={"ghost"}
-                                      onClick={() => {
-                                        const newExtracurriculars =
-                                          extracurriculars.slice();
-                                        newExtracurriculars[
-                                          index
-                                        ].description.push("");
-                                        setExtracurriculars(
-                                          newExtracurriculars
-                                        );
-                                      }}
-                                    >
-                                      <PlusCircle size={16} />
-                                    </Button>
-                                  </div>
-                                </AccordionContent>
-                              </AccordionItem>
-                            ))}
+                                          >
+                                            <Button
+                                              variant={"ghost"}
+                                              onClick={() => {
+                                                const newExtracurriculars =
+                                                  cv.extracurriculars.extracurriculars.slice();
+                                                newExtracurriculars[
+                                                  index
+                                                ].description.splice(
+                                                  descriptionIndex,
+                                                  1
+                                                );
+                                                setExtracurriculars(
+                                                  newExtracurriculars
+                                                );
+                                              }}
+                                            >
+                                              <MinusCircle size={16} />
+                                            </Button>
+                                            <Input
+                                              key={descriptionIndex}
+                                              id={`extracurricularContent-${index}`}
+                                              type="text"
+                                              value={description}
+                                              onChange={(e) => {
+                                                const newExtracurriculars =
+                                                  cv.extracurriculars.extracurriculars.slice();
+                                                newExtracurriculars[
+                                                  index
+                                                ].description[
+                                                  descriptionIndex
+                                                ] = e.target.value;
+                                                setExtracurriculars(
+                                                  newExtracurriculars
+                                                );
+                                              }}
+                                            />
+                                          </div>
+                                        )
+                                      )}
+                                      <Button
+                                        className="w-11/12 items-center justify-center"
+                                        variant={"ghost"}
+                                        onClick={() => {
+                                          const newExtracurriculars =
+                                            cv.extracurriculars.extracurriculars.slice();
+                                          newExtracurriculars[
+                                            index
+                                          ].description.push("");
+                                          setExtracurriculars(
+                                            newExtracurriculars
+                                          );
+                                        }}
+                                      >
+                                        <PlusCircle size={16} />
+                                      </Button>
+                                    </div>
+                                  </AccordionContent>
+                                </AccordionItem>
+                              )
+                            )}
                           </div>
                         </Accordion>
                       </div>
@@ -2302,7 +2097,10 @@ export default function CVForm() {
         </div>
       </ResizablePanel>
       <ResizableHandle withHandle />
-      <ResizablePanel className="min-w-[190mm] flex place-content-center items-center" defaultSize={50}>
+      <ResizablePanel
+        className="min-w-[190mm] flex place-content-center items-center"
+        defaultSize={50}
+      >
         <Button
           variant="secondary"
           className="right-4 top-16 fixed z-10"
@@ -2313,7 +2111,7 @@ export default function CVForm() {
           {loading ? "Generating PDF..." : "Download"}
         </Button>
         <DisplayFrame>
-          <CV {...cvProps} />
+          <CV cv={cv} />
         </DisplayFrame>
       </ResizablePanel>
     </ResizablePanelGroup>

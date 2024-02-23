@@ -8,20 +8,16 @@ import CVWritings from "./templates/awesome-cv/cv-writing";
 import CVCommittee from "./templates/awesome-cv/cv-committee";
 import CVEducation from "./templates/awesome-cv/cv-education";
 import A4CVOnly from "../a4-cvonly";
+import AwesomeCV from "./templates/awesome-cv/awesome-cv";
 
-export default function CVOnly(props: CVProps) {
+type Props = {
+    cv: CVProps;
+}
+
+export default function CVOnly({cv}: Props) {
   return (
     <A4CVOnly>
-      <CVHeader {...props.header} />
-      {props.summaryEnabled && <CVSummary {...props.summary!} />}
-      {props.experienceEnabled && <CVExperience {...props.experience!} />}
-      {props.honorsEnabled && <CVHonors {...props.honors!} />}
-      {props.presentationsEnabled && (
-        <CVPresentations {...props.presentations!} />
-      )}
-      {props.writingEnabled && <CVWritings {...props.writings!} />}
-      {props.committeeEnabled && <CVCommittee {...props.committees!} />}
-      {props.educationEnabled && <CVEducation {...props.educations!} />}
+      <AwesomeCV cv={cv} />
     </A4CVOnly>
   );
 }
