@@ -9,26 +9,33 @@ import { useCV } from "../use-cv";
 import { CVProps } from "@/types/cv-types";
 import { Button } from "@/components/ui/button";
 import { MinusCircle, PlusCircle } from "lucide-react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export function HonorForm() {
-    const {cv, setCV} = useCV();
-    const {honors} = cv;
-    const updateHonors = (value: Partial<CVProps["honors"]>) => {
-        setCV((prev: CVProps): CVProps => ({
-            ...prev,
-            honors: {...prev.honors, ...value},
-        }));
-    }
-    const setHonorsEnabled = (value: boolean) => {
-        updateHonors({enabled: value});
-    }
-    const setHonorsLabel = (value: string) => {
-        updateHonors({label: value});
-    }
-    const setHonorsTypes = (value: CVProps["honors"]["honors"]) => {
-        updateHonors({honors: value});
-    }
+  const { cv, setCV } = useCV();
+  const { honors } = cv;
+  const updateHonors = (value: Partial<CVProps["honors"]>) => {
+    setCV(
+      (prev: CVProps): CVProps => ({
+        ...prev,
+        honors: { ...prev.honors, ...value },
+      })
+    );
+  };
+  const setHonorsEnabled = (value: boolean) => {
+    updateHonors({ enabled: value });
+  };
+  const setHonorsLabel = (value: string) => {
+    updateHonors({ label: value });
+  };
+  const setHonorsTypes = (value: CVProps["honors"]["honors"]) => {
+    updateHonors({ honors: value });
+  };
   return (
     <Card>
       <CardHeader>Honors</CardHeader>

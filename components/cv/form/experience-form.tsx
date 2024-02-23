@@ -9,75 +9,78 @@ import { useCV } from "../use-cv";
 import { CVProps } from "@/types/cv-types";
 import { Button } from "@/components/ui/button";
 import { MinusCircle, PlusCircle } from "lucide-react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export function ExperienceForm() {
-    const {cv, setCV} = useCV();
-    const {experience} = cv;
-    const updateExperience = (value: Partial<CVProps["experience"]>) => {
-        setCV((prev: CVProps): CVProps => ({
-            ...prev,
-            experience: {...prev.experience, ...value},
-        }));
-    }
-    const setExperienceEnabled = (value: boolean) => {
-        updateExperience({enabled: value});
-    }
-    const setExperienceLabel = (value: string) => {
-        updateExperience({label: value});
-    }
-    const setExperiences = (value: CVProps["experience"]["experiences"]) => {
-        updateExperience({experiences: value});
-    }
+  const { cv, setCV } = useCV();
+  const { experience } = cv;
+  const updateExperience = (value: Partial<CVProps["experience"]>) => {
+    setCV(
+      (prev: CVProps): CVProps => ({
+        ...prev,
+        experience: { ...prev.experience, ...value },
+      })
+    );
+  };
+  const setExperienceEnabled = (value: boolean) => {
+    updateExperience({ enabled: value });
+  };
+  const setExperienceLabel = (value: string) => {
+    updateExperience({ label: value });
+  };
+  const setExperiences = (value: CVProps["experience"]["experiences"]) => {
+    updateExperience({ experiences: value });
+  };
 
-    return <Card>
-    <CardHeader>Experience</CardHeader>
-    <CardContent className="space-y-2">
-      <div className="space-y-1">
-        <div className="flex items-center justify-between">
-          <Label htmlFor="experienceEnabled">Enabled</Label>
-          <Switch
-            checked={experience.enabled}
-            onCheckedChange={setExperienceEnabled}
-          />
-        </div>
-        {experience.enabled && (
-          <div className="space-y-2">
-            <Label htmlFor="experienceLabel">Label</Label>
-            <Input
-              id="experienceLabel"
-              type="text"
-              value={cv.experience?.label}
-              onChange={(e) => setExperienceLabel(e.target.value)}
+  return (
+    <Card>
+      <CardHeader>Experience</CardHeader>
+      <CardContent className="space-y-2">
+        <div className="space-y-1">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="experienceEnabled">Enabled</Label>
+            <Switch
+              checked={experience.enabled}
+              onCheckedChange={setExperienceEnabled}
             />
-            <Button
-              className="w-full items-center justify-center"
-              variant={"ghost"}
-              onClick={() =>
-                setExperiences([
-                  ...cv.experience.experiences,
-                  {
-                    company: "",
-                    location: "",
-                    position: "",
-                    startDate: "",
-                    endDate: "",
-                    description: [],
-                  },
-                ])
-              }
-            >
-              <PlusCircle />
-            </Button>
-            <Accordion type="single" collapsible className="w-full">
-              <div className="space-y-2">
-                {cv.experience.experiences.map(
-                  (experience, index) => (
-                    <AccordionItem
-                      key={index}
-                      value={index.toString()}
-                    >
+          </div>
+          {experience.enabled && (
+            <div className="space-y-2">
+              <Label htmlFor="experienceLabel">Label</Label>
+              <Input
+                id="experienceLabel"
+                type="text"
+                value={cv.experience?.label}
+                onChange={(e) => setExperienceLabel(e.target.value)}
+              />
+              <Button
+                className="w-full items-center justify-center"
+                variant={"ghost"}
+                onClick={() =>
+                  setExperiences([
+                    ...cv.experience.experiences,
+                    {
+                      company: "",
+                      location: "",
+                      position: "",
+                      startDate: "",
+                      endDate: "",
+                      description: [],
+                    },
+                  ])
+                }
+              >
+                <PlusCircle />
+              </Button>
+              <Accordion type="single" collapsible className="w-full">
+                <div className="space-y-2">
+                  {cv.experience.experiences.map((experience, index) => (
+                    <AccordionItem key={index} value={index.toString()}>
                       <AccordionTrigger>
                         <div className="items-center justify-center">
                           <Button
@@ -111,8 +114,7 @@ export function ExperienceForm() {
                             onChange={(e) => {
                               const newExperiences =
                                 cv.experience.experiences.slice();
-                              newExperiences[index].company =
-                                e.target.value;
+                              newExperiences[index].company = e.target.value;
                               setExperiences(newExperiences);
                             }}
                           />
@@ -132,8 +134,7 @@ export function ExperienceForm() {
                             onChange={(e) => {
                               const newExperiences =
                                 cv.experience.experiences.slice();
-                              newExperiences[index].location =
-                                e.target.value;
+                              newExperiences[index].location = e.target.value;
                               setExperiences(newExperiences);
                             }}
                           />
@@ -153,8 +154,7 @@ export function ExperienceForm() {
                             onChange={(e) => {
                               const newExperiences =
                                 cv.experience.experiences.slice();
-                              newExperiences[index].position =
-                                e.target.value;
+                              newExperiences[index].position = e.target.value;
                               setExperiences(newExperiences);
                             }}
                           />
@@ -174,8 +174,7 @@ export function ExperienceForm() {
                             onChange={(e) => {
                               const newExperiences =
                                 cv.experience.experiences.slice();
-                              newExperiences[index].startDate =
-                                e.target.value;
+                              newExperiences[index].startDate = e.target.value;
                               setExperiences(newExperiences);
                             }}
                           />
@@ -195,8 +194,7 @@ export function ExperienceForm() {
                             onChange={(e) => {
                               const newExperiences =
                                 cv.experience.experiences.slice();
-                              newExperiences[index].endDate =
-                                e.target.value;
+                              newExperiences[index].endDate = e.target.value;
                               setExperiences(newExperiences);
                             }}
                           />
@@ -219,9 +217,7 @@ export function ExperienceForm() {
                                   onClick={() => {
                                     const newExperiences =
                                       cv.experience.experiences.slice();
-                                    newExperiences[
-                                      index
-                                    ].description.splice(
+                                    newExperiences[index].description.splice(
                                       descriptionIndex,
                                       1
                                     );
@@ -238,9 +234,7 @@ export function ExperienceForm() {
                                   onChange={(e) => {
                                     const newExperiences =
                                       cv.experience.experiences.slice();
-                                    newExperiences[
-                                      index
-                                    ].description[
+                                    newExperiences[index].description[
                                       descriptionIndex
                                     ] = e.target.value;
                                     setExperiences(newExperiences);
@@ -255,9 +249,7 @@ export function ExperienceForm() {
                             onClick={() => {
                               const newExperiences =
                                 cv.experience.experiences.slice();
-                              newExperiences[
-                                index
-                              ].description.push("");
+                              newExperiences[index].description.push("");
                               setExperiences(newExperiences);
                             }}
                           >
@@ -266,13 +258,13 @@ export function ExperienceForm() {
                         </div>
                       </AccordionContent>
                     </AccordionItem>
-                  )
-                )}
-              </div>
-            </Accordion>
-          </div>
-        )}
-      </div>
-    </CardContent>
-  </Card>
+                  ))}
+                </div>
+              </Accordion>
+            </div>
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  );
 }

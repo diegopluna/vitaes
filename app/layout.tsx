@@ -22,7 +22,7 @@ export default function RootLayout({
       <body
         className={cn(
           "bg-background antialised min-h-screen font-sans",
-          jetbrainsMono.className,
+          jetbrainsMono.className
         )}
       >
         <ThemeProvider

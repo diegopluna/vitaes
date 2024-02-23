@@ -8,6 +8,6 @@ export default function Page({params} : {params: {cvData: string } }) {
     const cvData = JSON.parse(decode(params.cvData)) as CVProps
 
     return (
-        <CVOnly {...cvData} />
+        <CVOnly cv={cvData} />
     )
 }
