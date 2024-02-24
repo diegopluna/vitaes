@@ -38,7 +38,7 @@ export const generatePDF = async (cvData: CVProps) => {
     return new Response(pdfBuffer, {
         headers: {
             "Content-Type": "application/pdf",
-            "Content-Disposition": `attachment; filename="${cvData.header.firstName}-EasyCV.pdf"`,
+            "Content-Disposition": `attachment; filename="${cvData.header.firstName}-Vitaes.pdf"`,
         },
     });
 }
