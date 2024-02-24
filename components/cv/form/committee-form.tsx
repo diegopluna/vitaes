@@ -38,7 +38,7 @@ export function CommitteeForm() {
   };
   return (
     <Card>
-      <CardHeader>Committee</CardHeader>
+      <CardHeader className="text-lg font-bold">Committee</CardHeader>
       <CardContent className="space-y-2">
         <div className="space-y-1">
           <div className="flex items-center justify-between">

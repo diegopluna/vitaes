@@ -30,7 +30,7 @@ export function SummaryForm() {
     
   return (
     <Card>
-      <CardHeader>Summary</CardHeader>
+      <CardHeader className="text-lg font-bold">Summary</CardHeader>
       <CardContent className="space-y-2">
         <div className="space-y-1">
           <div className="flex items-center justify-between">

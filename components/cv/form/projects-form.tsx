@@ -38,7 +38,7 @@ export function ProjectsForm() {
 
   return (
     <Card>
-      <CardHeader>Projects</CardHeader>
+      <CardHeader className="text-lg font-bold">Projects</CardHeader>
       <CardContent className="space-y-2">
         <div className="space-y-1">
           <div className="flex items-center justify-between">

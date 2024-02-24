@@ -37,7 +37,7 @@ export function ExtracurricularForm() {
   };
   return (
     <Card>
-      <CardHeader>Extracurricular</CardHeader>
+      <CardHeader className="text-lg font-bold">Extracurricular</CardHeader>
       <CardContent className="space-y-2">
         <div className="space-y-1">
           <div className="flex items-center justify-between">

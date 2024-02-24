@@ -37,7 +37,7 @@ export function EducationForm() {
 
   return (
     <Card>
-      <CardHeader>Education</CardHeader>
+      <CardHeader className="text-lg font-bold">Education</CardHeader>
       <CardContent className="space-y-2">
         <div className="space-y-1">
           <div className="flex items-center justify-between">

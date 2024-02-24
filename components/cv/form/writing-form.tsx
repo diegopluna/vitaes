@@ -37,7 +37,7 @@ export function WritingForm() {
 
   return (
     <Card>
-      <CardHeader>Writings</CardHeader>
+      <CardHeader className="text-lg font-bold">Writings</CardHeader>
       <CardContent className="space-y-2">
         <div className="space-y-1">
           <div className="flex items-center justify-between">

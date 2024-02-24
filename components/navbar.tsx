@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ModeToggle } from "@/components/mode-toggle";
-import UserButton from "./user-button";
+import NavbarButton from "./navbar-button";
 import { auth } from "@/auth";
 
 export default async function Navbar() {
@@ -15,7 +15,7 @@ export default async function Navbar() {
         </div>
           <nav className="flex flex-1 items-center place-content-center space-x-3 md:justify-end">
             <ModeToggle />
-            <UserButton session={session} />
+            <NavbarButton session={session} />
           </nav>
       </div>
     </header>

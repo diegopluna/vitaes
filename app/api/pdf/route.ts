@@ -6,7 +6,6 @@ import chromium from "@sparticuz/chromium";
 export async function POST(request: Request): Promise<Response> {
   const data = (await request.json()) as CVProps;
   const cvData = encode(JSON.stringify(data));
-  console.log(cvData);
   chromium.setGraphicsMode = false;
   const browser = await puppeteer.launch({
     args: chromium.args,
@@ -17,11 +16,8 @@ export async function POST(request: Request): Promise<Response> {
 
   const page = await browser.newPage();
 
-  if (process.env.NODE_ENV === "development") {
-    await page.goto(`http://localhost:3000/cv_only/${cvData}`);
-  } else {
-    await page.goto(`https://easycv-jet.vercel.app/cv_only/${cvData}`);
-  }
+  await page.goto(`${process.env.APP_URL}/cv_only/${cvData}`);
+
   await page.emulateMediaType("screen");
   const pdfBuffer = await page.pdf({
     format: "A4",

@@ -88,7 +88,7 @@ export function PersonalForm() {
 
   return (
     <Card>
-      <CardHeader>Personal Info & Settings</CardHeader>
+      <CardHeader className="text-lg font-bold">Personal Info & Settings</CardHeader>
       <CardContent className="space-y-2">
         <div className="space-y-1">
           <Label htmlFor="alignment">Alignment</Label>
