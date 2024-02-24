@@ -133,6 +133,25 @@ export type CVExtracurricularsProps = {
   extracurriculars: CVExtracurricularProps[];
 };
 
+export type CVProjectProps = {
+  title: string;
+  programmingLanguages: string[];
+  githubRepoEnabled: boolean;
+  githubRepo?: string;
+  description: string[];
+  linkEnabled: boolean;
+  link?: string;
+  startDate: string;
+  endDateEnabled: boolean;
+  endDate?: string;
+};
+
+export type CVProjectsProps = {
+  label: string;
+  enabled: boolean;
+  projects: CVProjectProps[];
+};
+
 export type CVProps = {
   header: CVHeaderProps;
   summary: CVSummaryProps;
@@ -143,4 +162,5 @@ export type CVProps = {
   committees: CVCommitteesProps;
   educations: CVEducationsProps;
   extracurriculars: CVExtracurricularsProps;
+  projects: CVProjectsProps;
 };

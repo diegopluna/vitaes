@@ -10,7 +10,7 @@ export default async function Navbar() {
       <div className="container flex h-14 items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="hidden font-bold sm:inline-block">EasyCV</span>
+            <span className="hidden font-bold sm:inline-block">Vitaes</span>
           </Link>
         </div>
           <nav className="flex flex-1 items-center place-content-center space-x-3 md:justify-end">

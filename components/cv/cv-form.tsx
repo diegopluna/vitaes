@@ -40,6 +40,7 @@ import { WritingForm } from "./form/writing-form";
 import { CommitteeForm } from "./form/committee-form";
 import { ExtracurricularForm } from "./form/extracurricular-form";
 import { EducationForm } from "./form/education-form";
+import { ProjectsForm } from "./form/projects-form";
 
 function TabTriggerHelper({
   icon,
@@ -64,9 +65,7 @@ function TabTriggerHelper({
 
 export default function CVForm() {
   const [loading, setLoading] = React.useState(false);
-  const {
-    cv,
-  } = useCV();
+  const { cv } = useCV();
 
   const downloadCV = async () => {
     setLoading(true);
@@ -94,8 +93,8 @@ export default function CVForm() {
     >
       <ResizablePanel className="min-w-[400px]" defaultSize={50}>
         <div className="flex h-full items-start justify-center p-6">
-          <Tabs defaultValue="personal" className="w-full">
-            <TabsList className="grid w-full grid-cols-11">
+          <Tabs defaultValue="personal" className="flex flex-row w-full">
+            <TabsList className="mt-2 mr-2 grid h-full grid-rows-11">
               <TooltipProvider>
                 <TabTriggerHelper
                   icon={<UserRound />}
@@ -154,32 +153,35 @@ export default function CVForm() {
                 />
               </TooltipProvider>
             </TabsList>
-            <TabsContent value="personal">
+            <TabsContent className="w-full" value="personal">
               <PersonalForm />
             </TabsContent>
-            <TabsContent value="summary">
+            <TabsContent className="w-full" value="summary">
               <SummaryForm />
             </TabsContent>
-            <TabsContent value="experience">
+            <TabsContent className="w-full" value="experience">
               <ExperienceForm />
             </TabsContent>
-            <TabsContent value="honors">
+            <TabsContent className="w-full" value="honors">
               <HonorForm />
             </TabsContent>
-            <TabsContent value="presentation">
+            <TabsContent className="w-full" value="presentation">
               <PresentationForm />
             </TabsContent>
-            <TabsContent value="writing">
+            <TabsContent className="w-full" value="writing">
               <WritingForm />
             </TabsContent>
-            <TabsContent value="committee">
+            <TabsContent className="w-full" value="committee">
               <CommitteeForm />
             </TabsContent>
-            <TabsContent value="education">
+            <TabsContent className="w-full" value="education">
               <EducationForm />
             </TabsContent>
-            <TabsContent value="extracurricular">
+            <TabsContent className="w-full" value="extracurricular">
               <ExtracurricularForm />
+            </TabsContent>
+            <TabsContent className="w-full" value="projects">
+              <ProjectsForm />
             </TabsContent>
           </Tabs>
         </div>

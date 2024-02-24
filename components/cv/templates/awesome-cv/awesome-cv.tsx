@@ -8,6 +8,7 @@ import CVWritings from "./cv-writing";
 import CVCommittee from "./cv-committee";
 import CVEducation from "./cv-education";
 import CVExtracurricular from "./cv-extracurricular";
+import CVProjects from "./cv-projects";
 
 type Props = {
   cv: CVProps;
@@ -27,6 +28,7 @@ export default function AwesomeCV({ cv }: Props) {
       {cv.extracurriculars.enabled && (
         <CVExtracurricular {...cv.extracurriculars!} />
       )}
+      {cv.projects.enabled && <CVProjects {...cv.projects!} />}
     </>
   );
 }

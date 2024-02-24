@@ -256,6 +256,28 @@ export function CVContextProvider({ children }: { children: ReactNode }) {
         },
       ],
     },
+    projects: {
+      enabled: true,
+      label: "Projects",
+      projects: [
+        {
+          title: "Awesome Project",
+          programmingLanguages: ["JavaScript", "React", "Node.js"],
+          githubRepoEnabled: true,
+          githubRepo: "github.com/johndoe/awesomeproject",
+          description: [
+            "Developed a web application for managing tasks and projects.",
+            "Implemented a RESTful API using Node.js and Express.",
+            "Designed and developed the frontend using React.",
+          ],
+          linkEnabled: true,
+          link: "awesomeproject.com",
+          startDate: "Jan.2022",
+          endDateEnabled: true,
+          endDate: "Dec.2022",
+        },
+      ]
+    }
   });
   // end of temporary code
 
