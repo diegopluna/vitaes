@@ -42,6 +42,7 @@ import { ExtracurricularForm } from "./form/extracurricular-form";
 import { EducationForm } from "./form/education-form";
 import { ProjectsForm } from "./form/projects-form";
 import LanguageForm from "./form/language-form";
+import { generatePDF } from "@/server/actions";
 
 function TabTriggerHelper({
   icon,
@@ -70,13 +71,7 @@ export default function CVForm() {
 
   const downloadCV = async () => {
     setLoading(true);
-    const response = await fetch("/api/pdf", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(cv),
-    });
+    const response = await generatePDF(cv);
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
