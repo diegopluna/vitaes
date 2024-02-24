@@ -71,7 +71,8 @@ export default function CVForm() {
 
   const downloadCV = async () => {
     setLoading(true);
-    const response = await generatePDF(cv);
+    const generatePDFWithCV = generatePDF.bind(null, cv);
+    const response = await generatePDFWithCV();
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
