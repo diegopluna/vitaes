@@ -41,6 +41,7 @@ import { CommitteeForm } from "./form/committee-form";
 import { ExtracurricularForm } from "./form/extracurricular-form";
 import { EducationForm } from "./form/education-form";
 import { ProjectsForm } from "./form/projects-form";
+import LanguageForm from "./form/language-form";
 
 function TabTriggerHelper({
   icon,
@@ -182,6 +183,9 @@ export default function CVForm() {
             </TabsContent>
             <TabsContent className="w-full" value="projects">
               <ProjectsForm />
+            </TabsContent>
+            <TabsContent className="w-full" value="languages">
+              <LanguageForm />
             </TabsContent>
           </Tabs>
         </div>

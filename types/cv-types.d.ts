@@ -152,6 +152,19 @@ export type CVProjectsProps = {
   projects: CVProjectProps[];
 };
 
+export type LanguageProficiency = "Fluent" | "Proficient" | "Intermediate" | "Basic" | undefined;
+
+export type CVLanguageProps = {
+  language: string;
+  proficiency: LanguageProficiency;
+};
+
+export type CVLanguagesProps = {
+  enabled: boolean;
+  label: string;
+  languages: CVLanguageProps[];
+};
+
 export type CVProps = {
   header: CVHeaderProps;
   summary: CVSummaryProps;
@@ -163,4 +176,5 @@ export type CVProps = {
   educations: CVEducationsProps;
   extracurriculars: CVExtracurricularsProps;
   projects: CVProjectsProps;
+  languages: CVLanguagesProps;
 };
