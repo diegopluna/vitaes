@@ -92,10 +92,7 @@ In addition to these technologies, Vitaes also includes the following features:
 
 ## Credits
 
-- [Shadcn UI](https://github.com/sindresorhus/shape-ui) - A React UI library that provides a set of components and utilities for building user interfaces.
-- [Drizzle ORM](https://drizzle-orm.com/) - A TypeScript ORM for building database applications.
-- [Neon Database](https://neondatabase.com/) - A PostgreSQL database that provides a robust and scalable solution for storing and managing data.
-- [Lucide React](https://lucide.dev/) - A collection of icons that can be used in your React applications.
+- [AwesomeCV](https://github.com/posquit0/Awesome-CV) - A LaTeX template for creating a professional CV.
 
 ## Contributing
 
