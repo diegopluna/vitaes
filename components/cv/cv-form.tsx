@@ -11,6 +11,7 @@ import DisplayFrame from "@/components/display-frame";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Briefcase,
+  FileCheck,
   GraduationCap,
   Languages,
   Loader2,
@@ -20,6 +21,7 @@ import {
   PencilRuler,
   Presentation,
   ScrollText,
+  Settings,
   UserRound,
   UsersRound,
 } from "lucide-react";
@@ -42,6 +44,7 @@ import { ExtracurricularForm } from "./form/extracurricular-form";
 import { EducationForm } from "./form/education-form";
 import { ProjectsForm } from "./form/projects-form";
 import LanguageForm from "./form/language-form";
+import CertificatesForm from "./form/certificates-form";
 
 function TabTriggerHelper({
   icon,
@@ -95,12 +98,12 @@ export default function CVForm() {
       <ResizablePanel className="min-w-[400px]" defaultSize={50}>
         <div className="flex h-full items-start justify-center p-6">
           <Tabs defaultValue="personal" className="flex flex-row w-full">
-            <TabsList className="mt-2 mr-2 grid h-full grid-rows-11">
+            <TabsList className="mt-2 mr-2 grid h-full grid-rows-13">
               <TooltipProvider>
                 <TabTriggerHelper
                   icon={<UserRound />}
                   id="personal"
-                  tooltip="Personal Info & Settings"
+                  tooltip="Personal Info"
                 />
                 <TabTriggerHelper
                   icon={<ScrollText />}
@@ -152,6 +155,16 @@ export default function CVForm() {
                   id="languages"
                   tooltip="Languages"
                 />
+                <TabTriggerHelper
+                  icon={<FileCheck />}
+                  id="certificates"
+                  tooltip="Certificates"
+                />
+                <TabTriggerHelper
+                  icon={<Settings />}
+                  id="settings"
+                  tooltip="Settings"
+                />
               </TooltipProvider>
             </TabsList>
             <TabsContent className="w-full" value="personal">
@@ -186,6 +199,9 @@ export default function CVForm() {
             </TabsContent>
             <TabsContent className="w-full" value="languages">
               <LanguageForm />
+            </TabsContent>
+            <TabsContent className="w-full" value="certificates">
+              <CertificatesForm />
             </TabsContent>
           </Tabs>
         </div>

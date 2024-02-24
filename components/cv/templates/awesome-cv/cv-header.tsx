@@ -15,7 +15,7 @@ export default function CVHeader(props: CVHeaderProps) {
       <div
         className={`flex flex-col items-${props.alignment} justify-${props.alignment}`}
       >
-        <div className="flex flex-row">
+        <div className="flex flex-row ">
           <h1 className="text-4xl  mx-2">{props.firstName}</h1>
           <h1 className="text-4xl font-bold text-black">{props.lastName}</h1>
         </div>

@@ -96,7 +96,7 @@ export function CVContextProvider({ children }: { children: ReactNode }) {
       presentations: [],
     },
     writings: {
-      enabled: true,
+      enabled: false,
       label: "Writing",
       writings: [
         {
@@ -122,7 +122,7 @@ export function CVContextProvider({ children }: { children: ReactNode }) {
           location: "New World",
         }
       ],
-      enabled: true,
+      enabled: false,
     },
     educations: {
         enabled: false,
@@ -174,6 +174,18 @@ export function CVContextProvider({ children }: { children: ReactNode }) {
           language: "Japanese",
           proficiency: "Fluent",
         },         
+      ],
+    },
+    certificates: {
+      enabled: true,
+      label: "Certificates",
+      certificates: [
+        {
+          title: "Pirate King",
+          issuer: "World Government",
+          date: "20XX",
+          descriptions: ["Awarded the title of Pirate King for discovering the legendary treasure, One Piece, and triggering the Great Pirate Era."],
+        }
       ],
     },
   });

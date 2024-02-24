@@ -165,6 +165,19 @@ export type CVLanguagesProps = {
   languages: CVLanguageProps[];
 };
 
+export type CVCertificationProps = {
+  title: string;
+  issuer: string;
+  date: string;
+  descriptions: string[];
+};
+
+export type CVCertificatesProps = {
+  enabled: boolean;
+  label: string;
+  certificates: CVCertificationProps[];
+};
+
 export type CVProps = {
   header: CVHeaderProps;
   summary: CVSummaryProps;
@@ -177,4 +190,7 @@ export type CVProps = {
   extracurriculars: CVExtracurricularsProps;
   projects: CVProjectsProps;
   languages: CVLanguagesProps;
+  certificates: CVCertificatesProps;
 };
+
+

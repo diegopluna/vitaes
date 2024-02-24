@@ -10,6 +10,7 @@ import CVEducation from "./cv-education";
 import CVExtracurricular from "./cv-extracurricular";
 import CVProjects from "./cv-projects";
 import CVLanguages from "./cv-languages";
+import CVCertificates from "./cv-certificates";
 
 type Props = {
   cv: CVProps;
@@ -31,6 +32,7 @@ export default function AwesomeCV({ cv }: Props) {
       )}
       {cv.projects.enabled && <CVProjects {...cv.projects!} />}
       {cv.languages.enabled && <CVLanguages {...cv.languages!} />}
+      {cv.certificates.enabled && <CVCertificates {...cv.certificates!} />}
     </>
   );
 }
