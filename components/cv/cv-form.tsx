@@ -77,7 +77,7 @@ export default function CVForm() {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${cv.header.firstName}-EasyCV.pdf`;
+    a.download = `${cv.header.firstName}-Vitaes.pdf`;
     a.click();
     window.URL.revokeObjectURL(url);
     setLoading(false);
