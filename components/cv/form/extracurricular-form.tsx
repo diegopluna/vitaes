@@ -10,7 +10,7 @@ import {
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from "@radix-ui/react-accordion";
+} from "@/components/ui/accordion";
 import { useCV } from "../use-cv";
 
 export function ExtracurricularForm() {
