@@ -177,8 +177,10 @@ export type CVCertificatesProps = {
   certificates: CVCertificationProps[];
 };
 
+export type CVColor = "text-[#00A388]" | "text-[#0395DE]" | "text-[#DC3522]" | "text-[#EF4089]" | "text-[#FF6138]" | "text-[#27AE60]" | "text-[#95A5A6]" | "text-[#131A28]"
+
 export type CVSettingsProps = {
-  accentColor?: string;
+  accentColor?: CVColor;
   fontFamily: string;
   fileName: string;
   headerAlignment: CVHeaderAlignment;

@@ -1,12 +1,13 @@
-import { CVHonorsProps } from "@/types/cv-types";
+import { CVHonorsProps, CVProps } from "@/types/cv-types";
 import CVSectionHeader from "./cv-section-header";
+import { CVColor } from "@/types/cv-types";
 
-export default function CVHonors(props: CVHonorsProps) {
+export default function CVHonors(props: CVProps) {
   return (
     <div className="flex flex-col items-start justify-start w-full mt-4">
-      <CVSectionHeader label={props.label} />
+      <CVSectionHeader label={props.honors.label} color={props.settings.accentColor! as CVColor} />
       <div className="flex flex-col items-start justify-start w-full">
-        {props.honors?.map((honorTypes, index) => (
+        {props.honors.honors?.map((honorTypes, index) => (
           <div className="w-full" key={index}>
             <span className="text-md mt-4">
               {honorTypes.label.toUpperCase()}
@@ -20,7 +21,7 @@ export default function CVHonors(props: CVHonorsProps) {
                     {honor.honor}
                   </span>
                 </div>
-                <span className="text-xs italic text-[#0395de]">
+                <span className={`text-xs italic ${props.settings.accentColor! as CVColor}`}>
                   {honor.location}
                 </span>
               </div>

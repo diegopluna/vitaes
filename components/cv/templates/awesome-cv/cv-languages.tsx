@@ -1,12 +1,12 @@
-import { CVLanguagesProps } from "@/types/cv-types";
+import { CVLanguagesProps, CVProps, CVColor } from "@/types/cv-types";
 import CVSectionHeader from "./cv-section-header";
 
-export default function CVLanguages(props: CVLanguagesProps) {
+export default function CVLanguages(props: CVProps) {
     return (
         <div className="flex flex-col items-start justify-start w-full mt-4">
-            <CVSectionHeader label={props.label} />
+            <CVSectionHeader label={props.languages.label} color={props.settings.accentColor! as CVColor} />
             <div className="flex flex-col items-start justify-start w-full">
-                {props.languages?.map((language, index) => (
+                {props.languages.languages?.map((language, index) => (
                     <div className="flex justify-between w-full" key={index}>
                         <div className="flex flex-row ">
                             <span className="text-xs mr-4">{language.language}</span>

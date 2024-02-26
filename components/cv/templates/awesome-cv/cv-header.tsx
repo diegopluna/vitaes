@@ -7,7 +7,7 @@ import {
   Gitlab,
   Twitter,
 } from "lucide-react";
-import { CVHeaderProps, CVProps, CVSettingsProps } from "@/types/cv-types";
+import {CVProps} from "@/types/cv-types";
 
 export default function CVHeader(props: CVProps) {
   return (

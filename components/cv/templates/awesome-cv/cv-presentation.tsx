@@ -1,16 +1,17 @@
-import { CVPresentationsProps } from "@/types/cv-types";
+import { CVPresentationsProps, CVProps } from "@/types/cv-types";
 import CVSectionHeader from "./cv-section-header";
+import { CVColor } from "@/types/cv-types";
 
-export default function CVPresentations(props: CVPresentationsProps) {
+export default function CVPresentations(props: CVProps) {
   return (
     <div className="flex flex-col items-start justify-start w-full mt-4">
-      <CVSectionHeader label={props.label} />
+      <CVSectionHeader label={props.presentations.label} color={props.settings.accentColor! as CVColor} />
       <div className="flex flex-col items-start justify-start w-full">
-        {props.presentations.map((presentation, index) => (
+        {props.presentations.presentations.map((presentation, index) => (
           <div className="w-full" key={index}>
             <div className="flex justify-between w-full">
               <span className="text-md font-bold">{presentation.event}</span>
-              <span className="text-xs italic text-[#0395de]">
+              <span className={`text-xs italic ${props.settings.accentColor! as CVColor}`}>
                 {presentation.location}
               </span>
             </div>

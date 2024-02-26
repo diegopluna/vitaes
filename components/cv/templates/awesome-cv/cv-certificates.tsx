@@ -1,12 +1,12 @@
-import { CVCertificatesProps } from "@/types/cv-types";
+import { CVCertificatesProps, CVProps, CVColor } from "@/types/cv-types";
 import CVSectionHeader from "./cv-section-header";
 
-export default function CVCertificates(props: CVCertificatesProps) {
+export default function CVCertificates(props: CVProps) {
     return (
         <div className="flex flex-col items-start justify-start w-full mt-4">
-            <CVSectionHeader label={props.label} />
+            <CVSectionHeader label={props.certificates.label} color={props.settings.accentColor! as CVColor} />
             <div className="flex flex-col items-start justify-start w-full">
-                {props.certificates?.map((certificate, index) => (
+                {props.certificates.certificates?.map((certificate, index) => (
                     <div className="w-full" key={index}>
                         <div className="flex justify-between w-full">
                             <span className="text-md font-bold">{certificate.title}</span>

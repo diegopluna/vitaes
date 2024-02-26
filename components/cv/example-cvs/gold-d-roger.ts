@@ -157,7 +157,7 @@ export const GOLD_D_ROGER_CV: CVProps = {
         ],
     },
     settings: {
-        accentColor: "#0395de",
+        accentColor: "text-[#DC3522]",
         fontFamily: "'Inter', sans-serif",
         fileName: "Gold D. Roger CV",
         headerAlignment: "center"

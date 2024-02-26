@@ -20,19 +20,19 @@ export default function AwesomeCV({ cv }: Props) {
   return (
     <>
       <CVHeader {...cv} />
-      {cv.summary.enabled && <CVSummary {...cv.summary!} />}
-      {cv.experience.enabled && <CVExperience {...cv.experience!} />}
-      {cv.honors.enabled && <CVHonors {...cv.honors!} />}
-      {cv.presentations.enabled && <CVPresentations {...cv.presentations!} />}
-      {cv.writings.enabled && <CVWritings {...cv.writings!} />}
-      {cv.committees.enabled && <CVCommittee {...cv.committees!} />}
-      {cv.educations.enabled && <CVEducation {...cv.educations!} />}
+      {cv.summary.enabled && <CVSummary {...cv} />}
+      {cv.experience.enabled && <CVExperience {...cv} />}
+      {cv.honors.enabled && <CVHonors {...cv} />}
+      {cv.presentations.enabled && <CVPresentations {...cv} />}
+      {cv.writings.enabled && <CVWritings {...cv} />}
+      {cv.committees.enabled && <CVCommittee {...cv} />}
+      {cv.educations.enabled && <CVEducation {...cv} />}
       {cv.extracurriculars.enabled && (
-        <CVExtracurricular {...cv.extracurriculars!} />
+        <CVExtracurricular {...cv} />
       )}
-      {cv.projects.enabled && <CVProjects {...cv.projects!} />}
-      {cv.languages.enabled && <CVLanguages {...cv.languages!} />}
-      {cv.certificates.enabled && <CVCertificates {...cv.certificates!} />}
+      {cv.projects.enabled && <CVProjects {...cv} />}
+      {cv.languages.enabled && <CVLanguages {...cv} />}
+      {cv.certificates.enabled && <CVCertificates {...cv} />}
     </>
   );
 }

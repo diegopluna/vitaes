@@ -1,16 +1,18 @@
-import { CVExperiencesProps } from "@/types/cv-types";
+import { CVExperiencesProps, CVProps } from "@/types/cv-types";
 import CVSectionHeader from "./cv-section-header";
+import { CVColor } from "@/types/cv-types";
 
-export default function CVExperience(props: CVExperiencesProps) {
+export default function CVExperience(props: CVProps) {
+
   return (
     <div className="flex flex-col items-start justify-start w-full mt-4">
-      <CVSectionHeader label={props.label} />
+      <CVSectionHeader label={props.experience.label} color={props.settings.accentColor! as CVColor} />
       <div className="flex flex-col items-start justify-start w-full">
-        {props.experiences.map((experience, index) => (
+        {props.experience.experiences.map((experience, index) => (
           <div className="w-full" key={index}>
             <div className="flex justify-between w-full">
               <span className="text-md font-bold">{experience.company}</span>
-              <span className="text-xs italic text-[#0395de]">
+              <span className={`text-xs italic ${props.settings.accentColor! as CVColor}`}>
                 {experience.location}
               </span>
             </div>
