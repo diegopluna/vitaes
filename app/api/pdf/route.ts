@@ -21,7 +21,7 @@ export async function POST(request: Request): Promise<Response> {
   await page.emulateMediaType("screen");
   const pdfBuffer = await page.pdf({
     format: "A4",
-    margin: { top: "0.8cm", bottom: "1.8cm", left: "1.4cm", right: "1.4cm" },
+    margin: { top: "0.8cm", bottom: "1.8cm" },
   });
   await browser.close();
   return new Response(pdfBuffer, {
