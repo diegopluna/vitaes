@@ -1,7 +1,6 @@
 export type CVHeaderAlignment = "left" | "center" | "right";
 
 export type CVHeaderProps = {
-  alignment: CVHeaderAlignment;
   firstName: string;
   lastName: string;
   phoneEnabled: boolean;
@@ -178,6 +177,13 @@ export type CVCertificatesProps = {
   certificates: CVCertificationProps[];
 };
 
+export type CVSettingsProps = {
+  accentColor?: string;
+  fontFamily: string;
+  fileName: string;
+  headerAlignment: CVHeaderAlignment;
+};
+
 export type CVProps = {
   header: CVHeaderProps;
   summary: CVSummaryProps;
@@ -191,6 +197,7 @@ export type CVProps = {
   projects: CVProjectsProps;
   languages: CVLanguagesProps;
   certificates: CVCertificatesProps;
+  settings: CVSettingsProps;
 };
 
 

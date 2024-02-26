@@ -28,9 +28,6 @@ export function PersonalForm() {
     );
   };
 
-  const setAlignment = (value: CVHeaderAlignment) => {
-    updateHeader({ alignment: value });
-  };
   const setFirstName = (value: string) => {
     updateHeader({ firstName: value });
   };
@@ -90,21 +87,6 @@ export function PersonalForm() {
     <Card>
       <CardHeader className="text-lg font-bold">Personal Info</CardHeader>
       <CardContent className="space-y-2">
-        <div className="space-y-1">
-          <Label htmlFor="alignment">Alignment</Label>
-          <Select value={header.alignment} onValueChange={setAlignment}>
-            <SelectTrigger>
-              <SelectValue placeholder="Select the header alignment" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="start">Left</SelectItem>
-                <SelectItem value="center">Center</SelectItem>
-                <SelectItem value="end">Right</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </div>
         <div className="space-y-1">
           <Label htmlFor="firstName">First Name</Label>
           <Input

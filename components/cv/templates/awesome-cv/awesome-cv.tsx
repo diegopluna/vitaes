@@ -19,7 +19,7 @@ type Props = {
 export default function AwesomeCV({ cv }: Props) {
   return (
     <>
-      <CVHeader {...cv.header} />
+      <CVHeader {...cv} />
       {cv.summary.enabled && <CVSummary {...cv.summary!} />}
       {cv.experience.enabled && <CVExperience {...cv.experience!} />}
       {cv.honors.enabled && <CVHonors {...cv.honors!} />}
