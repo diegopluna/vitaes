@@ -71,7 +71,6 @@ function TabTriggerHelper({
 export default function CVForm() {
   const [loading, setLoading] = React.useState(false);
   const { cv } = useCV();
-
   const downloadCV = async () => {
     setLoading(true);
     const response = await fetch("/api/pdf", {

@@ -18,6 +18,8 @@
 </p>
 <br/>
 
+
+
 ## Introduction
 
 Vitaes is a free and open-source resume builder. It allows you to create a professional-looking resume with a clean and modern design.
