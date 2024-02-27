@@ -108,3 +108,5 @@ We love our contributors! Here's how you can contribute:
 ## License
 
 Vitaes is licensed under the MIT License. See the [LICENSE](https://github.com/diegopluna/vitaes/blob/main/LICENSE.md) file for more information.
+
+![Alt](https://repobeats.axiom.co/api/embed/8b6c174bf91c33150bb366f1e6a725b152cc987e.svg "Repobeats analytics image")
