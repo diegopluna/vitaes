@@ -13,6 +13,7 @@ import CVLanguages from "./cv-languages";
 import CVCertificates from "./cv-certificates";
 import { Roboto } from "next/font/google";
 import { cn } from "@/lib/utils";
+import * as styles from "./constants"
 
 const roboto = Roboto({subsets: ["latin"], weight: ["100","300","400","500","700","900"], preload: true});
 
@@ -22,7 +23,7 @@ type Props = {
 
 export default function AwesomeCV({ cv }: Props) {
   return (
-    <div className={cn(roboto.className)}>
+    <div className={cn(roboto.className)} style={styles.textText}>
       <CVHeader {...cv} />
       {cv.summary.enabled && <CVSummary {...cv} />}
       {cv.experience.enabled && <CVExperience {...cv} />}
