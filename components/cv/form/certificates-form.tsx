@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -6,7 +8,44 @@ import { useCV } from "../use-cv";
 import { CVProps } from "@/types/cv-types";
 import { Button } from "@/components/ui/button";
 import { PlusCircle, MinusCircle } from "lucide-react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+  useSortable,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
+function SortableItem(props: { id: number; children: React.ReactNode }) {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: props.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
+  return (
+    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+      {props.children}
+    </div>
+  );
+}
 
 export default function CertificatesForm() {
   const { cv, setCV } = useCV();
@@ -28,7 +67,28 @@ export default function CertificatesForm() {
   const setCertificates = (value: CVProps["certificates"]["certificates"]) => {
     updateCertificates({ certificates: value });
   };
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  function handleDragEnd(event: any) {
+    const { active, over } = event;
+
+    if (active.id !== over.id) {
+      setCertificates(arrayMove(certificates.certificates, active.id, over.id));
+    }
+  }
+
   return (
+    <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
     <Card>
       <CardHeader className="text-lg font-bold">Certificates</CardHeader>
       <CardContent className="space-y-2">
@@ -60,116 +120,153 @@ export default function CertificatesForm() {
             >
               <PlusCircle />
             </Button>
-            <Accordion type="single" collapsible className="w-full">
+            <SortableContext items={certificates.certificates.map((_, index) => index)} strategy={verticalListSortingStrategy}>
+              <Accordion type="single" collapsible className="w-full">
                 <div className="space-y-2">
-                    {certificates.certificates.map((certificate, index) => (
-                        <AccordionItem key={index} value={index.toString()}>
-                            <AccordionTrigger>
-                                <div className="items-center justify-center">
-                                    <Button
-                                        className="mr-1"
-                                        variant={"ghost"}
-                                        onClick={() => {
-                                            const newCertificates = certificates.certificates.slice();
-                                            newCertificates.splice(index, 1);
-                                            setCertificates(newCertificates);
-                                        }}
-                                    >
-                                        <MinusCircle size={20} />
-                                    </Button>
-                                    {`Certificate - ${index + 1}`}
-                                </div>                             
-                            </AccordionTrigger>
-                            <AccordionContent className="space-y-2">
-                                <div className="space-y-1">
-                                    <Label htmlFor={`certificateTitle-${index}`}>Title</Label>
-                                    <Input
-                                        id={`certificateTitle-${index}`}
-                                        className="w-11/12 ml-1"
-                                        type="text"
-                                        value={certificate.title}
-                                        onChange={(e) => {
-                                            const newCertificates = [...certificates.certificates];
-                                            newCertificates[index].title = e.target.value;
-                                            setCertificates(newCertificates);
-                                        }}
-                                    />
-                                </div>
-                                <div className="space-y-1">
-                                    <Label htmlFor={`certificateIssuer-${index}`}>Issuer</Label>
-                                    <Input
-                                        id={`certificateIssuer-${index}`}
-                                        type="text"
-                                        className="w-11/12 ml-1"
-                                        value={certificate.issuer}
-                                        onChange={(e) => {
-                                            const newCertificates = [...certificates.certificates];
-                                            newCertificates[index].issuer = e.target.value;
-                                            setCertificates(newCertificates);
-                                        }}
-                                    />
-                                </div>
-                                <div className="space-y-1">
-                                    <Label htmlFor={`certificateDate-${index}`}>Date</Label>
-                                    <Input
-                                        id={`certificateDate-${index}`}
-                                        type="text"
-                                        className="w-11/12 ml-1"
-                                        value={certificate.date}
-                                        onChange={(e) => {
-                                            const newCertificates = [...certificates.certificates];
-                                            newCertificates[index].date = e.target.value;
-                                            setCertificates(newCertificates);
-                                        }}
-                                    />
-                                </div>
-                                <div className="flex flex-col space-y-1">
-                                    <Label htmlFor={`certificateDescriptions-${index}`}>Descriptions</Label>
-                                    {certificate.descriptions.map((description, descriptionIndex) => (
-                                        <div className="flex flex-row ml-1 w-11/12" key={descriptionIndex}>
-                                            <Button
-                                                variant={"ghost"}
-                                                onClick={() => {
-                                                    const newCertificates = [...certificates.certificates];
-                                                    newCertificates[index].descriptions.splice(descriptionIndex, 1);
-                                                    setCertificates(newCertificates);
-                                                }}
-                                            >
-                                                <MinusCircle size={16} />
-                                            </Button>
-                                            <Input
-                                                id={`certificateDescription-${index}`}
-                                                type="text"
-                                                className="w-11/12 ml-1"
-                                                value={description}
-                                                onChange={(e) => {
-                                                    const newCertificates = [...certificates.certificates];
-                                                    newCertificates[index].descriptions[descriptionIndex] = e.target.value;
-                                                    setCertificates(newCertificates);
-                                                }}
-                                            />
-                                        </div>
-                                    ))}
-                                    <Button
-                                        className="w-11/12 items-center justify-center"
-                                        variant={"ghost"}
-                                        onClick={() => {
-                                            const newCertificates = [...certificates.certificates];
-                                            newCertificates[index].descriptions.push("");
-                                            setCertificates(newCertificates);
-                                        }}
-                                    >
-                                        <PlusCircle size={16} />
-                                    </Button>
-                                </div>
-                            </AccordionContent>
-                        </AccordionItem>
-                    ))}
+                  {certificates.certificates.map((certificate, index) => (
+                    <AccordionItem key={index} value={index.toString()}>
+                      <AccordionTrigger>
+                        <SortableItem key={index} id={index}>
+                          <div className="items-center justify-center">
+                            <Button
+                              className="mr-1"
+                              variant={"ghost"}
+                              onClick={() => {
+                                const newCertificates =
+                                  certificates.certificates.slice();
+                                newCertificates.splice(index, 1);
+                                setCertificates(newCertificates);
+                              }}
+                            >
+                              <MinusCircle size={20} />
+                            </Button>
+                            {certificate.title ? certificate.title : `Certificate-${index}`}
+                          </div>
+                        </SortableItem>
+                      </AccordionTrigger>
+
+                      <AccordionContent className="space-y-2">
+                        <div className="space-y-1">
+                          <Label htmlFor={`certificateTitle-${index}`}>
+                            Title
+                          </Label>
+                          <Input
+                            id={`certificateTitle-${index}`}
+                            className="w-11/12 ml-1"
+                            type="text"
+                            value={certificate.title}
+                            onChange={(e) => {
+                              const newCertificates = [
+                                ...certificates.certificates,
+                              ];
+                              newCertificates[index].title = e.target.value;
+                              setCertificates(newCertificates);
+                            }}
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <Label htmlFor={`certificateIssuer-${index}`}>
+                            Issuer
+                          </Label>
+                          <Input
+                            id={`certificateIssuer-${index}`}
+                            type="text"
+                            className="w-11/12 ml-1"
+                            value={certificate.issuer}
+                            onChange={(e) => {
+                              const newCertificates = [
+                                ...certificates.certificates,
+                              ];
+                              newCertificates[index].issuer = e.target.value;
+                              setCertificates(newCertificates);
+                            }}
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <Label htmlFor={`certificateDate-${index}`}>
+                            Date
+                          </Label>
+                          <Input
+                            id={`certificateDate-${index}`}
+                            type="text"
+                            className="w-11/12 ml-1"
+                            value={certificate.date}
+                            onChange={(e) => {
+                              const newCertificates = [
+                                ...certificates.certificates,
+                              ];
+                              newCertificates[index].date = e.target.value;
+                              setCertificates(newCertificates);
+                            }}
+                          />
+                        </div>
+                        <div className="flex flex-col space-y-1">
+                          <Label htmlFor={`certificateDescriptions-${index}`}>
+                            Descriptions
+                          </Label>
+                          {certificate.descriptions.map(
+                            (description, descriptionIndex) => (
+                              <div
+                                className="flex flex-row ml-1 w-11/12"
+                                key={descriptionIndex}
+                              >
+                                <Button
+                                  variant={"ghost"}
+                                  onClick={() => {
+                                    const newCertificates = [
+                                      ...certificates.certificates,
+                                    ];
+                                    newCertificates[index].descriptions.splice(
+                                      descriptionIndex,
+                                      1
+                                    );
+                                    setCertificates(newCertificates);
+                                  }}
+                                >
+                                  <MinusCircle size={16} />
+                                </Button>
+                                <Input
+                                  id={`certificateDescription-${index}`}
+                                  type="text"
+                                  className="w-11/12 ml-1"
+                                  value={description}
+                                  onChange={(e) => {
+                                    const newCertificates = [
+                                      ...certificates.certificates,
+                                    ];
+                                    newCertificates[index].descriptions[
+                                      descriptionIndex
+                                    ] = e.target.value;
+                                    setCertificates(newCertificates);
+                                  }}
+                                />
+                              </div>
+                            )
+                          )}
+                          <Button
+                            className="w-11/12 items-center justify-center"
+                            variant={"ghost"}
+                            onClick={() => {
+                              const newCertificates = [
+                                ...certificates.certificates,
+                              ];
+                              newCertificates[index].descriptions.push("");
+                              setCertificates(newCertificates);
+                            }}
+                          >
+                            <PlusCircle size={16} />
+                          </Button>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
                 </div>
-            </Accordion>
+              </Accordion>
+              </SortableContext>
           </div>
         )}
       </CardContent>
     </Card>
+    </DndContext>
   );
 }

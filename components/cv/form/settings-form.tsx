@@ -1,3 +1,5 @@
+"use client"
+
 import { AwesomeCVColor, AwesomeCVHeaderAlignment, CVProps, UbagaCVTextColor } from "@/types/cv-types";
 import { useCV } from "../use-cv";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -49,7 +51,7 @@ function AwesomeCVSettingsForm() {
         updateSettings({ headerAlignment: value });
     };
     return <>
-     <Selector label="Alignment" value={settings.accentColor} onValueChange={setAccentColor} options={[
+      <Selector label="Alignment" value={settings.accentColor} onValueChange={setAccentColor} options={[
             {value: "text-[#00A388]", label: "Awesome Emerald"},
             {value: "text-[#0395DE]", label: "Awesome Skyblue"},
             {value: "text-[#DC3522]", label: "Awesome Red"},
@@ -148,10 +150,10 @@ export default function CVSettingsForm() {
         <Card>
             <CardHeader className="text-lg font-bold">Settings</CardHeader>
             <CardContent className="space-y-2">
-                {cv.header.email === 'diegopeter9@gmail.com' && <Selector label="Model" value={cv.settings.model} onValueChange={(value) => setCV((prev) => ({ ...prev, settings: { ...prev.settings, model: value } }))} options={[
+                <Selector label="Model" value={cv.settings.model} onValueChange={(value) => setCV((prev) => ({ ...prev, settings: { ...prev.settings, model: value } }))} options={[
                     {value: "awesome-cv", label: "Awesome CV"},
                     {value: "ubaga-cv", label: "Just your name in different colors"},
-                ]} />}
+                ]} />
                 {cv.settings.model === "awesome-cv" && <AwesomeCVSettingsForm />}
                 {cv.settings.model === "ubaga-cv" && <UbagaCV />}
                 <div className="space-y-1">
