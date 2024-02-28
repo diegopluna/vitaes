@@ -1,4 +1,3 @@
-export type CVHeaderAlignment = "start" | "center" | "end";
 
 export type CVHeaderProps = {
   firstName: string;
@@ -177,14 +176,26 @@ export type CVCertificatesProps = {
   certificates: CVCertificationProps[];
 };
 
-export type CVColor = "text-[#00A388]" | "text-[#0395DE]" | "text-[#DC3522]" | "text-[#EF4089]" | "text-[#FF6138]" | "text-[#27AE60]" | "text-[#95A5A6]" | "text-[#131A28]"
+export type CVModel = "awesome-cv" | "ubaga-cv";
 
-export type CVSettingsProps = {
-  accentColor?: CVColor;
-  fontFamily: string;
-  fileName: string;
-  headerAlignment: CVHeaderAlignment;
+export type AwesomeCVHeaderAlignment = "start" | "center" | "end";
+export type AwesomeCVColor = "text-[#00A388]" | "text-[#0395DE]" | "text-[#DC3522]" | "text-[#EF4089]" | "text-[#FF6138]" | "text-[#27AE60]" | "text-[#95A5A6]" | "text-[#131A28]"
+export type AwesomeCVSettingsProps = {
+  accentColor: AwesomeCVColor;
+  headerAlignment: AwesomeCVHeaderAlignment;
 };
+
+export type UbagaCVTextColor = 'black' | 'pink' | 'blue' | 'green' | 'orange' | 'purple' | 'red' | 'teal' | 'yellow';
+export type UbagaCVSettingsProps = {
+  textColor: UbagaCVTextColor;
+}
+
+export type CVSettingsProps = 
+{
+  model: CVModel,
+  awesomeCV: AwesomeCVSettingsProps,
+  ubagaCV: UbagaCVSettingsProps
+}
 
 export type CVProps = {
   header: CVHeaderProps;

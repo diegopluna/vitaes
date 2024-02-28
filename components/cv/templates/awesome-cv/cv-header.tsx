@@ -7,17 +7,21 @@ import {
   Gitlab,
   Twitter,
 } from "lucide-react";
-import {CVProps} from "@/types/cv-types";
-
+import { CVProps } from "@/types/cv-types";
 
 export default function CVHeader(props: CVProps) {
+  const { awesomeCV: settings } = props.settings;
   return (
     <div
-      className={`flex flex-col items-${props.settings.headerAlignment} justify-${props.settings.headerAlignment}`}
+      className={`flex flex-col items-${settings.headerAlignment} justify-${settings.headerAlignment}`}
     >
       <div className="flex flex-row my-0 ">
-        <h1 className="leading-none text-[32pt] font-thin text-[#5D5D5D] mx-2">{props.header.firstName}</h1>
-        <h1 className="leading-none text-[32pt] font-bold">{props.header.lastName}</h1>
+        <h1 className="leading-none text-[32pt] font-thin text-[#5D5D5D] mx-2">
+          {props.header.firstName}
+        </h1>
+        <h1 className="leading-none text-[32pt] font-bold">
+          {props.header.lastName}
+        </h1>
       </div>
       <div className="flex flex-row my-2">
         {props.header.phoneEnabled && (
@@ -45,7 +49,10 @@ export default function CVHeader(props: CVProps) {
         {props.header.githubEnabled && (
           <div className="flex flex-row mx-1">
             <Github className="text-black mx-1" size={16} />
-            <a href={`http://github.com/${props.header.github}`} className="text-xs">
+            <a
+              href={`http://github.com/${props.header.github}`}
+              className="text-xs"
+            >
               {props.header.github}
             </a>
           </div>
@@ -64,7 +71,10 @@ export default function CVHeader(props: CVProps) {
         {props.header.gitlabEnabled && (
           <div className="flex flex-row mx-1">
             <Gitlab className="text-black mx-1" size={16} />
-            <a href={`http://gitlab.com/${props.header.gitlab}`} className="text-xs">
+            <a
+              href={`http://gitlab.com/${props.header.gitlab}`}
+              className="text-xs"
+            >
               {props.header.gitlab}
             </a>
           </div>

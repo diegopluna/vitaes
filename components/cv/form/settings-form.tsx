@@ -1,4 +1,4 @@
-import { CVColor, CVHeaderAlignment, CVProps } from "@/types/cv-types";
+import { AwesomeCVColor, AwesomeCVHeaderAlignment, CVProps, UbagaCVTextColor } from "@/types/cv-types";
 import { useCV } from "../use-cv";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -6,32 +6,98 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectI
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner"
 
+type Option<T extends string> = {
+    value: T,
+    label: string
+}
 
-export default function CVSettingsForm() {
-    const { cv, setCV } = useCV()
-    const { settings } = cv
+function Selector<T extends string>({ label, value, onValueChange, options }: {label:string, value: T, onValueChange: (value: T) => void, options: Option<T>[] }) {
+    return (
+        <div className="space-y-1">
+        <Label htmlFor="alignment">{label}</Label>
+        <Select value={value} onValueChange={onValueChange}>
+            <SelectTrigger>
+                <SelectValue placeholder="Select an option" />
+            </SelectTrigger>
+            <SelectContent>
+                {options.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                        {option.label}
+                    </SelectItem>
+                ))}
+            </SelectContent>
+        </Select>
+        </div>
+    )
+}
 
-    const updateSettings = (value: Partial<CVProps["settings"]>) => {
+function AwesomeCVSettingsForm() {
+    const {cv,setCV} = useCV();
+    const {awesomeCV: settings} = cv.settings;
+    const updateSettings = (value: Partial<CVProps["settings"]["awesomeCV"]>) => {
         setCV(
             (prev: CVProps): CVProps => ({
                 ...prev,
-                settings: { ...prev.settings, ...value },
+                settings: { ...prev.settings, awesomeCV: { ...prev.settings.awesomeCV, ...value } },
             })
         );
     }
-
-    const setAccentColor = (value: CVColor) => {
+    const setAccentColor = (value: AwesomeCVColor) => {
         updateSettings({ accentColor: value });
     };
-    const setFontFamily = (value: string) => {
-        updateSettings({ fontFamily: value });
-    };
-    const setFileName = (value: string) => {
-        updateSettings({ fileName: value });
-    };
-    const setHeaderAlignment = (value: CVHeaderAlignment) => {
+    const setHeaderAlignment = (value: AwesomeCVHeaderAlignment) => {
         updateSettings({ headerAlignment: value });
     };
+    return <>
+     <Selector label="Alignment" value={settings.accentColor} onValueChange={setAccentColor} options={[
+            {value: "text-[#00A388]", label: "Awesome Emerald"},
+            {value: "text-[#0395DE]", label: "Awesome Skyblue"},
+            {value: "text-[#DC3522]", label: "Awesome Red"},
+            {value: "text-[#EF4089]", label: "Awesome Pink"},
+            {value: "text-[#FF6138]", label: "Awesome Orange"},
+            {value: "text-[#27AE60]", label: "Awesome Nephritis"},
+            {value: "text-[#95A5A6]", label: "Awesome Concrete"},
+            {value: "text-[#131A28]", label: "Awesome Darknight"},
+        ]} />
+        <Selector label="Accent Color" value={settings.headerAlignment} onValueChange={setHeaderAlignment} options={[
+            {value: "start", label: "Left"},
+            {value: "center", label: "Center"},
+            {value: "end", label: "Right"},
+        ]} />
+    </>
+}
+
+function UbagaCV() {
+    const {cv, setCV} = useCV();
+    const {ubagaCV: settings} = cv.settings;
+    const updateSettings = (value: Partial<CVProps["settings"]["ubagaCV"]>) => {
+        setCV(
+            (prev: CVProps): CVProps => ({
+                ...prev,
+                settings: { ...prev.settings, ubagaCV: { ...prev.settings.ubagaCV, ...value } },
+            })
+        );
+    }
+    const setTextColor = (value: UbagaCVTextColor) => {
+        updateSettings({ textColor: value });
+    }
+    return <>
+     <Selector label="Colors" value={settings.textColor} onValueChange={setTextColor} options={[
+            {value: "pink", label: "Pink"},
+            {value: "blue", label: "Blue"},
+            {value: "green", label: "Green"},
+            {value: "orange", label: "Orange"},
+            {value: "purple", label: "Purple"},
+            {value: "red", label: "Red"},
+            {value: "teal", label: "Teal"},
+            {value: "yellow", label: "Yellow"},
+            {value: "black", label: "Black"},
+        ]} />
+    </>
+}
+
+export default function CVSettingsForm() {
+    const { cv, setCV } = useCV()
 
     const loadCV = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -82,41 +148,12 @@ export default function CVSettingsForm() {
         <Card>
             <CardHeader className="text-lg font-bold">Settings</CardHeader>
             <CardContent className="space-y-2">
-                <div className="space-y-1">
-                    <Label htmlFor="alignment">Alignment</Label>
-                    <Select value={settings.headerAlignment} onValueChange={setHeaderAlignment}>
-                        <SelectTrigger>
-                            <SelectValue placeholder="Select the header alignment" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectGroup>
-                                <SelectItem value="start">Left</SelectItem>
-                                <SelectItem value="center">Center</SelectItem>
-                                <SelectItem value="end">Right</SelectItem>
-                            </SelectGroup>
-                        </SelectContent>
-                    </Select>
-                </div>
-                <div className="space-y-1">
-                    <Label htmlFor="Accent Color">Accent Color</Label>
-                    <Select value={settings.accentColor} onValueChange={setAccentColor}>
-                        <SelectTrigger>
-                            <SelectValue placeholder="Select the accent color" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectGroup>
-                                <SelectItem value="text-[#00A388]">Awesome Emerald</SelectItem>
-                                <SelectItem value="text-[#0395DE]">Awesome Skyblue</SelectItem>
-                                <SelectItem value="text-[#DC3522]">Awesome Red</SelectItem>
-                                <SelectItem value="text-[#EF4089]">Awesome Pink</SelectItem>
-                                <SelectItem value="text-[#FF6138]">Awesome Orange</SelectItem>
-                                <SelectItem value="text-[#27AE60]">Awesome Nephritis</SelectItem>
-                                <SelectItem value="text-[#95A5A6]">Awesome Concrete</SelectItem>
-                                <SelectItem value="text-[#131A28]">Awesome Darknight</SelectItem>
-                            </SelectGroup>
-                        </SelectContent>
-                    </Select>
-                </div>
+                <Selector label="Model" value={cv.settings.model} onValueChange={(value) => setCV((prev) => ({ ...prev, settings: { ...prev.settings, model: value } }))} options={[
+                    {value: "awesome-cv", label: "Awesome CV"},
+                    {value: "ubaga-cv", label: "Ubaga CV"},
+                ]} />
+                {cv.settings.model === "awesome-cv" && <AwesomeCVSettingsForm />}
+                {cv.settings.model === "ubaga-cv" && <UbagaCV />}
                 <div className="space-y-1">
                     <Label htmlFor="loadCV">Load CV from JSON</Label>
                     <Input type="file" accept=".json" id="loadCV" onChange={loadCV} />

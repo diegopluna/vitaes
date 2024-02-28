@@ -1,11 +1,11 @@
 import { CVHonorsProps, CVProps } from "@/types/cv-types";
 import CVSectionHeader from "./cv-section-header";
-import { CVColor } from "@/types/cv-types";
 
 export default function CVHonors(props: CVProps) {
+  const { awesomeCV: settings } = props.settings;
   return (
     <div className="flex flex-col items-start justify-start w-full mt-4">
-      <CVSectionHeader label={props.honors.label} color={props.settings.accentColor! as CVColor} />
+      <CVSectionHeader label={props.honors.label} color={settings.accentColor} />
       <div className="flex flex-col items-start justify-start w-full">
         {props.honors.honors?.map((honorTypes, index) => (
           <div className="w-full" key={index}>
@@ -21,7 +21,7 @@ export default function CVHonors(props: CVProps) {
                     {honor.honor}
                   </span>
                 </div>
-                <span className={`text-xs italic ${props.settings.accentColor! as CVColor}`}>
+                <span className={`text-xs italic ${settings.accentColor}`}>
                   {honor.location}
                 </span>
               </div>

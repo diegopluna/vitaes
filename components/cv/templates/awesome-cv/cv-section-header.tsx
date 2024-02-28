@@ -1,6 +1,6 @@
-import { CVColor } from "@/types/cv-types";
+import { AwesomeCVColor } from "@/types/cv-types";
 
-export default function CVSectionHeader({ label, color }: { label: string, color: CVColor }) {
+export default function CVSectionHeader({ label, color }: { label: string, color: AwesomeCVColor }) {
   return (
     <div className="flex flex-row w-full mb-2">
       <h2 className="text-2xl font-bold flex flex-row text-nowrap whitespace-nowrap">

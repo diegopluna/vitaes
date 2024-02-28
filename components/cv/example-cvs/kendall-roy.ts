@@ -28,16 +28,16 @@ const kendallRoyCV: CVProps = {
     enabled: true,
     label: "Experience",
     experiences: [
-    {
+      {
         company: "Waystar Royco",
         location: "New York, NY",
         position: "Co-CEO",
         startDate: "2018-01-01",
         endDate: "present",
         description: [
-            "Continued to lead the company as Chief Executive Officer, driving further growth and innovation.",
+          "Continued to lead the company as Chief Executive Officer, driving further growth and innovation.",
         ],
-        },
+      },
       {
         company: "Waystar Royco",
         location: "New York, NY",
@@ -165,10 +165,14 @@ const kendallRoyCV: CVProps = {
     ],
   },
   settings: {
-    accentColor: "text-[#00A388]",
-    fontFamily: "Arial",
-    fileName: "Kendall_Roy_CV",
-    headerAlignment: "start",
+    awesomeCV: {
+      accentColor: "text-[#00A388]",
+      headerAlignment: "start",
+    },
+    ubagaCV: {
+      textColor: "pink",
+    },
+    model: "awesome-cv",
   },
 };
 

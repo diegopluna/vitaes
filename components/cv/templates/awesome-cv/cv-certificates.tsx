@@ -1,10 +1,11 @@
-import { CVCertificatesProps, CVProps, CVColor } from "@/types/cv-types";
+import { CVCertificatesProps, CVProps } from "@/types/cv-types";
 import CVSectionHeader from "./cv-section-header";
 
 export default function CVCertificates(props: CVProps) {
+    const {awesomeCV: settings} = props.settings;
     return (
         <div className="flex flex-col items-start justify-start w-full mt-4">
-            <CVSectionHeader label={props.certificates.label} color={props.settings.accentColor! as CVColor} />
+            <CVSectionHeader label={props.certificates.label} color={settings.accentColor} />
             <div className="flex flex-col items-start justify-start w-full">
                 {props.certificates.certificates?.map((certificate, index) => (
                     <div className="w-full" key={index}>

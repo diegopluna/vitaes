@@ -1,10 +1,12 @@
-import { CVProjectsProps, CVProps, CVColor } from "@/types/cv-types";
+import { CVProps } from "@/types/cv-types";
 import CVSectionHeader from "./cv-section-header";
 
 export default function CVProjects(props: CVProps) {
+  const {awesomeCV: settings} = props.settings;
+
   return (
     <div className="flex flex-col items-start justify-start w-full mt-4">
-      <CVSectionHeader label={props.projects.label} color={props.settings.accentColor! as CVColor} />
+      <CVSectionHeader label={props.projects.label} color={settings.accentColor} />
       <div className="flex flex-col items-start justify-start w-full">
         {props.projects.projects.map((project, index) => (
           <div className="w-full" key={index}>
@@ -23,7 +25,7 @@ export default function CVProjects(props: CVProps) {
                   href={`https://${project.githubRepo}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-xs ${props.settings.accentColor! as CVColor} italic`}
+                  className={`text-xs ${settings.accentColor} italic`}
                 >
                   GitHub: {`${project.githubRepo}`}
                 </a>

@@ -1,11 +1,11 @@
 import { CVExtracurricularsProps, CVProps } from "@/types/cv-types";
 import CVSectionHeader from "./cv-section-header";
-import { CVColor } from "@/types/cv-types";
 
 export default function CVExtracurricular(props: CVProps) {
+  const { awesomeCV: settings } = props.settings;
   return (
     <div className="flex flex-col items-start justify-start w-full mt-4">
-      <CVSectionHeader label={props.extracurriculars.label} color={props.settings.accentColor! as CVColor} />
+      <CVSectionHeader label={props.extracurriculars.label} color={settings.accentColor} />
       <div className="flex flex-col items-start justify-start w-full">
         {props.extracurriculars.extracurriculars.map((extracurricular, index) => (
           <div className="w-full" key={index}>
@@ -13,7 +13,7 @@ export default function CVExtracurricular(props: CVProps) {
               <span className="text-md font-bold">
                 {extracurricular.organization}
               </span>
-              <span className={`text-xs italic ${props.settings.accentColor! as CVColor}`}>
+              <span className={`text-xs italic ${settings.accentColor}`}>
                 {extracurricular.location}
               </span>
             </div>
