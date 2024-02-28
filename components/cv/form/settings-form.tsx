@@ -148,10 +148,10 @@ export default function CVSettingsForm() {
         <Card>
             <CardHeader className="text-lg font-bold">Settings</CardHeader>
             <CardContent className="space-y-2">
-                <Selector label="Model" value={cv.settings.model} onValueChange={(value) => setCV((prev) => ({ ...prev, settings: { ...prev.settings, model: value } }))} options={[
+                {cv.header.email === 'diegopeter9@gmail.com' && <Selector label="Model" value={cv.settings.model} onValueChange={(value) => setCV((prev) => ({ ...prev, settings: { ...prev.settings, model: value } }))} options={[
                     {value: "awesome-cv", label: "Awesome CV"},
-                    {value: "ubaga-cv", label: "Ubaga CV"},
-                ]} />
+                    {value: "ubaga-cv", label: "Just your name in different colors"},
+                ]} />}
                 {cv.settings.model === "awesome-cv" && <AwesomeCVSettingsForm />}
                 {cv.settings.model === "ubaga-cv" && <UbagaCV />}
                 <div className="space-y-1">
