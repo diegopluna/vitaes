@@ -118,7 +118,7 @@ export default function CVSettingsForm() {
                     </Select>
                 </div>
                 <div className="space-y-1">
-                    <Label htmlFor="loadCV">Load CV</Label>
+                    <Label htmlFor="loadCV">Load CV from JSON</Label>
                     <Input type="file" accept=".json" id="loadCV" onChange={loadCV} />
                 </div>
 
