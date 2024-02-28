@@ -5,16 +5,8 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { useCV } from "../use-cv";
-import { CVHeaderAlignment, CVProps } from "@/types/cv-types";
+import { CVProps } from "@/types/cv-types";
 
 export function PersonalForm() {
   const { cv, setCV } = useCV();
