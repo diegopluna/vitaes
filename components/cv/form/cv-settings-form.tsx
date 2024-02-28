@@ -3,6 +3,9 @@ import { useCV } from "../use-cv";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem } from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner"
+
 
 export default function CVSettingsForm() {
     const { cv, setCV } = useCV()
@@ -29,6 +32,51 @@ export default function CVSettingsForm() {
     const setHeaderAlignment = (value: CVHeaderAlignment) => {
         updateSettings({ headerAlignment: value });
     };
+
+    const loadCV = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const json = JSON.parse(e.target?.result as string);
+                    if (isCV(json)) {
+                        setCV(json as CVProps);
+                        toast.success("CV loaded successfully");
+                    } else {
+                        toast.error("Invalid JSON format");
+                    }
+                } catch (error) {
+                    toast.error("Invalid JSON file");
+                }   
+            };
+            reader.readAsText(file);
+            e.target.value = "";
+        }
+    };
+
+    const isCV = (o : any): o is CVProps => {
+        if (
+            typeof o === "object" &&
+            o !== null &&
+            "header" in o &&
+            "summary" in o &&
+            "experience" in o &&
+            "honors" in o &&
+            "presentations" in o &&
+            "writings" in o &&
+            "committees" in o &&
+            "educations" in o &&
+            "extracurriculars" in o &&
+            "projects" in o &&
+            "languages" in o &&
+            "certificates" in o &&
+            "settings" in o
+        ) {
+            return true;
+        }
+        return false;
+    }
 
     return (
         <Card>
@@ -69,6 +117,11 @@ export default function CVSettingsForm() {
                         </SelectContent>
                     </Select>
                 </div>
+                <div className="space-y-1">
+                    <Label htmlFor="loadCV">Load CV</Label>
+                    <Input type="file" id="loadCV" onChange={loadCV} />
+                </div>
+
             </CardContent>
         </Card>
     )

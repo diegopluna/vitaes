@@ -46,6 +46,13 @@ import { ProjectsForm } from "./form/projects-form";
 import LanguageForm from "./form/language-form";
 import CertificatesForm from "./form/certificates-form";
 import CVSettingsForm from "./form/cv-settings-form";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 
 function TabTriggerHelper({
   icon,
@@ -85,6 +92,19 @@ export default function CVForm() {
     const a = document.createElement("a");
     a.href = url;
     a.download = `${cv.header.firstName}-Vitaes.pdf`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+    setLoading(false);
+  };
+
+  const downloadCVJSON = async () => {
+    setLoading(true);
+    const json = JSON.stringify(cv);
+    const blob = new Blob([json], { type: "application/json" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${cv.header.firstName}-Vitaes.json`;
     a.click();
     window.URL.revokeObjectURL(url);
     setLoading(false);
@@ -214,15 +234,28 @@ export default function CVForm() {
         className="min-w-[190mm] flex place-content-center items-center"
         defaultSize={50}
       >
-        <Button
-          variant="secondary"
-          className="right-4 top-16 fixed z-10"
-          onClick={downloadCV}
-          disabled={loading}
-        >
-          {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          {loading ? "Generating PDF..." : "Download"}
-        </Button>
+        {loading ? (
+          <Button variant="secondary" className="right-4 top-16 fixed z-10">
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Generating CV...
+          </Button>
+        ) : (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="secondary" className="right-4 top-16 fixed z-10">
+                Download as
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56">
+              <DropdownMenuGroup>
+                <DropdownMenuItem onClick={downloadCV}>PDF</DropdownMenuItem>
+                <DropdownMenuItem onClick={downloadCVJSON}>
+                  JSON
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
         <DisplayFrame>
           <CV cv={cv} />
         </DisplayFrame>

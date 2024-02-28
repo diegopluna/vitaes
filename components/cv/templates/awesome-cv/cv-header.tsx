@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import {CVProps} from "@/types/cv-types";
 
+
 export default function CVHeader(props: CVProps) {
   return (
     <div
