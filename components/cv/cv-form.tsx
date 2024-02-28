@@ -113,15 +113,22 @@ export default function CVForm() {
 
   const downloadCVJSON = async () => {
     setLoading(true);
-    const json = JSON.stringify(cv);
-    const blob = new Blob([json], { type: "application/json" });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${cv.header.firstName}-Vitaes.json`;
-    a.click();
-    window.URL.revokeObjectURL(url);
-    setLoading(false);
+    try {
+      const json = JSON.stringify(cv);
+      const blob = new Blob([json], { type: "application/json" });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${cv.header.firstName}-Vitaes.json`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+      toast.success("JSON generated successfully");
+    } catch (error) {
+      toast.error("Failed to generate JSON");
+      // Handle error here
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
