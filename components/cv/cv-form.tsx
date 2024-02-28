@@ -53,6 +53,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { toast } from "sonner"
+
 
 function TabTriggerHelper({
   icon,
@@ -80,21 +82,33 @@ export default function CVForm() {
   const { cv } = useCV();
   const downloadCV = async () => {
     setLoading(true);
-    const response = await fetch("/api/pdf", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(cv),
-    });
-    const blob = await response.blob();
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${cv.header.firstName}-Vitaes.pdf`;
-    a.click();
-    window.URL.revokeObjectURL(url);
-    setLoading(false);
+    try {
+      const response = await fetch("/api/pdf", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cv),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to generate PDF");
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${cv.header.firstName}-Vitaes.pdf`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+      toast.success("PDF generated successfully")
+    } catch (error) {
+      toast.error("Failed to generate PDF")
+      // Handle error here
+    } finally {
+      setLoading(false);
+    }
   };
 
   const downloadCVJSON = async () => {
