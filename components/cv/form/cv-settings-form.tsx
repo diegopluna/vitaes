@@ -119,7 +119,7 @@ export default function CVSettingsForm() {
                 </div>
                 <div className="space-y-1">
                     <Label htmlFor="loadCV">Load CV</Label>
-                    <Input type="file" id="loadCV" onChange={loadCV} />
+                    <Input type="file" accept=".json" id="loadCV" onChange={loadCV} />
                 </div>
 
             </CardContent>

@@ -12,7 +12,7 @@ import {
   useState,
 } from "react";
 
-import { GOLD_D_ROGER_CV } from "./example-cvs/gold-d-roger";
+import kendallRoyCV from "./example-cvs/kendall-roy";
 
 type CVContextData = {
   cv: CVProps;
@@ -30,7 +30,7 @@ export function useCV(): CVContextData {
 
 export function CVContextProvider({ children }: { children: ReactNode }) {
   // temporary code
-  const [cv, setCV] = useState<CVProps>(GOLD_D_ROGER_CV);
+  const [cv, setCV] = useState<CVProps>(kendallRoyCV);
   // end of temporary code
 
   const output = {
