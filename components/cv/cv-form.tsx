@@ -11,6 +11,7 @@ import DisplayFrame from "@/components/display-frame";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Briefcase,
+  ChevronDown,
   FileCheck,
   GraduationCap,
   Languages,
@@ -45,7 +46,7 @@ import { EducationForm } from "./form/education-form";
 import { ProjectsForm } from "./form/projects-form";
 import LanguageForm from "./form/language-form";
 import CertificatesForm from "./form/certificates-form";
-import CVSettingsForm from "./form/cv-settings-form";
+import CVSettingsForm from "./form/settings-form";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -252,19 +253,20 @@ export default function CVForm() {
       </ResizablePanel>
       <ResizableHandle withHandle />
       <ResizablePanel
-        className="min-w-[190mm] flex place-content-center items-center"
+        className="min-w-[190mm] flex flex-col place-content-center items-center"
         defaultSize={50}
       >
         {loading ? (
-          <Button variant="secondary" className="right-4 top-16 fixed z-10">
+          <Button variant="secondary" className="mt-2 mb-2">
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             Generating CV...
           </Button>
         ) : (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="secondary" className="right-4 top-16 fixed z-10">
+              <Button variant="secondary" className="mt-2 mb-2">
                 Download as
+                <ChevronDown className="ml-2" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
@@ -277,7 +279,7 @@ export default function CVForm() {
             </DropdownMenuContent>
           </DropdownMenu>
         )}
-        <DisplayFrame>
+        <DisplayFrame scale={0.75}>
           <CV cv={cv} />
         </DisplayFrame>
       </ResizablePanel>

@@ -1,4 +1,4 @@
-export type CVHeaderAlignment = "left" | "center" | "right";
+export type CVHeaderAlignment = "start" | "center" | "end";
 
 export type CVHeaderProps = {
   firstName: string;

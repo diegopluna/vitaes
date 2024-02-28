@@ -12,7 +12,8 @@ import {
   useState,
 } from "react";
 
-import { GOLD_D_ROGER_CV } from "./example-cvs/gold-d-roger";
+import kendallRoyCV from "./example-cvs/kendall-roy";
+import useLocalStorage from "./use-local-storage";
 
 type CVContextData = {
   cv: CVProps;
@@ -29,9 +30,7 @@ export function useCV(): CVContextData {
 }
 
 export function CVContextProvider({ children }: { children: ReactNode }) {
-  // temporary code
-  const [cv, setCV] = useState<CVProps>(GOLD_D_ROGER_CV);
-  // end of temporary code
+  const [cv, setCV] = useLocalStorage<CVProps>('vitaes-cv', kendallRoyCV);
 
   const output = {
     cv,

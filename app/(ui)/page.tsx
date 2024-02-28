@@ -1,10 +1,13 @@
-import CVForm from "@/components/cv/cv-form";
-import { CVContextProvider } from "@/components/cv/use-cv"; // Import CVContextProvider from the appropriate module
+import { CVContextProvider } from "@/components/cv/use-cv";
+import dynamic from 'next/dynamic'
+ 
+const CVForm = dynamic(() => import('@/components/cv/cv-form'), { ssr: false })
 
 export default function Home() {
   return (
-    <CVContextProvider>
-      <CVForm />
-    </CVContextProvider>
+      <CVContextProvider>
+        <CVForm />
+      </CVContextProvider>
+    
   );
 }

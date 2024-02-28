@@ -1,3 +1,5 @@
+"use client";
+
 import { CVProps } from "@/types/cv-types";
 import A4CVOnly from "../a4-cvonly";
 import AwesomeCV from "./templates/awesome-cv/awesome-cv";
