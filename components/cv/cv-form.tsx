@@ -106,7 +106,6 @@ export default function CVForm() {
       toast.success("PDF generated successfully")
     } catch (error) {
       toast.error("Failed to generate PDF")
-      // Handle error here
     } finally {
       setLoading(false);
     }
@@ -126,7 +125,6 @@ export default function CVForm() {
       toast.success("JSON generated successfully");
     } catch (error) {
       toast.error("Failed to generate JSON");
-      // Handle error here
     } finally {
       setLoading(false);
     }

@@ -51,7 +51,7 @@ function AwesomeCVSettingsForm() {
         updateSettings({ headerAlignment: value });
     };
     return <>
-      <Selector label="Alignment" value={settings.accentColor} onValueChange={setAccentColor} options={[
+      <Selector label="Accent Color" value={settings.accentColor} onValueChange={setAccentColor} options={[
             {value: "text-[#00A388]", label: "Awesome Emerald"},
             {value: "text-[#0395DE]", label: "Awesome Skyblue"},
             {value: "text-[#DC3522]", label: "Awesome Red"},
@@ -61,7 +61,7 @@ function AwesomeCVSettingsForm() {
             {value: "text-[#95A5A6]", label: "Awesome Concrete"},
             {value: "text-[#131A28]", label: "Awesome Darknight"},
         ]} />
-        <Selector label="Accent Color" value={settings.headerAlignment} onValueChange={setHeaderAlignment} options={[
+        <Selector label="Alignment" value={settings.headerAlignment} onValueChange={setHeaderAlignment} options={[
             {value: "start", label: "Left"},
             {value: "center", label: "Center"},
             {value: "end", label: "Right"},
