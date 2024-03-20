@@ -30,7 +30,7 @@ export function useCV(): CVContextData {
 }
 
 export function CVContextProvider({ children }: { children: ReactNode }) {
-  const [cv, setCV] = useLocalStorage<CVProps>('vitaes-cv', kendallRoyCV);
+  const [cv, setCV] = useLocalStorage<CVProps>("vitaes-cv", kendallRoyCV);
 
   const output = {
     cv,
