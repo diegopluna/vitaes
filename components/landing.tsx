@@ -8,6 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
+import Image from "next/image";
 
 export function Landing() {
   return (
@@ -54,7 +55,7 @@ export function Landing() {
               <Carousel className="mx-auto object-cover object-center sm:w-full lg:order-last">
                 <CarouselContent>
                   <CarouselItem key={1}>
-                    <img alt="Awesome-CV" src="/awesome.png" />
+                    <Image alt="Awesome-CV" src="/awesome.png" />
                   </CarouselItem>
                 </CarouselContent>
                 <CarouselPrevious />

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ModeToggle } from "@/components/mode-toggle";
+import Image from "next/image";
 
 export default function NavbarLanding() {
   return (
@@ -7,13 +8,13 @@ export default function NavbarLanding() {
       <div className="container flex h-14 items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <img src="/vitaes.svg" alt="Vitaes" className="h-6 w-6" />
+            <Image src="/vitaes.svg" alt="Vitaes" className="h-6 w-6" />
             <span className="hidden font-bold sm:inline-block">Vitaes</span>
           </Link>
         </div>
-          <nav className="flex flex-1 items-center place-content-center space-x-3 md:justify-end">
-            <ModeToggle />
-          </nav>
+        <nav className="flex flex-1 items-center place-content-center space-x-3 md:justify-end">
+          <ModeToggle />
+        </nav>
       </div>
     </header>
   );
