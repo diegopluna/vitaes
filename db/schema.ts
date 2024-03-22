@@ -4,8 +4,11 @@ import {
   text,
   primaryKey,
   integer,
+  json,
+  uuid
 } from "drizzle-orm/pg-core";
 import type { AdapterAccount } from "@auth/core/adapters";
+import { CVProps } from "@/types/cv-types";
 
 export const users = pgTable("user", {
   id: text("id").notNull().primaryKey(),
@@ -57,4 +60,18 @@ export const verificationTokens = pgTable(
   (vt) => ({
     compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
   })
+);
+
+export const resumes = pgTable(
+  "resume",
+  {
+    id: uuid("id").notNull().primaryKey().defaultRandom(),
+    userId: text("userId").notNull().references(() => users.id, {
+      onDelete: "cascade",
+    }),
+    name: text("name").notNull(),
+    data: json("data").$type<CVProps>().notNull(),
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt").notNull(),
+  }
 );

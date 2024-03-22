@@ -5,13 +5,12 @@ import { Github } from "lucide-react";
 export default function GithubSigninButton() {
   return (
     <form action={signInWithGithub}>
-        <Button  type="submit">
+      <Button type="submit">
         <div className="flex items-center justify-center">
-            <Github className="w-4 h-4 mr-2" />
-            Sign in with Github
+          <Github className="w-4 h-4 mr-2" />
+          Sign in with Github
         </div>
-        </Button>
+      </Button>
     </form>
-    
   );
 }

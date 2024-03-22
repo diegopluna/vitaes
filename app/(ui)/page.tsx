@@ -1,13 +1,13 @@
-import { CVContextProvider } from "@/components/cv/use-cv";
-import dynamic from 'next/dynamic'
- 
-const CVForm = dynamic(() => import('@/components/cv/cv-form'), { ssr: false })
+import { auth } from "@/auth";
+import { Landing } from "@/components/landing";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return (
-      <CVContextProvider>
-        <CVForm />
-      </CVContextProvider>
-    
-  );
+export default async function LandingPage() {
+    const session = await auth()
+    if (session?.user) {
+        redirect("/dashboard")
+    }
+    return (
+        <Landing />
+    )
 }

@@ -1,6 +1,6 @@
 "use client"
-import GithubSigninButton from "./github-signin-button"
-import { Button } from "./ui/button"
+import GithubSigninButton from "../github-signin-button"
+import { Button } from "@/components/ui/button"
 import { Session } from "next-auth"
 import UserButton from "./user-button"
 

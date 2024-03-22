@@ -10,6 +10,7 @@ export default async function Navbar() {
       <div className="container flex h-14 items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
+            <img src="/vitaes.svg" alt="Vitaes" className="h-6 w-6" />
             <span className="hidden font-bold sm:inline-block">Vitaes</span>
           </Link>
         </div>

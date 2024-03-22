@@ -11,6 +11,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { UserRound } from "lucide-react";
 import { handleSignOut } from "@/server/actions";
+import Link from "next/link";
 
 export default function UserButton({ session }: { session: Session }) {
   return (
@@ -26,6 +27,9 @@ export default function UserButton({ session }: { session: Session }) {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuLabel>{session?.user?.name}</DropdownMenuLabel>
+          <DropdownMenuItem>
+            <Link href="/dashboard">Dashboard</Link>
+          </DropdownMenuItem>
           <DropdownMenuItem onClick={() => handleSignOut()}>
             Sign out
           </DropdownMenuItem>

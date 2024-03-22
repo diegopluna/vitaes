@@ -1,0 +1,20 @@
+import Link from "next/link";
+import { ModeToggle } from "@/components/mode-toggle";
+
+export default function NavbarLanding() {
+  return (
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-14 items-center">
+        <div className="mr-4 flex">
+          <Link href="/" className="mr-6 flex items-center space-x-2">
+            <img src="/vitaes.svg" alt="Vitaes" className="h-6 w-6" />
+            <span className="hidden font-bold sm:inline-block">Vitaes</span>
+          </Link>
+        </div>
+          <nav className="flex flex-1 items-center place-content-center space-x-3 md:justify-end">
+            <ModeToggle />
+          </nav>
+      </div>
+    </header>
+  );
+}

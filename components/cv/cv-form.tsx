@@ -11,11 +11,9 @@ import DisplayFrame from "@/components/display-frame";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Briefcase,
-  ChevronDown,
   FileCheck,
   GraduationCap,
   Languages,
-  Loader2,
   Medal,
   NotebookPen,
   Pen,
@@ -25,6 +23,7 @@ import {
   Settings,
   UserRound,
   UsersRound,
+  Save,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -47,15 +46,22 @@ import { ProjectsForm } from "./form/projects-form";
 import LanguageForm from "./form/language-form";
 import CertificatesForm from "./form/certificates-form";
 import CVSettingsForm from "./form/settings-form";
+import { toast } from "sonner";
+import { CVProps } from "@/types/cv-types";
+import { Session } from "next-auth";
+import ExportCVModal from "../modal/export-cv-modal";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { toast } from "sonner"
-
+  Dialog,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogContent,
+} from "../ui/dialog";
+import { Label } from "../ui/label";
+import { Input } from "../ui/input";
+import { updateCV, uploadCV } from "@/server/actions";
+import kendallRoyCV from "./example-cvs/kendall-roy";
 
 function TabTriggerHelper({
   icon,
@@ -78,57 +84,48 @@ function TabTriggerHelper({
   );
 }
 
-export default function CVForm() {
+export default function CVForm({
+  cvData = undefined,
+  name = undefined,
+  session = null,
+  id = undefined,
+}: {
+  cvData: CVProps | undefined;
+  name: String | undefined;
+  session: Session | null;
+  id: string | undefined;
+}) {
   const [loading, setLoading] = React.useState(false);
-  const { cv } = useCV();
-  const downloadCV = async () => {
+  const [open, setOpen] = React.useState(false);
+  const { cv, setCV } = useCV();
+  const [cvName, setCVName] = React.useState(name ? name : "My CV");
+
+  if (cvData !== undefined) {
+    setCV(cvData);
+  }
+
+  async function saveCV() {
     setLoading(true);
     try {
-      const response = await fetch("/api/pdf", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(cv),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to generate PDF");
+      if (session?.user) {
+        if (cvData !== undefined && id !== undefined) {
+          await updateCV(id, cvName as string, cv);
+          toast.success("CV updated successfully");
+        } else {
+          await uploadCV(cvName as string, cv, session.user.id!);
+          toast.success("CV saved successfully");
+        }
+        setCV(kendallRoyCV);
+      } else {
+        throw new Error("User not logged in");
       }
-
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${cv.header.firstName}-Vitaes.pdf`;
-      a.click();
-      window.URL.revokeObjectURL(url);
-      toast.success("PDF generated successfully")
     } catch (error) {
-      toast.error("Failed to generate PDF")
+      toast.error("Failed to save CV");
     } finally {
       setLoading(false);
+      setOpen(false);
     }
-  };
-
-  const downloadCVJSON = async () => {
-    setLoading(true);
-    try {
-      const json = JSON.stringify(cv);
-      const blob = new Blob([json], { type: "application/json" });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${cv.header.firstName}-Vitaes.json`;
-      a.click();
-      window.URL.revokeObjectURL(url);
-      toast.success("JSON generated successfully");
-    } catch (error) {
-      toast.error("Failed to generate JSON");
-    } finally {
-      setLoading(false);
-    }
-  };
+  }
 
   return (
     <ResizablePanelGroup
@@ -254,29 +251,38 @@ export default function CVForm() {
         className="min-w-[190mm] flex flex-col place-content-center items-center"
         defaultSize={50}
       >
-        {loading ? (
-          <Button variant="secondary" className="mt-2 mb-2">
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Generating CV...
-          </Button>
-        ) : (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="secondary" className="mt-2 mb-2">
-                Download as
-                <ChevronDown className="ml-2" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
-              <DropdownMenuGroup>
-                <DropdownMenuItem onClick={downloadCV}>PDF</DropdownMenuItem>
-                <DropdownMenuItem onClick={downloadCVJSON}>
-                  JSON
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        )}
+        <div className="flex flex-row gap-4 my-2">
+          <ExportCVModal cv={cv} name={cvName} />
+          {session?.user && (
+            <Dialog open={open} onOpenChange={setOpen}>
+              <DialogTrigger asChild>
+                <Button variant={"default"}>
+                  <Save className="mr-2" />
+                  Save
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Save CV</DialogTitle>
+                  <DialogDescription>
+                    Save your CV to the cloud.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="grid gap-4 mt-4">
+                  <Label>Name</Label>
+                  <Input
+                    type="text"
+                    value={cvName as string}
+                    onChange={(e) => setCVName(e.target.value)}
+                  />
+                  <Button variant={"outline"} size={"lg"} onClick={saveCV}>
+                    Save
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
+          )}
+        </div>
         <DisplayFrame scale={0.75}>
           <CV cv={cv} />
         </DisplayFrame>
