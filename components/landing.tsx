@@ -55,7 +55,7 @@ export function Landing() {
               <Carousel className="mx-auto object-cover object-center sm:w-full lg:order-last">
                 <CarouselContent>
                   <CarouselItem key={1}>
-                    <Image alt="Awesome-CV" src="/awesome.png" />
+                    <Image alt="Awesome-CV" src="/awesome.png" width={595} height={843} />
                   </CarouselItem>
                 </CarouselContent>
                 <CarouselPrevious />

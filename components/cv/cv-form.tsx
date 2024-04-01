@@ -100,9 +100,11 @@ export default function CVForm({
   const { cv, setCV } = useCV();
   const [cvName, setCVName] = React.useState(name ? name : "My CV");
 
-  if (cvData !== undefined) {
-    setCV(cvData);
-  }
+  React.useEffect(() => {
+    if (cvData !== undefined) {
+      setCV(cvData);
+    }
+  }, [cvData, setCV]);
 
   async function saveCV() {
     setLoading(true);

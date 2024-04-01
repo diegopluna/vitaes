@@ -8,7 +8,7 @@ export default function NavbarLanding() {
       <div className="container flex h-14 items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <Image src="/vitaes.svg" alt="Vitaes" className="h-6 w-6" />
+            <Image src="/vitaes.svg" alt="Vitaes" width={24} height={24}/>
             <span className="hidden font-bold sm:inline-block">Vitaes</span>
           </Link>
         </div>
