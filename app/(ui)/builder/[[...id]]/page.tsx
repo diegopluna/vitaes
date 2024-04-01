@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { id: string[] } }) {
   let cv = undefined;
   let name = undefined;
   let id = undefined;
-  if (params.id !== undefined && params.id.length > 1) {
+  if (params.id !== undefined && params.id.length > 1 || !session?.user) {
     redirect("/builder");
   }
   if (params.id !== undefined && session?.user) {
