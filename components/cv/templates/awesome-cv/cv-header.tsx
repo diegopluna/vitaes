@@ -1,13 +1,5 @@
-import { Linkedin, Gitlab, Twitter, Mail, Home, Github } from "lucide-react";
+import { Linkedin, Gitlab, Twitter, Mail, Home, Github, Smartphone } from "lucide-react";
 import { CVProps } from "@/types/cv-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMobileScreenButton,
-  faEnvelope,
-  faHouseChimney,
-} from "@fortawesome/free-solid-svg-icons";
-import { faSquareGithub, faLinkedin, faSquareGitlab, faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { Smartphone } from "lucide-react";
 
 export default function CVHeader(props: CVProps) {
   const { awesomeCV: settings } = props.settings;
@@ -27,11 +19,6 @@ export default function CVHeader(props: CVProps) {
         {props.header.phoneEnabled && (
           <div className="flex flex-row mx-1">
             <Smartphone className="text-[#333333] mx-1" size={16} />
-            {/* <FontAwesomeIcon
-              icon={faMobileScreenButton}
-              size="1x"
-              className="text-[#333333] mx-1"
-            /> */}
             <p className="text-xs">{props.header.phone}</p>
           </div>
         )}
@@ -44,11 +31,6 @@ export default function CVHeader(props: CVProps) {
             props.header.twitterEnabled) && <span className="text-xs">|</span>}
         {props.header.emailEnabled && (
           <div className="flex flex-row mx-1">
-            {/* <FontAwesomeIcon
-              icon={faEnvelope}
-              size="1x"
-              className="text-[#333333] mx-1"
-            /> */}
             <Mail className="text-[#333333] mx-1" size={16} />
             <a href={`mailto:${props.header.email}`} className="text-xs">
               {props.header.email}
@@ -63,11 +45,6 @@ export default function CVHeader(props: CVProps) {
             props.header.twitterEnabled) && <span className="text-xs">|</span>}
         {props.header.homepageEnabled && (
           <div className="flex flex-row mx-1">
-            {/* <FontAwesomeIcon
-              icon={faHouseChimney}
-              size="1x"
-              className="text-[#333333] mx-1"
-            /> */}
             <Home className="text-[#333333] mx-1" size={16} />
             <a href={`http://${props.header.homepage}`} className="text-xs">
               {props.header.homepage}
@@ -81,11 +58,6 @@ export default function CVHeader(props: CVProps) {
             props.header.twitterEnabled) && <span className="text-xs">|</span>}
         {props.header.githubEnabled && (
           <div className="flex flex-row mx-1">
-            {/* <FontAwesomeIcon
-              icon={faSquareGithub}
-              size="1x"
-              className="text-[#333333] mx-1"
-            /> */}
             <Github className="text-[#333333] mx-1" size={16} />
             <a
               href={`http://github.com/${props.header.github}`}
@@ -101,11 +73,6 @@ export default function CVHeader(props: CVProps) {
             props.header.twitterEnabled) && <span className="text-xs">|</span>}
         {props.header.linkedinEnabled && (
           <div className="flex flex-row mx-1">
-            {/* <FontAwesomeIcon
-              icon={faLinkedin}
-              size="1x"
-              className="text-[#333333] mx-1"
-            /> */}
             <Linkedin className="text-[#333333] mx-1" size={16} />
             <a
               href={`http://linkedin.com/in/${props.header.linkedin}`}
@@ -121,11 +88,6 @@ export default function CVHeader(props: CVProps) {
           )}
         {props.header.gitlabEnabled && (
           <div className="flex flex-row mx-1">
-            {/* <FontAwesomeIcon
-              icon={faSquareGitlab}
-              size="1x"
-              className="text-[#333333] mx-1"
-            /> */}
             <Gitlab className="text-[#333333] mx-1" size={16}/>
             <a
               href={`http://gitlab.com/${props.header.gitlab}`}
@@ -140,11 +102,6 @@ export default function CVHeader(props: CVProps) {
         )}
         {props.header.twitterEnabled && (
           <div className="flex flex-row mx-1">
-            {/* <FontAwesomeIcon
-              icon={faTwitter}
-              size="1x"
-              className="text-[#333333] mx-1"
-            /> */}
             <Twitter className="text-[#333333] mx-1" size={16} />
             <a
               href={`http://twitter.com/${props.header.twitter}`}
