@@ -5,7 +5,7 @@ import Resend from "next-auth/providers/resend";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 
 import db from "@/db/drizzle";
-import { sendVerificationRequest } from "./lib/auth-send-request";
+import { sendVerification } from "./lib/auth-send-request";
 
 export const { handlers, auth, signOut, signIn } = NextAuth({
   adapter: DrizzleAdapter(db),
@@ -19,7 +19,7 @@ export const { handlers, auth, signOut, signIn } = NextAuth({
         url,
         provider: { server, from },
       }) {
-        sendVerificationRequest({
+        return sendVerification({
           identifier: email,
           url,
           provider: { server, from },

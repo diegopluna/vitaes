@@ -10,7 +10,7 @@ interface SendVerificationRequestParams {
   };
 }
 
-export const sendVerificationRequest = async (
+export const sendVerification = async (
   params: SendVerificationRequestParams
 ) => {
   let {
