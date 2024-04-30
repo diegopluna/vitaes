@@ -1,7 +1,18 @@
 import VitaesMagicLink from "@/emails/magic-link";
 import { Resend } from "resend";
 
-export const sendVerificationRequest = async (params: any) => {
+interface SendVerificationRequestParams {
+  identifier: string;
+  url: string;
+  provider: {
+    server: string;
+    from: string;
+  };
+}
+
+export const sendVerificationRequest = async (
+  params: SendVerificationRequestParams
+) => {
   let {
     identifier: email,
     url,
