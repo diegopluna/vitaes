@@ -4,28 +4,40 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import React, { FormEvent, FormEventHandler } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
-import { Github, Loader2Icon } from "lucide-react";
-import { signInWithEmail } from "@/server/actions";
+import { Loader2Icon } from "lucide-react";
+import {
+  signInWithEmail,
+  signInWithGithub,
+  signInWithGoogle,
+} from "@/server/actions";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const UserAuthForm = ({ className, ...props }: UserAuthFormProps) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [isGoogleLoading, setIsGoogleLoading] = React.useState<boolean>(false);
+  const [isGithubLoading, setIsGithubLoading] = React.useState<boolean>(false);
   const [email, setEmail] = React.useState("");
 
-  // const handleEmailChange = (event) => {
-  //   setEmail(event.target.value);
-  // };
-
   const handleFormSubmit = async () => {
-    // const formData = new FormData(e.currentTarget);
-
     setIsLoading(true);
     await signInWithEmail(email);
     setIsLoading(false);
+  };
+
+  const handleGoogleLogin = async () => {
+    setIsGoogleLoading(true);
+    await signInWithGoogle();
+    setIsGoogleLoading(false);
+  };
+
+  const handleGithubLogin = async () => {
+    setIsGithubLoading(true);
+    await signInWithGithub();
+    setIsGithubLoading(false);
   };
 
   return (
@@ -48,7 +60,11 @@ export const UserAuthForm = ({ className, ...props }: UserAuthFormProps) => {
               required
             />
           </div>
-          <Button type="button" onClick={handleFormSubmit} disabled={isLoading}>
+          <Button
+            type="button"
+            onClick={handleFormSubmit}
+            disabled={isLoading || isGithubLoading || isGoogleLoading}
+          >
             {isLoading && <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />}
             Sign In with Email
           </Button>
@@ -64,16 +80,26 @@ export const UserAuthForm = ({ className, ...props }: UserAuthFormProps) => {
           </span>
         </div>
       </div>
-      <Button variant="outline" type="button" disabled={isLoading}>
-        {isLoading ? (
+      <Button
+        variant="outline"
+        type="button"
+        disabled={isLoading || isGithubLoading || isGoogleLoading}
+        onClick={() => handleGithubLogin()}
+      >
+        {isGithubLoading ? (
           <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
         ) : (
           <FontAwesomeIcon icon={faGithub} className="mr-2 h-4 w-4" />
         )}
         Github
       </Button>
-      <Button variant="outline" type="button" disabled={isLoading}>
-        {isLoading ? (
+      <Button
+        variant="outline"
+        type="button"
+        disabled={isLoading || isGithubLoading || isGoogleLoading}
+        onClick={() => handleGoogleLogin()}
+      >
+        {isGoogleLoading ? (
           <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
         ) : (
           <FontAwesomeIcon icon={faGoogle} className="mr-2 h-4 w-4" />

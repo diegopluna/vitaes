@@ -18,7 +18,6 @@ export const signInWithGoogle = async () => {
 };
 
 export const signInWithEmail = async (email: string) => {
-  console.log("formData", email);
   const formData = new FormData();
   formData.append("email", email);
   await signIn("resend", formData);
