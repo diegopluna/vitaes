@@ -15,12 +15,15 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { handleSignOut } from "@/server/actions";
 import { Separator } from "../ui/separator";
 import { UserSettingsModal } from "./user-settings-modal";
+import { useModalStore } from "@/store/use-modal-store";
 
 interface UserButtonProps {
   user: User;
 }
 
 export const UserButton = ({ user }: UserButtonProps) => {
+  const { setOpen } = useModalStore();
+
   return (
     <div className={`${GeistSans.className} w-10 h-10`}>
       <DropdownMenu>
@@ -40,8 +43,8 @@ export const UserButton = ({ user }: UserButtonProps) => {
             {user.name ? user.name : "User"}
           </DropdownMenuLabel>
           <Separator />
-          <DropdownMenuItem>
-            <UserSettingsModal />
+          <DropdownMenuItem onClick={() => setOpen(true)}>
+            User Profile
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => handleSignOut()}>
             Logout
