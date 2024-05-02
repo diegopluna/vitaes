@@ -62,7 +62,7 @@ export const UserAuthForm = ({ className, ...props }: UserAuthFormProps) => {
             />
           </div>
           <Button
-            type="button"
+            type="submit"
             onClick={handleFormSubmit}
             disabled={isLoading || isGithubLoading || isGoogleLoading}
           >

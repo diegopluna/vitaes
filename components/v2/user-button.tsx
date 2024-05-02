@@ -14,6 +14,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { handleSignOut } from "@/server/actions";
 import { Separator } from "../ui/separator";
+import { UserSettingsModal } from "./user-settings-modal";
 
 interface UserButtonProps {
   user: User;
@@ -39,6 +40,9 @@ export const UserButton = ({ user }: UserButtonProps) => {
             {user.name ? user.name : "User"}
           </DropdownMenuLabel>
           <Separator />
+          <DropdownMenuItem>
+            <UserSettingsModal />
+          </DropdownMenuItem>
           <DropdownMenuItem onClick={() => handleSignOut()}>
             Logout
           </DropdownMenuItem>
