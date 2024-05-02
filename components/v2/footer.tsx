@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ModeToggle } from "./mode-toggle";
+import { ModeToggle } from "@/components/v2/mode-toggle";
 
 export const Footer = () => {
   return (

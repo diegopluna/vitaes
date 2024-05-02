@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
-import { UserAuthForm } from "./_components/user-auth-form";
-import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+
+import { auth } from "@/auth";
+import { UserAuthForm } from "./_components/user-auth-form";
 
 const LoginPage = async () => {
   const session = await auth();

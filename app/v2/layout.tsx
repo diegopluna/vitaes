@@ -1,6 +1,6 @@
 import { GeistSans } from "geist/font/sans";
-import { Navbar } from "./_components/navbar";
-import { Footer } from "./_components/footer";
+import { Navbar } from "@/components/v2/navbar";
+import { Footer } from "@/components/v2/footer";
 
 export default function V2Layout({
   children,

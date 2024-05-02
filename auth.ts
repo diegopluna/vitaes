@@ -7,6 +7,8 @@ import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import db from "@/db/drizzle";
 import { sendVerification } from "./lib/auth-send-request";
 
+// TODO: If account is not linked to the provider, ask the user to sign in with the correct provider or link the account.
+
 export const { handlers, auth, signOut, signIn } = NextAuth({
   adapter: DrizzleAdapter(db),
   providers: [

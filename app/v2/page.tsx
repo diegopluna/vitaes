@@ -1,7 +1,8 @@
+import { redirect } from "next/navigation";
+
+import { auth } from "@/auth";
 import { Hero } from "./_components/hero";
 import { Features } from "./_components/features";
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
 
 const Page = async () => {
   const session = await auth();

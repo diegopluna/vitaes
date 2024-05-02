@@ -1,8 +1,7 @@
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
 
-// import { UserAuthForm } from "../_components/user-auth-form";
+import { auth } from "@/auth";
 
 const MailSentPage = async () => {
   const session = await auth();
@@ -28,7 +27,6 @@ const MailSentPage = async () => {
                 A sign in link has been sent to your email address.
               </p>
             </div>
-            {/* <UserAuthForm /> */}
           </div>
         </div>
         <div className="hidden  lg:block">
