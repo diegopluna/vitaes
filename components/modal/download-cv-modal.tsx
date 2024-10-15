@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Button } from "../ui/button";
-import { Download, FileText, FileJson } from "lucide-react";
+import { Download, FileText, FileJson, Loader2 } from "lucide-react";
 import { CVProps } from "@/types/cv-types";
 import { toast } from "sonner";
 
@@ -81,7 +81,11 @@ export default function DownloadCVModal({
           size={"icon"}
           variant={"outline"}
         >
-          <Download className="h-4 w-4" />
+          {loading ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : (
+            <Download className="h-4 w-4" />
+          )}
           <span className="sr-only">Download</span>
         </Button>
       </DialogTrigger>
@@ -94,11 +98,19 @@ export default function DownloadCVModal({
         </DialogHeader>
         <div className="grid gap-4 mt-4">
           <Button variant={"outline"} size={"lg"} onClick={downloadCV}>
-            <FileText className="mr-2" />
+            {loading ? (
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            ) : (
+              <FileText className="mr-2" />
+            )}
             PDF
           </Button>
           <Button variant={"outline"} size={"lg"} onClick={downloadCVJSON}>
-            <FileJson className="mr-2" />
+            {loading ? (
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            ) : (
+              <FileJson className="mr-2" />
+            )}
             JSON
           </Button>
         </div>
