@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/accordion";
 import { useCV } from "../use-cv";
 import { CVProps, CVComitteeProps } from "@/types/cv-types";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 export function CommitteeForm() {
   const { cv, setCV } = useCV();
@@ -36,6 +37,19 @@ export function CommitteeForm() {
   const setCommittees = (value: CVComitteeProps[]) => {
     updateCommittees({ committees: value });
   };
+
+  const onDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const items = Array.from(committees.committees);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    setCommittees(items);
+  };
+
   return (
     <Card>
       <CardHeader className="text-lg font-bold">Committee</CardHeader>
@@ -74,114 +88,140 @@ export function CommitteeForm() {
               >
                 <PlusCircle />
               </Button>
-              <Accordion type="single" collapsible className="w-full">
-                <div className="space-y-2">
-                  {committees.committees.map((committee, index) => (
-                    <AccordionItem key={index} value={index.toString()}>
-                      <AccordionTrigger>
-                        <div className="items-center justify-center">
-                          <Button
-                            className="mr-1"
-                            variant={"ghost"}
-                            onClick={() => {
-                              const newCommittees =
-                                committees.committees.slice();
-                              newCommittees.splice(index, 1);
-                              setCommittees(newCommittees);
-                            }}
-                          >
-                            <MinusCircle size={20} />
-                          </Button>
-                          {`Committee - ${index + 1}`}
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="space-y-2">
-                        <div className="flex flex-col space-y-1">
-                          <Label
-                            className="ml-1"
-                            htmlFor={`committeeYear-${index}`}
-                          >
-                            Year
-                          </Label>
-                          <Input
-                            className="w-11/12 ml-1"
-                            id={`committeeYear-${index}`}
-                            type="text"
-                            value={committee.year}
-                            onChange={(e) => {
-                              const newCommittees =
-                                committees.committees.slice();
-                              newCommittees[index].year = e.target.value;
-                              setCommittees(newCommittees);
-                            }}
-                          />
-                        </div>
-                        <div className="flex flex-col space-y-1">
-                          <Label
-                            className="ml-1"
-                            htmlFor={`committeePosition-${index}`}
-                          >
-                            Position
-                          </Label>
-                          <Input
-                            className="w-11/12 ml-1"
-                            id={`committeePosition-${index}`}
-                            type="text"
-                            value={committee.position}
-                            onChange={(e) => {
-                              const newCommittees =
-                                committees.committees.slice();
-                              newCommittees[index].position = e.target.value;
-                              setCommittees(newCommittees);
-                            }}
-                          />
-                        </div>
-                        <div className="flex flex-col space-y-1">
-                          <Label
-                            className="ml-1"
-                            htmlFor={`committeeOrganization-${index}`}
-                          >
-                            Organization
-                          </Label>
-                          <Input
-                            className="w-11/12 ml-1"
-                            id={`committeeOrganization-${index}`}
-                            type="text"
-                            value={committee.organization}
-                            onChange={(e) => {
-                              const newCommittees =
-                                committees.committees.slice();
-                              newCommittees[index].organization =
-                                e.target.value;
-                              setCommittees(newCommittees);
-                            }}
-                          />
-                        </div>
-                        <div className="flex flex-col space-y-1">
-                          <Label
-                            className="ml-1"
-                            htmlFor={`committeeLocation-${index}`}
-                          >
-                            Location
-                          </Label>
-                          <Input
-                            className="w-11/12 ml-1"
-                            id={`committeeLocation-${index}`}
-                            type="text"
-                            value={committee.location}
-                            onChange={(e) => {
-                              const newCommittees =
-                                committees.committees.slice();
-                              newCommittees[index].location = e.target.value;
-                              setCommittees(newCommittees);
-                            }}
-                          />
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </div>
-              </Accordion>
+              <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable droppableId="committees">
+                  {(provided) => (
+                    <div
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                      className="space-y-2"
+                    >
+                      {committees.committees.map((committee, index) => (
+                        <Draggable
+                          key={index}
+                          draggableId={`committee-${index}`}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                            >
+                              <AccordionItem key={index} value={index.toString()}>
+                                <AccordionTrigger>
+                                  <div className="items-center justify-center">
+                                    <Button
+                                      className="mr-1"
+                                      variant={"ghost"}
+                                      onClick={() => {
+                                        const newCommittees =
+                                          committees.committees.slice();
+                                        newCommittees.splice(index, 1);
+                                        setCommittees(newCommittees);
+                                      }}
+                                    >
+                                      <MinusCircle size={20} />
+                                    </Button>
+                                    {`Committee - ${index + 1}`}
+                                  </div>
+                                </AccordionTrigger>
+                                <AccordionContent className="space-y-2">
+                                  <div className="flex flex-col space-y-1">
+                                    <Label
+                                      className="ml-1"
+                                      htmlFor={`committeeYear-${index}`}
+                                    >
+                                      Year
+                                    </Label>
+                                    <Input
+                                      className="w-11/12 ml-1"
+                                      id={`committeeYear-${index}`}
+                                      type="text"
+                                      value={committee.year}
+                                      onChange={(e) => {
+                                        const newCommittees =
+                                          committees.committees.slice();
+                                        newCommittees[index].year =
+                                          e.target.value;
+                                        setCommittees(newCommittees);
+                                      }}
+                                    />
+                                  </div>
+                                  <div className="flex flex-col space-y-1">
+                                    <Label
+                                      className="ml-1"
+                                      htmlFor={`committeePosition-${index}`}
+                                    >
+                                      Position
+                                    </Label>
+                                    <Input
+                                      className="w-11/12 ml-1"
+                                      id={`committeePosition-${index}`}
+                                      type="text"
+                                      value={committee.position}
+                                      onChange={(e) => {
+                                        const newCommittees =
+                                          committees.committees.slice();
+                                        newCommittees[index].position =
+                                          e.target.value;
+                                        setCommittees(newCommittees);
+                                      }}
+                                    />
+                                  </div>
+                                  <div className="flex flex-col space-y-1">
+                                    <Label
+                                      className="ml-1"
+                                      htmlFor={`committeeOrganization-${index}`}
+                                    >
+                                      Organization
+                                    </Label>
+                                    <Input
+                                      className="w-11/12 ml-1"
+                                      id={`committeeOrganization-${index}`}
+                                      type="text"
+                                      value={committee.organization}
+                                      onChange={(e) => {
+                                        const newCommittees =
+                                          committees.committees.slice();
+                                        newCommittees[index].organization =
+                                          e.target.value;
+                                        setCommittees(newCommittees);
+                                      }}
+                                    />
+                                  </div>
+                                  <div className="flex flex-col space-y-1">
+                                    <Label
+                                      className="ml-1"
+                                      htmlFor={`committeeLocation-${index}`}
+                                    >
+                                      Location
+                                    </Label>
+                                    <Input
+                                      className="w-11/12 ml-1"
+                                      id={`committeeLocation-${index}`}
+                                      type="text"
+                                      value={committee.location}
+                                      onChange={(e) => {
+                                        const newCommittees =
+                                          committees.committees.slice();
+                                        newCommittees[index].location =
+                                          e.target.value;
+                                        setCommittees(newCommittees);
+                                      }}
+                                    />
+                                  </div>
+                                </AccordionContent>
+                              </AccordionItem>
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+              </DragDropContext>
             </div>
           )}
         </div>

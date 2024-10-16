@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 export default function LanguageForm() {
   const { cv, setCV } = useCV();
@@ -34,6 +35,18 @@ export default function LanguageForm() {
   };
   const setLanguages = (value: CVProps["languages"]["languages"]) => {
     updateLanguages({ languages: value });
+  };
+
+  const onDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const items = Array.from(languages.languages);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    setLanguages(items);
   };
 
   return (
@@ -72,52 +85,76 @@ export default function LanguageForm() {
               >
                 <PlusCircle />
               </Button>
-              <div className="space-y-2">
-                {languages.languages.map((language, index) => (
-                  <div key={index} className="flex items-center space-x-2">
-                    <Input
-                      id={`language-${index}`}
-                      type="text"
-                      value={language.language}
-                      onChange={(e) => {
-                        const newLanguages = [...languages.languages];
-                        newLanguages[index].language = e.target.value;
-                        setLanguages(newLanguages);
-                      }}
-                    />
-                    <Select
-                      value={language.proficiency}
-                      onValueChange={(value) => {
-                        const newLanguages = [...languages.languages];
-                        newLanguages[index].proficiency = value as LanguageProficiency;
-                        setLanguages(newLanguages);
-                      }}
+              <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable droppableId="languages">
+                  {(provided) => (
+                    <div
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                      className="space-y-2"
                     >
-                        <SelectTrigger>
-                            <SelectValue placeholder="Select proficiency" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectGroup>
-                            <SelectItem value="Fluent">Fluent</SelectItem>
-                            <SelectItem value="Proficient">Proficient</SelectItem>
-                            <SelectItem value="Intermediate">Intermediate</SelectItem>
-                            <SelectItem value="Basic">Basic</SelectItem>
-                            </SelectGroup>
-                        </SelectContent>
-                    </Select>
-                    <Button
-                      variant={"ghost"}
-                      onClick={() => {
-                        const newLanguages = [...languages.languages];
-                        newLanguages.splice(index, 1);
-                        setLanguages(newLanguages);
-                      }}
-                    >
-                      <MinusCircle />
-                    </Button>
-                  </div>
-                ))}
-              </div>
+                      {languages.languages.map((language, index) => (
+                        <Draggable
+                          key={index}
+                          draggableId={`language-${index}`}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              className="flex items-center space-x-2"
+                            >
+                              <Input
+                                id={`language-${index}`}
+                                type="text"
+                                value={language.language}
+                                onChange={(e) => {
+                                  const newLanguages = [...languages.languages];
+                                  newLanguages[index].language = e.target.value;
+                                  setLanguages(newLanguages);
+                                }}
+                              />
+                              <Select
+                                value={language.proficiency}
+                                onValueChange={(value) => {
+                                  const newLanguages = [...languages.languages];
+                                  newLanguages[index].proficiency = value as LanguageProficiency;
+                                  setLanguages(newLanguages);
+                                }}
+                              >
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select proficiency" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectGroup>
+                                    <SelectItem value="Fluent">Fluent</SelectItem>
+                                    <SelectItem value="Proficient">Proficient</SelectItem>
+                                    <SelectItem value="Intermediate">Intermediate</SelectItem>
+                                    <SelectItem value="Basic">Basic</SelectItem>
+                                  </SelectGroup>
+                                </SelectContent>
+                              </Select>
+                              <Button
+                                variant={"ghost"}
+                                onClick={() => {
+                                  const newLanguages = [...languages.languages];
+                                  newLanguages.splice(index, 1);
+                                  setLanguages(newLanguages);
+                                }}
+                              >
+                                <MinusCircle />
+                              </Button>
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+              </DragDropContext>
             </div>
           )}
         </div>

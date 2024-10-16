@@ -14,6 +14,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { AccordionItem } from "@radix-ui/react-accordion";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 export function ProjectsForm() {
   const { cv, setCV } = useCV();
@@ -34,6 +35,18 @@ export function ProjectsForm() {
 
   const setProjects = (value: CVProps["projects"]["projects"]) => {
     updateProjects({ projects: value });
+  };
+
+  const onDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const items = Array.from(projects.projects);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    setProjects(items);
   };
 
   return (
@@ -81,251 +94,278 @@ export function ProjectsForm() {
               >
                 <PlusCircle />
               </Button>
-              <Accordion type="single" collapsible className="w-full">
-                <div className="space-y-2">
-                  {projects.projects.map((project, index) => (
-                    <AccordionItem key={index} value={index.toString()}>
-                      <AccordionTrigger>
-                        <div className="items-center justify-center">
-                          <Button
-                            className="mr-1"
-                            variant={"ghost"}
-                            onClick={() => {
-                              const newProjects = cv.projects.projects.slice();
-                              newProjects.splice(index, 1);
-                              setProjects(newProjects);
-                            }}
-                          >
-                            <MinusCircle size={20} />
-                          </Button>
-                          {`Project - ${index + 1}`}
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="space-y-2">
-                        <div className="flex flex-col space-y-1">
-                          <Label
-                            className="ml-1"
-                            htmlFor={`projects-title-${index}`}
-                          >
-                            Title
-                          </Label>
-                          <Input
-                            className="w-11/12 ml-1"
-                            id={`projects-title-${index}`}
-                            type="text"
-                            value={project.title}
-                            onChange={(e) => {
-                              const newProjects = cv.projects.projects.slice();
-                              newProjects[index].title = e.target.value;
-                              setProjects(newProjects);
-                            }}
-                          />
-                        </div>
-                        <div className="flex flex-col space-y-1">
-                          <Label
-                            className="ml-1"
-                            htmlFor={`projects-programmingLanguages-${index}`}
-                          >
-                            Programming Languages
-                          </Label>
-                          <Input
-                            className="w-11/12 ml-1"
-                            id={`projects-programmingLanguages-${index}`}
-                            type="text"
-                            value={project.programmingLanguages.join(", ")}
-                            onChange={(e) => {
-                              const newProjects = cv.projects.projects.slice();
-                              newProjects[index].programmingLanguages =
-                                e.target.value.split(", ");
-                              setProjects(newProjects);
-                            }}
-                          />
-                        </div>
-                        <div className="flex flex-col space-y-1">
-                          <div className="flex flex-row justify-between">
-                            <Label
-                              className="ml-1"
-                              htmlFor={`projects-githubRepoEnabled-${index}`}
+              <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable droppableId="projects">
+                  {(provided) => (
+                    <div
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                      className="space-y-2"
+                    >
+                      {projects.projects.map((project, index) => (
+                        <Draggable
+                          key={index}
+                          draggableId={`project-${index}`}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
                             >
-                              GitHub Repo
-                            </Label>
-                            <Switch
-                              className="mr-1"
-                              id={`projects-githubRepoEnabled-${index}`}
-                              checked={project.githubRepoEnabled}
-                              onCheckedChange={(value) => {
-                                const newProjects =
-                                  cv.projects.projects.slice();
-                                newProjects[index].githubRepoEnabled = value;
-                                setProjects(newProjects);
-                              }}
-                            />
-                          </div>
-                          {project.githubRepoEnabled && (
-                            <Input
-                              className="w-11/12 ml-1"
-                              id={`projects-githubRepo-${index}`}
-                              type="text"
-                              value={project.githubRepo}
-                              onChange={(e) => {
-                                const newProjects =
-                                  cv.projects.projects.slice();
-                                newProjects[index].githubRepo = e.target.value;
-                                setProjects(newProjects);
-                              }}
-                            />
+                              <AccordionItem key={index} value={index.toString()}>
+                                <AccordionTrigger>
+                                  <div className="items-center justify-center">
+                                    <Button
+                                      className="mr-1"
+                                      variant={"ghost"}
+                                      onClick={() => {
+                                        const newProjects =
+                                          cv.projects.projects.slice();
+                                        newProjects.splice(index, 1);
+                                        setProjects(newProjects);
+                                      }}
+                                    >
+                                      <MinusCircle size={20} />
+                                    </Button>
+                                    {`Project - ${index + 1}`}
+                                  </div>
+                                </AccordionTrigger>
+                                <AccordionContent className="space-y-2">
+                                  <div className="flex flex-col space-y-1">
+                                    <Label
+                                      className="ml-1"
+                                      htmlFor={`projects-title-${index}`}
+                                    >
+                                      Title
+                                    </Label>
+                                    <Input
+                                      className="w-11/12 ml-1"
+                                      id={`projects-title-${index}`}
+                                      type="text"
+                                      value={project.title}
+                                      onChange={(e) => {
+                                        const newProjects =
+                                          cv.projects.projects.slice();
+                                        newProjects[index].title = e.target.value;
+                                        setProjects(newProjects);
+                                      }}
+                                    />
+                                  </div>
+                                  <div className="flex flex-col space-y-1">
+                                    <Label
+                                      className="ml-1"
+                                      htmlFor={`projects-programmingLanguages-${index}`}
+                                    >
+                                      Programming Languages
+                                    </Label>
+                                    <Input
+                                      className="w-11/12 ml-1"
+                                      id={`projects-programmingLanguages-${index}`}
+                                      type="text"
+                                      value={project.programmingLanguages.join(", ")}
+                                      onChange={(e) => {
+                                        const newProjects =
+                                          cv.projects.projects.slice();
+                                        newProjects[index].programmingLanguages =
+                                          e.target.value.split(", ");
+                                        setProjects(newProjects);
+                                      }}
+                                    />
+                                  </div>
+                                  <div className="flex flex-col space-y-1">
+                                    <div className="flex flex-row justify-between">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`projects-githubRepoEnabled-${index}`}
+                                      >
+                                        GitHub Repo
+                                      </Label>
+                                      <Switch
+                                        className="mr-1"
+                                        id={`projects-githubRepoEnabled-${index}`}
+                                        checked={project.githubRepoEnabled}
+                                        onCheckedChange={(value) => {
+                                          const newProjects =
+                                            cv.projects.projects.slice();
+                                          newProjects[index].githubRepoEnabled = value;
+                                          setProjects(newProjects);
+                                        }}
+                                      />
+                                    </div>
+                                    {project.githubRepoEnabled && (
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`projects-githubRepo-${index}`}
+                                        type="text"
+                                        value={project.githubRepo}
+                                        onChange={(e) => {
+                                          const newProjects =
+                                            cv.projects.projects.slice();
+                                          newProjects[index].githubRepo = e.target.value;
+                                          setProjects(newProjects);
+                                        }}
+                                      />
+                                    )}
+                                  </div>
+                                  <div className="flex flex-col space-y-1">
+                                    <div className="flex flex-row justify-between">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`projects-linkEnabled-${index}`}
+                                      >
+                                        Link
+                                      </Label>
+                                      <Switch
+                                        className="mr-1"
+                                        id={`projects-linkEnabled-${index}`}
+                                        checked={project.linkEnabled}
+                                        onCheckedChange={(value) => {
+                                          const newProjects =
+                                            cv.projects.projects.slice();
+                                          newProjects[index].linkEnabled = value;
+                                          setProjects(newProjects);
+                                        }}
+                                      />
+                                    </div>
+                                    {project.linkEnabled && (
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`projects-link-${index}`}
+                                        type="text"
+                                        value={project.link}
+                                        onChange={(e) => {
+                                          const newProjects =
+                                            cv.projects.projects.slice();
+                                          newProjects[index].link = e.target.value;
+                                          setProjects(newProjects);
+                                        }}
+                                      />
+                                    )}
+                                  </div>
+                                  <div className="flex flex-col space-y-1">
+                                    <Label
+                                      className="ml-1"
+                                      htmlFor={`projects-startDate-${index}`}
+                                    >
+                                      Start Date
+                                    </Label>
+                                    <Input
+                                      className="w-11/12 ml-1"
+                                      id={`projects-startDate-${index}`}
+                                      type="text"
+                                      value={project.startDate}
+                                      onChange={(e) => {
+                                        const newProjects =
+                                          cv.projects.projects.slice();
+                                        newProjects[index].startDate = e.target.value;
+                                        setProjects(newProjects);
+                                      }}
+                                    />
+                                  </div>
+                                  <div className="flex flex-col space-y-1">
+                                    <div className="flex flex-row justify-between">
+                                      <Label
+                                        className="ml-1"
+                                        htmlFor={`projects-endDateEnabled-${index}`}
+                                      >
+                                        End Date
+                                      </Label>
+                                      <Switch
+                                        className="mr-1"
+                                        id={`projects-endDateEnabled-${index}`}
+                                        checked={project.endDateEnabled}
+                                        onCheckedChange={(value) => {
+                                          const newProjects =
+                                            cv.projects.projects.slice();
+                                          newProjects[index].endDateEnabled = value;
+                                          setProjects(newProjects);
+                                        }}
+                                      />
+                                    </div>
+                                    {project.endDateEnabled && (
+                                      <Input
+                                        className="w-11/12 ml-1"
+                                        id={`projects-endDate-${index}`}
+                                        type="text"
+                                        value={project.endDate}
+                                        onChange={(e) => {
+                                          const newProjects =
+                                            cv.projects.projects.slice();
+                                          newProjects[index].endDate = e.target.value;
+                                          setProjects(newProjects);
+                                        }}
+                                      />
+                                    )}
+                                  </div>
+                                  <div className="flex flex-col space-y-1">
+                                    <Label
+                                      className="ml-1"
+                                      htmlFor={`projects-description-${index}`}
+                                    >
+                                      Description
+                                    </Label>
+                                    {project.description.map(
+                                      (description, descriptionIndex) => (
+                                        <div
+                                          key={descriptionIndex}
+                                          className="flex flex-row ml-1 w-11/12"
+                                        >
+                                          <Button
+                                            className="ml-1"
+                                            variant={"ghost"}
+                                            onClick={() => {
+                                              const newProjects =
+                                                cv.projects.projects.slice();
+                                              newProjects[index].description.splice(
+                                                descriptionIndex,
+                                                1
+                                              );
+                                              setProjects(newProjects);
+                                            }}
+                                          >
+                                            <MinusCircle size={16} />
+                                          </Button>
+                                          <Input
+                                            id={`projects-description-${index}-${descriptionIndex}`}
+                                            type="text"
+                                            value={description}
+                                            onChange={(e) => {
+                                              const newProjects =
+                                                cv.projects.projects.slice();
+                                              newProjects[index].description[
+                                                descriptionIndex
+                                              ] = e.target.value;
+                                              setProjects(newProjects);
+                                            }}
+                                          />
+                                        </div>
+                                      )
+                                    )}
+                                    <Button
+                                      className="w-11/12 items-center justify-center"
+                                      variant={"ghost"}
+                                      onClick={() => {
+                                        const newProjects = cv.projects.projects.slice();
+                                        newProjects[index].description.push("");
+                                        setProjects(newProjects);
+                                      }}
+                                    >
+                                      <PlusCircle size={16} />
+                                    </Button>
+                                  </div>
+                                </AccordionContent>
+                              </AccordionItem>
+                            </div>
                           )}
-                        </div>
-                        <div className="flex flex-col space-y-1">
-                          <div className="flex flex-row justify-between">
-                            <Label
-                              className="ml-1"
-                              htmlFor={`projects-linkEnabled-${index}`}
-                            >
-                              Link
-                            </Label>
-                            <Switch
-                              className="mr-1"
-                              id={`projects-linkEnabled-${index}`}
-                              checked={project.linkEnabled}
-                              onCheckedChange={(value) => {
-                                const newProjects =
-                                  cv.projects.projects.slice();
-                                newProjects[index].linkEnabled = value;
-                                setProjects(newProjects);
-                              }}
-                            />
-                          </div>
-                          {project.linkEnabled && (
-                            <Input
-                              className="w-11/12 ml-1"
-                              id={`projects-link-${index}`}
-                              type="text"
-                              value={project.link}
-                              onChange={(e) => {
-                                const newProjects =
-                                  cv.projects.projects.slice();
-                                newProjects[index].link = e.target.value;
-                                setProjects(newProjects);
-                              }}
-                            />
-                          )}
-                        </div>
-                        <div className="flex flex-col space-y-1">
-                          <Label
-                            className="ml-1"
-                            htmlFor={`projects-startDate-${index}`}
-                          >
-                            Start Date
-                          </Label>
-                          <Input
-                            className="w-11/12 ml-1"
-                            id={`projects-startDate-${index}`}
-                            type="text"
-                            value={project.startDate}
-                            onChange={(e) => {
-                              const newProjects = cv.projects.projects.slice();
-                              newProjects[index].startDate = e.target.value;
-                              setProjects(newProjects);
-                            }}
-                          />
-                        </div>
-                        <div className="flex flex-col space-y-1">
-                          <div className="flex flex-row justify-between">
-                            <Label
-                              className="ml-1"
-                              htmlFor={`projects-endDateEnabled-${index}`}
-                            >
-                              End Date
-                            </Label>
-                            <Switch
-                              className="mr-1"
-                              id={`projects-endDateEnabled-${index}`}
-                              checked={project.endDateEnabled}
-                              onCheckedChange={(value) => {
-                                const newProjects =
-                                  cv.projects.projects.slice();
-                                newProjects[index].endDateEnabled = value;
-                                setProjects(newProjects);
-                              }}
-                            />
-                          </div>
-                          {project.endDateEnabled && (
-                            <Input
-                              className="w-11/12 ml-1"
-                              id={`projects-endDate-${index}`}
-                              type="text"
-                              value={project.endDate}
-                              onChange={(e) => {
-                                const newProjects =
-                                  cv.projects.projects.slice();
-                                newProjects[index].endDate = e.target.value;
-                                setProjects(newProjects);
-                              }}
-                            />
-                          )}
-                        </div>
-                        <div className="flex flex-col space-y-1">
-                          <Label
-                            className="ml-1"
-                            htmlFor={`projects-description-${index}`}
-                          >
-                            Description
-                          </Label>
-                          {project.description.map(
-                            (description, descriptionIndex) => (
-                              <div
-                                key={descriptionIndex}
-                                className="flex flex-row ml-1 w-11/12"
-                              >
-                                <Button
-                                  className="ml-1"
-                                  variant={"ghost"}
-                                  onClick={() => {
-                                    const newProjects =
-                                      cv.projects.projects.slice();
-                                    newProjects[index].description.splice(
-                                      descriptionIndex,
-                                      1
-                                    );
-                                    setProjects(newProjects);
-                                  }}
-                                >
-                                  <MinusCircle size={16} />
-                                </Button>
-                                <Input
-                                  id={`projects-description-${index}-${descriptionIndex}`}
-                                  type="text"
-                                  value={description}
-                                  onChange={(e) => {
-                                    const newProjects =
-                                      cv.projects.projects.slice();
-                                    newProjects[index].description[
-                                      descriptionIndex
-                                    ] = e.target.value;
-                                    setProjects(newProjects);
-                                  }}
-                                />
-                              </div>
-                            )
-                          )}
-                          <Button
-                            className="w-11/12 items-center justify-center"
-                            variant={"ghost"}
-                            onClick={() => {
-                              const newProjects = cv.projects.projects.slice();
-                              newProjects[index].description.push("");
-                              setProjects(newProjects);
-                            }}
-                          >
-                            <PlusCircle size={16} />
-                          </Button>
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </div>
-              </Accordion>
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+              </DragDropContext>
             </div>
           )}
         </div>

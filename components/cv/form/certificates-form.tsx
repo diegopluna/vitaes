@@ -14,6 +14,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 export default function CertificatesForm() {
   const { cv, setCV } = useCV();
@@ -34,6 +35,18 @@ export default function CertificatesForm() {
   };
   const setCertificates = (value: CVProps["certificates"]["certificates"]) => {
     updateCertificates({ certificates: value });
+  };
+
+  const onDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const items = Array.from(certificates.certificates);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    setCertificates(items);
   };
 
   return (
@@ -68,144 +81,180 @@ export default function CertificatesForm() {
             >
               <PlusCircle />
             </Button>
-            <Accordion type="single" collapsible className="w-full">
-              <div className="space-y-2">
-                {certificates.certificates.map((certificate, index) => (
-                  <AccordionItem key={index} value={index.toString()}>
-                    <AccordionTrigger>
-                      <div className="items-center justify-center">
-                        <Button
-                          className="mr-1"
-                          variant={"ghost"}
-                          onClick={() => {
-                            const newCertificates =
-                              certificates.certificates.slice();
-                            newCertificates.splice(index, 1);
-                            setCertificates(newCertificates);
-                          }}
-                        >
-                          <MinusCircle size={20} />
-                        </Button>
-                        {certificate.title
-                          ? certificate.title
-                          : `Certificate-${index}`}
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent className="space-y-2">
-                      <div className="space-y-1">
-                        <Label htmlFor={`certificateTitle-${index}`}>
-                          Title
-                        </Label>
-                        <Input
-                          id={`certificateTitle-${index}`}
-                          className="w-11/12 ml-1"
-                          type="text"
-                          value={certificate.title}
-                          onChange={(e) => {
-                            const newCertificates = [
-                              ...certificates.certificates,
-                            ];
-                            newCertificates[index].title = e.target.value;
-                            setCertificates(newCertificates);
-                          }}
-                        />
-                      </div>
-                      <div className="space-y-1">
-                        <Label htmlFor={`certificateIssuer-${index}`}>
-                          Issuer
-                        </Label>
-                        <Input
-                          id={`certificateIssuer-${index}`}
-                          type="text"
-                          className="w-11/12 ml-1"
-                          value={certificate.issuer}
-                          onChange={(e) => {
-                            const newCertificates = [
-                              ...certificates.certificates,
-                            ];
-                            newCertificates[index].issuer = e.target.value;
-                            setCertificates(newCertificates);
-                          }}
-                        />
-                      </div>
-                      <div className="space-y-1">
-                        <Label htmlFor={`certificateDate-${index}`}>Date</Label>
-                        <Input
-                          id={`certificateDate-${index}`}
-                          type="text"
-                          className="w-11/12 ml-1"
-                          value={certificate.date}
-                          onChange={(e) => {
-                            const newCertificates = [
-                              ...certificates.certificates,
-                            ];
-                            newCertificates[index].date = e.target.value;
-                            setCertificates(newCertificates);
-                          }}
-                        />
-                      </div>
-                      <div className="flex flex-col space-y-1">
-                        <Label htmlFor={`certificateDescriptions-${index}`}>
-                          Descriptions
-                        </Label>
-                        {certificate.descriptions.map(
-                          (description, descriptionIndex) => (
-                            <div
-                              className="flex flex-row ml-1 w-11/12"
-                              key={descriptionIndex}
-                            >
-                              <Button
-                                variant={"ghost"}
-                                onClick={() => {
-                                  const newCertificates = [
-                                    ...certificates.certificates,
-                                  ];
-                                  newCertificates[index].descriptions.splice(
-                                    descriptionIndex,
-                                    1
-                                  );
-                                  setCertificates(newCertificates);
-                                }}
-                              >
-                                <MinusCircle size={16} />
-                              </Button>
-                              <Input
-                                id={`certificateDescription-${index}`}
-                                type="text"
-                                className="w-11/12 ml-1"
-                                value={description}
-                                onChange={(e) => {
-                                  const newCertificates = [
-                                    ...certificates.certificates,
-                                  ];
-                                  newCertificates[index].descriptions[
-                                    descriptionIndex
-                                  ] = e.target.value;
-                                  setCertificates(newCertificates);
-                                }}
-                              />
-                            </div>
-                          )
+            <DragDropContext onDragEnd={onDragEnd}>
+              <Droppable droppableId="certificates">
+                {(provided) => (
+                  <div
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                    className="space-y-2"
+                  >
+                    {certificates.certificates.map((certificate, index) => (
+                      <Draggable
+                        key={index}
+                        draggableId={`certificate-${index}`}
+                        index={index}
+                      >
+                        {(provided) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <AccordionItem value={index.toString()}>
+                              <AccordionTrigger>
+                                <div className="items-center justify-center">
+                                  <Button
+                                    className="mr-1"
+                                    variant={"ghost"}
+                                    onClick={() => {
+                                      const newCertificates =
+                                        certificates.certificates.slice();
+                                      newCertificates.splice(index, 1);
+                                      setCertificates(newCertificates);
+                                    }}
+                                  >
+                                    <MinusCircle size={20} />
+                                  </Button>
+                                  {certificate.title
+                                    ? certificate.title
+                                    : `Certificate-${index}`}
+                                </div>
+                              </AccordionTrigger>
+                              <AccordionContent className="space-y-2">
+                                <div className="space-y-1">
+                                  <Label htmlFor={`certificateTitle-${index}`}>
+                                    Title
+                                  </Label>
+                                  <Input
+                                    id={`certificateTitle-${index}`}
+                                    className="w-11/12 ml-1"
+                                    type="text"
+                                    value={certificate.title}
+                                    onChange={(e) => {
+                                      const newCertificates = [
+                                        ...certificates.certificates,
+                                      ];
+                                      newCertificates[index].title =
+                                        e.target.value;
+                                      setCertificates(newCertificates);
+                                    }}
+                                  />
+                                </div>
+                                <div className="space-y-1">
+                                  <Label htmlFor={`certificateIssuer-${index}`}>
+                                    Issuer
+                                  </Label>
+                                  <Input
+                                    id={`certificateIssuer-${index}`}
+                                    type="text"
+                                    className="w-11/12 ml-1"
+                                    value={certificate.issuer}
+                                    onChange={(e) => {
+                                      const newCertificates = [
+                                        ...certificates.certificates,
+                                      ];
+                                      newCertificates[index].issuer =
+                                        e.target.value;
+                                      setCertificates(newCertificates);
+                                    }}
+                                  />
+                                </div>
+                                <div className="space-y-1">
+                                  <Label htmlFor={`certificateDate-${index}`}>
+                                    Date
+                                  </Label>
+                                  <Input
+                                    id={`certificateDate-${index}`}
+                                    type="text"
+                                    className="w-11/12 ml-1"
+                                    value={certificate.date}
+                                    onChange={(e) => {
+                                      const newCertificates = [
+                                        ...certificates.certificates,
+                                      ];
+                                      newCertificates[index].date =
+                                        e.target.value;
+                                      setCertificates(newCertificates);
+                                    }}
+                                  />
+                                </div>
+                                <div className="flex flex-col space-y-1">
+                                  <Label
+                                    htmlFor={`certificateDescriptions-${index}`}
+                                  >
+                                    Descriptions
+                                  </Label>
+                                  {certificate.descriptions.map(
+                                    (description, descriptionIndex) => (
+                                      <div
+                                        className="flex flex-row ml-1 w-11/12"
+                                        key={descriptionIndex}
+                                      >
+                                        <Button
+                                          variant={"ghost"}
+                                          onClick={() => {
+                                            const newCertificates = [
+                                              ...certificates.certificates,
+                                            ];
+                                            newCertificates[
+                                              index
+                                            ].descriptions.splice(
+                                              descriptionIndex,
+                                              1
+                                            );
+                                            setCertificates(newCertificates);
+                                          }}
+                                        >
+                                          <MinusCircle size={16} />
+                                        </Button>
+                                        <Input
+                                          id={`certificateDescription-${index}`}
+                                          type="text"
+                                          className="w-11/12 ml-1"
+                                          value={description}
+                                          onChange={(e) => {
+                                            const newCertificates = [
+                                              ...certificates.certificates,
+                                            ];
+                                            newCertificates[
+                                              index
+                                            ].descriptions[
+                                              descriptionIndex
+                                            ] = e.target.value;
+                                            setCertificates(newCertificates);
+                                          }}
+                                        />
+                                      </div>
+                                    )
+                                  )}
+                                  <Button
+                                    className="w-11/12 items-center justify-center"
+                                    variant={"ghost"}
+                                    onClick={() => {
+                                      const newCertificates = [
+                                        ...certificates.certificates,
+                                      ];
+                                      newCertificates[index].descriptions.push(
+                                        ""
+                                      );
+                                      setCertificates(newCertificates);
+                                    }}
+                                  >
+                                    <PlusCircle size={16} />
+                                  </Button>
+                                </div>
+                              </AccordionContent>
+                            </AccordionItem>
+                          </div>
                         )}
-                        <Button
-                          className="w-11/12 items-center justify-center"
-                          variant={"ghost"}
-                          onClick={() => {
-                            const newCertificates = [
-                              ...certificates.certificates,
-                            ];
-                            newCertificates[index].descriptions.push("");
-                            setCertificates(newCertificates);
-                          }}
-                        >
-                          <PlusCircle size={16} />
-                        </Button>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </div>
-            </Accordion>
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            </DragDropContext>
           </div>
         )}
       </CardContent>

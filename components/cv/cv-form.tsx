@@ -62,6 +62,7 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { updateCV, uploadCV } from "@/server/actions";
 import kendallRoyCV from "./example-cvs/kendall-roy";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 function TabTriggerHelper({
   icon,
@@ -129,166 +130,321 @@ export default function CVForm({
     }
   }
 
+  const onDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const items = Array.from(cv.items);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    setCV({ ...cv, items });
+  };
+
   return (
-    <ResizablePanelGroup
-      direction="horizontal"
-      className="min-w-[1000px] w-full rounded-lg border"
-    >
-      <ResizablePanel className="min-w-[400px]" defaultSize={50}>
-        <div className="flex h-full items-start justify-center p-6">
-          <Tabs defaultValue="personal" className="flex flex-row w-full">
-            <TabsList className="mt-2 mr-2 grid h-full grid-rows-13">
-              <TooltipProvider>
-                <TabTriggerHelper
-                  icon={<UserRound />}
-                  id="personal"
-                  tooltip="Personal Info"
-                />
-                <TabTriggerHelper
-                  icon={<ScrollText />}
-                  id="summary"
-                  tooltip="Summary"
-                />
-                <TabTriggerHelper
-                  icon={<Briefcase />}
-                  id="experience"
-                  tooltip="Work Experience"
-                />
-                <TabTriggerHelper
-                  icon={<Medal />}
-                  id="honors"
-                  tooltip="Honors & Awards"
-                />
-                <TabTriggerHelper
-                  icon={<Presentation />}
-                  id="presentation"
-                  tooltip="Presentations"
-                />
-                <TabTriggerHelper
-                  icon={<Pen />}
-                  id="writing"
-                  tooltip="Writings"
-                />
-                <TabTriggerHelper
-                  icon={<UsersRound />}
-                  id="committee"
-                  tooltip="Committees"
-                />
-                <TabTriggerHelper
-                  icon={<GraduationCap />}
-                  id="education"
-                  tooltip="Education"
-                />
-                <TabTriggerHelper
-                  icon={<NotebookPen />}
-                  id="extracurricular"
-                  tooltip="Extracurricular Activities"
-                />
-                <TabTriggerHelper
-                  icon={<PencilRuler />}
-                  id="projects"
-                  tooltip="Projects"
-                />
-                <TabTriggerHelper
-                  icon={<Languages />}
-                  id="languages"
-                  tooltip="Languages"
-                />
-                <TabTriggerHelper
-                  icon={<FileCheck />}
-                  id="certificates"
-                  tooltip="Certificates"
-                />
-                <TabTriggerHelper
-                  icon={<Settings />}
-                  id="settings"
-                  tooltip="Settings"
-                />
-              </TooltipProvider>
-            </TabsList>
-            <TabsContent className="w-full" value="personal">
-              <PersonalForm />
-            </TabsContent>
-            <TabsContent className="w-full" value="summary">
-              <SummaryForm />
-            </TabsContent>
-            <TabsContent className="w-full" value="experience">
-              <ExperienceForm />
-            </TabsContent>
-            <TabsContent className="w-full" value="honors">
-              <HonorForm />
-            </TabsContent>
-            <TabsContent className="w-full" value="presentation">
-              <PresentationForm />
-            </TabsContent>
-            <TabsContent className="w-full" value="writing">
-              <WritingForm />
-            </TabsContent>
-            <TabsContent className="w-full" value="committee">
-              <CommitteeForm />
-            </TabsContent>
-            <TabsContent className="w-full" value="education">
-              <EducationForm />
-            </TabsContent>
-            <TabsContent className="w-full" value="extracurricular">
-              <ExtracurricularForm />
-            </TabsContent>
-            <TabsContent className="w-full" value="projects">
-              <ProjectsForm />
-            </TabsContent>
-            <TabsContent className="w-full" value="languages">
-              <LanguageForm />
-            </TabsContent>
-            <TabsContent className="w-full" value="certificates">
-              <CertificatesForm />
-            </TabsContent>
-            <TabsContent className="w-full" value="settings">
-              <CVSettingsForm />
-            </TabsContent>
-          </Tabs>
-        </div>
-      </ResizablePanel>
-      <ResizableHandle withHandle />
-      <ResizablePanel
-        className="min-w-[190mm] flex flex-col place-content-center items-center"
-        defaultSize={50}
+    <DragDropContext onDragEnd={onDragEnd}>
+      <ResizablePanelGroup
+        direction="horizontal"
+        className="min-w-[1000px] w-full rounded-lg border"
       >
-        <div className="flex flex-row gap-4 my-2">
-          <ExportCVModal cv={cv} name={cvName} />
-          {session?.user && (
-            <Dialog open={open} onOpenChange={setOpen}>
-              <DialogTrigger asChild>
-                <Button variant={"default"}>
-                  <Save className="mr-2" />
-                  Save
-                </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Save CV</DialogTitle>
-                  <DialogDescription>
-                    Save your CV to the cloud.
-                  </DialogDescription>
-                </DialogHeader>
-                <div className="grid gap-4 mt-4">
-                  <Label>Name</Label>
-                  <Input
-                    type="text"
-                    value={cvName as string}
-                    onChange={(e) => setCVName(e.target.value)}
+        <ResizablePanel className="min-w-[400px]" defaultSize={50}>
+          <div className="flex h-full items-start justify-center p-6">
+            <Tabs defaultValue="personal" className="flex flex-row w-full">
+              <TabsList className="mt-2 mr-2 grid h-full grid-rows-13">
+                <TooltipProvider>
+                  <TabTriggerHelper
+                    icon={<UserRound />}
+                    id="personal"
+                    tooltip="Personal Info"
                   />
-                  <Button variant={"outline"} size={"lg"} onClick={saveCV}>
+                  <TabTriggerHelper
+                    icon={<ScrollText />}
+                    id="summary"
+                    tooltip="Summary"
+                  />
+                  <TabTriggerHelper
+                    icon={<Briefcase />}
+                    id="experience"
+                    tooltip="Work Experience"
+                  />
+                  <TabTriggerHelper
+                    icon={<Medal />}
+                    id="honors"
+                    tooltip="Honors & Awards"
+                  />
+                  <TabTriggerHelper
+                    icon={<Presentation />}
+                    id="presentation"
+                    tooltip="Presentations"
+                  />
+                  <TabTriggerHelper
+                    icon={<Pen />}
+                    id="writing"
+                    tooltip="Writings"
+                  />
+                  <TabTriggerHelper
+                    icon={<UsersRound />}
+                    id="committee"
+                    tooltip="Committees"
+                  />
+                  <TabTriggerHelper
+                    icon={<GraduationCap />}
+                    id="education"
+                    tooltip="Education"
+                  />
+                  <TabTriggerHelper
+                    icon={<NotebookPen />}
+                    id="extracurricular"
+                    tooltip="Extracurricular Activities"
+                  />
+                  <TabTriggerHelper
+                    icon={<PencilRuler />}
+                    id="projects"
+                    tooltip="Projects"
+                  />
+                  <TabTriggerHelper
+                    icon={<Languages />}
+                    id="languages"
+                    tooltip="Languages"
+                  />
+                  <TabTriggerHelper
+                    icon={<FileCheck />}
+                    id="certificates"
+                    tooltip="Certificates"
+                  />
+                  <TabTriggerHelper
+                    icon={<Settings />}
+                    id="settings"
+                    tooltip="Settings"
+                  />
+                </TooltipProvider>
+              </TabsList>
+              <Droppable droppableId="tabs">
+                {(provided) => (
+                  <div
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                    className="w-full"
+                  >
+                    <Draggable draggableId="personal" index={0}>
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <TabsContent value="personal">
+                            <PersonalForm />
+                          </TabsContent>
+                        </div>
+                      )}
+                    </Draggable>
+                    <Draggable draggableId="summary" index={1}>
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <TabsContent value="summary">
+                            <SummaryForm />
+                          </TabsContent>
+                        </div>
+                      )}
+                    </Draggable>
+                    <Draggable draggableId="experience" index={2}>
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <TabsContent value="experience">
+                            <ExperienceForm />
+                          </TabsContent>
+                        </div>
+                      )}
+                    </Draggable>
+                    <Draggable draggableId="honors" index={3}>
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <TabsContent value="honors">
+                            <HonorForm />
+                          </TabsContent>
+                        </div>
+                      )}
+                    </Draggable>
+                    <Draggable draggableId="presentation" index={4}>
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <TabsContent value="presentation">
+                            <PresentationForm />
+                          </TabsContent>
+                        </div>
+                      )}
+                    </Draggable>
+                    <Draggable draggableId="writing" index={5}>
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <TabsContent value="writing">
+                            <WritingForm />
+                          </TabsContent>
+                        </div>
+                      )}
+                    </Draggable>
+                    <Draggable draggableId="committee" index={6}>
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <TabsContent value="committee">
+                            <CommitteeForm />
+                          </TabsContent>
+                        </div>
+                      )}
+                    </Draggable>
+                    <Draggable draggableId="education" index={7}>
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <TabsContent value="education">
+                            <EducationForm />
+                          </TabsContent>
+                        </div>
+                      )}
+                    </Draggable>
+                    <Draggable draggableId="extracurricular" index={8}>
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <TabsContent value="extracurricular">
+                            <ExtracurricularForm />
+                          </TabsContent>
+                        </div>
+                      )}
+                    </Draggable>
+                    <Draggable draggableId="projects" index={9}>
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <TabsContent value="projects">
+                            <ProjectsForm />
+                          </TabsContent>
+                        </div>
+                      )}
+                    </Draggable>
+                    <Draggable draggableId="languages" index={10}>
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <TabsContent value="languages">
+                            <LanguageForm />
+                          </TabsContent>
+                        </div>
+                      )}
+                    </Draggable>
+                    <Draggable draggableId="certificates" index={11}>
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <TabsContent value="certificates">
+                            <CertificatesForm />
+                          </TabsContent>
+                        </div>
+                      )}
+                    </Draggable>
+                    <Draggable draggableId="settings" index={12}>
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <TabsContent value="settings">
+                            <CVSettingsForm />
+                          </TabsContent>
+                        </div>
+                      )}
+                    </Draggable>
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            </Tabs>
+          </div>
+        </ResizablePanel>
+        <ResizableHandle withHandle />
+        <ResizablePanel
+          className="min-w-[190mm] flex flex-col place-content-center items-center"
+          defaultSize={50}
+        >
+          <div className="flex flex-row gap-4 my-2">
+            <ExportCVModal cv={cv} name={cvName} />
+            {session?.user && (
+              <Dialog open={open} onOpenChange={setOpen}>
+                <DialogTrigger asChild>
+                  <Button variant={"default"}>
+                    <Save className="mr-2" />
                     Save
                   </Button>
-                </div>
-              </DialogContent>
-            </Dialog>
-          )}
-        </div>
-        <DisplayFrame scale={0.75}>
-          <CV cv={cv} />
-        </DisplayFrame>
-      </ResizablePanel>
-    </ResizablePanelGroup>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Save CV</DialogTitle>
+                    <DialogDescription>
+                      Save your CV to the cloud.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="grid gap-4 mt-4">
+                    <Label>Name</Label>
+                    <Input
+                      type="text"
+                      value={cvName as string}
+                      onChange={(e) => setCVName(e.target.value)}
+                    />
+                    <Button variant={"outline"} size={"lg"} onClick={saveCV}>
+                      Save
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            )}
+          </div>
+          <DisplayFrame scale={0.75}>
+            <CV cv={cv} />
+          </DisplayFrame>
+        </ResizablePanel>
+      </ResizablePanelGroup>
+    </DragDropContext>
   );
 }
