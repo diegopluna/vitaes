@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { CVEducationProps, CVProps } from "@/types/cv-types";
 import { Input } from "@/components/ui/input";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 export function EducationForm() {
   const { cv, setCV } = useCV();
@@ -33,6 +34,18 @@ export function EducationForm() {
   };
   const setEducations = (value: CVEducationProps[]) => {
     updateEducations({ educations: value });
+  };
+
+  const onDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const items = Array.from(educations.educations);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    setEducations(items);
   };
 
   return (
@@ -75,190 +88,222 @@ export function EducationForm() {
               >
                 <PlusCircle />
               </Button>
-              <Accordion type="single" collapsible className="w-full">
-                <div className="space-y-2">
-                  {educations.educations.map((education, index) => (
-                    <AccordionItem key={index} value={index.toString()}>
-                      <AccordionTrigger>
-                        <div className="items-center justify-center">
-                          <Button
-                            className="mr-1"
-                            variant={"ghost"}
-                            onClick={() => {
-                              const newEducations =
-                                educations.educations.slice();
-                              newEducations.splice(index, 1);
-                              setEducations(newEducations);
-                            }}
-                          >
-                            <MinusCircle size={20} />
-                          </Button>
-                          {`Education - ${index + 1}`}
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="space-y-2">
-                        <div className="flex flex-col space-y-1">
-                          <Label
-                            className="ml-1"
-                            htmlFor={`educationDegree-${index}`}
-                          >
-                            Degree
-                          </Label>
-                          <Input
-                            className="w-11/12 ml-1"
-                            id={`educationDegree-${index}`}
-                            type="text"
-                            value={education.degree}
-                            onChange={(e) => {
-                              const newEducations =
-                                educations.educations.slice();
-                              newEducations[index].degree = e.target.value;
-                              setEducations(newEducations);
-                            }}
-                          />
-                        </div>
-                        <div className="flex flex-col space-y-1">
-                          <Label
-                            className="ml-1"
-                            htmlFor={`educationSchool-${index}`}
-                          >
-                            School
-                          </Label>
-                          <Input
-                            className="w-11/12 ml-1"
-                            id={`educationSchool-${index}`}
-                            type="text"
-                            value={education.school}
-                            onChange={(e) => {
-                              const newEducations =
-                                educations.educations.slice();
-                              newEducations[index].school = e.target.value;
-                              setEducations(newEducations);
-                            }}
-                          />
-                        </div>
-                        <div className="flex flex-col space-y-1">
-                          <Label
-                            className="ml-1"
-                            htmlFor={`educationStartDate-${index}`}
-                          >
-                            Start Date
-                          </Label>
-                          <Input
-                            className="w-11/12 ml-1"
-                            id={`educationStartDate-${index}`}
-                            type="text"
-                            value={education.startDate}
-                            onChange={(e) => {
-                              const newEducations =
-                                educations.educations.slice();
-                              newEducations[index].startDate = e.target.value;
-                              setEducations(newEducations);
-                            }}
-                          />
-                        </div>
-                        <div className="flex flex-col space-y-1">
-                          <Label
-                            className="ml-1"
-                            htmlFor={`educationEndDate-${index}`}
-                          >
-                            End Date
-                          </Label>
-                          <Input
-                            className="w-11/12 ml-1"
-                            id={`educationEndDate-${index}`}
-                            type="text"
-                            value={education.endDate}
-                            onChange={(e) => {
-                              const newEducations =
-                                educations.educations.slice();
-                              newEducations[index].endDate = e.target.value;
-                              setEducations(newEducations);
-                            }}
-                          />
-                        </div>
-                        <div className="flex flex-col space-y-1">
-                          <Label
-                            className="ml-1"
-                            htmlFor={`educationLocation-${index}`}
-                          >
-                            Location
-                          </Label>
-                          <Input
-                            className="w-11/12 ml-1"
-                            id={`educationLocation-${index}`}
-                            type="text"
-                            value={education.location}
-                            onChange={(e) => {
-                              const newEducations =
-                                educations.educations.slice();
-                              newEducations[index].location = e.target.value;
-                              setEducations(newEducations);
-                            }}
-                          />
-                        </div>
-                        <div className="flex flex-col space-y-1">
-                          <Label
-                            className="ml-1"
-                            htmlFor={`educationContent-${index}`}
-                          >
-                            Description
-                          </Label>
-                          {education.description.map(
-                            (description, descriptionIndex) => (
-                              <div
-                                className="flex flex-row ml-1 w-11/12"
-                                key={descriptionIndex}
-                              >
-                                <Button
-                                  variant={"ghost"}
-                                  onClick={() => {
-                                    const newEducations =
-                                      educations.educations.slice();
-                                    newEducations[index].description.splice(
-                                      descriptionIndex,
-                                      1
-                                    );
-                                    setEducations(newEducations);
-                                  }}
-                                >
-                                  <MinusCircle size={16} />
-                                </Button>
-                                <Input
-                                  key={descriptionIndex}
-                                  id={`educationContent-${index}`}
-                                  type="text"
-                                  value={description}
-                                  onChange={(e) => {
-                                    const newEducations =
-                                      educations.educations.slice();
-                                    newEducations[index].description[
-                                      descriptionIndex
-                                    ] = e.target.value;
-                                    setEducations(newEducations);
-                                  }}
-                                />
-                              </div>
-                            )
+              <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable droppableId="educations">
+                  {(provided) => (
+                    <div
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                      className="space-y-2"
+                    >
+                      {educations.educations.map((education, index) => (
+                        <Draggable
+                          key={index}
+                          draggableId={`education-${index}`}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                            >
+                              <AccordionItem key={index} value={index.toString()}>
+                                <AccordionTrigger>
+                                  <div className="items-center justify-center">
+                                    <Button
+                                      className="mr-1"
+                                      variant={"ghost"}
+                                      onClick={() => {
+                                        const newEducations =
+                                          educations.educations.slice();
+                                        newEducations.splice(index, 1);
+                                        setEducations(newEducations);
+                                      }}
+                                    >
+                                      <MinusCircle size={20} />
+                                    </Button>
+                                    {`Education - ${index + 1}`}
+                                  </div>
+                                </AccordionTrigger>
+                                <AccordionContent className="space-y-2">
+                                  <div className="flex flex-col space-y-1">
+                                    <Label
+                                      className="ml-1"
+                                      htmlFor={`educationDegree-${index}`}
+                                    >
+                                      Degree
+                                    </Label>
+                                    <Input
+                                      className="w-11/12 ml-1"
+                                      id={`educationDegree-${index}`}
+                                      type="text"
+                                      value={education.degree}
+                                      onChange={(e) => {
+                                        const newEducations =
+                                          educations.educations.slice();
+                                        newEducations[index].degree =
+                                          e.target.value;
+                                        setEducations(newEducations);
+                                      }}
+                                    />
+                                  </div>
+                                  <div className="flex flex-col space-y-1">
+                                    <Label
+                                      className="ml-1"
+                                      htmlFor={`educationSchool-${index}`}
+                                    >
+                                      School
+                                    </Label>
+                                    <Input
+                                      className="w-11/12 ml-1"
+                                      id={`educationSchool-${index}`}
+                                      type="text"
+                                      value={education.school}
+                                      onChange={(e) => {
+                                        const newEducations =
+                                          educations.educations.slice();
+                                        newEducations[index].school =
+                                          e.target.value;
+                                        setEducations(newEducations);
+                                      }}
+                                    />
+                                  </div>
+                                  <div className="flex flex-col space-y-1">
+                                    <Label
+                                      className="ml-1"
+                                      htmlFor={`educationStartDate-${index}`}
+                                    >
+                                      Start Date
+                                    </Label>
+                                    <Input
+                                      className="w-11/12 ml-1"
+                                      id={`educationStartDate-${index}`}
+                                      type="text"
+                                      value={education.startDate}
+                                      onChange={(e) => {
+                                        const newEducations =
+                                          educations.educations.slice();
+                                        newEducations[index].startDate =
+                                          e.target.value;
+                                        setEducations(newEducations);
+                                      }}
+                                    />
+                                  </div>
+                                  <div className="flex flex-col space-y-1">
+                                    <Label
+                                      className="ml-1"
+                                      htmlFor={`educationEndDate-${index}`}
+                                    >
+                                      End Date
+                                    </Label>
+                                    <Input
+                                      className="w-11/12 ml-1"
+                                      id={`educationEndDate-${index}`}
+                                      type="text"
+                                      value={education.endDate}
+                                      onChange={(e) => {
+                                        const newEducations =
+                                          educations.educations.slice();
+                                        newEducations[index].endDate =
+                                          e.target.value;
+                                        setEducations(newEducations);
+                                      }}
+                                    />
+                                  </div>
+                                  <div className="flex flex-col space-y-1">
+                                    <Label
+                                      className="ml-1"
+                                      htmlFor={`educationLocation-${index}`}
+                                    >
+                                      Location
+                                    </Label>
+                                    <Input
+                                      className="w-11/12 ml-1"
+                                      id={`educationLocation-${index}`}
+                                      type="text"
+                                      value={education.location}
+                                      onChange={(e) => {
+                                        const newEducations =
+                                          educations.educations.slice();
+                                        newEducations[index].location =
+                                          e.target.value;
+                                        setEducations(newEducations);
+                                      }}
+                                    />
+                                  </div>
+                                  <div className="flex flex-col space-y-1">
+                                    <Label
+                                      className="ml-1"
+                                      htmlFor={`educationContent-${index}`}
+                                    >
+                                      Description
+                                    </Label>
+                                    {education.description.map(
+                                      (description, descriptionIndex) => (
+                                        <div
+                                          className="flex flex-row ml-1 w-11/12"
+                                          key={descriptionIndex}
+                                        >
+                                          <Button
+                                            variant={"ghost"}
+                                            onClick={() => {
+                                              const newEducations =
+                                                educations.educations.slice();
+                                              newEducations[
+                                                index
+                                              ].description.splice(
+                                                descriptionIndex,
+                                                1
+                                              );
+                                              setEducations(newEducations);
+                                            }}
+                                          >
+                                            <MinusCircle size={16} />
+                                          </Button>
+                                          <Input
+                                            key={descriptionIndex}
+                                            id={`educationContent-${index}`}
+                                            type="text"
+                                            value={description}
+                                            onChange={(e) => {
+                                              const newEducations =
+                                                educations.educations.slice();
+                                              newEducations[index].description[
+                                                descriptionIndex
+                                              ] = e.target.value;
+                                              setEducations(newEducations);
+                                            }}
+                                          />
+                                        </div>
+                                      )
+                                    )}
+                                    <Button
+                                      className="w-11/12 items-center justify-center"
+                                      variant={"ghost"}
+                                      onClick={() => {
+                                        const newEducations =
+                                          educations.educations.slice();
+                                        newEducations[index].description.push(
+                                          ""
+                                        );
+                                        setEducations(newEducations);
+                                      }}
+                                    >
+                                      <PlusCircle size={16} />
+                                    </Button>
+                                  </div>
+                                </AccordionContent>
+                              </AccordionItem>
+                            </div>
                           )}
-                          <Button
-                            className="w-11/12 items-center justify-center"
-                            variant={"ghost"}
-                            onClick={() => {
-                              const newEducations =
-                                educations.educations.slice();
-                              newEducations[index].description.push("");
-                              setEducations(newEducations);
-                            }}
-                          >
-                            <PlusCircle size={16} />
-                          </Button>
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </div>
-              </Accordion>
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+              </DragDropContext>
             </div>
           )}
         </div>

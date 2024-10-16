@@ -20,6 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { isCV } from "@/lib/cv-helper";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 type Option<T extends string> = {
   value: T;
@@ -171,31 +172,80 @@ export default function CVSettingsForm() {
     }
   };
 
+  const onDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const items = Array.from(cv.settings.items);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    setCV({ ...cv, settings: { ...cv.settings, items } });
+  };
+
   return (
-    <Card>
-      <CardHeader className="text-lg font-bold">Settings</CardHeader>
-      <CardContent className="space-y-2">
-        <Selector
-          label="Model"
-          value={cv.settings.model}
-          onValueChange={(value) =>
-            setCV((prev) => ({
-              ...prev,
-              settings: { ...prev.settings, model: value },
-            }))
-          }
-          options={[
-            { value: "awesome-cv", label: "Awesome CV" },
-            { value: "ubaga-cv", label: "Just your name in different colors" },
-          ]}
-        />
-        {cv.settings.model === "awesome-cv" && <AwesomeCVSettingsForm />}
-        {cv.settings.model === "ubaga-cv" && <UbagaCV />}
-        <div className="space-y-1">
-          <Label htmlFor="loadCV">Load CV from JSON</Label>
-          <Input type="file" accept=".json" id="loadCV" onChange={loadCV} />
-        </div>
-      </CardContent>
-    </Card>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <Droppable droppableId="settings">
+        {(provided) => (
+          <div {...provided.droppableProps} ref={provided.innerRef}>
+            <Card>
+              <CardHeader className="text-lg font-bold">Settings</CardHeader>
+              <CardContent className="space-y-2">
+                <Draggable draggableId="model" index={0}>
+                  {(provided) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
+                      <Selector
+                        label="Model"
+                        value={cv.settings.model}
+                        onValueChange={(value) =>
+                          setCV((prev) => ({
+                            ...prev,
+                            settings: { ...prev.settings, model: value },
+                          }))
+                        }
+                        options={[
+                          { value: "awesome-cv", label: "Awesome CV" },
+                          {
+                            value: "ubaga-cv",
+                            label: "Just your name in different colors",
+                          },
+                        ]}
+                      />
+                    </div>
+                  )}
+                </Draggable>
+                {cv.settings.model === "awesome-cv" && <AwesomeCVSettingsForm />}
+                {cv.settings.model === "ubaga-cv" && <UbagaCV />}
+                <Draggable draggableId="loadCV" index={1}>
+                  {(provided) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
+                      <div className="space-y-1">
+                        <Label htmlFor="loadCV">Load CV from JSON</Label>
+                        <Input
+                          type="file"
+                          accept=".json"
+                          id="loadCV"
+                          onChange={loadCV}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </Draggable>
+              </CardContent>
+            </Card>
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+    </DragDropContext>
   );
 }
