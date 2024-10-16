@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Button } from "../ui/button";
-import { Download, FileText, FileJson } from "lucide-react";
+import { Download, FileText, FileJson, Loader2 } from "lucide-react";
 import { CVProps } from "@/types/cv-types";
 import { toast } from "sonner";
 
@@ -21,10 +21,11 @@ export default function DownloadCVModal({
   cv: CVProps;
 }) {
   const [open, setOpen] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
+  const [loadingPDF, setLoadingPDF] = React.useState(false);
+  const [loadingJSON, setLoadingJSON] = React.useState(false);
 
   const downloadCVJSON = async () => {
-    setLoading(true);
+    setLoadingJSON(true);
     try {
       const json = JSON.stringify(cv);
       const blob = new Blob([json], { type: "application/json" });
@@ -38,13 +39,13 @@ export default function DownloadCVModal({
     } catch (error) {
       toast.error("Failed to generate JSON");
     } finally {
-      setLoading(false);
+      setLoadingJSON(false);
       setOpen(false);
     }
   };
 
   const downloadCV = async () => {
-    setLoading(true);
+    setLoadingPDF(true);
     try {
       const response = await fetch("/api/pdf", {
         method: "POST",
@@ -69,7 +70,7 @@ export default function DownloadCVModal({
     } catch (error) {
       toast.error("Failed to generate PDF");
     } finally {
-      setLoading(false);
+      setLoadingPDF(false);
     }
   };
 
@@ -93,13 +94,13 @@ export default function DownloadCVModal({
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 mt-4">
-          <Button variant={"outline"} size={"lg"} onClick={downloadCV}>
-            <FileText className="mr-2" />
-            PDF
+          <Button variant={"outline"} size={"lg"} onClick={downloadCV} disabled={loadingPDF}>
+            {loadingPDF ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <FileText className="mr-2" />}
+            {loadingPDF ? "Generating PDF..." : "PDF"}
           </Button>
-          <Button variant={"outline"} size={"lg"} onClick={downloadCVJSON}>
-            <FileJson className="mr-2" />
-            JSON
+          <Button variant={"outline"} size={"lg"} onClick={downloadCVJSON} disabled={loadingJSON}>
+            {loadingJSON ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <FileJson className="mr-2" />}
+            {loadingJSON ? "Generating JSON..." : "JSON"}
           </Button>
         </div>
       </DialogContent>
