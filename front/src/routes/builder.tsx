@@ -1,6 +1,6 @@
-import { ResumeBuilder } from "@/components/resume/resume-builder";
+import { BuilderLayout } from "@/components/builder-layout";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/builder")({
-  component: () => ResumeBuilder(),
+  component: () => BuilderLayout(),
 });

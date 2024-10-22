@@ -1,18 +1,18 @@
-import { Resume } from "@/@types/resume"
+import { Resume } from "@/@types/resume";
 
 interface AwesomeCVProps {
-  resume: Resume
+  resume: Resume;
 }
 
-export const AwesomeCV = ({ resume } : AwesomeCVProps) => {
+export const AwesomeCV = ({ resume }: AwesomeCVProps) => {
   return (
-    <div 
-      className="text-black" 
+    <div
+      className="text-black"
       style={{
-        fontFamily: 'Roboto',
+        fontFamily: "Roboto",
       }}
     >
       {resume.basics.name}
     </div>
-  )
-}
+  );
+};

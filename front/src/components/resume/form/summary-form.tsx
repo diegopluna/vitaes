@@ -13,10 +13,10 @@ export const SummaryForm = () => {
         <div className="space-y-1">
           <Label htmlFor="summary">Content</Label>
           <Textarea
-            
             id="summary"
             value={basics.summary}
-            onChange={(e) => updateBasics({ ...basics, summary: e.target.value })}
+            onChange={(e) =>
+              updateBasics({ ...basics, summary: e.target.value })}
           />
         </div>
       </CardContent>

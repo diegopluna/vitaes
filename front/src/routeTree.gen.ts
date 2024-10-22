@@ -11,11 +11,19 @@
 // Import Routes
 
 import { Route as rootRoute } from "./routes/__root";
+import { Route as LandingImport } from "./routes/landing";
 import { Route as BuilderImport } from "./routes/builder";
 import { Route as AboutImport } from "./routes/about";
 import { Route as IndexImport } from "./routes/index";
+import { Route as BuilderNewImport } from "./routes/builder/new";
+import { Route as BuilderResumeSlugImport } from "./routes/builder/$resumeSlug";
 
 // Create/Update Routes
+
+const LandingRoute = LandingImport.update({
+  path: "/landing",
+  getParentRoute: () => rootRoute,
+} as any);
 
 const BuilderRoute = BuilderImport.update({
   path: "/builder",
@@ -30,6 +38,16 @@ const AboutRoute = AboutImport.update({
 const IndexRoute = IndexImport.update({
   path: "/",
   getParentRoute: () => rootRoute,
+} as any);
+
+const BuilderNewRoute = BuilderNewImport.update({
+  path: "/new",
+  getParentRoute: () => BuilderRoute,
+} as any);
+
+const BuilderResumeSlugRoute = BuilderResumeSlugImport.update({
+  path: "/$resumeSlug",
+  getParentRoute: () => BuilderRoute,
 } as any);
 
 // Populate the FileRoutesByPath interface
@@ -57,49 +75,114 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof BuilderImport;
       parentRoute: typeof rootRoute;
     };
+    "/landing": {
+      id: "/landing";
+      path: "/landing";
+      fullPath: "/landing";
+      preLoaderRoute: typeof LandingImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/builder/$resumeSlug": {
+      id: "/builder/$resumeSlug";
+      path: "/$resumeSlug";
+      fullPath: "/builder/$resumeSlug";
+      preLoaderRoute: typeof BuilderResumeSlugImport;
+      parentRoute: typeof BuilderImport;
+    };
+    "/builder/new": {
+      id: "/builder/new";
+      path: "/new";
+      fullPath: "/builder/new";
+      preLoaderRoute: typeof BuilderNewImport;
+      parentRoute: typeof BuilderImport;
+    };
   }
 }
 
 // Create and export the route tree
 
+interface BuilderRouteChildren {
+  BuilderResumeSlugRoute: typeof BuilderResumeSlugRoute;
+  BuilderNewRoute: typeof BuilderNewRoute;
+}
+
+const BuilderRouteChildren: BuilderRouteChildren = {
+  BuilderResumeSlugRoute: BuilderResumeSlugRoute,
+  BuilderNewRoute: BuilderNewRoute,
+};
+
+const BuilderRouteWithChildren = BuilderRoute._addFileChildren(
+  BuilderRouteChildren,
+);
+
 export interface FileRoutesByFullPath {
   "/": typeof IndexRoute;
   "/about": typeof AboutRoute;
-  "/builder": typeof BuilderRoute;
+  "/builder": typeof BuilderRouteWithChildren;
+  "/landing": typeof LandingRoute;
+  "/builder/$resumeSlug": typeof BuilderResumeSlugRoute;
+  "/builder/new": typeof BuilderNewRoute;
 }
 
 export interface FileRoutesByTo {
   "/": typeof IndexRoute;
   "/about": typeof AboutRoute;
-  "/builder": typeof BuilderRoute;
+  "/builder": typeof BuilderRouteWithChildren;
+  "/landing": typeof LandingRoute;
+  "/builder/$resumeSlug": typeof BuilderResumeSlugRoute;
+  "/builder/new": typeof BuilderNewRoute;
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute;
   "/": typeof IndexRoute;
   "/about": typeof AboutRoute;
-  "/builder": typeof BuilderRoute;
+  "/builder": typeof BuilderRouteWithChildren;
+  "/landing": typeof LandingRoute;
+  "/builder/$resumeSlug": typeof BuilderResumeSlugRoute;
+  "/builder/new": typeof BuilderNewRoute;
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/" | "/about" | "/builder";
+  fullPaths:
+    | "/"
+    | "/about"
+    | "/builder"
+    | "/landing"
+    | "/builder/$resumeSlug"
+    | "/builder/new";
   fileRoutesByTo: FileRoutesByTo;
-  to: "/" | "/about" | "/builder";
-  id: "__root__" | "/" | "/about" | "/builder";
+  to:
+    | "/"
+    | "/about"
+    | "/builder"
+    | "/landing"
+    | "/builder/$resumeSlug"
+    | "/builder/new";
+  id:
+    | "__root__"
+    | "/"
+    | "/about"
+    | "/builder"
+    | "/landing"
+    | "/builder/$resumeSlug"
+    | "/builder/new";
   fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute;
   AboutRoute: typeof AboutRoute;
-  BuilderRoute: typeof BuilderRoute;
+  BuilderRoute: typeof BuilderRouteWithChildren;
+  LandingRoute: typeof LandingRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  BuilderRoute: BuilderRoute,
+  BuilderRoute: BuilderRouteWithChildren,
+  LandingRoute: LandingRoute,
 };
 
 export const routeTree = rootRoute
@@ -116,7 +199,8 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
-        "/builder"
+        "/builder",
+        "/landing"
       ]
     },
     "/": {
@@ -126,7 +210,22 @@ export const routeTree = rootRoute
       "filePath": "about.tsx"
     },
     "/builder": {
-      "filePath": "builder.tsx"
+      "filePath": "builder.tsx",
+      "children": [
+        "/builder/$resumeSlug",
+        "/builder/new"
+      ]
+    },
+    "/landing": {
+      "filePath": "landing.tsx"
+    },
+    "/builder/$resumeSlug": {
+      "filePath": "builder/$resumeSlug.tsx",
+      "parent": "/builder"
+    },
+    "/builder/new": {
+      "filePath": "builder/new.tsx",
+      "parent": "/builder"
     }
   }
 }

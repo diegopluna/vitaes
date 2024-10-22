@@ -117,6 +117,7 @@ type Address = {
 };
 
 type Profile = {
+  id: string;
   network: string;
   username: string;
   url: string;

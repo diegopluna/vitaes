@@ -102,4 +102,4 @@ export const getResume = () => {
     references,
     projects,
   } as Resume;
-}
+};

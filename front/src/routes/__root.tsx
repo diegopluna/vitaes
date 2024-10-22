@@ -3,6 +3,21 @@ import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { Header } from "@/components/header/header";
 import { Footer } from "@/components/footer/footer";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInset,
+  SidebarProvider,
+  SidebarRail,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar/app-sidebar";
+import { AppHeader } from "@/components/app-header/app-header";
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -11,30 +26,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <div className="bg-background antialised min-h-screen font-sans">
-      {
-        /* <div className="p-2 flex gap-2 text-lg">
-        <Link
-          to="/"
-          activeProps={{
-            className: 'font-bold',
-          }}
-          activeOptions={{ exact: true }}
-        >
-          Home
-        </Link>{' '}
-        <Link
-          to="/about"
-          activeProps={{
-            className: 'font-bold',
-          }}
-        >
-          About
-        </Link>
-      </div> */
-      }
-      <Header />
       <Outlet />
-      <Footer />
       <TanStackRouterDevtools position="bottom-right" />
     </div>
   );
