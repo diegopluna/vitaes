@@ -1,23 +1,12 @@
-import { getResume } from "@/store/resume-store";
-import { DisplayFrame } from "../display-frame/display-frame";
-import { Resume } from "../resume/resume";
-import { Card } from "../ui/card";
+import { ResumeForm } from '../resume/resume-form'
 
 export const Builder = () => {
-  const resume = getResume();
-
   return (
-    <div className="flex flex-1 flex-col overflow-auto">
-      <div className="flex flex-1 flex-row overflow-auto">
+    <div className="flex flex-1 flex-row overflow-hidden">
+      <div className="flex-1 overflow-y-auto p-6 border-r">
+        <ResumeForm />
       </div>
-      <div className="hidden md:block flex-1">
-        {
-          /* <DisplayFrame scale={0.75}>
-          <Resume resume={resume} />
-        </DisplayFrame> */
-        }
-        WE GUCCI
-      </div>
+      <div className="flex-1 overflow-hidden p-6">WE GUCCI</div>
     </div>
-  );
-};
+  )
+}

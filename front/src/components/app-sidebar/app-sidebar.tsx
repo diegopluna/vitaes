@@ -38,16 +38,25 @@ import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import React from 'react'
 import { SidebarModeToggle } from '../sidebar-mode-toggle'
 import { sections } from '../resume/sections'
+import { useSections } from '@/hooks/use-sections'
 
 interface AppSidebarProps {
   children: React.ReactNode
 }
 
 export const AppSidebar = ({ children }: AppSidebarProps) => {
-  const sectionRefs = React.useRef<{ [key: string]: HTMLDivElement | null }>({})
+  const sectionContext = useSections()
+
+  if (!sectionContext) {
+    return null
+  }
+
+  const { sectionRefs } = sectionContext
 
   const scrollToSection = (sectionId: string) => {
-    sectionRefs.current[sectionId]?.scrollIntoView({ behavior: 'smooth' })
+    sectionRefs.current[sectionId]?.scrollIntoView({
+      behavior: 'smooth',
+    })
   }
 
   return (
