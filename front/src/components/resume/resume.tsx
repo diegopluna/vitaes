@@ -1,9 +1,9 @@
-import { Resume as JsonResume } from "@/@types/resume";
-import { A4Paper } from "../a4-paper/a4-paper";
-import { AwesomeCV } from "./templates/awesome-cv/awesome-cv";
+import { Resume as JsonResume } from '@/@types/resume'
+import { A4Paper } from '../a4-paper/a4-paper'
+import { AwesomeCV } from './templates/awesome-cv/awesome-cv'
 
 interface ResumeProps {
-  resume: JsonResume;
+  resume: JsonResume
 }
 
 export const Resume = ({ resume }: ResumeProps) => {
@@ -11,5 +11,5 @@ export const Resume = ({ resume }: ResumeProps) => {
     <A4Paper>
       <AwesomeCV resume={resume} />
     </A4Paper>
-  );
-};
+  )
+}

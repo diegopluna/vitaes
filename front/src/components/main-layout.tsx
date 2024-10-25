@@ -1,6 +1,6 @@
-import { Outlet } from "@tanstack/react-router";
-import { Header } from "./header/header";
-import { Footer } from "./footer/footer";
+import { Outlet } from '@tanstack/react-router'
+import { Header } from './header/header'
+import { Footer } from './footer/footer'
 
 export const MainLayout = () => {
   return (
@@ -9,5 +9,5 @@ export const MainLayout = () => {
       <Outlet />
       <Footer />
     </>
-  );
-};
+  )
+}

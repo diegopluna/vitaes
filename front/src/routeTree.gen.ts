@@ -10,172 +10,171 @@
 
 // Import Routes
 
-import { Route as rootRoute } from "./routes/__root";
-import { Route as LandingImport } from "./routes/landing";
-import { Route as BuilderImport } from "./routes/builder";
-import { Route as AboutImport } from "./routes/about";
-import { Route as IndexImport } from "./routes/index";
-import { Route as BuilderNewImport } from "./routes/builder/new";
-import { Route as BuilderResumeSlugImport } from "./routes/builder/$resumeSlug";
+import { Route as rootRoute } from './routes/__root'
+import { Route as LandingImport } from './routes/landing'
+import { Route as BuilderImport } from './routes/builder'
+import { Route as AboutImport } from './routes/about'
+import { Route as IndexImport } from './routes/index'
+import { Route as BuilderNewImport } from './routes/builder/new'
+import { Route as BuilderResumeSlugImport } from './routes/builder/$resumeSlug'
 
 // Create/Update Routes
 
 const LandingRoute = LandingImport.update({
-  path: "/landing",
+  path: '/landing',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
 const BuilderRoute = BuilderImport.update({
-  path: "/builder",
+  path: '/builder',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
 const AboutRoute = AboutImport.update({
-  path: "/about",
+  path: '/about',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
 const IndexRoute = IndexImport.update({
-  path: "/",
+  path: '/',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
 const BuilderNewRoute = BuilderNewImport.update({
-  path: "/new",
+  path: '/new',
   getParentRoute: () => BuilderRoute,
-} as any);
+} as any)
 
 const BuilderResumeSlugRoute = BuilderResumeSlugImport.update({
-  path: "/$resumeSlug",
+  path: '/$resumeSlug',
   getParentRoute: () => BuilderRoute,
-} as any);
+} as any)
 
 // Populate the FileRoutesByPath interface
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/about": {
-      id: "/about";
-      path: "/about";
-      fullPath: "/about";
-      preLoaderRoute: typeof AboutImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/builder": {
-      id: "/builder";
-      path: "/builder";
-      fullPath: "/builder";
-      preLoaderRoute: typeof BuilderImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/landing": {
-      id: "/landing";
-      path: "/landing";
-      fullPath: "/landing";
-      preLoaderRoute: typeof LandingImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/builder/$resumeSlug": {
-      id: "/builder/$resumeSlug";
-      path: "/$resumeSlug";
-      fullPath: "/builder/$resumeSlug";
-      preLoaderRoute: typeof BuilderResumeSlugImport;
-      parentRoute: typeof BuilderImport;
-    };
-    "/builder/new": {
-      id: "/builder/new";
-      path: "/new";
-      fullPath: "/builder/new";
-      preLoaderRoute: typeof BuilderNewImport;
-      parentRoute: typeof BuilderImport;
-    };
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutImport
+      parentRoute: typeof rootRoute
+    }
+    '/builder': {
+      id: '/builder'
+      path: '/builder'
+      fullPath: '/builder'
+      preLoaderRoute: typeof BuilderImport
+      parentRoute: typeof rootRoute
+    }
+    '/landing': {
+      id: '/landing'
+      path: '/landing'
+      fullPath: '/landing'
+      preLoaderRoute: typeof LandingImport
+      parentRoute: typeof rootRoute
+    }
+    '/builder/$resumeSlug': {
+      id: '/builder/$resumeSlug'
+      path: '/$resumeSlug'
+      fullPath: '/builder/$resumeSlug'
+      preLoaderRoute: typeof BuilderResumeSlugImport
+      parentRoute: typeof BuilderImport
+    }
+    '/builder/new': {
+      id: '/builder/new'
+      path: '/new'
+      fullPath: '/builder/new'
+      preLoaderRoute: typeof BuilderNewImport
+      parentRoute: typeof BuilderImport
+    }
   }
 }
 
 // Create and export the route tree
 
 interface BuilderRouteChildren {
-  BuilderResumeSlugRoute: typeof BuilderResumeSlugRoute;
-  BuilderNewRoute: typeof BuilderNewRoute;
+  BuilderResumeSlugRoute: typeof BuilderResumeSlugRoute
+  BuilderNewRoute: typeof BuilderNewRoute
 }
 
 const BuilderRouteChildren: BuilderRouteChildren = {
   BuilderResumeSlugRoute: BuilderResumeSlugRoute,
   BuilderNewRoute: BuilderNewRoute,
-};
+}
 
-const BuilderRouteWithChildren = BuilderRoute._addFileChildren(
-  BuilderRouteChildren,
-);
+const BuilderRouteWithChildren =
+  BuilderRoute._addFileChildren(BuilderRouteChildren)
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute;
-  "/about": typeof AboutRoute;
-  "/builder": typeof BuilderRouteWithChildren;
-  "/landing": typeof LandingRoute;
-  "/builder/$resumeSlug": typeof BuilderResumeSlugRoute;
-  "/builder/new": typeof BuilderNewRoute;
+  '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/builder': typeof BuilderRouteWithChildren
+  '/landing': typeof LandingRoute
+  '/builder/$resumeSlug': typeof BuilderResumeSlugRoute
+  '/builder/new': typeof BuilderNewRoute
 }
 
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute;
-  "/about": typeof AboutRoute;
-  "/builder": typeof BuilderRouteWithChildren;
-  "/landing": typeof LandingRoute;
-  "/builder/$resumeSlug": typeof BuilderResumeSlugRoute;
-  "/builder/new": typeof BuilderNewRoute;
+  '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/builder': typeof BuilderRouteWithChildren
+  '/landing': typeof LandingRoute
+  '/builder/$resumeSlug': typeof BuilderResumeSlugRoute
+  '/builder/new': typeof BuilderNewRoute
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute;
-  "/": typeof IndexRoute;
-  "/about": typeof AboutRoute;
-  "/builder": typeof BuilderRouteWithChildren;
-  "/landing": typeof LandingRoute;
-  "/builder/$resumeSlug": typeof BuilderResumeSlugRoute;
-  "/builder/new": typeof BuilderNewRoute;
+  __root__: typeof rootRoute
+  '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/builder': typeof BuilderRouteWithChildren
+  '/landing': typeof LandingRoute
+  '/builder/$resumeSlug': typeof BuilderResumeSlugRoute
+  '/builder/new': typeof BuilderNewRoute
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
+  fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | "/"
-    | "/about"
-    | "/builder"
-    | "/landing"
-    | "/builder/$resumeSlug"
-    | "/builder/new";
-  fileRoutesByTo: FileRoutesByTo;
+    | '/'
+    | '/about'
+    | '/builder'
+    | '/landing'
+    | '/builder/$resumeSlug'
+    | '/builder/new'
+  fileRoutesByTo: FileRoutesByTo
   to:
-    | "/"
-    | "/about"
-    | "/builder"
-    | "/landing"
-    | "/builder/$resumeSlug"
-    | "/builder/new";
+    | '/'
+    | '/about'
+    | '/builder'
+    | '/landing'
+    | '/builder/$resumeSlug'
+    | '/builder/new'
   id:
-    | "__root__"
-    | "/"
-    | "/about"
-    | "/builder"
-    | "/landing"
-    | "/builder/$resumeSlug"
-    | "/builder/new";
-  fileRoutesById: FileRoutesById;
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/builder'
+    | '/landing'
+    | '/builder/$resumeSlug'
+    | '/builder/new'
+  fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  AboutRoute: typeof AboutRoute;
-  BuilderRoute: typeof BuilderRouteWithChildren;
-  LandingRoute: typeof LandingRoute;
+  IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  BuilderRoute: typeof BuilderRouteWithChildren
+  LandingRoute: typeof LandingRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -183,11 +182,11 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BuilderRoute: BuilderRouteWithChildren,
   LandingRoute: LandingRoute,
-};
+}
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
 
 /* prettier-ignore-end */
 
