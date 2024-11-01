@@ -1,6 +1,0 @@
-{
-  "extends": ["@rocketseat/eslint-config/react", "plugin:@tanstack/eslint-plugin-router/recommended"],
-  "rules": {
-    "@typescript-eslint/ban-ts-comment": "off"
-  }
-}
