@@ -1,18 +1,7 @@
 'use client'
+
+import { Profile } from '@/@types/resume'
 import { Button } from '@/components/ui/button'
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog'
-import { TooltipWrapper } from '@/components/ui/tooltip-wrapper'
-import { Pencil, PlusCircle } from 'lucide-react'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Form,
   FormControl,
@@ -22,8 +11,20 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Profile } from '@/@types/resume'
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet'
+import { TooltipWrapper } from '@/components/ui/tooltip-wrapper'
 import { useResumeStore } from '@/providers/resume-store-provider'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Pencil, PlusCircle } from 'lucide-react'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
 const profileFormSchema = z.object({
   network: z.string().min(1, 'Network is required'),
@@ -31,7 +32,7 @@ const profileFormSchema = z.object({
   url: z.string().url('Must be a valid URL'),
 })
 
-export const ProfileModal = ({
+export const ProfileSheet = ({
   defaultValues,
 }: {
   defaultValues?: Profile
@@ -53,7 +54,7 @@ export const ProfileModal = ({
   function onSubmit(values: z.infer<typeof profileFormSchema>) {
     const profile: Profile = {
       ...values,
-      id: `${values.network}-${values.username}`,
+      id: `${values.network} - ${values.username}`,
     }
     if (defaultValues) {
       setBasics({
@@ -69,8 +70,8 @@ export const ProfileModal = ({
   }
 
   return (
-    <Dialog onOpenChange={setOpen} open={open}>
-      <DialogTrigger asChild>
+    <Sheet onOpenChange={setOpen} open={open}>
+      <SheetTrigger asChild>
         <TooltipWrapper
           tooltip={defaultValues ? 'Edit Profile' : 'Add Profile'}
         >
@@ -82,13 +83,13 @@ export const ProfileModal = ({
             )}
           </Button>
         </TooltipWrapper>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>
+      </SheetTrigger>
+      <SheetContent side={'left'}>
+        <SheetHeader>
+          <SheetTitle>
             {defaultValues ? 'Edit Profile' : 'Add Profile'}
-          </DialogTitle>
-        </DialogHeader>
+          </SheetTitle>
+        </SheetHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField
@@ -133,7 +134,7 @@ export const ProfileModal = ({
             <Button type="submit">Save Profile</Button>
           </form>
         </Form>
-      </DialogContent>
-    </Dialog>
+      </SheetContent>
+    </Sheet>
   )
 }

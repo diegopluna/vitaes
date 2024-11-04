@@ -3,7 +3,7 @@ import { Profile } from '@/@types/resume'
 import { ItemData } from './dnd/drag'
 import { useResumeStore } from '@/providers/resume-store-provider'
 import { DragList } from './dnd/list'
-import { ProfileModal } from './modals/profile-modal'
+import { ProfileSheet } from './sheets/profile-sheet'
 // import { useResume } from '@/store/resume-store'
 
 const profileKey = Symbol('profile')
@@ -42,7 +42,7 @@ export const ProfilesForm = () => {
         getItemData={getProfileData}
         isItemData={isProfileData}
         setItems={setProfiles}
-        EditModal={ProfileModal}
+        EditModal={ProfileSheet}
         itemType="profile"
         onDelete={(id) => {
           setProfiles(profiles.filter((p) => p.id !== id))

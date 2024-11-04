@@ -1,16 +1,30 @@
 'use client'
-import { Work } from "@/@types/resume";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { TooltipWrapper } from "@/components/ui/tooltip-wrapper";
-import { useResumeStore } from "@/providers/resume-store-provider";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Pencil, PlusCircle } from "lucide-react";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+
+import { Work } from '@/@types/resume'
+import { Button } from '@/components/ui/button'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet'
+import { TooltipWrapper } from '@/components/ui/tooltip-wrapper'
+import { useResumeStore } from '@/providers/resume-store-provider'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Pencil, PlusCircle } from 'lucide-react'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
 const workExperienceFormSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -19,11 +33,11 @@ const workExperienceFormSchema = z.object({
   startDate: z.string().min(1, 'Start date is required'),
   endDate: z.string().min(1, 'End date is required'),
   summary: z.string().min(1, 'Summary is required'),
-  highlights: z
-    .array(z.string().min(1, 'Highlight is required')),
+  highlights: z.array(z.string().min(1, 'Highlight is required')),
 })
 
-export const WorkModal = ({ defaultValues} : { defaultValues?: Work}) => {
+// TODO: Add highlights
+export const WorkSheet = ({ defaultValues }: { defaultValues?: Work }) => {
   const [open, setOpen] = useState(false)
   const { resume, setWork } = useResumeStore((state) => state)
 
@@ -48,9 +62,7 @@ export const WorkModal = ({ defaultValues} : { defaultValues?: Work}) => {
       id: `${values.name} - ${values.position}`,
     }
     if (defaultValues) {
-      setWork(
-        works.map((w) => (w.id === work.id ? work : w)),
-      )
+      setWork(works.map((w) => (w.id === work.id ? work : w)))
     } else {
       setWork([...works, work])
     }
@@ -58,9 +70,13 @@ export const WorkModal = ({ defaultValues} : { defaultValues?: Work}) => {
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <TooltipWrapper tooltip={defaultValues ? 'Edit Work Experience' : 'Add Work Experience'}>
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger asChild>
+        <TooltipWrapper
+          tooltip={
+            defaultValues ? 'Edit Work Experience' : 'Add Work Experience'
+          }
+        >
           <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
             {defaultValues ? (
               <Pencil className="size-4" />
@@ -69,11 +85,13 @@ export const WorkModal = ({ defaultValues} : { defaultValues?: Work}) => {
             )}
           </Button>
         </TooltipWrapper>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>{defaultValues ? 'Edit Work Experience' : 'Add Work Experience'}</DialogTitle>
-        </DialogHeader>
+      </SheetTrigger>
+      <SheetContent side="left">
+        <SheetHeader>
+          <SheetTitle>
+            {defaultValues ? 'Edit Work Experience' : 'Add Work Experience'}
+          </SheetTitle>
+        </SheetHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="grid gap-4 py-4">
@@ -159,7 +177,7 @@ export const WorkModal = ({ defaultValues} : { defaultValues?: Work}) => {
             <Button type="submit">Save Work Experience</Button>
           </form>
         </Form>
-      </DialogContent>
-    </Dialog>
+      </SheetContent>
+    </Sheet>
   )
 }

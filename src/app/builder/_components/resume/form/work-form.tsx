@@ -4,7 +4,7 @@ import { Work } from '@/@types/resume'
 import { ItemData } from './dnd/drag'
 import { DragList } from './dnd/list'
 import { useResumeStore } from '@/providers/resume-store-provider'
-import { WorkModal } from './modals/work-modal'
+import { WorkSheet } from './sheets/work-sheet'
 
 const workKey = Symbol('work')
 
@@ -38,7 +38,7 @@ export const WorkForm = () => {
         getItemData={getWorkData}
         isItemData={isWorkData}
         setItems={setWork}
-        EditModal={WorkModal}
+        EditModal={WorkSheet}
         itemType="work"
         onDelete={(id) => {
           setWork(works.filter((w) => w.id !== id))
