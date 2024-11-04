@@ -1,3 +1,4 @@
+'use client'
 import { Profile } from '@/@types/resume'
 import { ItemData } from './dnd/drag'
 import { useResumeStore } from '@/providers/resume-store-provider'

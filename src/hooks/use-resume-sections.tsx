@@ -1,5 +1,12 @@
 'use client'
 
+import { AddressForm } from '@/app/builder/_components/resume/form/address-form'
+import { ProfileModal } from '@/app/builder/_components/resume/form/modals/profile-modal'
+import { WorkModal } from '@/app/builder/_components/resume/form/modals/work-modal'
+import { PersonalForm } from '@/app/builder/_components/resume/form/personal-form'
+import { ProfilesForm } from '@/app/builder/_components/resume/form/profiles-form'
+import { SummaryForm } from '@/app/builder/_components/resume/form/summary-form'
+import { WorkForm } from '@/app/builder/_components/resume/form/work-form'
 import {
   AtSign,
   Book,
@@ -25,6 +32,8 @@ type Section = {
   id: string
   title: string
   icon: Icon
+  form: JSX.Element
+  modal?: JSX.Element
 }
 
 type SectionsContextProps = {
@@ -47,21 +56,43 @@ export const SectionsProvider = ({ children }: SectionsProviderProps) => {
   }
 
   const sections: Section[] = [
-    { id: 'personal', title: 'Personal Information', icon: UserRound },
-    { id: 'address', title: 'Address', icon: MapPinHouse },
-    { id: 'summary', title: 'Summary', icon: Scroll },
-    { id: 'profiles', title: 'Profiles', icon: AtSign },
-    { id: 'work', title: 'Work Experience', icon: Briefcase },
-    { id: 'volunteer', title: 'Volunteer Experience', icon: HandHeart },
-    { id: 'education', title: 'Education', icon: GraduationCap },
-    { id: 'awards', title: 'Awards', icon: Medal },
-    { id: 'certificates', title: 'Certificates', icon: FileCheck },
-    { id: 'publications', title: 'Publications', icon: Book },
-    { id: 'skills', title: 'Skills', icon: DraftingCompass },
-    { id: 'languages', title: 'Languages', icon: Languages },
-    { id: 'interests', title: 'Interests', icon: Gamepad2 },
-    { id: 'references', title: 'References', icon: Users },
-    { id: 'projects', title: 'Projects', icon: PencilRuler },
+    {
+      id: 'personal',
+      title: 'Personal Information',
+      icon: UserRound,
+      form: <PersonalForm />,
+    },
+    {
+      id: 'address',
+      title: 'Address',
+      icon: MapPinHouse,
+      form: <AddressForm />,
+    },
+    { id: 'summary', title: 'Summary', icon: Scroll, form: <SummaryForm /> },
+    {
+      id: 'profiles',
+      title: 'Profiles',
+      icon: AtSign,
+      form: <ProfilesForm />,
+      modal: <ProfileModal />,
+    },
+    {
+      id: 'work',
+      title: 'Work Experience',
+      icon: Briefcase,
+      form: <WorkForm />,
+      modal: <WorkModal />,
+    },
+    // { id: 'volunteer', title: 'Volunteer Experience', icon: HandHeart },
+    // { id: 'education', title: 'Education', icon: GraduationCap },
+    // { id: 'awards', title: 'Awards', icon: Medal },
+    // { id: 'certificates', title: 'Certificates', icon: FileCheck },
+    // { id: 'publications', title: 'Publications', icon: Book },
+    // { id: 'skills', title: 'Skills', icon: DraftingCompass },
+    // { id: 'languages', title: 'Languages', icon: Languages },
+    // { id: 'interests', title: 'Interests', icon: Gamepad2 },
+    // { id: 'references', title: 'References', icon: Users },
+    // { id: 'projects', title: 'Projects', icon: PencilRuler },
   ]
 
   return (
