@@ -35,9 +35,10 @@ export const KoalaWelcomeEmail = ({
         />
         <Text style={paragraph}>Hi {userFirstname},</Text>
         <Text style={paragraph}>
-          Welcome to Daily Web Coding, the sales intelligence platform that
-          helps you uncover qualified leads and close deals faster.
+          Welcome to Vitaes, the resume builder that helps you create a
+          professional resume in minutes.
         </Text>
+        <Text style={paragraph}>Click the button below to login.</Text>
         <Section style={btnContainer}>
           <Button style={button} href="https://getkoala.com">
             Get started

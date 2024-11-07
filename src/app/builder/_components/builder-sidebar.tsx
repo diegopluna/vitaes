@@ -44,15 +44,19 @@ export const BuilderSidebar = ({ user }: { user?: User }) => {
     setTimeout(() => {
       const sectionElement = sectionRefs.current[sectionId]
       if (sectionElement) {
-        const offset = 60 // Adjust this value as needed
-        const elementPosition =
-          sectionElement.getBoundingClientRect().top + window.scrollY
-        const offsetPosition = elementPosition - offset
+        const scrollAreaViewport = document.querySelector(
+          '[data-radix-scroll-area-viewport]',
+        )
+        if (scrollAreaViewport) {
+          const offset = 0 // Adjust this value as needed
+          const elementPosition = sectionElement.offsetTop
+          const offsetPosition = elementPosition - offset
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth',
-        })
+          scrollAreaViewport.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          })
+        }
       }
     }, 100)
   }

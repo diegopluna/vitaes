@@ -54,7 +54,7 @@ const CountrySelect = ({
   const options = countryQuery.data?.map((country) => ({
     label: country.name.common,
     value: country.cca2,
-    postalCode: country.postalCode
+    postalCode: country.postalCode,
   }))
 
   const handleSelect = React.useCallback(
