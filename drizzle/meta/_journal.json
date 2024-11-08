@@ -15,6 +15,13 @@
       "when": 1729689943224,
       "tag": "0001_tricky_spiral",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1731089308071,
+      "tag": "0002_watery_cammi",
+      "breakpoints": true
     }
   ]
 }
