@@ -1,5 +1,5 @@
 import { betterAuth } from 'better-auth'
-// import { twoFactor } from 'better-auth/plugins'
+import { magicLink } from 'better-auth/plugins'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import {
   user,
@@ -11,8 +11,14 @@ import {
 
 import { db } from '@/db'
 import { env } from '@/env/server'
+import { resend } from './resend'
+import MagicLinkEmail from '../../emails/magic-link'
+import { redis } from './redis'
 
 export const auth = betterAuth({
+  advanced: {
+    cookiePrefix: 'vitaes',
+  },
   database: drizzleAdapter(db, {
     provider: 'pg',
     schema: {
@@ -23,14 +29,47 @@ export const auth = betterAuth({
       twoFactor: twoFactorSchema,
     },
   }),
-  plugins: [
-    // twoFactor({
-    //   issuer: 'Vitaes',
-    // }),
-  ],
-  emailAndPassword: {
+  secondaryStorage: {
+    get: async (key) => await redis.get(key),
+    set: async (key, value, ttl) => {
+      if (ttl) await redis.set(key, value, 'EX', ttl)
+      else await redis.set(key, value)
+    },
+    delete: async (key) => {
+      await redis.del(key)
+    },
+  },
+  rateLimit: {
+    storage: 'secondary-storage',
     enabled: true,
   },
+  plugins: [
+    magicLink({
+      sendMagicLink: async (data: {
+        email: string
+        token: string
+        url: string
+      }) => {
+        const result = await resend.emails.send({
+          from: env.VITAES_EMAIL,
+          to: [data.email],
+          subject: 'Sign in to Vitaes',
+          react: MagicLinkEmail({
+            userFirstname: data.email.split('@')[0],
+            token: data.token,
+            url: data.url,
+          }),
+        })
+        if (result.error) {
+          throw new Error(result.error.message)
+        }
+      },
+      rateLimit: {
+        window: 60,
+        max: 1,
+      },
+    }),
+  ],
   socialProviders: {
     github: {
       clientId: env.GITHUB_CLIENT_ID,
@@ -39,7 +78,7 @@ export const auth = betterAuth({
     google: {
       clientId: env.GOOGLE_CLIENT_ID,
       clientSecret: env.GOOGLE_CLIENT_SECRET,
-    }
+    },
   },
   account: {
     accountLinking: {

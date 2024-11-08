@@ -1,5 +1,7 @@
+import { AuthStateProvider } from '@/providers/auth-state-provider'
+
 export default function GatewayLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  return <>{children}</>
+  return <AuthStateProvider>{children}</AuthStateProvider>
 }

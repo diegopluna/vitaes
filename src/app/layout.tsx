@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
+import { Toaster } from '@/components/ui/sonner'
 
 import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
@@ -19,7 +20,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${GeistSans.className} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProvider>
+            {children}
+            <Toaster />
+          </QueryProvider>
         </ThemeProvider>
       </body>
     </html>

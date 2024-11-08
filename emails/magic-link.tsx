@@ -3,7 +3,6 @@ import {
   Button,
   Container,
   Head,
-  Hr,
   Html,
   Img,
   Preview,
@@ -12,22 +11,24 @@ import {
 } from '@react-email/components'
 import * as React from 'react'
 
-interface KoalaWelcomeEmailProps {
+interface MagicLinkEmailProps {
   userFirstname: string
+  url: string
+  token: string
 }
 
-export const KoalaWelcomeEmail = ({
+export const MagicLinkEmail = ({
   userFirstname = 'Zeno',
-}: KoalaWelcomeEmailProps) => (
+  url = 'https://google.com',
+  token = '123456',
+}: MagicLinkEmailProps) => (
   <Html>
     <Head />
-    <Preview>
-      The sales intelligence platform that helps you uncover qualified leads.
-    </Preview>
+    <Preview>Your Vitaes login code</Preview>
     <Body style={main}>
       <Container style={container}>
         <Img
-          src={`https://utfs.io/f/n6orBe15qu0oLZlewOPm1Ow2E5GUFtnayVRToCq6bfhKWLZ8`}
+          src={`https://utfs.io/f/n6orBe15qu0ockrDaDxBYMPqhatUn0KiNAjGebD4ypHzWV1S`}
           width="50"
           height="50"
           alt="Vitaes"
@@ -40,23 +41,28 @@ export const KoalaWelcomeEmail = ({
         </Text>
         <Text style={paragraph}>Click the button below to login.</Text>
         <Section style={btnContainer}>
-          <Button style={button} href="https://getkoala.com">
-            Get started
+          <Button style={button} href={url}>
+            Log In
           </Button>
         </Section>
         <Text style={paragraph}>
+          Or, copy and paste this temporary login code:
+        </Text>
+        <Text style={codeParagraph}>{token}</Text>
+        <Text style={paragraph}>
+          If you didn’t try to log in, you can safely ignore this email.
+        </Text>
+        <Text style={paragraph}>
           Best,
           <br />
-          The Daily Web Coding
+          Vitaes
         </Text>
-        <Hr style={hr} />
-        <Text style={footer}>408 Warren Rd - San Mateo, CA 94402</Text>
       </Container>
     </Body>
   </Html>
 )
 
-export default KoalaWelcomeEmail
+export default MagicLinkEmail
 
 const main = {
   backgroundColor: '#ffffff',
@@ -78,12 +84,18 @@ const paragraph = {
   lineHeight: '26px',
 }
 
+const codeParagraph = {
+  fontSize: '16px',
+  lineHeight: '26px',
+  fontWeight: 'bold',
+}
+
 const btnContainer = {
   textAlign: 'center' as const,
 }
 
 const button = {
-  backgroundColor: '#5F51E8',
+  backgroundColor: '#000000',
   borderRadius: '3px',
   color: '#fff',
   fontSize: '16px',
@@ -91,14 +103,4 @@ const button = {
   textAlign: 'center' as const,
   display: 'block',
   padding: '5px',
-}
-
-const hr = {
-  borderColor: '#cccccc',
-  margin: '20px 0',
-}
-
-const footer = {
-  color: '#8898aa',
-  fontSize: '12px',
 }

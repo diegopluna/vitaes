@@ -7,23 +7,24 @@ import { client } from './lib/client'
 // })
 
 export async function middleware(request: NextRequest) {
-  const session = await client.getSession({
+  const { data: session } = await client.getSession({
     fetchOptions: {
-      headers: request.headers,
+      headers: {
+        cookie: request.headers.get('cookie') || '',
+      },
     },
   })
 
   const authRoutes = ['/dashboard']
-  const publicRoutes = ['/sign-in', '/sign-up', '/']
+  const publicRoutes = ['/sign-in', '/']
 
-  console.log(session.data)
-  const sessionData = session.data
-
-  if (!sessionData && authRoutes.includes(request.nextUrl.pathname)) {
+  // TODO: Remove this console.log
+  console.log(session)
+  if (!session && authRoutes.includes(request.nextUrl.pathname)) {
     return NextResponse.redirect(new URL('/sign-in', request.url))
   }
 
-  if (sessionData && publicRoutes.includes(request.nextUrl.pathname)) {
+  if (session && publicRoutes.includes(request.nextUrl.pathname)) {
     return NextResponse.redirect(new URL('/dashboard', request.url))
   }
 
@@ -31,5 +32,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/dashboard', '/sign-in', '/sign-up'],
+  matcher: ['/', '/dashboard', '/sign-in'],
 }

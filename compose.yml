@@ -17,5 +17,16 @@ services:
       retries: 5
     ports:
       - "5432:5432"
+  vitaes-redis:
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
+    environment:
+      - REDIS_PASSWORD=redis
+    entrypoint: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
 volumes:
   db-data:
+  redis-data:

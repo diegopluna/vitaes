@@ -22,23 +22,23 @@ export const Hero = () => {
 
           <div className="max-w-screen-md mx-auto text-center text-4xl md:text-6xl font-bold">
             <h1>
-              Experience the
-              <span className="text-transparent px-2 bg-gradient-to-r from-[#D247BF] to-primary bg-clip-text">
-                Shadcn
+              Build your resume with
+              <span className="text-transparent px-2 bg-gradient-to-r from-neutral-600 to-primary bg-clip-text">
+                Vitaes
               </span>
-              landing page
             </h1>
           </div>
 
           <p className="max-w-screen-sm mx-auto text-xl text-muted-foreground">
-            {`We're more than just a tool, we're a community of passionate
-            creators. Get access to exclusive resources, tutorials, and support.`}
+            {`Craft stunning resumes effortlessly with our free and open source builder. Choose from modern templates, customize with AI assistance, and land your dream job.`}
           </p>
 
           <div className="space-y-4 md:space-y-0 md:space-x-4">
-            <Button className="w-5/6 md:w-1/4 font-bold group/arrow">
-              Get Started
-              <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
+            <Button asChild className="w-5/6 md:w-1/4 font-bold group/arrow">
+              <Link href="/dashboard" target="_blank">
+                Get Started
+                <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
+              </Link>
             </Button>
 
             <Button

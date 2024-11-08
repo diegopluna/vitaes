@@ -9,29 +9,46 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { client } from '@/lib/client'
+import { useAuthState } from '@/providers/auth-state-provider'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { GitHubLogoIcon } from '@radix-ui/react-icons'
 import { IconBrandGoogleFilled } from '@tabler/icons-react'
+import { Loader2 } from 'lucide-react'
 import Image from 'next/image'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { z } from 'zod'
 
-export const signInWithGithub = async () => {
+const signInWithGithub = async () => {
   await client.signIn.social({
     provider: 'github',
   })
 }
 
-export const signInWithGoogle = async () => {
+const signInWithGoogle = async () => {
   await client.signIn.social({
     provider: 'google',
   })
 }
 
-export const signInWithEmail = async () => {
-  await client.signIn.email({
-    email: 'diegopeter9@gmail.com',
-    password: 'password',
+const sendMagicLink = async (email: string) => {
+  await client.signIn.magicLink({
+    email,
+    callbackURL: '/dashboard',
+    fetchOptions: {
+      onError: async (context) => {
+        const { response } = context
+        if (response.status === 429) {
+          const retryAfter = response.headers.get('X-Retry-After')
+          toast.error(`Rate limit exceeded. Try again in ${retryAfter} seconds`)
+          throw new Error('Rate limit exceeded')
+        } else {
+          toast.error('Failed to send magic link. Please try again')
+          throw new Error('Failed to send magic link')
+        }
+      },
+    },
   })
 }
 
@@ -43,6 +60,9 @@ const emailSchema = z.object({
 })
 
 export function LoginForm() {
+  const [loading, setLoading] = useState(false)
+  const { setStep, setEmail } = useAuthState()
+
   const form = useForm<z.infer<typeof emailSchema>>({
     resolver: zodResolver(emailSchema),
     defaultValues: {
@@ -50,8 +70,17 @@ export function LoginForm() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof emailSchema>) {
-    console.log(values)
+  async function onSubmit(values: z.infer<typeof emailSchema>) {
+    setLoading(true)
+    await sendMagicLink(values.email)
+      .then(() => {
+        setLoading(false)
+        setEmail(values.email)
+        setStep('otp')
+      })
+      .catch(() => {
+        setLoading(false)
+      })
   }
 
   return (
@@ -71,6 +100,7 @@ export function LoginForm() {
           onClick={signInWithGoogle}
           variant="secondary"
           className="w-full"
+          disabled={loading}
         >
           <IconBrandGoogleFilled className="mr-2 h-4 w-4" />
           Continue with Google
@@ -79,6 +109,7 @@ export function LoginForm() {
           onClick={signInWithGithub}
           variant="secondary"
           className="w-full"
+          disabled={loading}
         >
           <GitHubLogoIcon className="mr-2 h-4 w-4" />
           Continue with Github
@@ -109,7 +140,9 @@ export function LoginForm() {
               </FormItem>
             )}
           />
-          <Button type="submit">Sign In</Button>
+          <Button type="submit" disabled={loading}>
+            {loading ? <Loader2 className="w-6 h-6 animate-spin" /> : 'Sign In'}
+          </Button>
         </form>
       </Form>
     </div>
