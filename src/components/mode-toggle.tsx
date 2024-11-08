@@ -28,12 +28,12 @@ export function ModeToggle({ inSidebar = false }: ModeToggleProps) {
         variant="ghost"
         className="w-full justify-start"
       >
-        <div className="flex gap-2 dark:hidden">
+        <div className="flex gap-2 dark:hidden items-center">
           <Moon className="size-5" />
           <span className="block lg:hidden"> Dark </span>
         </div>
 
-        <div className="dark:flex gap-2 hidden">
+        <div className="dark:flex gap-2 hidden items-center">
           <Sun className="size-5" />
           <span className="block lg:hidden">Light</span>
         </div>
