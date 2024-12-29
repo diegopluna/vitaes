@@ -1,19 +1,19 @@
 import { betterAuth } from 'better-auth'
-import { magicLink } from 'better-auth/plugins'
+import { magicLink, passkey } from 'better-auth/plugins'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import {
   user,
   account,
   session,
   verification,
-  twoFactor as twoFactorSchema,
+  passkey as passkeySchema,
 } from '@/db/schema'
 
 import { db } from '@/db'
 import { env } from '@/env/server'
 import { resend } from './resend'
 import MagicLinkEmail from '../../emails/magic-link'
-import { redis } from './redis'
+// import { redis } from './redis'
 
 export const auth = betterAuth({
   advanced: {
@@ -26,21 +26,21 @@ export const auth = betterAuth({
       account,
       session,
       verification,
-      twoFactor: twoFactorSchema,
+      passkey: passkeySchema,
     },
   }),
-  secondaryStorage: {
-    get: async (key) => await redis.get(key),
-    set: async (key, value, ttl) => {
-      if (ttl) await redis.set(key, value, 'EX', ttl)
-      else await redis.set(key, value)
-    },
-    delete: async (key) => {
-      await redis.del(key)
-    },
-  },
+  // secondaryStorage: {
+  //   get: async (key) => await redis.get(key),
+  //   set: async (key, value, ttl) => {
+  //     if (ttl) await redis.set(key, value, 'EX', ttl)
+  //     else await redis.set(key, value)
+  //   },
+  //   delete: async (key) => {
+  //     await redis.del(key)
+  //   },
+  // },
   rateLimit: {
-    storage: 'secondary-storage',
+    // storage: 'secondary-storage',
     enabled: true,
   },
   plugins: [
@@ -68,6 +68,9 @@ export const auth = betterAuth({
         window: 60,
         max: 1,
       },
+    }),
+    passkey({
+      rpName: 'Vitaes',
     }),
   ],
   socialProviders: {

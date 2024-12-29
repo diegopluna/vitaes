@@ -12,7 +12,7 @@ export default async function BuilderLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const session = await client.getSession({
     fetchOptions: {
-      headers: await headers(),
+      headers: headers(),
     },
   })
 

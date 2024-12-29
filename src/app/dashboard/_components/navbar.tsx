@@ -23,8 +23,10 @@ import {
 } from '@/components/ui/navigation-menu'
 import { Button } from '@/components/ui/button'
 import { GitHubLogoIcon } from '@radix-ui/react-icons'
+import { UserButton } from './user-button'
+import { User } from 'better-auth'
 
-export const Navbar = () => {
+export const Navbar = ({ user }: { user: User }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -86,6 +88,7 @@ export const Navbar = () => {
               <Separator className="mb-2" />
 
               <ModeToggle />
+              <UserButton user={user} />
             </SheetFooter>
           </SheetContent>
         </Sheet>
@@ -150,6 +153,7 @@ export const Navbar = () => {
             <GitHubLogoIcon className="size-5" />
           </Link>
         </Button>
+        <UserButton user={user} />
       </div>
     </header>
   )

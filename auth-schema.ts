@@ -1,13 +1,4 @@
-import { Resume, Settings } from '@/@types/resume'
-import {
-  pgTable,
-  text,
-  timestamp,
-  boolean,
-  uuid,
-  json,
-  integer,
-} from 'drizzle-orm/pg-core'
+import { pgTable, text, integer, timestamp, boolean } from 'drizzle-orm/pg-core'
 
 export const user = pgTable('user', {
   id: text('id').primaryKey(),
@@ -63,20 +54,4 @@ export const passkey = pgTable('passkey', {
   backedUp: boolean('backedUp').notNull(),
   transports: text('transports'),
   createdAt: timestamp('createdAt'),
-})
-
-export const resumes = pgTable('resumes', {
-  id: uuid('id').primaryKey().defaultRandom(),
-  userId: text('userId')
-    .notNull()
-    .references(() => user.id, { onDelete: 'cascade' }),
-  title: text('title').notNull(),
-  resume: json('resume').$type<Resume>().notNull(),
-  settings: json('settings').$type<Settings>().notNull(),
-  slug: text('slug').notNull().unique(),
-  createdAt: timestamp('createdAt').notNull().defaultNow(),
-  updatedAt: timestamp('updatedAt').notNull().defaultNow(),
-  public: boolean('public').notNull().default(false),
-  deletedAt: timestamp('deletedAt'),
-  thumbnail: text('thumbnail'),
 })

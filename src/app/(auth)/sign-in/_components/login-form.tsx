@@ -15,6 +15,7 @@ import { GitHubLogoIcon } from '@radix-ui/react-icons'
 import { IconBrandGoogleFilled } from '@tabler/icons-react'
 import { Loader2 } from 'lucide-react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
@@ -62,6 +63,7 @@ const emailSchema = z.object({
 export function LoginForm() {
   const [loading, setLoading] = useState(false)
   const { setStep, setEmail } = useAuthState()
+  const router = useRouter()
 
   const form = useForm<z.infer<typeof emailSchema>>({
     resolver: zodResolver(emailSchema),
@@ -81,6 +83,11 @@ export function LoginForm() {
       .catch(() => {
         setLoading(false)
       })
+  }
+
+  async function signInWithPasskey() {
+    await client.signIn.passkey()
+    router.push('/dashboard')
   }
 
   return (
@@ -145,6 +152,13 @@ export function LoginForm() {
           </Button>
         </form>
       </Form>
+      <Button
+        className="w-full"
+        variant={'link'}
+        onClick={() => signInWithPasskey()}
+      >
+        Use passkey instead
+      </Button>
     </div>
   )
 }
