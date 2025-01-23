@@ -1,20 +1,19 @@
-import { defineConfig } from 'languine'
+import { defineConfig } from "languine";
 
 export default defineConfig({
-  version: '1.0.2',
+  version: "1.0.2",
   locale: {
-    source: 'en',
-    targets: ['pt', 'es', 'fr', 'de', 'zh'],
+    source: "en",
+    targets: ["de", "es", "fr", "zh", "pt"],
   },
   files: {
-    ts: {
-      include: ['locales/[locale].ts'],
+    json: {
+      include: ["locales/[locale].json"],
     },
   },
   llm: {
-    provider: 'openai',
-    model: 'gpt-4-turbo',
+    provider: "openai",
+    model: "gpt-4-turbo",
   },
-  extract: ['./app/**/*.{ts,tsx}'],
-})
-
+  
+});
