@@ -1,5 +1,5 @@
 import { routing } from '@/i18n/routing'
-import { setRequestLocale } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import BaseLayout from '@/components/base-layout'
 
@@ -10,6 +10,16 @@ type Props = {
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
+}
+
+export async function generateMetadata({ params }: Omit<Props, 'children'>) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'LocaleLayout' })
+
+  return {
+    title: 'Vitaes',
+    description: t('description'),
+  }
 }
 
 export default async function LocaleLayout({ children, params }: Props) {

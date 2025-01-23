@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { ThemeProvider } from './theme-provider'
+import { Toaster } from './ui/sonner'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,6 +35,7 @@ export default async function BaseLayout({ children, locale }: Props) {
         >
           <NextIntlClientProvider messages={messages}>
             {children}
+            <Toaster />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

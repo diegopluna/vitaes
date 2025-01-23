@@ -11,10 +11,21 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "email": "email dev"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.10.0",
+    "@radix-ui/react-dialog": "^1.1.5",
+    "@radix-ui/react-dropdown-menu": "^2.1.5",
+    "@radix-ui/react-label": "^2.1.1",
+    "@radix-ui/react-navigation-menu": "^1.2.4",
+    "@radix-ui/react-separator": "^1.1.1",
+    "@radix-ui/react-slot": "^1.1.1",
+    "@radix-ui/react-tooltip": "^1.1.7",
+    "@react-email/components": "^0.0.32",
     "@t3-oss/env-nextjs": "^0.11.1",
+    "@tabler/icons-react": "^3.29.0",
     "better-auth": "^1.1.14",
     "better-fetch": "^1.1.2",
     "class-variance-authority": "^0.7.1",
@@ -27,6 +38,10 @@
     "pg": "^8.13.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-email": "^3.0.6",
+    "react-hook-form": "^7.54.2",
+    "resend": "^4.1.1",
+    "sonner": "^1.7.2",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.24.1"
