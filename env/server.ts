@@ -14,6 +14,9 @@ export const env = createEnv({
     GITHUB_CLIENT_SECRET: z.string().min(1),
     GOOGLE_CLIENT_ID: z.string().min(1),
     GOOGLE_CLIENT_SECRET: z.string().min(1),
+    UPLOADTHING_TOKEN: z.string().min(1),
+    OPENPANEL_CLIENT_ID: z.string().min(1),
+    OPENPANEL_CLIENT_SECRET: z.string().min(1),
   },
   experimental__runtimeEnv: process.env,
 })

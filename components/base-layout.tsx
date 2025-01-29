@@ -3,6 +3,12 @@ import { getMessages } from 'next-intl/server'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { ThemeProvider } from './theme-provider'
 import { Toaster } from './ui/sonner'
+import QueryProvider from '@/providers/query-provider'
+import { NextSSRPlugin } from '@uploadthing/react/next-ssr-plugin'
+import { extractRouterConfig } from 'uploadthing/server'
+import { ourFileRouter } from '@/app/api/uploadthing/core'
+import { OpenPanelComponent } from '@openpanel/nextjs'
+import { env } from '@/env/server'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -33,10 +39,22 @@ export default async function BaseLayout({ children, locale }: Props) {
           enableSystem
           disableTransitionOnChange
         >
-          <NextIntlClientProvider messages={messages}>
-            {children}
-            <Toaster />
-          </NextIntlClientProvider>
+          <QueryProvider>
+            <NextIntlClientProvider messages={messages}>
+              <OpenPanelComponent
+                clientId={env.OPENPANEL_CLIENT_ID}
+                clientSecret={env.OPENPANEL_CLIENT_SECRET}
+                trackScreenViews={true}
+                trackOutgoingLinks={true}
+                trackAttributes={true}
+              />
+              <NextSSRPlugin
+                routerConfig={extractRouterConfig(ourFileRouter)}
+              />
+              {children}
+              <Toaster />
+            </NextIntlClientProvider>
+          </QueryProvider>
         </ThemeProvider>
       </body>
     </html>
