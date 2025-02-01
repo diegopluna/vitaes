@@ -21,7 +21,7 @@ export default async function DashboardLayout({ children }: Props) {
 
   return (
     <AccountSettingsProvider>
-      <Navbar user={user} />
+      <Navbar />
       {children}
       <AccountMenu />
     </AccountSettingsProvider>

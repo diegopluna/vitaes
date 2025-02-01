@@ -1,18 +1,11 @@
 'use client'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { client } from '@/lib/auth-client'
-import { useQuery } from '@tanstack/react-query'
 import { UpdateUserProfileDialog } from './update-user-profile'
+import { useSession } from '@/providers/session-provider'
 
 export const UserProfile = () => {
-  const session = useQuery({
-    queryKey: ['session'],
-    queryFn: async () => {
-      const session = await client.getSession()
-      return session.data
-    },
-  })
+  const { session } = useSession()
 
   return (
     <div className="flex flex-row w-full">
@@ -21,16 +14,14 @@ export const UserProfile = () => {
       </div>
       <div className="w-1/2 flex flex-row gap-2">
         <Avatar>
-          <AvatarImage src={session.data?.user.image ?? ''} />
-          <AvatarFallback>{session.data?.user.name[0] ?? ''}</AvatarFallback>
+          <AvatarImage src={session?.user.image ?? undefined} />
+          <AvatarFallback>{session?.user.name[0] ?? ''}</AvatarFallback>
         </Avatar>
         <div className="flex flex-col gap-1">
           <span className="text-sm font-semibold">
-            {session.data?.user.name ?? 'No name defined'}
+            {session?.user.name ?? 'No name defined'}
           </span>
-          <span className="text-xs text-gray-500">
-            {session.data?.user.email}
-          </span>
+          <span className="text-xs text-gray-500">{session?.user.email}</span>
         </div>
         <UpdateUserProfileDialog />
       </div>

@@ -18,13 +18,12 @@ import {
 } from '@/components/ui/sheet'
 import { Link } from '@/i18n/routing'
 import { IconBrandGithubFilled, IconMenu } from '@tabler/icons-react'
-import { User } from 'better-auth'
 import Image from 'next/image'
 import { useState } from 'react'
 import NextLink from 'next/link'
 import { UserButton } from './user-button'
 
-export const Navbar = ({ user }: { user: User }) => {
+export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -95,7 +94,7 @@ export const Navbar = ({ user }: { user: User }) => {
             <IconBrandGithubFilled className="size-5" />
           </NextLink>
         </Button>
-        <UserButton user={user} />
+        <UserButton />
       </div>
     </header>
   )

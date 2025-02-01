@@ -9,6 +9,7 @@ import { extractRouterConfig } from 'uploadthing/server'
 import { ourFileRouter } from '@/app/api/uploadthing/core'
 import { OpenPanelComponent } from '@openpanel/nextjs'
 import { env } from '@/env/server'
+import { SessionProvider } from '@/providers/session-provider'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -41,18 +42,20 @@ export default async function BaseLayout({ children, locale }: Props) {
         >
           <QueryProvider>
             <NextIntlClientProvider messages={messages}>
-              <OpenPanelComponent
-                clientId={env.OPENPANEL_CLIENT_ID}
-                clientSecret={env.OPENPANEL_CLIENT_SECRET}
-                trackScreenViews={true}
-                trackOutgoingLinks={true}
-                trackAttributes={true}
-              />
-              <NextSSRPlugin
-                routerConfig={extractRouterConfig(ourFileRouter)}
-              />
-              {children}
-              <Toaster />
+              <SessionProvider>
+                <OpenPanelComponent
+                  clientId={env.OPENPANEL_CLIENT_ID}
+                  clientSecret={env.OPENPANEL_CLIENT_SECRET}
+                  trackScreenViews={true}
+                  trackOutgoingLinks={true}
+                  trackAttributes={true}
+                />
+                <NextSSRPlugin
+                  routerConfig={extractRouterConfig(ourFileRouter)}
+                />
+                {children}
+                <Toaster />
+              </SessionProvider>
             </NextIntlClientProvider>
           </QueryProvider>
         </ThemeProvider>
