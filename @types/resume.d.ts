@@ -1,3 +1,8 @@
+type Highlight = {
+  id: string
+  text: string
+}
+
 type Work = {
   id: string
   name: string
@@ -6,7 +11,7 @@ type Work = {
   startDate: string
   endDate: string
   summary: string
-  highlights: string[]
+  highlights: Highlight[]
 }
 
 type Volunteer = {
@@ -17,7 +22,7 @@ type Volunteer = {
   startDate: string
   endDate: string
   summary: string
-  highlights: string[]
+  highlights: Highlight[]
 }
 
 type Education = {
@@ -29,7 +34,7 @@ type Education = {
   startDate: string
   endDate: string
   score: string
-  courses: string[]
+  courses: Highlight[]
 }
 
 type Award = {
@@ -61,7 +66,7 @@ type Skill = {
   id: string
   name: string
   level: string
-  keywords: string[]
+  keywords: Highlight[]
 }
 
 type Language = {
@@ -73,7 +78,7 @@ type Language = {
 type Interest = {
   id: string
   name: string
-  keywords: string[]
+  keywords: Highlight[]
 }
 
 type Reference = {
@@ -88,7 +93,7 @@ type Project = {
   startDate: string
   endDate: string
   description: string
-  highlights: string[]
+  highlights: Highlight[]
   url: string
 }
 

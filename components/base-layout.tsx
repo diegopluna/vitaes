@@ -44,6 +44,7 @@ export default async function BaseLayout({ children, locale }: Props) {
             <NextIntlClientProvider messages={messages}>
               <SessionProvider>
                 <OpenPanelComponent
+                  apiUrl={env.OPENPANEL_API_URL}
                   clientId={env.OPENPANEL_CLIENT_ID}
                   clientSecret={env.OPENPANEL_CLIENT_SECRET}
                   trackScreenViews={true}

@@ -29,7 +29,14 @@ export const DeleteModal = ({ type, onDelete, id }: DeleteModalProps) => {
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
         <TooltipWrapper tooltip={`Delete ${type}`}>
-          <Button size="icon" variant="outline" onClick={() => setOpen(true)}>
+          <Button
+            size="icon"
+            variant="outline"
+            onClick={(e) => {
+              e.preventDefault()
+              setOpen(true)
+            }}
+          >
             <IconTrash className="size-4" />
           </Button>
         </TooltipWrapper>
@@ -45,7 +52,12 @@ export const DeleteModal = ({ type, onDelete, id }: DeleteModalProps) => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={() => onDelete(id)}>
+          <AlertDialogAction
+            onClick={(e) => {
+              e.preventDefault()
+              onDelete(id)
+            }}
+          >
             Delete
           </AlertDialogAction>
         </AlertDialogFooter>

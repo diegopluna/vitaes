@@ -17,6 +17,7 @@ export const env = createEnv({
     UPLOADTHING_TOKEN: z.string().min(1),
     OPENPANEL_CLIENT_ID: z.string().min(1),
     OPENPANEL_CLIENT_SECRET: z.string().min(1),
+    OPENPANEL_API_URL: z.string().min(1),
   },
   experimental__runtimeEnv: process.env,
 })

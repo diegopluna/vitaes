@@ -31,21 +31,23 @@ const stateStyles: {
 
 const idleState: DraggableState = { type: 'idle' }
 
-interface ListHighlightItemProps<T extends { id: string }> {
+interface ListHighlightItemProps<T extends { id: string; text: string }> {
   item: T
-  getItemData(item: T): ItemData<T extends { id: string } ? T : never>
+  getItemData(
+    item: T,
+  ): ItemData<T extends { id: string; text: string } ? T : never>
   isItemData(data: Record<string | symbol, unknown>): data is ItemData<T>
-  EditSheet({ defaultValues }: { defaultValues?: T }): JSX.Element
   onDelete(id: string): void
+  onChangeText(id: string, text: string): void
   itemType: string
 }
 
-export function ListHighlightItem<T extends { id: string }>({
+export function ListHighlightItem<T extends { id: string; text: string }>({
   item,
   getItemData,
   isItemData,
-  EditSheet,
   onDelete,
+  onChangeText,
   itemType,
 }: ListHighlightItemProps<T>) {
   const ref = useRef<HTMLDivElement | null>(null)
@@ -144,10 +146,11 @@ export function ListHighlightItem<T extends { id: string }>({
             <div ref={dragHandleRef} className="mr-2 hover:cursor-move">
               <IconGripVertical />
             </div>
-            <Input value={item.id} onChange={() => {}} />
-            <span className="flex-grow mr-2">{item.id}</span>
-            <div className="flex space-x-2">
-              <EditSheet defaultValues={item} />
+            <Input
+              value={item.text}
+              onChange={(e) => onChangeText(item.id, e.target.value)}
+            />
+            <div className="flex space-x-2 ml-2">
               <DeleteModal
                 type={itemType}
                 onDelete={() => onDelete(item.id)}
@@ -168,20 +171,19 @@ export function ListHighlightItem<T extends { id: string }>({
   )
 }
 
-function DragPreview<T extends { id: string }>({ item }: { item: T }) {
+function DragPreview<T extends { id: string; text: string }>({
+  item,
+}: {
+  item: T
+}) {
   return (
     <Card className="w-full">
       <CardContent className="p-4 flex items-cetner justify-between">
         <div className="mr-2 cursor-move">
           <IconGripVertical />
         </div>
-        <span className="flex-grow mr-2">{item.id}</span>
+        <span className="flex-grow mr-2">{item.text}</span>
         <div className="flex space-x-2">
-          <TooltipWrapper tooltip="Edit">
-            <Button variant="outline" size="icon">
-              <IconPencil className="size-4" />
-            </Button>
-          </TooltipWrapper>
           <TooltipWrapper tooltip="Delete">
             <Button variant="outline" size="icon">
               <IconTrash className="size-4" />
