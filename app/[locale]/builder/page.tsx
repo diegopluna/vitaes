@@ -12,7 +12,19 @@ export default function Builder() {
       <ScrollArea className="w-1/3 border-r px-6">
         {activeTab === 'resume' && <ResumeForm />}
       </ScrollArea>
-      <div className="w-2/3 p-6 relative flex items-center justify-center"></div>
+      <div className="w-2/3 p-6 relative flex items-center justify-center">
+        {/* <PDFViewer className="size-[80%] " showToolbar={false}>
+          <AwesomeCVTemplate />
+        </PDFViewer> */}
+        <iframe
+          src={'/api/pdf?preview=true#toolbar=0&navpanes=0&scrollbar=0'}
+          className="w-[60%] aspect-[1/1.4142] rounded-lg border border-border shadow-sm"
+          style={{
+            maxHeight: '85%',
+            objectFit: 'contain',
+          }}
+        />
+      </div>
     </div>
   )
 }
