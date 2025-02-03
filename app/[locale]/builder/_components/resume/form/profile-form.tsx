@@ -46,7 +46,7 @@ export const ProfileForm = () => {
         isItemData={isProfileData}
         setItems={setProfiles}
         EditSheet={ProfileSheet}
-        itemType="profile"
+        itemType="Profile"
         onDelete={(id) => {
           setProfiles(profiles.filter((p) => p.id !== id))
         }}

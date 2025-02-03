@@ -39,7 +39,7 @@ export const WorkForm = () => {
         isItemData={isWorkData}
         setItems={setWork}
         EditSheet={WorkSheet}
-        itemType="work"
+        itemType="Work Experience"
         onDelete={(id) => {
           setWork(works.filter((w) => w.id !== id))
         }}
