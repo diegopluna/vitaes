@@ -7,5 +7,23 @@
     "sub-action": "Craft stunning resumes effortlessly with our free and open source builder. Choose from modern templates and land your dream job.",
     "action-button": "Get Started",
     "footer": "Designed and developed by"
+  },
+  "LoginForm": {
+    "welcome": "Welcome back",
+    "google": "Continue with Google",
+    "github": "Continue with GitHub",
+    "or": "or",
+    "passkey": "Use passkey instead",
+    "email-placeholder": "Enter your email address",
+    "sign-in": "Sign in",
+    "email-valid": "Must be a valid email address",
+    "email-required": "Email is required",
+    "toast-rate-limit": "Rate limit exceeded. Try again in ${retryAfter} seconds",
+    "failed-to-send": "Failed to send magic link. Please try again"
+  },
+  "EmailSent": {
+    "title": "Check your email",
+    "email-sent": "We sent a temporary sign-in link to {email}. ",
+    "not-you": "Not you?"
   }
 }

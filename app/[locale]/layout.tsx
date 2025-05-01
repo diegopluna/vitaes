@@ -3,6 +3,7 @@ import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 import { ThemeProvider } from '@/components/theme-provider'
+import { Toaster } from '@/components/ui/sonner'
 
 type Props = {
   children: React.ReactNode
@@ -39,7 +40,10 @@ export default async function RootLayout({ children, params }: Props) {
           enableSystem
           disableTransitionOnChange
         >
-          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+          <NextIntlClientProvider>
+            {children}
+            <Toaster richColors />
+          </NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>

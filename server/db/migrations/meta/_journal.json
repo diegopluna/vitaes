@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1746121574346,
+      "tag": "0000_friendly_colossus",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1746123023205,
+      "tag": "0001_conscious_landau",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1746124998981,
+      "tag": "0002_odd_zeigeist",
+      "breakpoints": true
+    }
+  ]
+}
