@@ -3,6 +3,9 @@
     "description": "Resume Builder"
   },
   "Landing": {
-    "welcome": "Welcome to the Resume Builder"
+    "action": "Build your resume with",
+    "sub-action": "Craft stunning resumes effortlessly with our free and open source builder. Choose from modern templates and land your dream job.",
+    "action-button": "Get Started",
+    "footer": "Designed and developed by"
   }
 }
