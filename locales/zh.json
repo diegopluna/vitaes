@@ -1,5 +1,14 @@
 {
-  "LocaleLayout": {
-    "description": "Resume Builder"
+  "welcome": "欢迎使用我们的应用程序！",
+  "user": {
+    "greeting": "嗨，{{name}}！",
+    "profile": {
+      "title": "您的个人资料",
+      "edit": "编辑个人资料"
+    }
+  },
+  "notifications": {
+    "messages": "您有{{count}}条新消息。",
+    "empty": "没有新的通知。"
   }
 }

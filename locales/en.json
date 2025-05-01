@@ -1,5 +1,8 @@
 {
   "LocaleLayout": {
     "description": "Resume Builder"
+  },
+  "Landing": {
+    "welcome": "Welcome to the Resume Builder"
   }
 }

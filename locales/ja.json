@@ -1,0 +1,14 @@
+{
+  "welcome": "私たちのアプリケーションへようこそ！",
+  "user": {
+    "greeting": "こんにちは、{{name}}！",
+    "profile": {
+      "title": "あなたのプロフィール",
+      "edit": "プロフィールを編集"
+    }
+  },
+  "notifications": {
+    "messages": "新しいメッセージが{{count}}件あります。",
+    "empty": "新しい通知はありません。"
+  }
+}

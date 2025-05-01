@@ -1,7 +1,7 @@
+import { NextIntlClientProvider } from 'next-intl'
 import { routing } from '@/i18n/routing'
-import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
-import BaseLayout from '@/components/base-layout'
+import { getTranslations } from 'next-intl/server'
 
 type Props = {
   children: React.ReactNode
@@ -9,7 +9,7 @@ type Props = {
 }
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }))
+  return routing.locales.map(locale => ({ locale }))
 }
 
 export async function generateMetadata({ params }: Omit<Props, 'children'>) {
@@ -22,14 +22,18 @@ export async function generateMetadata({ params }: Omit<Props, 'children'>) {
   }
 }
 
-export default async function LocaleLayout({ children, params }: Props) {
+export default async function RootLayout({ children, params }: Props) {
   const { locale } = await params
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  if (!routing.locales.includes(locale as any)) {
+
+  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound()
   }
 
-  setRequestLocale(locale)
-
-  return <BaseLayout locale={locale}>{children}</BaseLayout>
+  return (
+    <html lang={locale}>
+      <body>
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      </body>
+    </html>
+  )
 }

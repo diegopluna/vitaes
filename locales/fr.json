@@ -1,5 +1,14 @@
 {
-  "LocaleLayout": {
-    "description": "Resume Builder"
+  "welcome": "Bienvenue dans notre application !",
+  "user": {
+    "greeting": "Salut, {{name}} !",
+    "profile": {
+      "title": "Votre profil",
+      "edit": "Modifier le profil"
+    }
+  },
+  "notifications": {
+    "messages": "Vous avez {{count}} nouveau(x) message(s).",
+    "empty": "Aucune nouvelle notification."
   }
 }
