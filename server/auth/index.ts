@@ -34,9 +34,9 @@ export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: 'pg',
   }),
-  rateLimit: {
-    enabled: true,
-  },
+  // rateLimit: {
+  //   enabled: true,
+  // },
   plugins: [
     passkey({
       rpID: env.NODE_ENV === 'production' ? 'vitaes.io' : 'localhost',
@@ -84,3 +84,5 @@ export const auth = betterAuth({
     },
   },
 })
+
+export type Session = Awaited<ReturnType<typeof auth.api.getSession>>
