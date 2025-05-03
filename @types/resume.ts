@@ -4,7 +4,7 @@ export type Resume = {
   honors: HonorsPerLabel[]
   presentations: Presentation[]
   writings: Writing[]
-  committees: Comittee[]
+  comittees: Comittee[]
   education: Education[]
   extracurriculars: Extracurricular[]
   projects: Project[]
@@ -32,7 +32,7 @@ export type Profile = {
   url: string
 }
 
-type StringWithId = {
+export type StringWithId = {
   id: string
   value: string
 }
