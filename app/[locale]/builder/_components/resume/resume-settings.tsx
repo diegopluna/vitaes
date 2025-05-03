@@ -122,7 +122,7 @@ export const ResumeSettings = () => {
     <div className="space-y-12">
       <div className="space-y-6">
         <h2 className="text-2xl font-semibold">Settings</h2>
-        <div className="grid gap-4 sm:grid-cols-2 px-2">
+        <div className="px-2 flex-flex-col w-full space-y-4">
           <Selector
             label="Model"
             value={settings.model}
