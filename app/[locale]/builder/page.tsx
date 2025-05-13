@@ -27,11 +27,11 @@ export default function Builder() {
             objectFit: 'contain',
           }}
         /> */}
-      <div className="px-6 pt-6 w-2/3 justify-center">
+      <ScrollArea className="pl-6 pt-6 w-2/3 flex justify-center">
         <DisplayFrame scale={0.75}>
           <ResumeView resume={resume} />
         </DisplayFrame>
-      </div>
+      </ScrollArea>
       {/* </div> */}
     </div>
   )

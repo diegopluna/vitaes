@@ -7,6 +7,7 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
+  SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
@@ -83,20 +84,22 @@ export const BuilderSidebar = () => {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Resume Sections</SidebarGroupLabel>
-          <SidebarMenu>
-            {sections.map(section => (
-              <SidebarMenuItem key={section.id}>
-                <SidebarMenuButton
-                  size="sm"
-                  tooltip={section.title}
-                  onClick={() => scrollToSection(section.id)}
-                >
-                  <section.icon />
-                  <span>{section.title}</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
-          </SidebarMenu>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {sections.map(section => (
+                <SidebarMenuItem key={section.id}>
+                  <SidebarMenuButton
+                    size="sm"
+                    tooltip={section.title}
+                    onClick={() => scrollToSection(section.id)}
+                  >
+                    <section.icon />
+                    <span>{section.title}</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
         </SidebarGroup>
         <SidebarSeparator />
         <SidebarGroup>
