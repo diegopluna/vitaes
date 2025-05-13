@@ -5,9 +5,12 @@ export default function ResumeHonors({ resume }: { resume: Resume }) {
   const { awesomeCV: settings } = resume.settings
   return (
     <div className="flex flex-col items-start justify-start w-full mt-4">
-      <ResumeSectionHeader label={'Honors'} color={settings.accentColor} />
+      <ResumeSectionHeader
+        label={resume.honors.label}
+        color={settings.accentColor}
+      />
       <div className="flex flex-col items-start justify-start w-full">
-        {resume.honors?.map((honorTypes, index) => (
+        {resume.honors.content.map((honorTypes, index) => (
           <div className="w-full" key={index}>
             <span className="text-md mt-4">
               {honorTypes.label.toUpperCase()}

@@ -88,17 +88,19 @@ export const ExtracurricularSheet = ({
         }),
       }
       if (defaultValues) {
-        setResumeField(
-          'extracurriculars',
-          extracurriculars.map(w =>
+        setResumeField('extracurriculars', {
+          ...extracurriculars,
+          content: extracurriculars.content.map(w =>
             w.id === defaultValues.id ? extracurricular : w,
           ),
-        )
+        })
       } else {
-        setResumeField('extracurriculars', [
+        setResumeField('extracurriculars', {
           ...extracurriculars,
-          extracurricular,
-        ])
+          content: extracurriculars.content.filter(
+            w => w.id !== extracurricular.id,
+          ),
+        })
       }
       setOpen(false)
       form.reset()
@@ -119,7 +121,9 @@ export const ExtracurricularSheet = ({
       <SheetTrigger asChild>
         <TooltipWrapper
           tooltip={
-            defaultValues ? 'Edit Extracurricular' : 'Add Extracurricular'
+            defaultValues
+              ? `Edit ${extracurriculars.label}`
+              : `Add ${extracurriculars.label}`
           }
         >
           <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
@@ -134,7 +138,9 @@ export const ExtracurricularSheet = ({
       <SheetContent side="left" className="p-4">
         <SheetHeader>
           <SheetTitle>
-            {defaultValues ? 'Edit Extracurricular' : 'Add Extracurricular'}
+            {defaultValues
+              ? `Edit ${extracurriculars.label}`
+              : `Add ${extracurriculars.label}`}
           </SheetTitle>
         </SheetHeader>
         <form.AppForm>
@@ -249,7 +255,7 @@ export const ExtracurricularSheet = ({
                         <div className="flex flex-col w-full gap-2 px-2 items-center">
                           {field.state.value.length === 0 && (
                             <p className="text-center text-sm">
-                              No extracurricular description added
+                              No {extracurriculars.label.toLowerCase()} added
                             </p>
                           )}
                           <ExtracurricularHighlightDragList
@@ -283,7 +289,7 @@ export const ExtracurricularSheet = ({
               </div>
             </ScrollArea>
             <Button className="mt-4" type="submit">
-              Save Extracurricular
+              Save {extracurriculars.label}
             </Button>
           </form>
         </form.AppForm>

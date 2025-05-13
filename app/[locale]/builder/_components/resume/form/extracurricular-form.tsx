@@ -30,23 +30,32 @@ export const ExtracurricularForm = () => {
 
   const extracurriculars = resume.extracurriculars
 
+  function setExtracurriculars(extracurriculars: Extracurricular[]) {
+    setResumeField('extracurriculars', {
+      ...resume.extracurriculars,
+      content: extracurriculars,
+    })
+  }
+
   return (
     <div className="flex flex-col w-full gap-2 px-2 items-center">
-      {extracurriculars.length === 0 && (
-        <p className="text-center">No extracurricular added</p>
+      {extracurriculars.content.length === 0 && (
+        <p className="text-center">No {extracurriculars.label} added</p>
       )}
       <ExtracurricularDragList
-        items={extracurriculars}
+        items={extracurriculars.content}
         getItemData={getExtracurricularData}
         isItemData={isExtracurricularData}
-        setItems={setResumeField.bind(null, 'extracurriculars')}
+        setItems={setExtracurriculars}
         EditSheet={ExtracurricularSheet}
         itemType="Extracurricular"
         onDelete={id => {
-          setResumeField(
-            'extracurriculars',
-            extracurriculars.filter(w => w.id !== id),
-          )
+          setResumeField('extracurriculars', {
+            ...resume.extracurriculars,
+            content: resume.extracurriculars.content.filter(
+              extracurricular => extracurricular.id !== id,
+            ),
+          })
         }}
       />
     </div>

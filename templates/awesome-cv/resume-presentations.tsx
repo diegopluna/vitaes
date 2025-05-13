@@ -6,11 +6,11 @@ export default function ResumePresentations({ resume }: { resume: Resume }) {
   return (
     <div className="flex flex-col items-start justify-start w-full mt-4">
       <ResumeSectionHeader
-        label={'Presentations'}
+        label={resume.presentations.label}
         color={settings.accentColor}
       />
       <div className="flex flex-col items-start justify-start w-full">
-        {resume.presentations.map((presentation, index) => (
+        {resume.presentations.content.map((presentation, index) => (
           <div className="w-full" key={index}>
             <div className="flex justify-between w-full">
               <span className="text-md font-bold">{presentation.event}</span>

@@ -26,25 +26,34 @@ const CertificateDragList = DragList<Certificate>
 export const CertificateForm = () => {
   const { resume, setResumeField } = useResumeStore(s => s)
 
-  const certificates = resume.certificates
+  const certificates = resume.certificates.content
+
+  function setCertificates(items: Certificate[]) {
+    setResumeField('certificates', {
+      ...resume.certificates,
+      content: items,
+    })
+  }
 
   return (
     <div className="flex flex-col w-full gap-2 px-2 items-center">
       {certificates.length === 0 && (
-        <p className="text-center">No certificate added</p>
+        <p className="text-center">
+          No {resume.certificates.label.toLowerCase()} added
+        </p>
       )}
       <CertificateDragList
         items={certificates}
         getItemData={getCertificateData}
         isItemData={isCertificateData}
-        setItems={setResumeField.bind(null, 'certificates')}
+        setItems={setCertificates}
         EditSheet={CertificateSheet}
         itemType="Certificate Experience"
         onDelete={id => {
-          setResumeField(
-            'certificates',
-            certificates.filter(w => w.id !== id),
-          )
+          setResumeField('certificates', {
+            ...resume.certificates,
+            content: resume.certificates.content.filter(w => w.id !== id),
+          })
         }}
       />
     </div>

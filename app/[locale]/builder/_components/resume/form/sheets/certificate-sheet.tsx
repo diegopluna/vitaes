@@ -83,12 +83,20 @@ export const CertificateSheet = ({
         }),
       }
       if (defaultValues) {
-        setResumeField(
-          'certificates',
-          certificates.map(w => (w.id === defaultValues.id ? certificate : w)),
-        )
+        setResumeField('certificates', {
+          ...certificates,
+          content: certificates.content.map(w => {
+            if (w.id === defaultValues.id) {
+              return certificate
+            }
+            return w
+          }),
+        })
       } else {
-        setResumeField('certificates', [...certificates, certificate])
+        setResumeField('certificates', {
+          ...certificates,
+          content: [...certificates.content, certificate],
+        })
       }
       setOpen(false)
       form.reset()
@@ -108,7 +116,11 @@ export const CertificateSheet = ({
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <TooltipWrapper
-          tooltip={defaultValues ? 'Edit Certificate' : 'Add Certificate'}
+          tooltip={
+            defaultValues
+              ? `Edit ${certificates.label}`
+              : `Add ${certificates.label}`
+          }
         >
           <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
             {defaultValues ? (
@@ -122,7 +134,9 @@ export const CertificateSheet = ({
       <SheetContent side="left" className="p-4">
         <SheetHeader>
           <SheetTitle>
-            {defaultValues ? 'Edit Certificate' : 'Add Certificate'}
+            {defaultValues
+              ? `Edit ${certificates.label}`
+              : `Add ${certificates.label}`}
           </SheetTitle>
         </SheetHeader>
         <form.AppForm>
@@ -204,7 +218,7 @@ export const CertificateSheet = ({
                         <div className="flex flex-col w-full gap-2 px-2 items-center">
                           {field.state.value.length === 0 && (
                             <p className="text-center text-sm">
-                              No certificate added
+                              No description added
                             </p>
                           )}
                           <CertificateHighlightDragList
@@ -212,7 +226,7 @@ export const CertificateSheet = ({
                             getItemData={getCertificateHighlightData}
                             isItemData={isCertificateHighlightData}
                             setItems={field.handleChange}
-                            itemType="Certificate"
+                            itemType={'Description'}
                             onDelete={id => {
                               field.handleChange(
                                 field.state.value.filter(h => h.id !== id),
@@ -238,7 +252,7 @@ export const CertificateSheet = ({
               </div>
             </ScrollArea>
             <Button className="mt-4" type="submit">
-              Save Certificate
+              Save {certificates.label}
             </Button>
           </form>
         </form.AppForm>

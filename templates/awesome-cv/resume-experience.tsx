@@ -5,9 +5,12 @@ export default function ResumeExperience({ resume }: { resume: Resume }) {
   const { awesomeCV: settings } = resume.settings
   return (
     <div className="flex flex-col items-start justify-start w-full mt-4">
-      <ResumeSectionHeader label={'Experience'} color={settings.accentColor} />
+      <ResumeSectionHeader
+        label={resume.work.label}
+        color={settings.accentColor}
+      />
       <div className="flex flex-col items-start justify-start w-full">
-        {resume.work.map((experience, index) => (
+        {resume.work.content.map((experience, index) => (
           <div className="w-full" key={index}>
             <div className="flex justify-between w-full">
               <span className="text-md font-bold">{experience.company}</span>

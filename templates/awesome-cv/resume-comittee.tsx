@@ -5,9 +5,12 @@ export default function ResumeComittee({ resume }: { resume: Resume }) {
   const { awesomeCV: settings } = resume.settings
   return (
     <div className="flex flex-col items-start justify-start w-full mt-4">
-      <ResumeSectionHeader label={'Comittees'} color={settings.accentColor} />
+      <ResumeSectionHeader
+        label={resume.committees.label}
+        color={settings.accentColor}
+      />
       <div className="flex flex-col items-start justify-start w-full">
-        {resume.comittees?.map((comittee, index) => (
+        {resume.committees.content.map((comittee, index) => (
           <div className="flex justify-between w-full" key={index}>
             <div className="flex flex-row ">
               <span className="text-xs mr-4">{comittee.year}</span>

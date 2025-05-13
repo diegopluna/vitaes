@@ -6,9 +6,12 @@ export default function ResumeProjects({ resume }: { resume: Resume }) {
 
   return (
     <div className="flex flex-col items-start justify-start w-full mt-4">
-      <ResumeSectionHeader label={'Projects'} color={settings.accentColor} />
+      <ResumeSectionHeader
+        label={resume.projects.label}
+        color={settings.accentColor}
+      />
       <div className="flex flex-col items-start justify-start w-full">
-        {resume.projects.map((project, index) => {
+        {resume.projects.content.map((project, index) => {
           const programmingLanguage = project.programmingLanguages
             .map(p => p.value)
             .join(', ')

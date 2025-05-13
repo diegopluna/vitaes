@@ -29,21 +29,32 @@ export const HonorsForm = () => {
   const { resume, setResumeField } = useResumeStore(s => s)
   const honors = resume.honors
 
+  function setHonors(honors: HonorsPerLabel[]) {
+    setResumeField('honors', {
+      ...resume.honors,
+      content: honors,
+    })
+  }
+
   return (
     <div className="flex flex-col w-full gap-2 px-2 items-center">
-      {honors.length === 0 && <p className="text-center">No honors added</p>}
+      {honors.content.length === 0 && (
+        <p className="text-center">No {honors.label} added</p>
+      )}
       <HonorsPerLabelDragList
-        items={honors}
+        items={honors.content}
         getItemData={getHonorsPerLabelData}
         isItemData={isHonorsPerLabelData}
-        setItems={setResumeField.bind(null, 'honors')}
+        setItems={setHonors}
         EditSheet={HonorsSheet}
         itemType="Honors"
         onDelete={id => {
-          setResumeField(
-            'honors',
-            honors.filter(h => h.id !== id),
-          )
+          setResumeField('honors', {
+            ...resume.honors,
+            content: resume.honors.content.filter(
+              honorsPerLabel => honorsPerLabel.id !== id,
+            ),
+          })
         }}
       />
     </div>

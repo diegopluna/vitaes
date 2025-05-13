@@ -6,11 +6,11 @@ export default function ResumeExtracurricular({ resume }: { resume: Resume }) {
   return (
     <div className="flex flex-col items-start justify-start w-full mt-4">
       <ResumeSectionHeader
-        label={'Extracurriculars'}
+        label={resume.extracurriculars.label}
         color={settings.accentColor}
       />
       <div className="flex flex-col items-start justify-start w-full">
-        {resume.extracurriculars.map((extracurricular, index) => (
+        {resume.extracurriculars.content.map((extracurricular, index) => (
           <div className="w-full" key={index}>
             <div className="flex justify-between w-full">
               <span className="text-md font-bold">

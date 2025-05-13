@@ -6,9 +6,12 @@ export default function ResumeWritings({ resume }: { resume: Resume }) {
 
   return (
     <div className="flex flex-col items-start justify-start w-full mt-4">
-      <ResumeSectionHeader label={'Writings'} color={settings.accentColor} />
+      <ResumeSectionHeader
+        label={resume.writings.label}
+        color={settings.accentColor}
+      />
       <div className="flex flex-col items-start justify-start w-full">
-        {resume.writings.map((writing, index) => (
+        {resume.writings.content.map((writing, index) => (
           <div className="w-full" key={index}>
             <div className="flex justify-between w-full">
               <span className="text-md font-bold">{writing.title}</span>

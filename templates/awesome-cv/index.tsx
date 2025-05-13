@@ -30,20 +30,28 @@ export default function AwesomeCV({ resume }: Props) {
     <div className={cn(roboto.className)} style={styles.textText}>
       <ResumeHeader resume={resume} />
       {resume.basics.summary.length > 0 && <ResumeSummary resume={resume} />}
-      {resume.work.length > 0 && <ResumeExperience resume={resume} />}
-      {resume.honors.length > 0 && <ResumeHonors resume={resume} />}
-      {resume.presentations.length > 0 && (
+      {resume.work.content.length > 0 && <ResumeExperience resume={resume} />}
+      {resume.honors.content.length > 0 && <ResumeHonors resume={resume} />}
+      {resume.presentations.content.length > 0 && (
         <ResumePresentations resume={resume} />
       )}
-      {resume.writings.length > 0 && <ResumeWritings resume={resume} />}
-      {resume.comittees.length > 0 && <ResumeComittee resume={resume} />}
-      {resume.education.length > 0 && <ResumeEducation resume={resume} />}
-      {resume.extracurriculars.length > 0 && (
+      {resume.writings.content.length > 0 && <ResumeWritings resume={resume} />}
+      {resume.committees.content.length > 0 && (
+        <ResumeComittee resume={resume} />
+      )}
+      {resume.education.content.length > 0 && (
+        <ResumeEducation resume={resume} />
+      )}
+      {resume.extracurriculars.content.length > 0 && (
         <ResumeExtracurricular resume={resume} />
       )}
-      {resume.projects.length > 0 && <ResumeProjects resume={resume} />}
-      {resume.languages.length > 0 && <ResumeLanguages resume={resume} />}
-      {resume.certificates.length > 0 && <ResumeCertificates resume={resume} />}
+      {resume.projects.content.length > 0 && <ResumeProjects resume={resume} />}
+      {resume.languages.content.length > 0 && (
+        <ResumeLanguages resume={resume} />
+      )}
+      {resume.certificates.content.length > 0 && (
+        <ResumeCertificates resume={resume} />
+      )}
     </div>
   )
 }

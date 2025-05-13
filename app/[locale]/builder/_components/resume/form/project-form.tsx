@@ -28,21 +28,30 @@ export const ProjectForm = () => {
 
   const projects = resume.projects
 
+  const setProjects = (projects: Project[]) => {
+    setResumeField('projects', {
+      ...resume.projects,
+      content: projects,
+    })
+  }
+
   return (
     <div className="flex flex-col w-full gap-2 px-2 items-center">
-      {projects.length === 0 && <p className="text-center">No project added</p>}
+      {projects.content.length === 0 && (
+        <p className="text-center">No {projects.label} added</p>
+      )}
       <ProjectDragList
-        items={projects}
+        items={projects.content}
         getItemData={getProjectData}
         isItemData={isProjectData}
-        setItems={setResumeField.bind(null, 'projects')}
+        setItems={setProjects}
         EditSheet={ProjectSheet}
         itemType="Project"
         onDelete={id => {
-          setResumeField(
-            'projects',
-            projects.filter(w => w.id !== id),
-          )
+          setResumeField('projects', {
+            ...resume.projects,
+            content: projects.content.filter(project => project.id !== id),
+          })
         }}
       />
     </div>

@@ -28,23 +28,30 @@ export const WorkForm = () => {
 
   const works = resume.work
 
+  const setWorks = (works: Work[]) => {
+    setResumeField('work', {
+      ...resume.work,
+      content: works,
+    })
+  }
+
   return (
     <div className="flex flex-col w-full gap-2 px-2 items-center">
-      {works.length === 0 && (
-        <p className="text-center">No work experience added</p>
+      {works.content.length === 0 && (
+        <p className="text-center">No {works.label} added</p>
       )}
       <WorkDragList
-        items={works}
+        items={works.content}
         getItemData={getWorkData}
         isItemData={isWorkData}
-        setItems={setResumeField.bind(null, 'work')}
+        setItems={setWorks}
         EditSheet={WorkSheet}
         itemType="Work Experience"
         onDelete={id => {
-          setResumeField(
-            'work',
-            works.filter(w => w.id !== id),
-          )
+          setResumeField('work', {
+            ...resume.work,
+            content: works.content.filter(work => work.id !== id),
+          })
         }}
       />
     </div>

@@ -161,7 +161,7 @@ export function ListHighlightItem<T extends { id: string; value: string }>({
         </Card>
         {draggableState.type === 'is-dragging-over' &&
         draggableState.closestEdge ? (
-          <DropIndicator edge={draggableState.closestEdge} gap="8px" />
+          <DropIndicator edge={draggableState.closestEdge} />
         ) : null}
       </div>
       {draggableState.type === 'preview'

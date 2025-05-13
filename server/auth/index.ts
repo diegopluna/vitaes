@@ -1,7 +1,7 @@
 import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { passkey } from 'better-auth/plugins/passkey'
-import { magicLink } from 'better-auth/plugins'
+import { magicLink, anonymous } from 'better-auth/plugins'
 import { db } from '../db'
 import { env } from '@/env'
 import { resend } from '../resend'
@@ -65,6 +65,7 @@ export const auth = betterAuth({
         max: 1,
       },
     }),
+    anonymous(),
   ],
   account: {
     accountLinking: {

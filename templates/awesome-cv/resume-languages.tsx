@@ -6,9 +6,12 @@ export default function ResumeLanguages({ resume }: { resume: Resume }) {
 
   return (
     <div className="flex flex-col items-start justify-start w-full mt-4">
-      <ResumeSectionHeader label={'Languages'} color={settings.accentColor} />
+      <ResumeSectionHeader
+        label={resume.languages.label}
+        color={settings.accentColor}
+      />
       <div className="flex flex-col items-start justify-start w-full">
-        {resume.languages?.map((language, index) => (
+        {resume.languages.content.map((language, index) => (
           <div className="flex justify-between w-full" key={index}>
             <div className="flex flex-row ">
               <span className="text-xs mr-4">{language.language}</span>

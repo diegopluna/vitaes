@@ -61,8 +61,6 @@ export const EducationSheet = ({
   const [open, setOpen] = useState(false)
   const { resume, setResumeField } = useResumeStore(s => s)
 
-  const educations = resume.education
-
   const form = useAppForm({
     validators: {
       onChange: educationExperienceFormSchema,
@@ -88,12 +86,20 @@ export const EducationSheet = ({
         }),
       }
       if (defaultValues) {
-        setResumeField(
-          'education',
-          educations.map(w => (w.id === defaultValues.id ? education : w)),
-        )
+        setResumeField('education', {
+          ...resume.education,
+          content: resume.education.content.map(w => {
+            if (w.id === defaultValues.id) {
+              return education
+            }
+            return w
+          }),
+        })
       } else {
-        setResumeField('education', [...educations, education])
+        setResumeField('education', {
+          ...resume.education,
+          content: [...resume.education.content, education],
+        })
       }
       setOpen(false)
       form.reset()
@@ -113,7 +119,11 @@ export const EducationSheet = ({
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <TooltipWrapper
-          tooltip={defaultValues ? 'Edit Education' : 'Add Education'}
+          tooltip={
+            defaultValues
+              ? `Edit ${resume.education.label}`
+              : `Add ${resume.education.label}`
+          }
         >
           <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
             {defaultValues ? (
@@ -127,7 +137,9 @@ export const EducationSheet = ({
       <SheetContent side="left" className="p-4">
         <SheetHeader>
           <SheetTitle>
-            {defaultValues ? 'Edit Education' : 'Add Education'}
+            {defaultValues
+              ? `Edit ${resume.education.label}`
+              : `Add ${resume.education.label}`}
           </SheetTitle>
         </SheetHeader>
         <form.AppForm>
@@ -275,7 +287,7 @@ export const EducationSheet = ({
               </div>
             </ScrollArea>
             <Button className="mt-4" type="submit">
-              Save Education
+              Save {resume.education.label}
             </Button>
           </form>
         </form.AppForm>

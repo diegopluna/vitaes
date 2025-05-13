@@ -1,6 +1,6 @@
 'use client'
 
-import { Comittee } from '@/@types/resume'
+import { Committee } from '@/@types/resume'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
@@ -28,12 +28,12 @@ const comitteeExperienceFormSchema = z.object({
 export const ComitteeSheet = ({
   defaultValues,
 }: {
-  defaultValues?: Comittee
+  defaultValues?: Committee
 }) => {
   const [open, setOpen] = useState(false)
   const { resume, setResumeField } = useResumeStore(s => s)
 
-  const comittees = resume.comittees
+  const comittees = resume.committees
 
   const form = useAppForm({
     validators: {
@@ -46,17 +46,22 @@ export const ComitteeSheet = ({
       location: defaultValues?.location || '',
     },
     onSubmit: ({ value }) => {
-      const comittee: Comittee = {
+      const comittee: Committee = {
         ...value,
         id: `${value.position} - ${value.organization}`,
       }
       if (defaultValues) {
-        setResumeField(
-          'comittees',
-          comittees.map(w => (w.id === defaultValues.id ? comittee : w)),
-        )
+        setResumeField('committees', {
+          ...resume.committees,
+          content: comittees.content.map(w =>
+            w.id === defaultValues.id ? comittee : w,
+          ),
+        })
       } else {
-        setResumeField('comittees', [...comittees, comittee])
+        setResumeField('committees', {
+          ...resume.committees,
+          content: [...comittees.content, comittee],
+        })
       }
       setOpen(false)
       form.reset()
@@ -76,7 +81,11 @@ export const ComitteeSheet = ({
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <TooltipWrapper
-          tooltip={defaultValues ? 'Edit Comittee' : 'Add Comittee'}
+          tooltip={
+            defaultValues
+              ? `Edit ${resume.committees.label}`
+              : `Add ${resume.committees.label}`
+          }
         >
           <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
             {defaultValues ? (
@@ -90,7 +99,9 @@ export const ComitteeSheet = ({
       <SheetContent side="left" className="p-4">
         <SheetHeader>
           <SheetTitle>
-            {defaultValues ? 'Edit Comittee' : 'Add Comittee'}
+            {defaultValues
+              ? `Edit ${resume.committees.label}`
+              : `Add ${resume.committees.label}`}
           </SheetTitle>
         </SheetHeader>
         <form.AppForm>
@@ -164,7 +175,7 @@ export const ComitteeSheet = ({
               </div>
             </ScrollArea>
             <Button className="mt-4" type="submit">
-              Save Comittee
+              Save {comittees.label}
             </Button>
           </form>
         </form.AppForm>

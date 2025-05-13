@@ -28,23 +28,30 @@ export const WritingForm = () => {
 
   const writings = resume.writings
 
+  const setWritings = (writings: Writing[]) => {
+    setResumeField('writings', {
+      ...resume.writings,
+      content: writings,
+    })
+  }
+
   return (
     <div className="flex flex-col w-full gap-2 px-2 items-center">
-      {writings.length === 0 && (
-        <p className="text-center">No writings added</p>
+      {writings.content.length === 0 && (
+        <p className="text-center">No {writings.label} added</p>
       )}
       <WritingDragList
-        items={writings}
+        items={writings.content}
         getItemData={getWritingData}
         isItemData={isWritingData}
-        setItems={setResumeField.bind(null, 'writings')}
+        setItems={setWritings}
         EditSheet={WritingSheet}
         itemType="Writing Experience"
         onDelete={id => {
-          setResumeField(
-            'writings',
-            writings.filter(w => w.id !== id),
-          )
+          setResumeField('writings', {
+            ...resume.writings,
+            content: writings.content.filter(writing => writing.id !== id),
+          })
         }}
       />
     </div>

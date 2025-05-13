@@ -1,15 +1,15 @@
 export type Resume = {
   basics: Basics
-  work: Work[]
-  honors: HonorsPerLabel[]
-  presentations: Presentation[]
-  writings: Writing[]
-  comittees: Comittee[]
-  education: Education[]
-  extracurriculars: Extracurricular[]
-  projects: Project[]
-  languages: Language[]
-  certificates: Certificate[]
+  work: LabeledSection<Work>
+  honors: LabeledSection<HonorsPerLabel>
+  presentations: LabeledSection<Presentation>
+  writings: LabeledSection<Writing>
+  committees: LabeledSection<Committee>
+  education: LabeledSection<Education>
+  extracurriculars: LabeledSection<Extracurricular>
+  projects: LabeledSection<Project>
+  languages: LabeledSection<Language>
+  certificates: LabeledSection<Certificate>
   settings: Settings
 }
 
@@ -35,6 +35,11 @@ export type Profile = {
 export type StringWithId = {
   id: string
   value: string
+}
+
+export type LabeledSection<T> = {
+  label: string
+  content: T[]
 }
 
 // Skills is the new iteration of CVExperienceProps
@@ -85,8 +90,8 @@ export type Writing = {
   description: StringWithId[]
 }
 
-// Comittee is the new iteration of CVCommitteeProps
-export type Comittee = {
+// Committee is the new iteration of CVCommitteeProps
+export type Committee = {
   id: string
   year: string
   position: string

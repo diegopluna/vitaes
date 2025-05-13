@@ -30,23 +30,32 @@ export const PresentationsForm = () => {
 
   const presentations = resume.presentations
 
+  const setPresentations = (presentations: Presentation[]) => {
+    setResumeField('presentations', {
+      ...resume.presentations,
+      content: presentations,
+    })
+  }
+
   return (
     <div className="flex flex-col w-full gap-2 px-2 items-center">
-      {presentations.length === 0 && (
+      {presentations.content.length === 0 && (
         <p className="text-center">No presentations added</p>
       )}
       <PresentationDragList
-        items={presentations}
+        items={presentations.content}
         getItemData={getPresentationData}
         isItemData={isPresentationData}
-        setItems={setResumeField.bind(null, 'presentations')}
+        setItems={setPresentations}
         EditSheet={PresentationSheet}
         itemType="Presentations"
         onDelete={id => {
-          setResumeField(
-            'presentations',
-            presentations.filter(p => p.id !== id),
-          )
+          setResumeField('presentations', {
+            ...resume.presentations,
+            content: presentations.content.filter(
+              presentation => presentation.id !== id,
+            ),
+          })
         }}
       />
     </div>

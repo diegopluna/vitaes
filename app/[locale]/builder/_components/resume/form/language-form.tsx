@@ -28,23 +28,32 @@ export const LanguageForm = () => {
 
   const languages = resume.languages
 
+  const setLanguages = (languages: Language[]) => {
+    setResumeField('languages', {
+      ...resume.languages,
+      content: languages,
+    })
+  }
+
   return (
     <div className="flex flex-col w-full gap-2 px-2 items-center">
-      {languages.length === 0 && (
-        <p className="text-center">No language added</p>
+      {languages.content.length === 0 && (
+        <p className="text-center">No {languages.label} added</p>
       )}
       <LanguageDragList
-        items={languages}
+        items={languages.content}
         getItemData={getLanguageData}
         isItemData={isLanguageData}
-        setItems={setResumeField.bind(null, 'languages')}
+        setItems={setLanguages}
         EditSheet={LanguageSheet}
         itemType="Language Experience"
         onDelete={id => {
-          setResumeField(
-            'languages',
-            languages.filter(w => w.id !== id),
-          )
+          setResumeField('languages', {
+            ...resume.languages,
+            content: resume.languages.content.filter(
+              language => language.id !== id,
+            ),
+          })
         }}
       />
     </div>

@@ -38,8 +38,9 @@ import {
 } from '@tabler/icons-react'
 import { GraduationCap, NotebookPen, PencilRuler } from 'lucide-react'
 import { createContext, use, useRef, type JSX } from 'react'
+import { useResumeStore } from './resume-store-provider'
 
-type Section = {
+export type Section = {
   id: string
   title: string
   icon: React.ExoticComponent
@@ -62,6 +63,7 @@ type SectionsProviderProps = {
 }
 
 export const SectionsProvider = ({ children }: SectionsProviderProps) => {
+  const { resume } = useResumeStore(s => s)
   const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({})
 
   const setSectionRef = (id: string, ref: HTMLDivElement | null) => {
@@ -90,70 +92,70 @@ export const SectionsProvider = ({ children }: SectionsProviderProps) => {
     },
     {
       id: 'work',
-      title: 'Work Experience',
+      title: resume.work.label,
       icon: IconBriefcase,
       form: <WorkForm />,
       sheet: <WorkSheet />,
     },
     {
       id: 'honors',
-      title: 'Honors',
+      title: resume.honors.label,
       icon: IconMedal,
       form: <HonorsForm />,
       sheet: <HonorsSheet />,
     },
     {
       id: 'presentation',
-      title: 'Presentations',
+      title: resume.presentations.label,
       icon: IconPresentation,
       form: <PresentationsForm />,
       sheet: <PresentationSheet />,
     },
     {
       id: 'writing',
-      title: 'Writings',
+      title: resume.writings.label,
       icon: IconPencil,
       form: <WritingForm />,
       sheet: <WritingSheet />,
     },
     {
       id: 'comittees',
-      title: 'Committees',
+      title: resume.committees.label,
       icon: IconUsersGroup,
       form: <ComitteeForm />,
       sheet: <ComitteeSheet />,
     },
     {
       id: 'education',
-      title: 'Education',
+      title: resume.education.label,
       icon: GraduationCap,
       form: <EducationForm />,
       sheet: <EducationSheet />,
     },
     {
       id: 'extracurriculars',
-      title: 'Extracurriculars',
+      title: resume.extracurriculars.label,
       icon: NotebookPen,
       form: <ExtracurricularForm />,
       sheet: <ExtracurricularSheet />,
     },
     {
       id: 'projects',
-      title: 'Projects',
+      title: resume.projects.label,
       icon: PencilRuler,
       form: <ProjectForm />,
       sheet: <ProjectSheet />,
     },
     {
       id: 'languages',
-      title: 'Languages',
+      title: resume.languages.label,
       icon: IconLanguage,
       form: <LanguageForm />,
       sheet: <LanguageSheet />,
     },
     {
       id: 'certificates',
-      title: 'Certificates',
+      title: resume.certificates.label,
       icon: IconFileCheck,
       form: <CertificateForm />,
       sheet: <CertificateSheet />,

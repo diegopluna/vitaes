@@ -28,23 +28,32 @@ export const EducationForm = () => {
 
   const educations = resume.education
 
+  const setEducations = (educations: Education[]) => {
+    setResumeField('education', {
+      ...resume.education,
+      content: educations,
+    })
+  }
+
   return (
     <div className="flex flex-col w-full gap-2 px-2 items-center">
-      {educations.length === 0 && (
-        <p className="text-center">No education added</p>
+      {educations.content.length === 0 && (
+        <p className="text-center">No {educations.label.toLowerCase()} added</p>
       )}
       <EducationDragList
-        items={educations}
+        items={educations.content}
         getItemData={getEducationData}
         isItemData={isEducationData}
-        setItems={setResumeField.bind(null, 'education')}
+        setItems={setEducations}
         EditSheet={EducationSheet}
         itemType="Education"
         onDelete={id => {
-          setResumeField(
-            'education',
-            educations.filter(w => w.id !== id),
-          )
+          setResumeField('education', {
+            ...resume.education,
+            content: resume.education.content.filter(
+              education => education.id !== id,
+            ),
+          })
         }}
       />
     </div>
