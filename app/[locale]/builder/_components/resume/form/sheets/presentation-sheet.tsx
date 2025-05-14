@@ -19,6 +19,7 @@ import { Button } from '@/components/ui/button'
 import { IconPencil, IconPlus } from '@tabler/icons-react'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Input } from '@/components/ui/input'
+import { useTranslations } from 'next-intl'
 
 const presentationFormSchema = z.object({
   event: z.string().min(1, 'Event is required'),
@@ -59,6 +60,7 @@ export const PresentationSheet = ({
 }) => {
   const [open, setOpen] = useState(false)
   const { resume, setResumeField } = useResumeStore(s => s)
+  const t = useTranslations('PresentationSheet')
 
   const presentations = resume.presentations
 
@@ -86,14 +88,17 @@ export const PresentationSheet = ({
       }
 
       if (defaultValues) {
-        setResumeField(
-          'presentations',
-          presentations.map(p =>
+        setResumeField('presentations', {
+          ...presentations,
+          content: presentations.content.map(p =>
             p.id === defaultValues.id ? presentation : p,
           ),
-        )
+        })
       } else {
-        setResumeField('presentations', [...presentations, presentation])
+        setResumeField('presentations', {
+          ...presentations,
+          content: [...presentations.content, presentation],
+        })
       }
       setOpen(false)
       form.reset()
@@ -113,7 +118,11 @@ export const PresentationSheet = ({
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <TooltipWrapper
-          tooltip={defaultValues ? 'Edit Presentation' : 'Add Presentation'}
+          tooltip={
+            defaultValues
+              ? t('edit', { label: presentations.label })
+              : t('add', { label: presentations.label })
+          }
         >
           <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
             {defaultValues ? (
@@ -127,7 +136,9 @@ export const PresentationSheet = ({
       <SheetContent side="left" className="p-4">
         <SheetHeader>
           <SheetTitle>
-            {defaultValues ? 'Edit Presentation' : 'Add Presentation'}
+            {defaultValues
+              ? t('edit', { label: presentations.label })
+              : t('add', { label: presentations.label })}
           </SheetTitle>
         </SheetHeader>
         <form.AppForm>
@@ -138,7 +149,7 @@ export const PresentationSheet = ({
                   name="event"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Event</field.FormLabel>
+                      <field.FormLabel>{t('event')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -154,7 +165,7 @@ export const PresentationSheet = ({
                   name="role"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Role</field.FormLabel>
+                      <field.FormLabel>{t('role')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -170,7 +181,7 @@ export const PresentationSheet = ({
                   name="location"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Location</field.FormLabel>
+                      <field.FormLabel>{t('location')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -187,7 +198,7 @@ export const PresentationSheet = ({
                   name="date"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Date</field.FormLabel>
+                      <field.FormLabel>{t('date')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -205,7 +216,7 @@ export const PresentationSheet = ({
                     <field.FormItem>
                       <field.FormLabel>
                         <div className="flex items-center justify-between w-full">
-                          <span>Description</span>
+                          <span>{t('description')}</span>
                           <Button
                             variant="outline"
                             size="icon"
@@ -226,7 +237,9 @@ export const PresentationSheet = ({
                         <div className="flex flex-col w-full gap-2 px-2 items-center">
                           {field.state.value.length === 0 && (
                             <p className="text-center text-sm">
-                              No work highlight added
+                              {t('noneAdded', {
+                                label: presentations.label.toLowerCase(),
+                              })}
                             </p>
                           )}
                           <PresentationDescriptionDragList
@@ -260,7 +273,7 @@ export const PresentationSheet = ({
               </div>
             </ScrollArea>
             <Button className="mt-4" type="submit">
-              Save Presentation
+              {t('save', { label: presentations.label })}
             </Button>
           </form>
         </form.AppForm>

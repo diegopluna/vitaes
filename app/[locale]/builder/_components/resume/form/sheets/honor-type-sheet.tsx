@@ -17,6 +17,7 @@ import { IconPencil, IconPlus } from '@tabler/icons-react'
 import { useCallback, useState } from 'react'
 import { z } from 'zod'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { useTranslations } from 'next-intl'
 
 const honorTypeSchema = z.object({
   id: z.string(),
@@ -35,6 +36,7 @@ export const HonorTypeSheet = ({
   onUpdate: (honor: Honor) => void
 }) => {
   const [open, setOpen] = useState(false)
+  const t = useTranslations('HonorTypeSheet')
 
   const form = useAppForm({
     validators: {
@@ -72,7 +74,7 @@ export const HonorTypeSheet = ({
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <TooltipWrapper
-          tooltip={defaultValues ? 'Edit this honor' : 'Add a new honor'}
+          tooltip={defaultValues ? t('editTooltip') : t('addTooltip')}
         >
           <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
             {defaultValues ? (
@@ -85,7 +87,9 @@ export const HonorTypeSheet = ({
       </SheetTrigger>
       <SheetContent side="left" className="p-4">
         <SheetHeader>
-          <SheetTitle>{defaultValues ? 'Edit Honor' : 'Add Honor'}</SheetTitle>
+          <SheetTitle>
+            {defaultValues ? t('editTitle') : t('addTitle')}
+          </SheetTitle>
         </SheetHeader>
         <form.AppForm>
           <form onSubmit={handleSubmit} className="flex flex-1 flex-col h-5/6">
@@ -95,7 +99,7 @@ export const HonorTypeSheet = ({
                   name="year"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Year</field.FormLabel>
+                      <field.FormLabel>{t('year')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -111,7 +115,7 @@ export const HonorTypeSheet = ({
                   name="position"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Position</field.FormLabel>
+                      <field.FormLabel>{t('position')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -127,7 +131,7 @@ export const HonorTypeSheet = ({
                   name="honor"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Honor</field.FormLabel>
+                      <field.FormLabel>{t('honor')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -143,7 +147,7 @@ export const HonorTypeSheet = ({
                   name="location"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Location</field.FormLabel>
+                      <field.FormLabel>{t('location')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -159,7 +163,7 @@ export const HonorTypeSheet = ({
             </ScrollArea>
             <SheetFooter className="mt-auto">
               <Button type="submit">
-                {defaultValues ? 'Update Honor' : 'Add Honor'}
+                {defaultValues ? t('updateButton') : t('addButton')}
               </Button>
             </SheetFooter>
           </form>

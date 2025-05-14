@@ -19,6 +19,7 @@ import { ItemData } from '../dnd/drag'
 import { HighlightDragList } from '../dnd/highlight-list'
 import { useResumeStore } from '@/providers/resume-store-provider'
 import { useAppForm } from '@/components/ui/ts-form'
+import { useTranslations } from 'next-intl'
 
 const educationExperienceFormSchema = z.object({
   school: z.string().min(1, 'School is required'),
@@ -60,6 +61,7 @@ export const EducationSheet = ({
 }) => {
   const [open, setOpen] = useState(false)
   const { resume, setResumeField } = useResumeStore(s => s)
+  const t = useTranslations('EducationSheet')
 
   const form = useAppForm({
     validators: {
@@ -121,8 +123,8 @@ export const EducationSheet = ({
         <TooltipWrapper
           tooltip={
             defaultValues
-              ? `Edit ${resume.education.label}`
-              : `Add ${resume.education.label}`
+              ? t('edit', { label: resume.education.label })
+              : t('add', { label: resume.education.label })
           }
         >
           <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
@@ -138,8 +140,8 @@ export const EducationSheet = ({
         <SheetHeader>
           <SheetTitle>
             {defaultValues
-              ? `Edit ${resume.education.label}`
-              : `Add ${resume.education.label}`}
+              ? t('edit', { label: resume.education.label })
+              : t('add', { label: resume.education.label })}
           </SheetTitle>
         </SheetHeader>
         <form.AppForm>
@@ -150,7 +152,7 @@ export const EducationSheet = ({
                   name="school"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>School</field.FormLabel>
+                      <field.FormLabel>{t('school')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -166,7 +168,7 @@ export const EducationSheet = ({
                   name="location"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Location</field.FormLabel>
+                      <field.FormLabel>{t('location')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -182,7 +184,7 @@ export const EducationSheet = ({
                   name="degree"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Degree</field.FormLabel>
+                      <field.FormLabel>{t('degree')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -198,7 +200,7 @@ export const EducationSheet = ({
                   name="startDate"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Start Date</field.FormLabel>
+                      <field.FormLabel>{t('startDate')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -214,7 +216,7 @@ export const EducationSheet = ({
                   name="endDate"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>End Date</field.FormLabel>
+                      <field.FormLabel>{t('endDate')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -232,7 +234,7 @@ export const EducationSheet = ({
                     <field.FormItem>
                       <field.FormLabel>
                         <div className="flex items-center justify-between w-full">
-                          <span>Description</span>
+                          <span>{t('description')}</span>
                           <Button
                             variant="outline"
                             size="icon"
@@ -253,7 +255,7 @@ export const EducationSheet = ({
                         <div className="flex flex-col w-full gap-2 px-2 items-center">
                           {field.state.value.length === 0 && (
                             <p className="text-center text-sm">
-                              No education description added
+                              {t('noDescription')}
                             </p>
                           )}
                           <EducationHighlightDragList
@@ -287,7 +289,7 @@ export const EducationSheet = ({
               </div>
             </ScrollArea>
             <Button className="mt-4" type="submit">
-              Save {resume.education.label}
+              {t('save', { label: resume.education.label })}
             </Button>
           </form>
         </form.AppForm>

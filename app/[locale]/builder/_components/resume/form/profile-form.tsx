@@ -5,6 +5,7 @@ import { ItemData } from './dnd/drag'
 import { DragList } from './dnd/list'
 import { ProfileSheet } from './sheets/profile-sheet'
 import { useResumeStore } from '@/providers/resume-store-provider'
+import { useTranslations } from 'next-intl'
 
 const profileKey = Symbol('profile')
 
@@ -25,6 +26,7 @@ const ProfileDragList = DragList<Profile>
 
 export const ProfileForm = () => {
   const { resume, setResumeField } = useResumeStore(s => s)
+  const t = useTranslations('ProfileForm')
 
   const profiles = resume.basics.profiles
 
@@ -38,7 +40,7 @@ export const ProfileForm = () => {
   return (
     <div className="flex flex-col w-full gap-2 px-2 items-center">
       {profiles.length === 0 && (
-        <p className="text-center">No profiled added</p>
+        <p className="text-center">{t('noProfileAdded')}</p>
       )}
       <ProfileDragList
         items={profiles}

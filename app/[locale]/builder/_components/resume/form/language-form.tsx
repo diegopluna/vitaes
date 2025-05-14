@@ -5,6 +5,7 @@ import { ItemData } from './dnd/drag'
 import { DragList } from './dnd/list'
 import { LanguageSheet } from './sheets/language-sheet'
 import { useResumeStore } from '@/providers/resume-store-provider'
+import { useTranslations } from 'next-intl'
 
 const languageKey = Symbol('language')
 
@@ -25,6 +26,7 @@ const LanguageDragList = DragList<Language>
 
 export const LanguageForm = () => {
   const { resume, setResumeField } = useResumeStore(s => s)
+  const t = useTranslations('LanguageForm')
 
   const languages = resume.languages
 
@@ -38,7 +40,9 @@ export const LanguageForm = () => {
   return (
     <div className="flex flex-col w-full gap-2 px-2 items-center">
       {languages.content.length === 0 && (
-        <p className="text-center">No {languages.label} added</p>
+        <p className="text-center">
+          {t('noneAdded', { label: languages.label })}
+        </p>
       )}
       <LanguageDragList
         items={languages.content}

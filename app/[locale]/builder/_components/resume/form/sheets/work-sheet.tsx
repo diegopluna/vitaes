@@ -19,6 +19,7 @@ import { ItemData } from '../dnd/drag'
 import { HighlightDragList } from '../dnd/highlight-list'
 import { useResumeStore } from '@/providers/resume-store-provider'
 import { useAppForm } from '@/components/ui/ts-form'
+import { useTranslations } from 'next-intl'
 
 const workExperienceFormSchema = z.object({
   company: z.string().min(1, 'Company is required'),
@@ -54,6 +55,7 @@ const WorkHighlightDragList = HighlightDragList<StringWithId>
 export const WorkSheet = ({ defaultValues }: { defaultValues?: Work }) => {
   const [open, setOpen] = useState(false)
   const { resume, setResumeField } = useResumeStore(s => s)
+  const t = useTranslations('WorkSheet')
 
   const works = resume.work
 
@@ -82,12 +84,17 @@ export const WorkSheet = ({ defaultValues }: { defaultValues?: Work }) => {
         }),
       }
       if (defaultValues) {
-        setResumeField(
-          'work',
-          works.map(w => (w.id === defaultValues.id ? work : w)),
-        )
+        setResumeField('work', {
+          ...works,
+          content: works.content.map(w =>
+            w.id === defaultValues.id ? work : w,
+          ),
+        })
       } else {
-        setResumeField('work', [...works, work])
+        setResumeField('work', {
+          ...works,
+          content: [...works.content, work],
+        })
       }
       setOpen(false)
       form.reset()
@@ -106,11 +113,7 @@ export const WorkSheet = ({ defaultValues }: { defaultValues?: Work }) => {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <TooltipWrapper
-          tooltip={
-            defaultValues ? 'Edit Work Experience' : 'Add Work Experience'
-          }
-        >
+        <TooltipWrapper tooltip={defaultValues ? t('edit') : t('add')}>
           <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
             {defaultValues ? (
               <IconPencil className="size-4" />
@@ -122,9 +125,7 @@ export const WorkSheet = ({ defaultValues }: { defaultValues?: Work }) => {
       </SheetTrigger>
       <SheetContent side="left" className="p-4">
         <SheetHeader>
-          <SheetTitle>
-            {defaultValues ? 'Edit Work Experience' : 'Add Work Experience'}
-          </SheetTitle>
+          <SheetTitle>{defaultValues ? t('edit') : t('add')}</SheetTitle>
         </SheetHeader>
         <form.AppForm>
           <form onSubmit={handleSubmit} className="flex flex-1 flex-col h-5/6">
@@ -134,7 +135,7 @@ export const WorkSheet = ({ defaultValues }: { defaultValues?: Work }) => {
                   name="company"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Name</field.FormLabel>
+                      <field.FormLabel>{t('company')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -150,7 +151,7 @@ export const WorkSheet = ({ defaultValues }: { defaultValues?: Work }) => {
                   name="location"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Location</field.FormLabel>
+                      <field.FormLabel>{t('location')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -166,7 +167,7 @@ export const WorkSheet = ({ defaultValues }: { defaultValues?: Work }) => {
                   name="position"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Position</field.FormLabel>
+                      <field.FormLabel>{t('position')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -182,7 +183,7 @@ export const WorkSheet = ({ defaultValues }: { defaultValues?: Work }) => {
                   name="startDate"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Start Date</field.FormLabel>
+                      <field.FormLabel>{t('startDate')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -198,7 +199,7 @@ export const WorkSheet = ({ defaultValues }: { defaultValues?: Work }) => {
                   name="endDate"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>End Date</field.FormLabel>
+                      <field.FormLabel>{t('endDate')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -216,7 +217,7 @@ export const WorkSheet = ({ defaultValues }: { defaultValues?: Work }) => {
                     <field.FormItem>
                       <field.FormLabel>
                         <div className="flex items-center justify-between w-full">
-                          <span>Highlights</span>
+                          <span>{t('highlights')}</span>
                           <Button
                             variant="outline"
                             size="icon"
@@ -237,7 +238,7 @@ export const WorkSheet = ({ defaultValues }: { defaultValues?: Work }) => {
                         <div className="flex flex-col w-full gap-2 px-2 items-center">
                           {field.state.value.length === 0 && (
                             <p className="text-center text-sm">
-                              No work highlight added
+                              {t('noHighlight')}
                             </p>
                           )}
                           <WorkHighlightDragList
@@ -271,7 +272,7 @@ export const WorkSheet = ({ defaultValues }: { defaultValues?: Work }) => {
               </div>
             </ScrollArea>
             <Button className="mt-4" type="submit">
-              Save Work Experience
+              {t('save')}
             </Button>
           </form>
         </form.AppForm>

@@ -5,6 +5,7 @@ import { ItemData } from './dnd/drag'
 import { DragList } from './dnd/list'
 import { ExtracurricularSheet } from './sheets/extracurricular-sheet'
 import { useResumeStore } from '@/providers/resume-store-provider'
+import { useTranslations } from 'next-intl'
 
 const extracurricularKey = Symbol('extracurricular')
 
@@ -27,6 +28,7 @@ const ExtracurricularDragList = DragList<Extracurricular>
 
 export const ExtracurricularForm = () => {
   const { resume, setResumeField } = useResumeStore(s => s)
+  const t = useTranslations('ExtracurricularForm')
 
   const extracurriculars = resume.extracurriculars
 
@@ -40,7 +42,9 @@ export const ExtracurricularForm = () => {
   return (
     <div className="flex flex-col w-full gap-2 px-2 items-center">
       {extracurriculars.content.length === 0 && (
-        <p className="text-center">No {extracurriculars.label} added</p>
+        <p className="text-center">
+          {t('noneAdded', { label: extracurriculars.label })}
+        </p>
       )}
       <ExtracurricularDragList
         items={extracurriculars.content}

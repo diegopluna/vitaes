@@ -5,6 +5,7 @@ import { ItemData } from './dnd/drag'
 import { DragList } from './dnd/list'
 import { CertificateSheet } from './sheets/certificate-sheet'
 import { useResumeStore } from '@/providers/resume-store-provider'
+import { useTranslations } from 'next-intl'
 
 const certificateKey = Symbol('certificate')
 
@@ -25,6 +26,7 @@ const CertificateDragList = DragList<Certificate>
 
 export const CertificateForm = () => {
   const { resume, setResumeField } = useResumeStore(s => s)
+  const t = useTranslations('CertificateForm')
 
   const certificates = resume.certificates.content
 
@@ -39,7 +41,7 @@ export const CertificateForm = () => {
     <div className="flex flex-col w-full gap-2 px-2 items-center">
       {certificates.length === 0 && (
         <p className="text-center">
-          No {resume.certificates.label.toLowerCase()} added
+          {t('noneAdded', { label: resume.certificates.label.toLowerCase() })}
         </p>
       )}
       <CertificateDragList

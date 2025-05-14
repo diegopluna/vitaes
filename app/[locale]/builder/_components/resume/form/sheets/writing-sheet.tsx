@@ -19,6 +19,7 @@ import { ItemData } from '../dnd/drag'
 import { HighlightDragList } from '../dnd/highlight-list'
 import { useResumeStore } from '@/providers/resume-store-provider'
 import { useAppForm } from '@/components/ui/ts-form'
+import { useTranslations } from 'next-intl'
 
 const writingExperienceFormSchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -60,6 +61,7 @@ export const WritingSheet = ({
 }) => {
   const [open, setOpen] = useState(false)
   const { resume, setResumeField } = useResumeStore(s => s)
+  const t = useTranslations('WritingSheet')
 
   const writings = resume.writings
 
@@ -88,12 +90,17 @@ export const WritingSheet = ({
         }),
       }
       if (defaultValues) {
-        setResumeField(
-          'writings',
-          writings.map(w => (w.id === defaultValues.id ? writing : w)),
-        )
+        setResumeField('writings', {
+          ...writings,
+          content: writings.content.map(w =>
+            w.id === defaultValues.id ? writing : w,
+          ),
+        })
       } else {
-        setResumeField('writings', [...writings, writing])
+        setResumeField('writings', {
+          ...writings,
+          content: [...writings.content, writing],
+        })
       }
       setOpen(false)
       form.reset()
@@ -113,7 +120,11 @@ export const WritingSheet = ({
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <TooltipWrapper
-          tooltip={defaultValues ? 'Edit Writing' : 'Add Writing'}
+          tooltip={
+            defaultValues
+              ? t('edit', { label: writings.label })
+              : t('add', { label: writings.label })
+          }
         >
           <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
             {defaultValues ? (
@@ -127,7 +138,9 @@ export const WritingSheet = ({
       <SheetContent side="left" className="p-4">
         <SheetHeader>
           <SheetTitle>
-            {defaultValues ? 'Edit Writing' : 'Add Writing'}
+            {defaultValues
+              ? t('edit', { label: writings.label })
+              : t('add', { label: writings.label })}
           </SheetTitle>
         </SheetHeader>
         <form.AppForm>
@@ -138,7 +151,7 @@ export const WritingSheet = ({
                   name="title"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Title</field.FormLabel>
+                      <field.FormLabel>{t('title')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -154,7 +167,7 @@ export const WritingSheet = ({
                   name="role"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Role</field.FormLabel>
+                      <field.FormLabel>{t('role')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -170,7 +183,7 @@ export const WritingSheet = ({
                   name="medium"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Medium</field.FormLabel>
+                      <field.FormLabel>{t('medium')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -186,7 +199,7 @@ export const WritingSheet = ({
                   name="startDate"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Start Date</field.FormLabel>
+                      <field.FormLabel>{t('startDate')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -202,7 +215,7 @@ export const WritingSheet = ({
                   name="endDate"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>End Date</field.FormLabel>
+                      <field.FormLabel>{t('endDate')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -220,7 +233,7 @@ export const WritingSheet = ({
                     <field.FormItem>
                       <field.FormLabel>
                         <div className="flex items-center justify-between w-full">
-                          <span>Description</span>
+                          <span>{t('description')}</span>
                           <Button
                             variant="outline"
                             size="icon"
@@ -241,7 +254,9 @@ export const WritingSheet = ({
                         <div className="flex flex-col w-full gap-2 px-2 items-center">
                           {field.state.value.length === 0 && (
                             <p className="text-center text-sm">
-                              No writing description added
+                              {t('noneAdded', {
+                                label: writings.label.toLowerCase(),
+                              })}
                             </p>
                           )}
                           <WritingHighlightDragList
@@ -275,7 +290,7 @@ export const WritingSheet = ({
               </div>
             </ScrollArea>
             <Button className="mt-4" type="submit">
-              Save Writing
+              {t('save', { label: writings.label })}
             </Button>
           </form>
         </form.AppForm>

@@ -1,14 +1,335 @@
 {
-  "welcome": "欢迎使用我们的应用程序！",
-  "user": {
-    "greeting": "嗨，{{name}}！",
-    "profile": {
-      "title": "您的个人资料",
-      "edit": "编辑个人资料"
+  "LocaleLayout": {
+    "description": "简历生成器"
+  },
+  "Landing": {
+    "action": "用以下工具制作你的简历",
+    "sub-action": "使用我们的免费开源简历生成器，轻松打造令人惊艳的简历。选择现代模板，助你获得理想工作。",
+    "action-button": "开始使用",
+    "footer": "设计与开发："
+  },
+  "LoginForm": {
+    "welcome": "欢迎回来",
+    "google": "使用 Google 登录",
+    "github": "使用 GitHub 登录",
+    "or": "或",
+    "passkey": "使用密钥登录",
+    "email-placeholder": "请输入你的邮箱地址",
+    "sign-in": "登录",
+    "email-valid": "请输入有效的邮箱地址",
+    "email-required": "邮箱为必填项",
+    "toast-rate-limit": "请求过于频繁，请在${retryAfter}秒后重试",
+    "failed-to-send": "发送魔法链接失败，请重试"
+  },
+  "EmailSent": {
+    "title": "请检查你的邮箱",
+    "email-sent": "我们已向{email}发送了一条临时登录链接。",
+    "not-you": "不是你？"
+  },
+  "Dashboard": {
+    "resumes": "简历"
+  },
+  "UserButton": {
+    "account": "账户",
+    "LogOut": "退出登录"
+  },
+  "AccountMenu": {
+    "title": "账户设置",
+    "subtitle": "管理你的账户信息",
+    "settings": "设置",
+    "profile": "个人资料",
+    "security": "安全",
+    "profile-page": {
+      "no-name-defined": "未设置姓名",
+      "update-profile": "更新个人资料",
+      "full-name": "全名",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "connected-accounts": "已关联账户",
+      "connected": "已关联",
+      "link": "关联",
+      "unlink": "取消关联",
+      "unlink-account": "取消关联账户",
+      "unlink-account-description": "你确定要取消关联此账户吗？"
+    },
+    "security-page": {
+      "add-passkey-title": "确定要添加密钥吗？",
+      "add-passkey-description": "这将为你的账户添加一个密钥。",
+      "cancel": "取消",
+      "add-passkey": "添加密钥",
+      "passkeys": "密钥",
+      "unnamed-passkey": "未命名密钥",
+      "rename": "重命名",
+      "delete": "删除",
+      "created-at": "创建时间",
+      "add-a-passkey": "添加密钥",
+      "name-label": "名称",
+      "name-placeholder": "请输入密钥名称",
+      "name-required": "名称为必填项",
+      "delete-passkey-title": "确定要删除此密钥吗？",
+      "cannot-be-undone": "此操作无法撤销。",
+      "delete-passkey": "删除密钥",
+      "rename-passkey-title": "确定要重命名此密钥吗？",
+      "rename-passkey": "重命名密钥",
+      "new-name": "新名称",
+      "new-name-placeholder": "请输入新的密钥名称",
+      "active-devices": "活跃设备",
+      "sign-out-all": "退出所有设备",
+      "sign-out-all-dialog-title": "确定要退出所有设备吗？",
+      "sign-out-all-dialog-description": "这将使你在所有设备上退出登录，需要重新登录。",
+      "sign-out": "退出登录",
+      "this-device": "本设备",
+      "expires-at": "过期时间",
+      "sign-out-device": "退出本设备",
+      "are-you-sure": "你确定吗？",
+      "signing-out": "正在退出...",
+      "delete-account": "删除账户",
+      "delete-account-title": "确定要删除你的账户吗？",
+      "delete-account-description": "我们会向你发送一封包含删除账户链接的邮件。",
+      "delete-account-confirmation": "发送邮件"
     }
   },
-  "notifications": {
-    "messages": "您有{{count}}条新消息。",
-    "empty": "没有新的通知。"
+  "ModeToggle": {
+    "dark": "深色",
+    "light": "浅色",
+    "toggle": "切换主题",
+    "system": "系统"
+  },
+  "Navbar": {
+    "viewOnGithub": "在 Github 查看"
+  },
+  "Sidebar": {
+    "title": "侧边栏",
+    "mobileDescription": "显示移动端侧边栏。"
+  },
+  "PersonalForm": {
+    "firstName": "名",
+    "firstNamePlaceholder": "小明",
+    "lastName": "姓",
+    "lastNamePlaceholder": "张",
+    "phone": "电话",
+    "phonePlaceholder": "138-0000-0000",
+    "email": "邮箱",
+    "emailPlaceholder": "xiaoming@example.com",
+    "url": "个人网站",
+    "urlPlaceholder": "https://example.com",
+    "quote": "座右铭",
+    "quotePlaceholder": "在这里输入你的座右铭"
+  },
+  "ProfileForm": {
+    "noProfileAdded": "未添加个人资料"
+  },
+  "WorkForm": {
+    "noneAdded": "未添加{label}"
+  },
+  "WritingsForm": {
+    "noneAdded": "未添加{label}"
+  },
+  "EducationForm": {
+    "noneAdded": "未添加{label}"
+  },
+  "ProjectForm": {
+    "noneAdded": "未添加{label}"
+  },
+  "WritingSheet": {
+    "add": "添加{label}",
+    "edit": "编辑{label}",
+    "title": "标题",
+    "role": "角色",
+    "medium": "媒介",
+    "startDate": "开始日期",
+    "endDate": "结束日期",
+    "description": "描述",
+    "noneAdded": "未添加{label}",
+    "save": "保存{label}",
+    "titleRequired": "标题为必填项",
+    "roleRequired": "角色为必填项",
+    "mediumRequired": "媒介为必填项",
+    "startDateRequired": "开始日期为必填项"
+  },
+  "HonorsForm": {
+    "noneAdded": "未添加{label}"
+  },
+  "ExtracurricularForm": {
+    "noneAdded": "未添加{label}"
+  },
+  "CertificateForm": {
+    "noneAdded": "未添加{label}"
+  },
+  "ComitteesForm": {
+    "noneAdded": "未添加{label}"
+  },
+  "PresentationsForm": {
+    "noneAdded": "未添加演讲"
+  },
+  "LanguageForm": {
+    "noneAdded": "未添加{label}"
+  },
+  "DeleteModal": {
+    "tooltip": "删除{type}",
+    "title": "确定要删除此{type}吗？",
+    "description": "此操作无法撤销。",
+    "cancel": "取消",
+    "delete": "删除"
+  },
+  "HighlightItem": {
+    "delete": "删除"
+  },
+  "Item": {
+    "edit": "编辑",
+    "delete": "删除"
+  },
+  "ProfileSheet": {
+    "editProfile": "编辑个人资料",
+    "addProfile": "添加个人资料",
+    "network": "社交平台",
+    "networkPlaceholder": "如：LinkedIn",
+    "username": "用户名",
+    "usernamePlaceholder": "如：xiaoming",
+    "url": "URL",
+    "urlPlaceholder": "如：https://linkedin.com/in/xiaoming",
+    "saveProfile": "保存个人资料",
+    "networkRequired": "社交平台为必填项",
+    "usernameRequired": "用户名为必填项",
+    "urlInvalid": "URL无效"
+  },
+  "EducationSheet": {
+    "add": "添加{label}",
+    "edit": "编辑{label}",
+    "school": "学校",
+    "location": "地点",
+    "degree": "学位",
+    "startDate": "开始日期",
+    "endDate": "结束日期",
+    "description": "描述",
+    "noDescription": "未添加教育描述",
+    "save": "保存{label}",
+    "schoolRequired": "学校为必填项",
+    "locationRequired": "地点为必填项",
+    "degreeRequired": "学位为必填项",
+    "startDateRequired": "开始日期为必填项"
+  },
+  "WorkSheet": {
+    "add": "添加工作经历",
+    "edit": "编辑工作经历",
+    "company": "公司",
+    "location": "地点",
+    "position": "职位",
+    "startDate": "开始日期",
+    "endDate": "结束日期",
+    "highlights": "亮点",
+    "noHighlight": "未添加工作亮点",
+    "save": "保存工作经历",
+    "companyRequired": "公司为必填项",
+    "locationRequired": "地点为必填项",
+    "positionRequired": "职位为必填项",
+    "startDateRequired": "开始日期为必填项"
+  },
+  "ProjectSheet": {
+    "add": "添加项目",
+    "edit": "编辑项目",
+    "title": "标题",
+    "repository": "代码仓库",
+    "link": "URL",
+    "startDate": "开始日期",
+    "endDate": "结束日期",
+    "programmingLanguages": "编程语言",
+    "description": "描述",
+    "noProgrammingLanguage": "未添加编程语言",
+    "noDescription": "未添加描述",
+    "save": "保存项目经历",
+    "titleRequired": "标题为必填项",
+    "repositoryRequired": "代码仓库为必填项",
+    "linkInvalid": "链接必须为有效的URL",
+    "startDateRequired": "开始日期为必填项"
+  },
+  "CertificateSheet": {
+    "add": "添加{label}",
+    "edit": "编辑{label}",
+    "title": "标题",
+    "issuer": "颁发机构",
+    "date": "日期",
+    "description": "描述",
+    "noDescription": "未添加描述",
+    "save": "保存{label}",
+    "titleRequired": "标题为必填项",
+    "issuerRequired": "颁发机构为必填项",
+    "dateRequired": "日期为必填项"
+  },
+  "ExtracurricularSheet": {
+    "add": "添加{label}",
+    "edit": "编辑{label}",
+    "role": "角色",
+    "organization": "组织",
+    "location": "地点",
+    "startDate": "开始日期",
+    "endDate": "结束日期",
+    "description": "描述",
+    "noneAdded": "未添加{label}",
+    "save": "保存{label}",
+    "roleRequired": "角色为必填项",
+    "organizationRequired": "组织为必填项",
+    "locationRequired": "地点为必填项",
+    "startDateRequired": "开始日期为必填项"
+  },
+  "ComitteeSheet": {
+    "add": "添加{label}",
+    "edit": "编辑{label}",
+    "year": "年份",
+    "position": "职位",
+    "organization": "组织",
+    "location": "地点",
+    "save": "保存{label}",
+    "yearRequired": "年份为必填项",
+    "positionRequired": "职位为必填项",
+    "organizationRequired": "组织为必填项",
+    "locationRequired": "地点为必填项"
+  },
+  "LanguageSheet": {
+    "add": "添加语言",
+    "edit": "编辑语言",
+    "language": "语言",
+    "fluency": "流利程度",
+    "save": "保存语言",
+    "languageRequired": "语言为必填项",
+    "fluencyRequired": "流利程度为必填项"
+  },
+  "PresentationSheet": {
+    "add": "添加{label}",
+    "edit": "编辑{label}",
+    "event": "活动",
+    "role": "角色",
+    "location": "地点",
+    "date": "日期",
+    "description": "描述",
+    "noneAdded": "未添加{label}",
+    "save": "保存{label}",
+    "eventRequired": "活动为必填项",
+    "roleRequired": "角色为必填项",
+    "locationRequired": "地点为必填项",
+    "dateRequired": "日期为必填项"
+  },
+  "HonorsSheet": {
+    "addTooltip": "添加新的{label}",
+    "editTooltip": "编辑此{label}",
+    "addTitle": "添加{label}",
+    "editTitle": "编辑{label}",
+    "label": "标签",
+    "honors": "荣誉",
+    "noneAdded": "未添加{label}",
+    "labelRequired": "标签为必填项"
+  },
+  "HonorTypeSheet": {
+    "addTooltip": "添加新荣誉",
+    "editTooltip": "编辑此荣誉",
+    "addTitle": "添加荣誉",
+    "editTitle": "编辑荣誉",
+    "year": "年份",
+    "position": "职位",
+    "honor": "荣誉",
+    "location": "地点",
+    "addButton": "添加荣誉",
+    "updateButton": "更新荣誉"
   }
 }

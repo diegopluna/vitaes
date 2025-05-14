@@ -19,6 +19,7 @@ import { ItemData } from '../dnd/drag'
 import { HighlightDragList } from '../dnd/highlight-list'
 import { useResumeStore } from '@/providers/resume-store-provider'
 import { useAppForm } from '@/components/ui/ts-form'
+import { useTranslations } from 'next-intl'
 
 const projectExperienceFormSchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -83,6 +84,7 @@ export const ProjectSheet = ({
 }) => {
   const [open, setOpen] = useState(false)
   const { resume, setResumeField } = useResumeStore(s => s)
+  const t = useTranslations('ProjectSheet')
 
   const projects = resume.projects
 
@@ -118,12 +120,17 @@ export const ProjectSheet = ({
         }),
       }
       if (defaultValues) {
-        setResumeField(
-          'projects',
-          projects.map(w => (w.id === defaultValues.id ? project : w)),
-        )
+        setResumeField('projects', {
+          ...projects,
+          content: projects.content.map(w =>
+            w.id === defaultValues.id ? project : w,
+          ),
+        })
       } else {
-        setResumeField('projects', [...projects, project])
+        setResumeField('projects', {
+          ...projects,
+          content: [...projects.content, project],
+        })
       }
       setOpen(false)
       form.reset()
@@ -142,9 +149,7 @@ export const ProjectSheet = ({
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <TooltipWrapper
-          tooltip={defaultValues ? 'Edit Project' : 'Add Project'}
-        >
+        <TooltipWrapper tooltip={defaultValues ? t('edit') : t('add')}>
           <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
             {defaultValues ? (
               <IconPencil className="size-4" />
@@ -156,9 +161,7 @@ export const ProjectSheet = ({
       </SheetTrigger>
       <SheetContent side="left" className="p-4">
         <SheetHeader>
-          <SheetTitle>
-            {defaultValues ? 'Edit Project' : 'Add Project'}
-          </SheetTitle>
+          <SheetTitle>{defaultValues ? t('edit') : t('add')}</SheetTitle>
         </SheetHeader>
         <form.AppForm>
           <form onSubmit={handleSubmit} className="flex flex-1 flex-col h-5/6">
@@ -168,7 +171,7 @@ export const ProjectSheet = ({
                   name="title"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Title</field.FormLabel>
+                      <field.FormLabel>{t('title')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -184,7 +187,7 @@ export const ProjectSheet = ({
                   name="repository"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Repository</field.FormLabel>
+                      <field.FormLabel>{t('repository')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -200,7 +203,7 @@ export const ProjectSheet = ({
                   name="link"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>URL</field.FormLabel>
+                      <field.FormLabel>{t('link')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -216,7 +219,7 @@ export const ProjectSheet = ({
                   name="startDate"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Start Date</field.FormLabel>
+                      <field.FormLabel>{t('startDate')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -232,7 +235,7 @@ export const ProjectSheet = ({
                   name="endDate"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>End Date</field.FormLabel>
+                      <field.FormLabel>{t('endDate')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -250,7 +253,7 @@ export const ProjectSheet = ({
                     <field.FormItem>
                       <field.FormLabel>
                         <div className="flex items-center justify-between w-full">
-                          <span>Programming Languages</span>
+                          <span>{t('programmingLanguages')}</span>
                           <Button
                             variant="outline"
                             size="icon"
@@ -271,7 +274,7 @@ export const ProjectSheet = ({
                         <div className="flex flex-col w-full gap-2 px-2 items-center">
                           {field.state.value.length === 0 && (
                             <p className="text-center text-sm">
-                              No programming language added
+                              {t('noProgrammingLanguage')}
                             </p>
                           )}
                           <ProjectLanguageDragList
@@ -308,7 +311,7 @@ export const ProjectSheet = ({
                     <field.FormItem>
                       <field.FormLabel>
                         <div className="flex items-center justify-between w-full">
-                          <span>Description</span>
+                          <span>{t('description')}</span>
                           <Button
                             variant="outline"
                             size="icon"
@@ -329,7 +332,7 @@ export const ProjectSheet = ({
                         <div className="flex flex-col w-full gap-2 px-2 items-center">
                           {field.state.value.length === 0 && (
                             <p className="text-center text-sm">
-                              No description added
+                              {t('noDescription')}
                             </p>
                           )}
                           <ProjectDescriptionDragList
@@ -363,7 +366,7 @@ export const ProjectSheet = ({
               </div>
             </ScrollArea>
             <Button className="mt-4" type="submit">
-              Save Project Experience
+              {t('save')}
             </Button>
           </form>
         </form.AppForm>

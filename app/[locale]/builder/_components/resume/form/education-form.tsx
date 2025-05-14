@@ -5,6 +5,7 @@ import { ItemData } from './dnd/drag'
 import { DragList } from './dnd/list'
 import { EducationSheet } from './sheets/education-sheet'
 import { useResumeStore } from '@/providers/resume-store-provider'
+import { useTranslations } from 'next-intl'
 
 const educationKey = Symbol('education')
 
@@ -25,6 +26,7 @@ const EducationDragList = DragList<Education>
 
 export const EducationForm = () => {
   const { resume, setResumeField } = useResumeStore(s => s)
+  const t = useTranslations('EducationForm')
 
   const educations = resume.education
 
@@ -38,7 +40,9 @@ export const EducationForm = () => {
   return (
     <div className="flex flex-col w-full gap-2 px-2 items-center">
       {educations.content.length === 0 && (
-        <p className="text-center">No {educations.label.toLowerCase()} added</p>
+        <p className="text-center">
+          {t('noneAdded', { label: educations.label.toLowerCase() })}
+        </p>
       )}
       <EducationDragList
         items={educations.content}

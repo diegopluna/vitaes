@@ -19,6 +19,7 @@ import { ItemData } from '../dnd/drag'
 import { HighlightDragList } from '../dnd/highlight-list'
 import { useResumeStore } from '@/providers/resume-store-provider'
 import { useAppForm } from '@/components/ui/ts-form'
+import { useTranslations } from 'next-intl'
 
 const extracurricularExperienceFormSchema = z.object({
   role: z.string().min(1, 'Role is required'),
@@ -60,6 +61,7 @@ export const ExtracurricularSheet = ({
 }) => {
   const [open, setOpen] = useState(false)
   const { resume, setResumeField } = useResumeStore(s => s)
+  const t = useTranslations('ExtracurricularSheet')
 
   const extracurriculars = resume.extracurriculars
 
@@ -122,8 +124,8 @@ export const ExtracurricularSheet = ({
         <TooltipWrapper
           tooltip={
             defaultValues
-              ? `Edit ${extracurriculars.label}`
-              : `Add ${extracurriculars.label}`
+              ? t('edit', { label: extracurriculars.label })
+              : t('add', { label: extracurriculars.label })
           }
         >
           <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
@@ -139,8 +141,8 @@ export const ExtracurricularSheet = ({
         <SheetHeader>
           <SheetTitle>
             {defaultValues
-              ? `Edit ${extracurriculars.label}`
-              : `Add ${extracurriculars.label}`}
+              ? t('edit', { label: extracurriculars.label })
+              : t('add', { label: extracurriculars.label })}
           </SheetTitle>
         </SheetHeader>
         <form.AppForm>
@@ -151,7 +153,7 @@ export const ExtracurricularSheet = ({
                   name="role"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Role</field.FormLabel>
+                      <field.FormLabel>{t('role')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -167,7 +169,7 @@ export const ExtracurricularSheet = ({
                   name="organization"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Organization</field.FormLabel>
+                      <field.FormLabel>{t('organization')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -183,7 +185,7 @@ export const ExtracurricularSheet = ({
                   name="location"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Location</field.FormLabel>
+                      <field.FormLabel>{t('location')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -200,7 +202,7 @@ export const ExtracurricularSheet = ({
                   name="startDate"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Start Date</field.FormLabel>
+                      <field.FormLabel>{t('startDate')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -216,7 +218,7 @@ export const ExtracurricularSheet = ({
                   name="endDate"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>End Date</field.FormLabel>
+                      <field.FormLabel>{t('endDate')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -234,7 +236,7 @@ export const ExtracurricularSheet = ({
                     <field.FormItem>
                       <field.FormLabel>
                         <div className="flex items-center justify-between w-full">
-                          <span>Description</span>
+                          <span>{t('description')}</span>
                           <Button
                             variant="outline"
                             size="icon"
@@ -255,7 +257,9 @@ export const ExtracurricularSheet = ({
                         <div className="flex flex-col w-full gap-2 px-2 items-center">
                           {field.state.value.length === 0 && (
                             <p className="text-center text-sm">
-                              No {extracurriculars.label.toLowerCase()} added
+                              {t('noneAdded', {
+                                label: extracurriculars.label.toLowerCase(),
+                              })}
                             </p>
                           )}
                           <ExtracurricularHighlightDragList
@@ -289,7 +293,7 @@ export const ExtracurricularSheet = ({
               </div>
             </ScrollArea>
             <Button className="mt-4" type="submit">
-              Save {extracurriculars.label}
+              {t('save', { label: extracurriculars.label })}
             </Button>
           </form>
         </form.AppForm>

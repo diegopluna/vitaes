@@ -19,6 +19,7 @@ import { ItemData } from '../dnd/drag'
 import { HighlightDragList } from '../dnd/highlight-list'
 import { useResumeStore } from '@/providers/resume-store-provider'
 import { useAppForm } from '@/components/ui/ts-form'
+import { useTranslations } from 'next-intl'
 
 const certificateExperienceFormSchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -58,6 +59,7 @@ export const CertificateSheet = ({
 }) => {
   const [open, setOpen] = useState(false)
   const { resume, setResumeField } = useResumeStore(s => s)
+  const t = useTranslations('CertificateSheet')
 
   const certificates = resume.certificates
 
@@ -118,8 +120,8 @@ export const CertificateSheet = ({
         <TooltipWrapper
           tooltip={
             defaultValues
-              ? `Edit ${certificates.label}`
-              : `Add ${certificates.label}`
+              ? t('edit', { label: certificates.label })
+              : t('add', { label: certificates.label })
           }
         >
           <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
@@ -135,8 +137,8 @@ export const CertificateSheet = ({
         <SheetHeader>
           <SheetTitle>
             {defaultValues
-              ? `Edit ${certificates.label}`
-              : `Add ${certificates.label}`}
+              ? t('edit', { label: certificates.label })
+              : t('add', { label: certificates.label })}
           </SheetTitle>
         </SheetHeader>
         <form.AppForm>
@@ -147,7 +149,7 @@ export const CertificateSheet = ({
                   name="title"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Title</field.FormLabel>
+                      <field.FormLabel>{t('title')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -163,7 +165,7 @@ export const CertificateSheet = ({
                   name="issuer"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Issuer</field.FormLabel>
+                      <field.FormLabel>{t('issuer')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -179,7 +181,7 @@ export const CertificateSheet = ({
                   name="date"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Date</field.FormLabel>
+                      <field.FormLabel>{t('date')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -197,7 +199,7 @@ export const CertificateSheet = ({
                     <field.FormItem>
                       <field.FormLabel>
                         <div className="flex items-center justify-between w-full">
-                          <span>Description</span>
+                          <span>{t('description')}</span>
                           <Button
                             variant="outline"
                             size="icon"
@@ -218,7 +220,7 @@ export const CertificateSheet = ({
                         <div className="flex flex-col w-full gap-2 px-2 items-center">
                           {field.state.value.length === 0 && (
                             <p className="text-center text-sm">
-                              No description added
+                              {t('noDescription')}
                             </p>
                           )}
                           <CertificateHighlightDragList
@@ -252,7 +254,7 @@ export const CertificateSheet = ({
               </div>
             </ScrollArea>
             <Button className="mt-4" type="submit">
-              Save {certificates.label}
+              {t('save', { label: certificates.label })}
             </Button>
           </form>
         </form.AppForm>

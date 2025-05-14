@@ -1,14 +1,335 @@
 {
-  "welcome": "Willkommen in unserer Anwendung!",
-  "user": {
-    "greeting": "Hallo, {{name}}!",
-    "profile": {
-      "title": "Ihr Profil",
-      "edit": "Profil bearbeiten"
+  "LocaleLayout": {
+    "description": "Lebenslauf-Generator"
+  },
+  "Landing": {
+    "action": "Erstellen Sie Ihren Lebenslauf mit",
+    "sub-action": "Erstellen Sie mühelos beeindruckende Lebensläufe mit unserem kostenlosen und quelloffenen Generator. Wählen Sie aus modernen Vorlagen und bekommen Sie Ihren Traumjob.",
+    "action-button": "Loslegen",
+    "footer": "Entworfen und entwickelt von"
+  },
+  "LoginForm": {
+    "welcome": "Willkommen zurück",
+    "google": "Mit Google fortfahren",
+    "github": "Mit GitHub fortfahren",
+    "or": "oder",
+    "passkey": "Stattdessen Passkey verwenden",
+    "email-placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
+    "sign-in": "Anmelden",
+    "email-valid": "Muss eine gültige E-Mail-Adresse sein",
+    "email-required": "E-Mail ist erforderlich",
+    "toast-rate-limit": "Anfragelimit überschritten. Versuchen Sie es in ${retryAfter} Sekunden erneut",
+    "failed-to-send": "Senden des Magic Links fehlgeschlagen. Bitte versuchen Sie es erneut"
+  },
+  "EmailSent": {
+    "title": "Überprüfen Sie Ihre E-Mails",
+    "email-sent": "Wir haben einen temporären Anmeldelink an {email} gesendet.",
+    "not-you": "Nicht Sie?"
+  },
+  "Dashboard": {
+    "resumes": "Lebensläufe"
+  },
+  "UserButton": {
+    "account": "Konto",
+    "LogOut": "Abmelden"
+  },
+  "AccountMenu": {
+    "title": "Kontoeinstellungen",
+    "subtitle": "Verwalten Sie Ihre Kontoinformationen",
+    "settings": "Einstellungen",
+    "profile": "Profil",
+    "security": "Sicherheit",
+    "profile-page": {
+      "no-name-defined": "Kein Name definiert",
+      "update-profile": "Profil aktualisieren",
+      "full-name": "Vollständiger Name",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Speichern...",
+      "connected-accounts": "Verbundene Konten",
+      "connected": "Verbunden",
+      "link": "Verbinden",
+      "unlink": "Trennen",
+      "unlink-account": "Konto trennen",
+      "unlink-account-description": "Sind Sie sicher, dass Sie dieses Konto trennen möchten?"
+    },
+    "security-page": {
+      "add-passkey-title": "Sind Sie sicher, dass Sie einen Passkey hinzufügen möchten?",
+      "add-passkey-description": "Dies fügt Ihrem Konto einen Passkey hinzu.",
+      "cancel": "Abbrechen",
+      "add-passkey": "Passkey hinzufügen",
+      "passkeys": "Passkeys",
+      "unnamed-passkey": "Unbenannter Passkey",
+      "rename": "Umbenennen",
+      "delete": "Löschen",
+      "created-at": "Erstellt am",
+      "add-a-passkey": "Passkey hinzufügen",
+      "name-label": "Name",
+      "name-placeholder": "Geben Sie einen Namen für Ihren Passkey ein",
+      "name-required": "Name ist erforderlich",
+      "delete-passkey-title": "Sind Sie sicher, dass Sie diesen Passkey löschen möchten?",
+      "cannot-be-undone": "Diese Aktion kann nicht rückgängig gemacht werden.",
+      "delete-passkey": "Passkey löschen",
+      "rename-passkey-title": "Sind Sie sicher, dass Sie diesen Passkey umbenennen möchten?",
+      "rename-passkey": "Passkey umbenennen",
+      "new-name": "Neuer Name",
+      "new-name-placeholder": "Geben Sie einen neuen Namen für Ihren Passkey ein",
+      "active-devices": "Aktive Geräte",
+      "sign-out-all": "Von allen Geräten abmelden",
+      "sign-out-all-dialog-title": "Sind Sie sicher, dass Sie sich von allen Geräten abmelden möchten?",
+      "sign-out-all-dialog-description": "Sie werden von allen Geräten abgemeldet und müssen sich erneut anmelden.",
+      "sign-out": "Abmelden",
+      "this-device": "Dieses Gerät",
+      "expires-at": "Läuft ab am",
+      "sign-out-device": "Von diesem Gerät abmelden",
+      "are-you-sure": "Sind Sie sicher?",
+      "signing-out": "Abmelden...",
+      "delete-account": "Konto löschen",
+      "delete-account-title": "Sind Sie sicher, dass Sie Ihr Konto löschen möchten?",
+      "delete-account-description": "Wir senden Ihnen eine E-Mail mit einem Link zum Löschen Ihres Kontos.",
+      "delete-account-confirmation": "E-Mail senden"
     }
   },
-  "notifications": {
-    "messages": "Sie haben {{count}} neue Nachricht(en).",
-    "empty": "Keine neuen Benachrichtigungen."
+  "ModeToggle": {
+    "dark": "Dunkel",
+    "light": "Hell",
+    "toggle": "Thema wechseln",
+    "system": "System"
+  },
+  "Navbar": {
+    "viewOnGithub": "Auf Github ansehen"
+  },
+  "Sidebar": {
+    "title": "Seitenleiste",
+    "mobileDescription": "Zeigt die mobile Seitenleiste an."
+  },
+  "PersonalForm": {
+    "firstName": "Vorname",
+    "firstNamePlaceholder": "Max",
+    "lastName": "Nachname",
+    "lastNamePlaceholder": "Mustermann",
+    "phone": "Telefon",
+    "phonePlaceholder": "(030) 1234-5678",
+    "email": "E-Mail",
+    "emailPlaceholder": "maxmustermann@beispiel.de",
+    "url": "Webseite",
+    "urlPlaceholder": "https://beispiel.de",
+    "quote": "Zitat",
+    "quotePlaceholder": "Ihr Zitat hier"
+  },
+  "ProfileForm": {
+    "noProfileAdded": "Kein Profil hinzugefügt"
+  },
+  "WorkForm": {
+    "noneAdded": "Keine {label} hinzugefügt"
+  },
+  "WritingsForm": {
+    "noneAdded": "Keine {label} hinzugefügt"
+  },
+  "EducationForm": {
+    "noneAdded": "Keine {label} hinzugefügt"
+  },
+  "ProjectForm": {
+    "noneAdded": "Keine {label} hinzugefügt"
+  },
+  "WritingSheet": {
+    "add": "{label} hinzufügen",
+    "edit": "{label} bearbeiten",
+    "title": "Titel",
+    "role": "Rolle",
+    "medium": "Medium",
+    "startDate": "Anfangsdatum",
+    "endDate": "Enddatum",
+    "description": "Beschreibung",
+    "noneAdded": "Keine {label} hinzugefügt",
+    "save": "{label} speichern",
+    "titleRequired": "Titel ist erforderlich",
+    "roleRequired": "Rolle ist erforderlich",
+    "mediumRequired": "Medium ist erforderlich",
+    "startDateRequired": "Anfangsdatum ist erforderlich"
+  },
+  "HonorsForm": {
+    "noneAdded": "Keine {label} hinzugefügt"
+  },
+  "ExtracurricularForm": {
+    "noneAdded": "Keine {label} hinzugefügt"
+  },
+  "CertificateForm": {
+    "noneAdded": "Keine {label} hinzugefügt"
+  },
+  "ComitteesForm": {
+    "noneAdded": "Keine {label} hinzugefügt"
+  },
+  "PresentationsForm": {
+    "noneAdded": "Keine Präsentationen hinzugefügt"
+  },
+  "LanguageForm": {
+    "noneAdded": "Keine {label} hinzugefügt"
+  },
+  "DeleteModal": {
+    "tooltip": "{type} löschen",
+    "title": "Sind Sie sicher, dass Sie dieses {type} löschen möchten?",
+    "description": "Diese Aktion kann nicht rückgängig gemacht werden.",
+    "cancel": "Abbrechen",
+    "delete": "Löschen"
+  },
+  "HighlightItem": {
+    "delete": "Löschen"
+  },
+  "Item": {
+    "edit": "Bearbeiten",
+    "delete": "Löschen"
+  },
+  "ProfileSheet": {
+    "editProfile": "Profil bearbeiten",
+    "addProfile": "Profil hinzufügen",
+    "network": "Netzwerk",
+    "networkPlaceholder": "z.B. LinkedIn",
+    "username": "Benutzername",
+    "usernamePlaceholder": "z.B. max-mustermann",
+    "url": "URL",
+    "urlPlaceholder": "z.B. https://linkedin.com/in/max-mustermann",
+    "saveProfile": "Profil speichern",
+    "networkRequired": "Netzwerk ist erforderlich",
+    "usernameRequired": "Benutzername ist erforderlich",
+    "urlInvalid": "URL ist ungültig"
+  },
+  "EducationSheet": {
+    "add": "{label} hinzufügen",
+    "edit": "{label} bearbeiten",
+    "school": "Schule",
+    "location": "Ort",
+    "degree": "Abschluss",
+    "startDate": "Anfangsdatum",
+    "endDate": "Enddatum",
+    "description": "Beschreibung",
+    "noDescription": "Keine Bildungsbeschreibung hinzugefügt",
+    "save": "{label} speichern",
+    "schoolRequired": "Schule ist erforderlich",
+    "locationRequired": "Ort ist erforderlich",
+    "degreeRequired": "Abschluss ist erforderlich",
+    "startDateRequired": "Anfangsdatum ist erforderlich"
+  },
+  "WorkSheet": {
+    "add": "Berufserfahrung hinzufügen",
+    "edit": "Berufserfahrung bearbeiten",
+    "company": "Unternehmen",
+    "location": "Ort",
+    "position": "Position",
+    "startDate": "Anfangsdatum",
+    "endDate": "Enddatum",
+    "highlights": "Highlights",
+    "noHighlight": "Kein berufliches Highlight hinzugefügt",
+    "save": "Berufserfahrung speichern",
+    "companyRequired": "Unternehmen ist erforderlich",
+    "locationRequired": "Ort ist erforderlich",
+    "positionRequired": "Position ist erforderlich",
+    "startDateRequired": "Anfangsdatum ist erforderlich"
+  },
+  "ProjectSheet": {
+    "add": "Projekt hinzufügen",
+    "edit": "Projekt bearbeiten",
+    "title": "Titel",
+    "repository": "Repository",
+    "link": "URL",
+    "startDate": "Anfangsdatum",
+    "endDate": "Enddatum",
+    "programmingLanguages": "Programmiersprachen",
+    "description": "Beschreibung",
+    "noProgrammingLanguage": "Keine Programmiersprache hinzugefügt",
+    "noDescription": "Keine Beschreibung hinzugefügt",
+    "save": "Projekterfahrung speichern",
+    "titleRequired": "Titel ist erforderlich",
+    "repositoryRequired": "Repository ist erforderlich",
+    "linkInvalid": "Link muss eine gültige URL sein",
+    "startDateRequired": "Anfangsdatum ist erforderlich"
+  },
+  "CertificateSheet": {
+    "add": "{label} hinzufügen",
+    "edit": "{label} bearbeiten",
+    "title": "Titel",
+    "issuer": "Aussteller",
+    "date": "Datum",
+    "description": "Beschreibung",
+    "noDescription": "Keine Beschreibung hinzugefügt",
+    "save": "{label} speichern",
+    "titleRequired": "Titel ist erforderlich",
+    "issuerRequired": "Aussteller ist erforderlich",
+    "dateRequired": "Datum ist erforderlich"
+  },
+  "ExtracurricularSheet": {
+    "add": "{label} hinzufügen",
+    "edit": "{label} bearbeiten",
+    "role": "Rolle",
+    "organization": "Organisation",
+    "location": "Ort",
+    "startDate": "Anfangsdatum",
+    "endDate": "Enddatum",
+    "description": "Beschreibung",
+    "noneAdded": "Keine {label} hinzugefügt",
+    "save": "{label} speichern",
+    "roleRequired": "Rolle ist erforderlich",
+    "organizationRequired": "Organisation ist erforderlich",
+    "locationRequired": "Ort ist erforderlich",
+    "startDateRequired": "Anfangsdatum ist erforderlich"
+  },
+  "ComitteeSheet": {
+    "add": "{label} hinzufügen",
+    "edit": "{label} bearbeiten",
+    "year": "Jahr",
+    "position": "Position",
+    "organization": "Organisation",
+    "location": "Ort",
+    "save": "{label} speichern",
+    "yearRequired": "Jahr ist erforderlich",
+    "positionRequired": "Position ist erforderlich",
+    "organizationRequired": "Organisation ist erforderlich",
+    "locationRequired": "Ort ist erforderlich"
+  },
+  "LanguageSheet": {
+    "add": "Sprache hinzufügen",
+    "edit": "Sprache bearbeiten",
+    "language": "Sprache",
+    "fluency": "Sprachniveau",
+    "save": "Sprache speichern",
+    "languageRequired": "Sprache ist erforderlich",
+    "fluencyRequired": "Sprachniveau ist erforderlich"
+  },
+  "PresentationSheet": {
+    "add": "{label} hinzufügen",
+    "edit": "{label} bearbeiten",
+    "event": "Veranstaltung",
+    "role": "Rolle",
+    "location": "Ort",
+    "date": "Datum",
+    "description": "Beschreibung",
+    "noneAdded": "Keine {label} hinzugefügt",
+    "save": "{label} speichern",
+    "eventRequired": "Veranstaltung ist erforderlich",
+    "roleRequired": "Rolle ist erforderlich",
+    "locationRequired": "Ort ist erforderlich",
+    "dateRequired": "Datum ist erforderlich"
+  },
+  "HonorsSheet": {
+    "addTooltip": "Neues {label} hinzufügen",
+    "editTooltip": "Dieses {label} bearbeiten",
+    "addTitle": "{label} hinzufügen",
+    "editTitle": "{label} bearbeiten",
+    "label": "Bezeichnung",
+    "honors": "Auszeichnungen",
+    "noneAdded": "Keine {label} hinzugefügt",
+    "labelRequired": "Bezeichnung ist erforderlich"
+  },
+  "HonorTypeSheet": {
+    "addTooltip": "Neue Auszeichnung hinzufügen",
+    "editTooltip": "Diese Auszeichnung bearbeiten",
+    "addTitle": "Auszeichnung hinzufügen",
+    "editTitle": "Auszeichnung bearbeiten",
+    "year": "Jahr",
+    "position": "Position",
+    "honor": "Auszeichnung",
+    "location": "Ort",
+    "addButton": "Auszeichnung hinzufügen",
+    "updateButton": "Auszeichnung aktualisieren"
   }
 }

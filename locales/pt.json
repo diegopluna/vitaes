@@ -1,14 +1,335 @@
 {
-  "welcome": "Bem-vindo ao nosso aplicativo!",
-  "user": {
-    "greeting": "Oi, {{name}}!",
-    "profile": {
-      "title": "Seu perfil",
-      "edit": "Editar perfil"
+  "LocaleLayout": {
+    "description": "Construtor de Currículos"
+  },
+  "Landing": {
+    "action": "Construa seu currículo com",
+    "sub-action": "Crie currículos impressionantes facilmente com nosso construtor gratuito e de código aberto. Escolha entre modelos modernos e conquiste o emprego dos seus sonhos.",
+    "action-button": "Começar",
+    "footer": "Desenhado e desenvolvido por"
+  },
+  "LoginForm": {
+    "welcome": "Bem-vindo de volta",
+    "google": "Continuar com Google",
+    "github": "Continuar com GitHub",
+    "or": "ou",
+    "passkey": "Usar chave de acesso",
+    "email-placeholder": "Digite seu e-mail",
+    "sign-in": "Entrar",
+    "email-valid": "Deve ser um e-mail válido",
+    "email-required": "E-mail é obrigatório",
+    "toast-rate-limit": "Limite de tentativas excedido. Tente novamente em ${retryAfter} segundos",
+    "failed-to-send": "Falha ao enviar o link mágico. Por favor, tente novamente"
+  },
+  "EmailSent": {
+    "title": "Verifique seu e-mail",
+    "email-sent": "Enviamos um link temporário de acesso para {email}.",
+    "not-you": "Não é você?"
+  },
+  "Dashboard": {
+    "resumes": "Currículos"
+  },
+  "UserButton": {
+    "account": "Conta",
+    "LogOut": "Sair"
+  },
+  "AccountMenu": {
+    "title": "Configurações da Conta",
+    "subtitle": "Gerencie suas informações de conta",
+    "settings": "Configurações",
+    "profile": "Perfil",
+    "security": "Segurança",
+    "profile-page": {
+      "no-name-defined": "Nome não definido",
+      "update-profile": "Atualizar perfil",
+      "full-name": "Nome completo",
+      "cancel": "Cancelar",
+      "save": "Salvar",
+      "saving": "Salvando...",
+      "connected-accounts": "Contas conectadas",
+      "connected": "Conectado",
+      "link": "Vincular",
+      "unlink": "Desvincular",
+      "unlink-account": "Desvincular conta",
+      "unlink-account-description": "Tem certeza de que deseja desvincular esta conta?"
+    },
+    "security-page": {
+      "add-passkey-title": "Tem certeza de que deseja adicionar uma chave de acesso?",
+      "add-passkey-description": "Isso adicionará uma chave de acesso à sua conta.",
+      "cancel": "Cancelar",
+      "add-passkey": "Adicionar chave de acesso",
+      "passkeys": "Chaves de acesso",
+      "unnamed-passkey": "Chave de acesso sem nome",
+      "rename": "Renomear",
+      "delete": "Excluir",
+      "created-at": "Criado em",
+      "add-a-passkey": "Adicionar uma chave de acesso",
+      "name-label": "Nome",
+      "name-placeholder": "Digite um nome para sua chave de acesso",
+      "name-required": "Nome é obrigatório",
+      "delete-passkey-title": "Tem certeza de que deseja excluir esta chave de acesso?",
+      "cannot-be-undone": "Esta ação não pode ser desfeita.",
+      "delete-passkey": "Excluir chave de acesso",
+      "rename-passkey-title": "Tem certeza de que deseja renomear esta chave de acesso?",
+      "rename-passkey": "Renomear chave de acesso",
+      "new-name": "Novo nome",
+      "new-name-placeholder": "Digite um novo nome para sua chave de acesso",
+      "active-devices": "Dispositivos ativos",
+      "sign-out-all": "Sair de todos os dispositivos",
+      "sign-out-all-dialog-title": "Tem certeza de que deseja sair de todos os dispositivos?",
+      "sign-out-all-dialog-description": "Isso irá desconectá-lo de todos os dispositivos e será necessário fazer login novamente.",
+      "sign-out": "Sair",
+      "this-device": "Este dispositivo",
+      "expires-at": "Expira em",
+      "sign-out-device": "Sair deste dispositivo",
+      "are-you-sure": "Tem certeza?",
+      "signing-out": "Saindo...",
+      "delete-account": "Excluir conta",
+      "delete-account-title": "Tem certeza de que deseja excluir sua conta?",
+      "delete-account-description": "Enviaremos um e-mail com um link para excluir sua conta.",
+      "delete-account-confirmation": "Enviar e-mail"
     }
   },
-  "notifications": {
-    "messages": "Você tem {{count}} nova(s) mensagem(ns).",
-    "empty": "Nenhuma nova notificação."
+  "ModeToggle": {
+    "dark": "Escuro",
+    "light": "Claro",
+    "toggle": "Alternar tema",
+    "system": "Sistema"
+  },
+  "Navbar": {
+    "viewOnGithub": "Ver no Github"
+  },
+  "Sidebar": {
+    "title": "Barra Lateral",
+    "mobileDescription": "Exibe a barra lateral no celular."
+  },
+  "PersonalForm": {
+    "firstName": "Nome",
+    "firstNamePlaceholder": "João",
+    "lastName": "Sobrenome",
+    "lastNamePlaceholder": "Silva",
+    "phone": "Telefone",
+    "phonePlaceholder": "(11) 99999-9999",
+    "email": "E-mail",
+    "emailPlaceholder": "joaosilva@exemplo.com",
+    "url": "Site",
+    "urlPlaceholder": "https://exemplo.com",
+    "quote": "Frase",
+    "quotePlaceholder": "Sua frase aqui"
+  },
+  "ProfileForm": {
+    "noProfileAdded": "Nenhum perfil adicionado"
+  },
+  "WorkForm": {
+    "noneAdded": "Nenhum(a) {label} adicionado(a)"
+  },
+  "WritingsForm": {
+    "noneAdded": "Nenhum(a) {label} adicionado(a)"
+  },
+  "EducationForm": {
+    "noneAdded": "Nenhum(a) {label} adicionado(a)"
+  },
+  "ProjectForm": {
+    "noneAdded": "Nenhum(a) {label} adicionado(a)"
+  },
+  "WritingSheet": {
+    "add": "Adicionar {label}",
+    "edit": "Editar {label}",
+    "title": "Título",
+    "role": "Função",
+    "medium": "Meio",
+    "startDate": "Data de início",
+    "endDate": "Data de término",
+    "description": "Descrição",
+    "noneAdded": "Nenhum(a) {label} adicionado(a)",
+    "save": "Salvar {label}",
+    "titleRequired": "Título é obrigatório",
+    "roleRequired": "Função é obrigatória",
+    "mediumRequired": "Meio é obrigatório",
+    "startDateRequired": "Data de início é obrigatória"
+  },
+  "HonorsForm": {
+    "noneAdded": "Nenhum(a) {label} adicionado(a)"
+  },
+  "ExtracurricularForm": {
+    "noneAdded": "Nenhum(a) {label} adicionado(a)"
+  },
+  "CertificateForm": {
+    "noneAdded": "Nenhum(a) {label} adicionado(a)"
+  },
+  "ComitteesForm": {
+    "noneAdded": "Nenhum(a) {label} adicionado(a)"
+  },
+  "PresentationsForm": {
+    "noneAdded": "Nenhuma apresentação adicionada"
+  },
+  "LanguageForm": {
+    "noneAdded": "Nenhum(a) {label} adicionado(a)"
+  },
+  "DeleteModal": {
+    "tooltip": "Excluir {type}",
+    "title": "Tem certeza de que deseja excluir este(a) {type}?",
+    "description": "Esta ação não pode ser desfeita.",
+    "cancel": "Cancelar",
+    "delete": "Excluir"
+  },
+  "HighlightItem": {
+    "delete": "Excluir"
+  },
+  "Item": {
+    "edit": "Editar",
+    "delete": "Excluir"
+  },
+  "ProfileSheet": {
+    "editProfile": "Editar perfil",
+    "addProfile": "Adicionar perfil",
+    "network": "Rede",
+    "networkPlaceholder": "ex: LinkedIn",
+    "username": "Usuário",
+    "usernamePlaceholder": "ex: joao-silva",
+    "url": "URL",
+    "urlPlaceholder": "ex: https://linkedin.com/in/joao-silva",
+    "saveProfile": "Salvar perfil",
+    "networkRequired": "Rede é obrigatória",
+    "usernameRequired": "Usuário é obrigatório",
+    "urlInvalid": "URL inválida"
+  },
+  "EducationSheet": {
+    "add": "Adicionar {label}",
+    "edit": "Editar {label}",
+    "school": "Instituição",
+    "location": "Localização",
+    "degree": "Grau",
+    "startDate": "Data de início",
+    "endDate": "Data de término",
+    "description": "Descrição",
+    "noDescription": "Nenhuma descrição de educação adicionada",
+    "save": "Salvar {label}",
+    "schoolRequired": "Instituição é obrigatória",
+    "locationRequired": "Localização é obrigatória",
+    "degreeRequired": "Grau é obrigatório",
+    "startDateRequired": "Data de início é obrigatória"
+  },
+  "WorkSheet": {
+    "add": "Adicionar experiência profissional",
+    "edit": "Editar experiência profissional",
+    "company": "Empresa",
+    "location": "Localização",
+    "position": "Cargo",
+    "startDate": "Data de início",
+    "endDate": "Data de término",
+    "highlights": "Destaques",
+    "noHighlight": "Nenhum destaque profissional adicionado",
+    "save": "Salvar experiência profissional",
+    "companyRequired": "Empresa é obrigatória",
+    "locationRequired": "Localização é obrigatória",
+    "positionRequired": "Cargo é obrigatório",
+    "startDateRequired": "Data de início é obrigatória"
+  },
+  "ProjectSheet": {
+    "add": "Adicionar projeto",
+    "edit": "Editar projeto",
+    "title": "Título",
+    "repository": "Repositório",
+    "link": "URL",
+    "startDate": "Data de início",
+    "endDate": "Data de término",
+    "programmingLanguages": "Linguagens de programação",
+    "description": "Descrição",
+    "noProgrammingLanguage": "Nenhuma linguagem de programação adicionada",
+    "noDescription": "Nenhuma descrição adicionada",
+    "save": "Salvar experiência em projeto",
+    "titleRequired": "Título é obrigatório",
+    "repositoryRequired": "Repositório é obrigatório",
+    "linkInvalid": "O link deve ser uma URL válida",
+    "startDateRequired": "Data de início é obrigatória"
+  },
+  "CertificateSheet": {
+    "add": "Adicionar {label}",
+    "edit": "Editar {label}",
+    "title": "Título",
+    "issuer": "Emissor",
+    "date": "Data",
+    "description": "Descrição",
+    "noDescription": "Nenhuma descrição adicionada",
+    "save": "Salvar {label}",
+    "titleRequired": "Título é obrigatório",
+    "issuerRequired": "Emissor é obrigatório",
+    "dateRequired": "Data é obrigatória"
+  },
+  "ExtracurricularSheet": {
+    "add": "Adicionar {label}",
+    "edit": "Editar {label}",
+    "role": "Função",
+    "organization": "Organização",
+    "location": "Localização",
+    "startDate": "Data de início",
+    "endDate": "Data de término",
+    "description": "Descrição",
+    "noneAdded": "Nenhum(a) {label} adicionado(a)",
+    "save": "Salvar {label}",
+    "roleRequired": "Função é obrigatória",
+    "organizationRequired": "Organização é obrigatória",
+    "locationRequired": "Localização é obrigatória",
+    "startDateRequired": "Data de início é obrigatória"
+  },
+  "ComitteeSheet": {
+    "add": "Adicionar {label}",
+    "edit": "Editar {label}",
+    "year": "Ano",
+    "position": "Cargo",
+    "organization": "Organização",
+    "location": "Localização",
+    "save": "Salvar {label}",
+    "yearRequired": "Ano é obrigatório",
+    "positionRequired": "Cargo é obrigatório",
+    "organizationRequired": "Organização é obrigatória",
+    "locationRequired": "Localização é obrigatória"
+  },
+  "LanguageSheet": {
+    "add": "Adicionar idioma",
+    "edit": "Editar idioma",
+    "language": "Idioma",
+    "fluency": "Fluência",
+    "save": "Salvar idioma",
+    "languageRequired": "Idioma é obrigatório",
+    "fluencyRequired": "Fluência é obrigatória"
+  },
+  "PresentationSheet": {
+    "add": "Adicionar {label}",
+    "edit": "Editar {label}",
+    "event": "Evento",
+    "role": "Função",
+    "location": "Localização",
+    "date": "Data",
+    "description": "Descrição",
+    "noneAdded": "Nenhum(a) {label} adicionado(a)",
+    "save": "Salvar {label}",
+    "eventRequired": "Evento é obrigatório",
+    "roleRequired": "Função é obrigatória",
+    "locationRequired": "Localização é obrigatória",
+    "dateRequired": "Data é obrigatória"
+  },
+  "HonorsSheet": {
+    "addTooltip": "Adicionar novo(a) {label}",
+    "editTooltip": "Editar este(a) {label}",
+    "addTitle": "Adicionar {label}",
+    "editTitle": "Editar {label}",
+    "label": "Rótulo",
+    "honors": "Honrarias",
+    "noneAdded": "Nenhum(a) {label} adicionado(a)",
+    "labelRequired": "Rótulo é obrigatório"
+  },
+  "HonorTypeSheet": {
+    "addTooltip": "Adicionar nova honraria",
+    "editTooltip": "Editar esta honraria",
+    "addTitle": "Adicionar honraria",
+    "editTitle": "Editar honraria",
+    "year": "Ano",
+    "position": "Posição",
+    "honor": "Honraria",
+    "location": "Localização",
+    "addButton": "Adicionar honraria",
+    "updateButton": "Atualizar honraria"
   }
 }

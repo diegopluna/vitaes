@@ -22,6 +22,7 @@ import { createPortal } from 'react-dom'
 import { TooltipWrapper } from '@/components/ui/tooltip-wrapper'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { useTranslations } from 'next-intl'
 
 const stateStyles: {
   [Key in DraggableState['type']]?: HTMLAttributes<HTMLDivElement>['className']
@@ -176,6 +177,7 @@ function DragPreview<T extends { id: string; value: string }>({
 }: {
   item: T
 }) {
+  const t = useTranslations('HighlightItem')
   return (
     <Card className="w-full">
       <CardContent className="p-4 flex items-cetner justify-between">
@@ -184,7 +186,7 @@ function DragPreview<T extends { id: string; value: string }>({
         </div>
         <span className="flex-grow mr-2">{item.value}</span>
         <div className="flex space-x-2">
-          <TooltipWrapper tooltip="Delete">
+          <TooltipWrapper tooltip={t('delete')}>
             <Button variant="outline" size="icon">
               <IconTrash className="size-4" />
             </Button>

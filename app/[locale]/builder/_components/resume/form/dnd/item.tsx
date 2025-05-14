@@ -21,6 +21,7 @@ import { DropIndicator } from './drop-indicator'
 import { createPortal } from 'react-dom'
 import { TooltipWrapper } from '@/components/ui/tooltip-wrapper'
 import { Button } from '@/components/ui/button'
+import { useTranslations } from 'next-intl'
 
 const stateStyles: {
   [Key in DraggableState['type']]?: HTMLAttributes<HTMLDivElement>['className']
@@ -167,6 +168,7 @@ export function ListItem<T extends { id: string }>({
 }
 
 function DragPreview<T extends { id: string }>({ item }: { item: T }) {
+  const t = useTranslations('Item')
   return (
     <Card className="w-full">
       <CardContent className="p-4 flex items-cetner justify-between">
@@ -175,12 +177,12 @@ function DragPreview<T extends { id: string }>({ item }: { item: T }) {
         </div>
         <span className="flex-grow mr-2">{item.id}</span>
         <div className="flex space-x-2">
-          <TooltipWrapper tooltip="Edit">
+          <TooltipWrapper tooltip={t('edit')}>
             <Button variant="outline" size="icon">
               <IconPencil className="size-4" />
             </Button>
           </TooltipWrapper>
-          <TooltipWrapper tooltip="Delete">
+          <TooltipWrapper tooltip={t('delete')}>
             <Button variant="outline" size="icon">
               <IconTrash className="size-4" />
             </Button>

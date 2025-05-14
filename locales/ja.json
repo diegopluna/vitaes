@@ -1,14 +1,335 @@
 {
-  "welcome": "私たちのアプリケーションへようこそ！",
-  "user": {
-    "greeting": "こんにちは、{{name}}！",
-    "profile": {
-      "title": "あなたのプロフィール",
-      "edit": "プロフィールを編集"
+  "LocaleLayout": {
+    "description": "履歴書ビルダー"
+  },
+  "Landing": {
+    "action": "履歴書を作成する",
+    "sub-action": "無料かつオープンソースのビルダーで、簡単に魅力的な履歴書を作成しましょう。モダンなテンプレートから選んで、理想の仕事を手に入れましょう。",
+    "action-button": "はじめる",
+    "footer": "設計・開発："
+  },
+  "LoginForm": {
+    "welcome": "お帰りなさい",
+    "google": "Googleで続行",
+    "github": "GitHubで続行",
+    "or": "または",
+    "passkey": "パスキーを使用",
+    "email-placeholder": "メールアドレスを入力してください",
+    "sign-in": "サインイン",
+    "email-valid": "有効なメールアドレスを入力してください",
+    "email-required": "メールアドレスは必須です",
+    "toast-rate-limit": "リクエストが多すぎます。${retryAfter}秒後に再試行してください",
+    "failed-to-send": "マジックリンクの送信に失敗しました。もう一度お試しください"
+  },
+  "EmailSent": {
+    "title": "メールを確認してください",
+    "email-sent": "{email} に一時的なサインインリンクを送信しました。",
+    "not-you": "あなたではありませんか？"
+  },
+  "Dashboard": {
+    "resumes": "履歴書"
+  },
+  "UserButton": {
+    "account": "アカウント",
+    "LogOut": "ログアウト"
+  },
+  "AccountMenu": {
+    "title": "アカウント設定",
+    "subtitle": "アカウント情報の管理",
+    "settings": "設定",
+    "profile": "プロフィール",
+    "security": "セキュリティ",
+    "profile-page": {
+      "no-name-defined": "名前が未設定",
+      "update-profile": "プロフィールを更新",
+      "full-name": "氏名",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "connected-accounts": "連携アカウント",
+      "connected": "連携済み",
+      "link": "連携",
+      "unlink": "連携解除",
+      "unlink-account": "アカウントの連携解除",
+      "unlink-account-description": "このアカウントの連携を解除してもよろしいですか？"
+    },
+    "security-page": {
+      "add-passkey-title": "パスキーを追加してもよろしいですか？",
+      "add-passkey-description": "この操作でアカウントにパスキーが追加されます。",
+      "cancel": "キャンセル",
+      "add-passkey": "パスキーを追加",
+      "passkeys": "パスキー",
+      "unnamed-passkey": "名前なしパスキー",
+      "rename": "名前を変更",
+      "delete": "削除",
+      "created-at": "作成日",
+      "add-a-passkey": "パスキーを追加",
+      "name-label": "名前",
+      "name-placeholder": "パスキーの名前を入力してください",
+      "name-required": "名前は必須です",
+      "delete-passkey-title": "このパスキーを削除してもよろしいですか？",
+      "cannot-be-undone": "この操作は元に戻せません。",
+      "delete-passkey": "パスキーを削除",
+      "rename-passkey-title": "このパスキーの名前を変更してもよろしいですか？",
+      "rename-passkey": "パスキーの名前を変更",
+      "new-name": "新しい名前",
+      "new-name-placeholder": "新しいパスキー名を入力してください",
+      "active-devices": "アクティブなデバイス",
+      "sign-out-all": "すべてのデバイスからサインアウト",
+      "sign-out-all-dialog-title": "すべてのデバイスからサインアウトしてもよろしいですか？",
+      "sign-out-all-dialog-description": "すべてのデバイスからサインアウトされ、再度サインインが必要になります。",
+      "sign-out": "サインアウト",
+      "this-device": "このデバイス",
+      "expires-at": "有効期限",
+      "sign-out-device": "このデバイスからサインアウト",
+      "are-you-sure": "本当によろしいですか？",
+      "signing-out": "サインアウト中...",
+      "delete-account": "アカウント削除",
+      "delete-account-title": "アカウントを削除してもよろしいですか？",
+      "delete-account-description": "アカウント削除用のリンクを記載したメールを送信します。",
+      "delete-account-confirmation": "メールを送信"
     }
   },
-  "notifications": {
-    "messages": "新しいメッセージが{{count}}件あります。",
-    "empty": "新しい通知はありません。"
+  "ModeToggle": {
+    "dark": "ダーク",
+    "light": "ライト",
+    "toggle": "テーマを切り替え",
+    "system": "システム"
+  },
+  "Navbar": {
+    "viewOnGithub": "Githubで見る"
+  },
+  "Sidebar": {
+    "title": "サイドバー",
+    "mobileDescription": "モバイル用サイドバーを表示します。"
+  },
+  "PersonalForm": {
+    "firstName": "名",
+    "firstNamePlaceholder": "太郎",
+    "lastName": "姓",
+    "lastNamePlaceholder": "山田",
+    "phone": "電話番号",
+    "phonePlaceholder": "090-1234-5678",
+    "email": "メールアドレス",
+    "emailPlaceholder": "taro.yamada@example.com",
+    "url": "ウェブサイト",
+    "urlPlaceholder": "https://example.com",
+    "quote": "一言",
+    "quotePlaceholder": "ここに一言"
+  },
+  "ProfileForm": {
+    "noProfileAdded": "プロフィールが追加されていません"
+  },
+  "WorkForm": {
+    "noneAdded": "{label}が追加されていません"
+  },
+  "WritingsForm": {
+    "noneAdded": "{label}が追加されていません"
+  },
+  "EducationForm": {
+    "noneAdded": "{label}が追加されていません"
+  },
+  "ProjectForm": {
+    "noneAdded": "{label}が追加されていません"
+  },
+  "WritingSheet": {
+    "add": "{label}を追加",
+    "edit": "{label}を編集",
+    "title": "タイトル",
+    "role": "役割",
+    "medium": "媒体",
+    "startDate": "開始日",
+    "endDate": "終了日",
+    "description": "説明",
+    "noneAdded": "{label}が追加されていません",
+    "save": "{label}を保存",
+    "titleRequired": "タイトルは必須です",
+    "roleRequired": "役割は必須です",
+    "mediumRequired": "媒体は必須です",
+    "startDateRequired": "開始日は必須です"
+  },
+  "HonorsForm": {
+    "noneAdded": "{label}が追加されていません"
+  },
+  "ExtracurricularForm": {
+    "noneAdded": "{label}が追加されていません"
+  },
+  "CertificateForm": {
+    "noneAdded": "{label}が追加されていません"
+  },
+  "ComitteesForm": {
+    "noneAdded": "{label}が追加されていません"
+  },
+  "PresentationsForm": {
+    "noneAdded": "プレゼンテーションが追加されていません"
+  },
+  "LanguageForm": {
+    "noneAdded": "{label}が追加されていません"
+  },
+  "DeleteModal": {
+    "tooltip": "{type}を削除",
+    "title": "この{type}を削除してもよろしいですか？",
+    "description": "この操作は元に戻せません。",
+    "cancel": "キャンセル",
+    "delete": "削除"
+  },
+  "HighlightItem": {
+    "delete": "削除"
+  },
+  "Item": {
+    "edit": "編集",
+    "delete": "削除"
+  },
+  "ProfileSheet": {
+    "editProfile": "プロフィールを編集",
+    "addProfile": "プロフィールを追加",
+    "network": "ネットワーク",
+    "networkPlaceholder": "例：LinkedIn",
+    "username": "ユーザー名",
+    "usernamePlaceholder": "例：taro-yamada",
+    "url": "URL",
+    "urlPlaceholder": "例：https://linkedin.com/in/taro-yamada",
+    "saveProfile": "プロフィールを保存",
+    "networkRequired": "ネットワークは必須です",
+    "usernameRequired": "ユーザー名は必須です",
+    "urlInvalid": "URLが無効です"
+  },
+  "EducationSheet": {
+    "add": "{label}を追加",
+    "edit": "{label}を編集",
+    "school": "学校",
+    "location": "場所",
+    "degree": "学位",
+    "startDate": "開始日",
+    "endDate": "終了日",
+    "description": "説明",
+    "noDescription": "教育の説明が追加されていません",
+    "save": "{label}を保存",
+    "schoolRequired": "学校は必須です",
+    "locationRequired": "場所は必須です",
+    "degreeRequired": "学位は必須です",
+    "startDateRequired": "開始日は必須です"
+  },
+  "WorkSheet": {
+    "add": "職務経験を追加",
+    "edit": "職務経験を編集",
+    "company": "会社",
+    "location": "場所",
+    "position": "役職",
+    "startDate": "開始日",
+    "endDate": "終了日",
+    "highlights": "主な実績",
+    "noHighlight": "職務の主な実績が追加されていません",
+    "save": "職務経験を保存",
+    "companyRequired": "会社は必須です",
+    "locationRequired": "場所は必須です",
+    "positionRequired": "役職は必須です",
+    "startDateRequired": "開始日は必須です"
+  },
+  "ProjectSheet": {
+    "add": "プロジェクトを追加",
+    "edit": "プロジェクトを編集",
+    "title": "タイトル",
+    "repository": "リポジトリ",
+    "link": "URL",
+    "startDate": "開始日",
+    "endDate": "終了日",
+    "programmingLanguages": "プログラミング言語",
+    "description": "説明",
+    "noProgrammingLanguage": "プログラミング言語が追加されていません",
+    "noDescription": "説明が追加されていません",
+    "save": "プロジェクト経験を保存",
+    "titleRequired": "タイトルは必須です",
+    "repositoryRequired": "リポジトリは必須です",
+    "linkInvalid": "リンクは有効なURLである必要があります",
+    "startDateRequired": "開始日は必須です"
+  },
+  "CertificateSheet": {
+    "add": "{label}を追加",
+    "edit": "{label}を編集",
+    "title": "タイトル",
+    "issuer": "発行者",
+    "date": "日付",
+    "description": "説明",
+    "noDescription": "説明が追加されていません",
+    "save": "{label}を保存",
+    "titleRequired": "タイトルは必須です",
+    "issuerRequired": "発行者は必須です",
+    "dateRequired": "日付は必須です"
+  },
+  "ExtracurricularSheet": {
+    "add": "{label}を追加",
+    "edit": "{label}を編集",
+    "role": "役割",
+    "organization": "組織",
+    "location": "場所",
+    "startDate": "開始日",
+    "endDate": "終了日",
+    "description": "説明",
+    "noneAdded": "{label}が追加されていません",
+    "save": "{label}を保存",
+    "roleRequired": "役割は必須です",
+    "organizationRequired": "組織は必須です",
+    "locationRequired": "場所は必須です",
+    "startDateRequired": "開始日は必須です"
+  },
+  "ComitteeSheet": {
+    "add": "{label}を追加",
+    "edit": "{label}を編集",
+    "year": "年",
+    "position": "役職",
+    "organization": "組織",
+    "location": "場所",
+    "save": "{label}を保存",
+    "yearRequired": "年は必須です",
+    "positionRequired": "役職は必須です",
+    "organizationRequired": "組織は必須です",
+    "locationRequired": "場所は必須です"
+  },
+  "LanguageSheet": {
+    "add": "言語を追加",
+    "edit": "言語を編集",
+    "language": "言語",
+    "fluency": "流暢さ",
+    "save": "言語を保存",
+    "languageRequired": "言語は必須です",
+    "fluencyRequired": "流暢さは必須です"
+  },
+  "PresentationSheet": {
+    "add": "{label}を追加",
+    "edit": "{label}を編集",
+    "event": "イベント",
+    "role": "役割",
+    "location": "場所",
+    "date": "日付",
+    "description": "説明",
+    "noneAdded": "{label}が追加されていません",
+    "save": "{label}を保存",
+    "eventRequired": "イベントは必須です",
+    "roleRequired": "役割は必須です",
+    "locationRequired": "場所は必須です",
+    "dateRequired": "日付は必須です"
+  },
+  "HonorsSheet": {
+    "addTooltip": "新しい{label}を追加",
+    "editTooltip": "この{label}を編集",
+    "addTitle": "{label}を追加",
+    "editTitle": "{label}を編集",
+    "label": "ラベル",
+    "honors": "表彰",
+    "noneAdded": "{label}が追加されていません",
+    "labelRequired": "ラベルは必須です"
+  },
+  "HonorTypeSheet": {
+    "addTooltip": "新しい表彰を追加",
+    "editTooltip": "この表彰を編集",
+    "addTitle": "表彰を追加",
+    "editTitle": "表彰を編集",
+    "year": "年",
+    "position": "役職",
+    "honor": "表彰",
+    "location": "場所",
+    "addButton": "表彰を追加",
+    "updateButton": "表彰を更新"
   }
 }

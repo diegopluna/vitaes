@@ -17,6 +17,7 @@ import { useCallback, useState } from 'react'
 import { z } from 'zod'
 import { useResumeStore } from '@/providers/resume-store-provider'
 import { useAppForm } from '@/components/ui/ts-form'
+import { useTranslations } from 'next-intl'
 
 const comitteeExperienceFormSchema = z.object({
   year: z.string().min(1, 'Year is required'),
@@ -32,6 +33,7 @@ export const ComitteeSheet = ({
 }) => {
   const [open, setOpen] = useState(false)
   const { resume, setResumeField } = useResumeStore(s => s)
+  const t = useTranslations('ComitteeSheet')
 
   const comittees = resume.committees
 
@@ -83,8 +85,8 @@ export const ComitteeSheet = ({
         <TooltipWrapper
           tooltip={
             defaultValues
-              ? `Edit ${resume.committees.label}`
-              : `Add ${resume.committees.label}`
+              ? t('edit', { label: resume.committees.label })
+              : t('add', { label: resume.committees.label })
           }
         >
           <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
@@ -100,8 +102,8 @@ export const ComitteeSheet = ({
         <SheetHeader>
           <SheetTitle>
             {defaultValues
-              ? `Edit ${resume.committees.label}`
-              : `Add ${resume.committees.label}`}
+              ? t('edit', { label: resume.committees.label })
+              : t('add', { label: resume.committees.label })}
           </SheetTitle>
         </SheetHeader>
         <form.AppForm>
@@ -112,7 +114,7 @@ export const ComitteeSheet = ({
                   name="year"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Year</field.FormLabel>
+                      <field.FormLabel>{t('year')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -128,7 +130,7 @@ export const ComitteeSheet = ({
                   name="position"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Position</field.FormLabel>
+                      <field.FormLabel>{t('position')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -144,7 +146,7 @@ export const ComitteeSheet = ({
                   name="organization"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Organization</field.FormLabel>
+                      <field.FormLabel>{t('organization')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -160,7 +162,7 @@ export const ComitteeSheet = ({
                   name="location"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Location</field.FormLabel>
+                      <field.FormLabel>{t('location')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -175,7 +177,7 @@ export const ComitteeSheet = ({
               </div>
             </ScrollArea>
             <Button className="mt-4" type="submit">
-              Save {comittees.label}
+              {t('save', { label: comittees.label })}
             </Button>
           </form>
         </form.AppForm>

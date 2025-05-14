@@ -5,6 +5,7 @@ import type { ItemData } from './dnd/drag'
 import { DragList } from './dnd/list'
 import { useResumeStore } from '@/providers/resume-store-provider'
 import { HonorsSheet } from './sheets/honors-sheet'
+import { useTranslations } from 'next-intl'
 
 const honorsPerLabelKey = Symbol('honorsPerLabel')
 
@@ -28,6 +29,7 @@ const HonorsPerLabelDragList = DragList<HonorsPerLabel>
 export const HonorsForm = () => {
   const { resume, setResumeField } = useResumeStore(s => s)
   const honors = resume.honors
+  const t = useTranslations('HonorsForm')
 
   function setHonors(honors: HonorsPerLabel[]) {
     setResumeField('honors', {
@@ -39,7 +41,7 @@ export const HonorsForm = () => {
   return (
     <div className="flex flex-col w-full gap-2 px-2 items-center">
       {honors.content.length === 0 && (
-        <p className="text-center">No {honors.label} added</p>
+        <p className="text-center">{t('noneAdded', { label: honors.label })}</p>
       )}
       <HonorsPerLabelDragList
         items={honors.content}

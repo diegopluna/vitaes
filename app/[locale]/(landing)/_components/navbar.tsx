@@ -18,8 +18,10 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import { Separator } from '@/components/ui/separator'
+import { useTranslations } from 'next-intl'
 
 export const Navbar = () => {
+  const t = useTranslations('Navbar')
   return (
     <header className="shadow-inner bg-opacity-15 w-[90%] md:w-[70%] lg:w-[75%] lg:max-screen-xl top-5 mx-auto sticky border border-secondary z-40 flex justify-between items-center p-2 bg-card">
       <Link href="/" className="font-bold text-lg flex items-center">
@@ -70,9 +72,14 @@ export const Navbar = () => {
       <div className="hidden lg:flex">
         <LanguageSelector />
         <ModeToggle />
-        <Button asChild size="sm" variant="ghost" aria-label="View on Github">
+        <Button
+          asChild
+          size="sm"
+          variant="ghost"
+          aria-label={t('viewOnGithub')}
+        >
           <NextLink
-            aria-label="View on Github"
+            aria-label={t('viewOnGithub')}
             href="https://github.com/diegopluna/vitaes"
             target="_blank"
           >

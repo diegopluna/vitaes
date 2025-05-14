@@ -5,6 +5,7 @@ import { ItemData } from './dnd/drag'
 import { DragList } from './dnd/list'
 import { ComitteeSheet } from './sheets/comittee-sheet'
 import { useResumeStore } from '@/providers/resume-store-provider'
+import { useTranslations } from 'next-intl'
 
 const comitteeKey = Symbol('comittee')
 
@@ -25,6 +26,7 @@ const ComitteeDragList = DragList<Committee>
 
 export const ComitteeForm = () => {
   const { resume, setResumeField } = useResumeStore(s => s)
+  const t = useTranslations('ComitteesForm')
 
   const comittees = resume.committees
 
@@ -38,7 +40,9 @@ export const ComitteeForm = () => {
   return (
     <div className="flex flex-col w-full gap-2 px-2 items-center">
       {comittees.content.length === 0 && (
-        <p className="text-center">No {comittees.label.toLowerCase()} added</p>
+        <p className="text-center">
+          {t('noneAdded', { label: comittees.label.toLowerCase() })}
+        </p>
       )}
       <ComitteeDragList
         items={comittees.content}

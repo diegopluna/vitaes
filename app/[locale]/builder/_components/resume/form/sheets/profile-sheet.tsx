@@ -16,6 +16,7 @@ import { useResumeStore } from '@/providers/resume-store-provider'
 import { IconPencil, IconPlus } from '@tabler/icons-react'
 import { useCallback, useState } from 'react'
 import { z } from 'zod'
+import { useTranslations } from 'next-intl'
 
 const profileFormSchema = z.object({
   network: z.string().min(1, 'Network is required'),
@@ -30,6 +31,7 @@ export const ProfileSheet = ({
 }) => {
   const [open, setOpen] = useState(false)
   const { resume, setResumeField } = useResumeStore(s => s)
+  const t = useTranslations('ProfileSheet')
 
   const basics = resume.basics
 
@@ -79,7 +81,7 @@ export const ProfileSheet = ({
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <TooltipWrapper
-          tooltip={defaultValues ? 'Edit Profile' : 'Add Profile'}
+          tooltip={defaultValues ? t('editProfile') : t('addProfile')}
         >
           <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
             {defaultValues ? (
@@ -93,7 +95,7 @@ export const ProfileSheet = ({
       <SheetContent side="left" className="p-4">
         <SheetHeader>
           <SheetTitle>
-            {defaultValues ? 'Edit Profile' : 'Add Profile'}
+            {defaultValues ? t('editProfile') : t('addProfile')}
           </SheetTitle>
         </SheetHeader>
         <form.AppForm>
@@ -102,10 +104,10 @@ export const ProfileSheet = ({
               name="network"
               children={field => (
                 <field.FormItem>
-                  <field.FormLabel>Network</field.FormLabel>
+                  <field.FormLabel>{t('network')}</field.FormLabel>
                   <field.FormControl>
                     <Input
-                      placeholder="e.g. LinkedIn"
+                      placeholder={t('networkPlaceholder')}
                       value={field.state.value}
                       onChange={e => field.handleChange(e.target.value)}
                       onBlur={field.handleBlur}
@@ -119,10 +121,10 @@ export const ProfileSheet = ({
               name="username"
               children={field => (
                 <field.FormItem>
-                  <field.FormLabel>Username</field.FormLabel>
+                  <field.FormLabel>{t('username')}</field.FormLabel>
                   <field.FormControl>
                     <Input
-                      placeholder="e.g. john-doe"
+                      placeholder={t('usernamePlaceholder')}
                       value={field.state.value}
                       onChange={e => field.handleChange(e.target.value)}
                       onBlur={field.handleBlur}
@@ -136,10 +138,10 @@ export const ProfileSheet = ({
               name="url"
               children={field => (
                 <field.FormItem>
-                  <field.FormLabel>URL</field.FormLabel>
+                  <field.FormLabel>{t('url')}</field.FormLabel>
                   <field.FormControl>
                     <Input
-                      placeholder="e.g. https://linkedin.com/in/john-doe"
+                      placeholder={t('urlPlaceholder')}
                       value={field.state.value}
                       onChange={e => field.handleChange(e.target.value)}
                       onBlur={field.handleBlur}
@@ -149,7 +151,7 @@ export const ProfileSheet = ({
                 </field.FormItem>
               )}
             />
-            <Button type="submit">Save Profile</Button>
+            <Button type="submit">{t('saveProfile')}</Button>
           </form>
         </form.AppForm>
       </SheetContent>

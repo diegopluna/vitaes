@@ -20,6 +20,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Input } from '@/components/ui/input'
 import { DragList } from '../dnd/list'
 import { HonorTypeSheet } from './honor-type-sheet'
+import { useTranslations } from 'next-intl'
 
 const honorsFormSchema = z.object({
   id: z.string(),
@@ -60,6 +61,7 @@ export const HonorsSheet = ({
 }) => {
   const [open, setOpen] = useState(false)
   const { resume, setResumeField } = useResumeStore(s => s)
+  const t = useTranslations('HonorsSheet')
 
   const honors = resume.honors
 
@@ -87,12 +89,17 @@ export const HonorsSheet = ({
         }),
       }
       if (defaultValues) {
-        setResumeField(
-          'honors',
-          honors.map(h => (h.id === defaultValues.id ? honor : h)),
-        )
+        setResumeField('honors', {
+          ...honors,
+          content: honors.content.map(h =>
+            h.id === defaultValues.id ? honor : h,
+          ),
+        })
       } else {
-        setResumeField('honors', [...honors, honor])
+        setResumeField('honors', {
+          ...honors,
+          content: [...honors.content, honor],
+        })
       }
       setOpen(false)
       form.reset()
@@ -113,7 +120,9 @@ export const HonorsSheet = ({
       <SheetTrigger asChild>
         <TooltipWrapper
           tooltip={
-            defaultValues ? 'Edit this honors label' : 'Add a new honors label'
+            defaultValues
+              ? t('editTooltip', { label: honors.label })
+              : t('addTooltip', { label: honors.label })
           }
         >
           <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
@@ -127,7 +136,11 @@ export const HonorsSheet = ({
       </SheetTrigger>
       <SheetContent side="left" className="p-4">
         <SheetHeader>
-          <SheetTitle>{defaultValues ? 'Edit Honor' : 'Add Honor'}</SheetTitle>
+          <SheetTitle>
+            {defaultValues
+              ? t('editTitle', { label: honors.label })
+              : t('addTitle', { label: honors.label })}
+          </SheetTitle>
         </SheetHeader>
         <form.AppForm>
           <form onSubmit={handleSubmit} className="flex flex-1 flex-col h-5/6">
@@ -137,7 +150,7 @@ export const HonorsSheet = ({
                   name="label"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Label</field.FormLabel>
+                      <field.FormLabel>{t('label')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -155,7 +168,7 @@ export const HonorsSheet = ({
                     <field.FormItem>
                       <field.FormLabel>
                         <div className="flex items-center justify-between w-full">
-                          <span>Honors</span>
+                          <span>{t('honors')}</span>
                           <Button
                             variant="outline"
                             size="icon"
@@ -180,7 +193,9 @@ export const HonorsSheet = ({
                         <div className="flex flex-col w-full gap-2 px-2 items-center">
                           {field.state.value.length === 0 && (
                             <p className="text-center text-sm">
-                              No honors added
+                              {t('noneAdded', {
+                                label: honors.label.toLowerCase(),
+                              })}
                             </p>
                           )}
                           <HonorsTypeDragList
@@ -195,16 +210,20 @@ export const HonorsSheet = ({
                               <HonorTypeSheet
                                 defaultValues={defaultValues}
                                 honorTypeId={form.state.values.id}
-                                onUpdate={(honor) => {
+                                onUpdate={honor => {
                                   if (defaultValues) {
                                     // Update existing honor
-                                    const updatedHonors = field.state.value.map(h => 
-                                      h.id === defaultValues.id ? honor : h
+                                    const updatedHonors = field.state.value.map(
+                                      h =>
+                                        h.id === defaultValues.id ? honor : h,
                                     )
                                     field.handleChange(updatedHonors)
                                   } else {
                                     // Add new honor
-                                    field.handleChange([...field.state.value, honor])
+                                    field.handleChange([
+                                      ...field.state.value,
+                                      honor,
+                                    ])
                                   }
                                 }}
                               />

@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button'
 import { TooltipWrapper } from '@/components/ui/tooltip-wrapper'
 import { IconTrash } from '@tabler/icons-react'
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 interface DeleteModalProps {
   type: string
@@ -24,11 +25,12 @@ interface DeleteModalProps {
 
 export const DeleteModal = ({ type, onDelete, id }: DeleteModalProps) => {
   const [open, setOpen] = useState(false)
+  const t = useTranslations('DeleteModal')
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
-        <TooltipWrapper tooltip={`Delete ${type}`}>
+        <TooltipWrapper tooltip={t('tooltip', { type })}>
           <Button
             size="icon"
             variant="outline"
@@ -43,22 +45,18 @@ export const DeleteModal = ({ type, onDelete, id }: DeleteModalProps) => {
       </AlertDialogTrigger>
       <AlertDialogContent className="sm:max-w-[425px]">
         <AlertDialogHeader>
-          <AlertDialogTitle>
-            Are you sure you want to delete this {type}?
-          </AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone.
-          </AlertDialogDescription>
+          <AlertDialogTitle>{t('title', { type })}</AlertDialogTitle>
+          <AlertDialogDescription>{t('description')}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel>{t('cancel')}</AlertDialogCancel>
           <AlertDialogAction
             onClick={e => {
               e.preventDefault()
               onDelete(id)
             }}
           >
-            Delete
+            {t('delete')}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

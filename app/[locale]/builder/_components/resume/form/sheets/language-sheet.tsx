@@ -17,6 +17,7 @@ import { useCallback, useState } from 'react'
 import { z } from 'zod'
 import { useResumeStore } from '@/providers/resume-store-provider'
 import { useAppForm } from '@/components/ui/ts-form'
+import { useTranslations } from 'next-intl'
 
 const languageExperienceFormSchema = z.object({
   language: z.string().min(1, 'Language is required'),
@@ -30,6 +31,7 @@ export const LanguageSheet = ({
 }) => {
   const [open, setOpen] = useState(false)
   const { resume, setResumeField } = useResumeStore(s => s)
+  const t = useTranslations('LanguageSheet')
 
   const languages = resume.languages
 
@@ -47,12 +49,17 @@ export const LanguageSheet = ({
         id: `${value.language}`,
       }
       if (defaultValues) {
-        setResumeField(
-          'languages',
-          languages.map(w => (w.id === defaultValues.id ? language : w)),
-        )
+        setResumeField('languages', {
+          ...languages,
+          content: languages.content.map(w =>
+            w.id === defaultValues.id ? language : w,
+          ),
+        })
       } else {
-        setResumeField('languages', [...languages, language])
+        setResumeField('languages', {
+          ...languages,
+          content: [...languages.content, language],
+        })
       }
       setOpen(false)
       form.reset()
@@ -71,9 +78,7 @@ export const LanguageSheet = ({
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <TooltipWrapper
-          tooltip={defaultValues ? 'Edit Language' : 'Add Language'}
-        >
+        <TooltipWrapper tooltip={defaultValues ? t('edit') : t('add')}>
           <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
             {defaultValues ? (
               <IconPencil className="size-4" />
@@ -85,9 +90,7 @@ export const LanguageSheet = ({
       </SheetTrigger>
       <SheetContent side="left" className="p-4">
         <SheetHeader>
-          <SheetTitle>
-            {defaultValues ? 'Edit Language' : 'Add Language'}
-          </SheetTitle>
+          <SheetTitle>{defaultValues ? t('edit') : t('add')}</SheetTitle>
         </SheetHeader>
         <form.AppForm>
           <form onSubmit={handleSubmit} className="flex flex-1 flex-col h-5/6">
@@ -97,7 +100,7 @@ export const LanguageSheet = ({
                   name="language"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Language</field.FormLabel>
+                      <field.FormLabel>{t('language')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -113,7 +116,7 @@ export const LanguageSheet = ({
                   name="fluency"
                   children={field => (
                     <field.FormItem>
-                      <field.FormLabel>Fluency</field.FormLabel>
+                      <field.FormLabel>{t('fluency')}</field.FormLabel>
                       <field.FormControl>
                         <Input
                           value={field.state.value}
@@ -128,7 +131,7 @@ export const LanguageSheet = ({
               </div>
             </ScrollArea>
             <Button className="mt-4" type="submit">
-              Save Language
+              {t('save')}
             </Button>
           </form>
         </form.AppForm>
