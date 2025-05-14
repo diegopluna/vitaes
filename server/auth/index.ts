@@ -65,6 +65,7 @@ export const auth = betterAuth({
         max: 1,
       },
     }),
+    // TODO: Add hooks for linking(passing ownership of resumes to the new user) etc...
     anonymous(),
   ],
   account: {

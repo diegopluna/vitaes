@@ -13,13 +13,14 @@
     "google": "Continue with Google",
     "github": "Continue with GitHub",
     "or": "or",
-    "passkey": "Use passkey instead",
+    "passkey": "Continue with Passkey",
     "email-placeholder": "Enter your email address",
     "sign-in": "Sign in",
     "email-valid": "Must be a valid email address",
     "email-required": "Email is required",
     "toast-rate-limit": "Rate limit exceeded. Try again in ${retryAfter} seconds",
-    "failed-to-send": "Failed to send magic link. Please try again"
+    "failed-to-send": "Failed to send magic link. Please try again",
+    "guest": "Sign in as guest"
   },
   "EmailSent": {
     "title": "Check your email",

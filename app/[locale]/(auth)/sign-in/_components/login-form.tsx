@@ -8,6 +8,7 @@ import { useAuthState } from '@/providers/auth-state-provider'
 import {
   IconBrandGithubFilled,
   IconBrandGoogleFilled,
+  IconKey,
   IconLoader2,
 } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
@@ -24,6 +25,10 @@ const socialSignIn = async (provider: 'github' | 'google') => {
 
 async function signInWithPasskey() {
   await authClient.signIn.passkey()
+}
+
+async function signInAsGuest() {
+  await authClient.signIn.anonymous()
 }
 
 export function LoginForm() {
@@ -119,6 +124,14 @@ export function LoginForm() {
           <IconBrandGithubFilled className="mr-2 h-4 w-4" />
           {t('github')}
         </Button>
+        <Button
+          onClick={() => signInWithPasskey()}
+          className="w-full"
+          variant="secondary"
+        >
+          <IconKey className="mr-2 h-4 w-4" />
+          {t('passkey')}
+        </Button>
       </div>
       <div className="relative my-4">
         <div className="absolute inset-0 flex items-center">
@@ -161,11 +174,11 @@ export function LoginForm() {
         </form>
       </form.AppForm>
       <Button
-        onClick={() => signInWithPasskey()}
-        className="w-full hover:cursor-pointer"
+        onClick={() => signInAsGuest()}
+        className="w-full hover:cursor-pointer mt-2"
         variant="link"
       >
-        {t('passkey')}
+        {t('guest')}
       </Button>
     </div>
   )

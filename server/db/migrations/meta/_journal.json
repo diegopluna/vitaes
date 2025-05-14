@@ -22,6 +22,13 @@
       "when": 1746124998981,
       "tag": "0002_odd_zeigeist",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1747184947508,
+      "tag": "0003_chemical_speedball",
+      "breakpoints": true
     }
   ]
 }
