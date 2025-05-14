@@ -77,7 +77,7 @@ export const HonorsSheet = ({
     onSubmit: ({ value }) => {
       const honor: HonorsPerLabel = {
         ...value,
-        id: `${Date.now()} - ${value.label}`,
+        id: `${value.label}`,
         honors: value.honors.map(h => {
           return {
             id: `${h.honor} - ${h.year}`,

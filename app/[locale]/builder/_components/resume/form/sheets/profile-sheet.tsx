@@ -47,7 +47,7 @@ export const ProfileSheet = ({
     onSubmit: ({ value }) => {
       const profile: Profile = {
         ...value,
-        id: `${value.network}-${value.username}`,
+        id: `${value.network}`,
       }
 
       if (defaultValues) {

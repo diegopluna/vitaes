@@ -12,13 +12,13 @@ export const kendallRoyResume: Resume = {
       'Experienced executive with a strong background in corporate management and strategic decision-making. Proven track record of leadership and innovation.',
     profiles: [
       {
-        id: 'profile-linkedin-1a2b',
+        id: 'LinkedIn',
         network: 'LinkedIn',
         username: 'kendallroy',
         url: 'https://linkedin.com/in/kendallroy',
       },
       {
-        id: 'profile-twitter-3c4d',
+        id: 'Twitter',
         network: 'Twitter',
         username: 'kendallroy',
         url: 'https://twitter.com/kendallroy',
@@ -29,7 +29,7 @@ export const kendallRoyResume: Resume = {
     label: 'Work Experience',
     content: [
       {
-        id: 'work-waystar-ceo-5e6f',
+        id: 'Waystar CEO',
         company: 'Waystar Royco',
         location: 'New York, NY',
         position: 'Co-CEO',
@@ -37,14 +37,14 @@ export const kendallRoyResume: Resume = {
         endDate: 'present',
         highlights: [
           {
-            id: 'hl-ceo-1-7g8h',
+            id: 'Led as CEO',
             value:
               'Continued to lead the company as Chief Executive Officer, driving further growth and innovation.',
           },
         ],
       },
       {
-        id: 'work-waystar-coo-9i0j',
+        id: 'Waystar COO',
         company: 'Waystar Royco',
         location: 'New York, NY',
         position: 'COO',
@@ -52,17 +52,17 @@ export const kendallRoyResume: Resume = {
         endDate: '2018-01-01',
         highlights: [
           {
-            id: 'hl-coo-1-1k2l',
+            id: 'Growth Leadership',
             value:
               'Led the company through a period of significant growth and expansion as Chief Operating Officer.',
           },
           {
-            id: 'hl-coo-2-3m4n',
+            id: 'Operational Efficiency',
             value:
               'Implemented strategic initiatives to increase operational efficiency and streamline processes.',
           },
           {
-            id: 'hl-coo-3-5o6p',
+            id: 'Business Negotiation',
             value:
               'Played a key role in negotiating major business deals and partnerships.',
           },
@@ -74,18 +74,18 @@ export const kendallRoyResume: Resume = {
     label: 'Honors',
     content: [
       {
-        id: 'honors-label-awards-5y6z',
+        id: 'Awards',
         label: 'Awards',
         honors: [
           {
-            id: 'honor-award-1-a1b2',
+            id: 'Business Innovation Award',
             year: '2017',
             position: '1st Place',
             honor: 'Business Innovation Award',
             location: 'New York, NY',
           },
           {
-            id: 'honor-award-2-c3d4',
+            id: 'Business Leaders of the Year',
             year: '2018',
             position: 'Top 10',
             honor: 'Business Leaders of the Year',
@@ -111,7 +111,7 @@ export const kendallRoyResume: Resume = {
     label: 'Education',
     content: [
       {
-        id: 'edu-harvard-e5f6',
+        id: 'Harvard MBA',
         school: 'Harvard Business School',
         location: 'Cambridge, MA',
         degree: 'MBA',
@@ -119,22 +119,22 @@ export const kendallRoyResume: Resume = {
         endDate: '2017-05-01',
         description: [
           {
-            id: 'edu-harvard-desc-1-g7h8',
+            id: 'Corporate Strategy and Leadership',
             value: 'Focused on corporate strategy and leadership.',
           },
         ],
       },
       {
-        id: 'edu-brown-i9j0',
+        id: 'Brown Economics',
         school: 'Brown University',
         location: 'Providence, RI',
         degree: 'Bachelor of Arts in Economics',
         startDate: '2009-09-01',
         endDate: '2013-05-01',
         description: [
-          { id: 'edu-brown-desc-1-k1l2', value: 'Graduated magna cum laude.' },
+          { id: 'Magna Cum Laude', value: 'Graduated magna cum laude.' },
           {
-            id: 'edu-brown-desc-2-m3n4',
+            id: 'Economics Club',
             value: 'Member of the Economics Club.',
           },
         ],
@@ -157,26 +157,26 @@ export const kendallRoyResume: Resume = {
     label: 'Certificates',
     content: [
       {
-        id: 'cert-harvard-o5p6',
+        id: 'Strategic Leadership',
         title: 'Strategic Leadership',
         issuer: 'Harvard Business School',
         date: '2017-05-01',
         description: [
           {
-            id: 'cert-harvard-desc-1-q7r8',
+            id: 'Leadership Course',
             value:
               'Completed intensive leadership course focusing on strategic decision-making and management.',
           },
         ],
       },
       {
-        id: 'cert-columbia-s9t0',
+        id: 'Financial Analysis',
         title: 'Financial Analysis',
         issuer: 'Columbia Business School',
         date: '2016-08-01',
         description: [
           {
-            id: 'cert-columbia-desc-1-u1v2',
+            id: 'Financial Analysis Program',
             value:
               'Received certificate for successfully completing financial analysis program.',
           },
