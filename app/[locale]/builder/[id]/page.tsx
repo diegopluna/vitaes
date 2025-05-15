@@ -2,15 +2,19 @@
 
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useBuilderTab } from '@/providers/builder-tab-provider'
-import { ResumeForm } from './_components/resume/resume-form'
-import { ResumeSettings } from './_components/resume/resume-settings'
-import DisplayFrame from './_components/display-frame'
-import ResumeView from './_components/resume/resume-view'
+import { ResumeForm } from '../_components/resume/resume-form'
+import { ResumeSettings } from '../_components/resume/resume-settings'
+import DisplayFrame from '../_components/display-frame'
+import ResumeView from '../_components/resume/resume-view'
 import { useResumeStore } from '@/providers/resume-store-provider'
 
 export default function Builder() {
   const { resume } = useResumeStore(s => s)
   const { activeTab } = useBuilderTab()
+
+  if (!resume) {
+    return <div>Resume not found</div>
+  }
 
   return (
     <div className="flex flex-1 flex-row h-[calc(100vh-4rem)]">
