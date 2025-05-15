@@ -11,6 +11,7 @@ export default async function Page({
   const resume = await api.resume.getById({ id }).catch(() => {
     notFound()
   })
+  console.log(resume)
 
   return <ResumeOnly resume={resume.data} />
 }
