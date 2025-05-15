@@ -80,4 +80,11 @@ export const resumeRouter = createTRPCRouter({
 
       return updatedResume[0]
     }),
+  getAll: protectedProcedure.query(async ({ ctx }) => {
+    const resumes = await ctx.db.query.resume.findMany({
+      where: eq(resume.userId, ctx.session.user.id),
+    })
+
+    return resumes
+  }),
 })

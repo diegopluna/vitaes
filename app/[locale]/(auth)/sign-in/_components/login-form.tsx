@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useAppForm } from '@/components/ui/ts-form'
+import { useRouter } from '@/i18n/navigation'
 import { authClient } from '@/lib/auth-client'
 import { useAuthState } from '@/providers/auth-state-provider'
 import {
@@ -27,11 +28,8 @@ async function signInWithPasskey() {
   await authClient.signIn.passkey()
 }
 
-async function signInAsGuest() {
-  await authClient.signIn.anonymous()
-}
-
 export function LoginForm() {
+  const router = useRouter()
   const t = useTranslations('LoginForm')
   const { setStep, setEmail } = useAuthState()
   const [isLoading, startTransition] = useTransition()
@@ -58,6 +56,16 @@ export function LoginForm() {
             toast.error(t('failed-to-send'))
             throw new Error('Failed to send magic link')
           }
+        },
+      },
+    })
+  }
+
+  async function signInAsGuest() {
+    await authClient.signIn.anonymous({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push('/dashboard')
         },
       },
     })

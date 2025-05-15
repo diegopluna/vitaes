@@ -7,6 +7,8 @@ import { env } from '@/env'
 import { resend } from '../resend'
 import MagicLink from '@/emails/magic-link'
 import DeleteAccount from '@/emails/delete-account'
+import { resume } from '../db/schema'
+import { eq } from 'drizzle-orm'
 
 export const auth = betterAuth({
   user: {
@@ -65,8 +67,16 @@ export const auth = betterAuth({
         max: 1,
       },
     }),
-    // TODO: Add hooks for linking(passing ownership of resumes to the new user) etc...
-    anonymous(),
+    anonymous({
+      onLinkAccount: async ({ anonymousUser, newUser }) => {
+        await db
+          .update(resume)
+          .set({
+            userId: newUser.user.id,
+          })
+          .where(eq(resume.userId, anonymousUser.user.id))
+      },
+    }),
   ],
   account: {
     accountLinking: {
