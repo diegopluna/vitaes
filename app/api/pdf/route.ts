@@ -2,6 +2,7 @@ import puppeteer from 'puppeteer-core'
 import chromium from '@sparticuz/chromium'
 import { api } from '@/trpc/server'
 import { auth } from '@/server/auth'
+import { env } from '@/env'
 
 export async function POST(request: Request): Promise<Response> {
   const session = await auth.api.getSession({
@@ -38,7 +39,7 @@ export async function POST(request: Request): Promise<Response> {
   const page = await browser.newPage()
 
   await page.goto(
-    `${process.env.NEXT_PUBLIC_APP_URL}/en/resume_only/${data.id}`,
+    `${env.NEXT_PUBLIC_BETTER_AUTH_URL}/en/resume_only/${data.id}`,
   )
 
   await page.emulateMediaType('screen')
