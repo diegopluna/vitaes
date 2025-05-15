@@ -1,8 +1,17 @@
 import puppeteer from 'puppeteer-core'
 import chromium from '@sparticuz/chromium'
 import { api } from '@/trpc/server'
+import { auth } from '@/server/auth'
 
 export async function POST(request: Request): Promise<Response> {
+  const session = await auth.api.getSession({
+    headers: request.headers,
+  })
+
+  if (!session) {
+    return new Response('Unauthorized', { status: 401 })
+  }
+
   const data = (await request.json()) as { id: string }
 
   const resume = await api.resume.getById({ id: data.id }).catch(() => {
@@ -11,6 +20,10 @@ export async function POST(request: Request): Promise<Response> {
 
   if (!resume) {
     return new Response('Resume not found', { status: 404 })
+  }
+
+  if (resume.userId !== session.user.id) {
+    return new Response('Unauthorized', { status: 401 })
   }
 
   chromium.setGraphicsMode = false

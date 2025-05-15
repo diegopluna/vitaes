@@ -12,6 +12,10 @@ import { SidebarTrigger } from '@/components/ui/sidebar'
 import { useResumeStore } from '@/providers/resume-store-provider'
 import { useAutoSaveResume } from '@/hooks/use-auto-save-resume'
 import { useResumeMeta } from '@/providers/resume-meta-provider'
+import { Button } from '@/components/ui/button'
+import { IconDownload } from '@tabler/icons-react'
+import React from 'react'
+import { formatDistanceToNow } from 'date-fns'
 
 export const BuilderHeader = () => {
   const resume = useResumeStore(s => s.resume)
@@ -39,6 +43,7 @@ export const BuilderHeader = () => {
           </BreadcrumbList>
         </Breadcrumb>
       </div>
+      <DownloadPdfButton id={id} />
       {isPending && (
         <div className="text-xs text-muted-foreground px-4 whitespace-nowrap">
           Saving...
@@ -51,15 +56,75 @@ export const BuilderHeader = () => {
       )}
       {lastSaved ? (
         <div className="text-xs text-muted-foreground px-4 whitespace-nowrap">
-          Last saved: {lastSaved.toLocaleString()}
+          Last saved: <RelativeTime date={lastSaved} />
         </div>
       ) : (
         updatedAt && (
           <div className="text-xs text-muted-foreground px-4 whitespace-nowrap">
-            Last saved: {new Date(updatedAt).toLocaleString()}
+            Last saved: <RelativeTime date={updatedAt} />
           </div>
         )
       )}
     </header>
   )
+}
+
+function DownloadPdfButton({ id }: { id: string }) {
+  const [loading, setLoading] = React.useState(false)
+
+  const handleDownload = async () => {
+    setLoading(true)
+    try {
+      const res = await fetch('/api/pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      })
+      if (!res.ok) throw new Error('Failed to generate PDF')
+      const blob = await res.blob()
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'vitaes.pdf'
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      window.URL.revokeObjectURL(url)
+    } catch {
+      // Optionally show error toast
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <Button
+      size="sm"
+      variant="outline"
+      onClick={handleDownload}
+      disabled={loading}
+      className="mr-2"
+      aria-label="Download PDF"
+    >
+      <IconDownload className="w-4 h-4" />
+      <span className="hidden sm:inline">
+        {loading ? 'Downloading...' : 'Download'}
+      </span>
+    </Button>
+  )
+}
+
+function RelativeTime({ date }: { date: string | number | Date }) {
+  const [relative, setRelative] = React.useState('')
+
+  React.useEffect(() => {
+    function updateRelative() {
+      setRelative(formatDistanceToNow(new Date(date), { addSuffix: true }))
+    }
+    updateRelative()
+    const interval = setInterval(updateRelative, 60_000)
+    return () => clearInterval(interval)
+  }, [date])
+
+  return <>{relative}</>
 }

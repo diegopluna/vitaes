@@ -1,9 +1,9 @@
 import { z } from 'zod'
 import { createTRPCRouter, protectedProcedure } from '../trpc'
 import { resume } from '@/server/db/schema'
-import type { Resume } from '@/@types/resume'
 import { TRPCError } from '@trpc/server'
 import { and, eq } from 'drizzle-orm'
+import { kendallRoyResume } from '@/templates/example-resume-data/kendall-roy'
 
 export const resumeRouter = createTRPCRouter({
   create: protectedProcedure
@@ -20,7 +20,7 @@ export const resumeRouter = createTRPCRouter({
         .values({
           userId: ctx.session.user.id,
           name,
-          data: {} as Resume,
+          data: kendallRoyResume,
         })
         .returning()
 
