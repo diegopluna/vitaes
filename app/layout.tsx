@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import { OpenPanelComponent } from '@openpanel/nextjs'
+// import { OpenPanelComponent } from '@openpanel/nextjs'
 import '@/styles/globals.css'
-import { env } from '@/env'
-import { auth } from '@/server/auth'
-import { headers } from 'next/headers'
+// import { env } from '@/env'
+// import { auth } from '@/server/auth'
+// import { headers } from 'next/headers'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,13 +15,13 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  })
+  // const session = await auth.api.getSession({
+  //   headers: await headers(),
+  // })
 
   return (
     <>
-      <OpenPanelComponent
+      {/* <OpenPanelComponent
         clientId={env.OPEN_PANEL_CLIENT_ID}
         clientSecret={env.OPEN_PANEL_CLIENT_SECRET}
         apiUrl={env.OPEN_PANEL_API_URL}
@@ -29,7 +29,7 @@ export default async function RootLayout({
         trackAttributes={true}
         trackOutgoingLinks={true}
         profileId={session?.user?.id}
-      />
+      /> */}
       {children}
     </>
   )
