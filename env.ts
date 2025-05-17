@@ -31,6 +31,8 @@ export const env = createEnv({
    */
   client: {
     NEXT_PUBLIC_BETTER_AUTH_URL: z.string().min(1),
+    NEXT_PUBLIC_POSTHOG_KEY: z.string().min(1),
+    NEXT_PUBLIC_POSTHOG_HOST: z.string().min(1),
   },
 
   /**
@@ -52,6 +54,8 @@ export const env = createEnv({
     OPEN_PANEL_CLIENT_SECRET: process.env.OPEN_PANEL_CLIENT_SECRET,
     OPEN_PANEL_API_URL: process.env.OPEN_PANEL_API_URL,
     NEXT_PUBLIC_BETTER_AUTH_URL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL,
+    NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
+    NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
