@@ -19,6 +19,9 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: z.string().min(1),
     GITHUB_CLIENT_ID: z.string().min(1),
     GITHUB_CLIENT_SECRET: z.string().min(1),
+    OPEN_PANEL_CLIENT_ID: z.string().min(1),
+    OPEN_PANEL_CLIENT_SECRET: z.string().min(1),
+    OPEN_PANEL_API_URL: z.string().min(1),
   },
 
   /**
@@ -45,6 +48,9 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
     GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
     GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
+    OPEN_PANEL_CLIENT_ID: process.env.OPEN_PANEL_CLIENT_ID,
+    OPEN_PANEL_CLIENT_SECRET: process.env.OPEN_PANEL_CLIENT_SECRET,
+    OPEN_PANEL_API_URL: process.env.OPEN_PANEL_API_URL,
     NEXT_PUBLIC_BETTER_AUTH_URL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL,
   },
   /**
