@@ -1,3 +1,4 @@
+import * as React from 'react'
 import {
   Body,
   Button,
@@ -6,130 +7,61 @@ import {
   Heading,
   Hr,
   Html,
-  Img,
-  Link,
   Preview,
   Section,
   Text,
-} from "@react-email/components";
-import * as React from "react";
-import vitaesLogo from "@/public/vitaes.svg";
+  Tailwind,
+} from '@react-email/components'
 
-interface VitaesMagicLinkProps {
-  url: string;
-  host: string;
+interface MagicLinkProps {
+  url: string
 }
 
-// const baseUrl = process.env.VERCEL_URL
-//   ? `https://${process.env.VERCEL_URL}`
-//   : "";
+const MagicLink = ({ url }: MagicLinkProps) => {
+  return (
+    <Html>
+      <Head />
+      <Preview>Your magic link to sign in to Vitaes</Preview>
+      <Tailwind>
+        <Body className="bg-[#f5f5f5] font-mono py-[40px]">
+          <Container className="bg-white border border-[#e6e6e6] rounded-[8px] mx-auto p-[40px] max-w-[600px]">
+            <Heading className="text-[24px] font-bold text-black my-[30px] mx-0">
+              Hello!
+            </Heading>
 
-export const VitaesMagicLink = ({ url, host }: VitaesMagicLinkProps) => (
-  <Html>
-    <Head />
-    <Preview>Your magic link for {host}</Preview>
-    <Body style={main}>
-      <Container style={container}>
-        <Img
-          src={vitaesLogo}
-          width="42"
-          height="42"
-          alt="Vitaes"
-          style={logo}
-        />
-        <Heading style={heading}>Your magic link for {host}</Heading>
-        <Section style={buttonContainer}>
-          <Button style={button} href={url}>
-            Sign in to Vitaes
-          </Button>
-        </Section>
-        <Text style={paragraph}>
-          If you did not request this email, you can safely ignore it.
-        </Text>
-        {/* <code style={code}>{validationCode}</code> */}
-        <Hr style={hr} />
-        <Link href="https://vitaes.io" style={reportLink}>
-          Vitaes
-        </Link>
-      </Container>
-    </Body>
-  </Html>
-);
+            <Text className="text-[16px] leading-[24px] text-black my-[16px] mx-0">
+              Here&apos;s your magic link to sign in to your Vitaes account. No
+              password needed!
+            </Text>
 
-VitaesMagicLink.PreviewProps = {
-  url: "https://vitaes.io",
-  host: "Vitaes",
-} as VitaesMagicLinkProps;
+            <Section className="text-center my-[32px]">
+              <Button
+                className="bg-black text-white py-[12px] px-[24px] rounded-[4px] font-mono text-[14px] font-medium no-underline text-center box-border"
+                href={url}
+              >
+                Sign In
+              </Button>
+            </Section>
 
-export default VitaesMagicLink;
+            <Text className="text-[14px] leading-[24px] text-black">
+              If you didn&apos;t request this magic link, you can safely ignore
+              this email.
+            </Text>
 
-const logo = {
-  borderRadius: 21,
-  width: 42,
-  height: 42,
-};
+            <Hr className="border border-[#e6e6e6] my-[26px] mx-0" />
 
-const main = {
-  backgroundColor: "#ffffff",
-  fontFamily:
-    '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-};
+            <Text className="text-[12px] text-[#666666] m-0">
+              This magic link will expire in 5 minutes.
+            </Text>
+          </Container>
+        </Body>
+      </Tailwind>
+    </Html>
+  )
+}
 
-const container = {
-  margin: "0 auto",
-  padding: "20px 0 48px",
-  maxWidth: "560px",
-};
+MagicLink.PreviewProps = {
+  url: 'https://example.com/magic-link',
+} as MagicLinkProps
 
-const heading = {
-  fontSize: "24px",
-  letterSpacing: "-0.5px",
-  lineHeight: "1.3",
-  fontWeight: "400",
-  color: "#484848",
-  padding: "17px 0 0",
-};
-
-const paragraph = {
-  margin: "0 0 15px",
-  fontSize: "15px",
-  lineHeight: "1.4",
-  color: "#3c4149",
-};
-
-const buttonContainer = {
-  padding: "27px 0 27px",
-};
-
-const button = {
-  backgroundColor: "#000000 ",
-  borderRadius: "3px",
-  fontWeight: "600",
-  color: "#fff",
-  fontSize: "15px",
-  textDecoration: "none",
-  textAlign: "center" as const,
-  display: "block",
-  padding: "11px 23px",
-};
-
-const reportLink = {
-  fontSize: "14px",
-  color: "#b4becc",
-};
-
-const hr = {
-  borderColor: "#dfe1e4",
-  margin: "42px 0 26px",
-};
-
-const code = {
-  fontFamily: "monospace",
-  fontWeight: "700",
-  padding: "1px 4px",
-  backgroundColor: "#dfe1e4",
-  letterSpacing: "-0.3px",
-  fontSize: "21px",
-  borderRadius: "4px",
-  color: "#3c4149",
-};
+export default MagicLink

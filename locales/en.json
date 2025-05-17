@@ -1,0 +1,336 @@
+{
+  "LocaleLayout": {
+    "description": "Resume Builder"
+  },
+  "Landing": {
+    "action": "Build your resume with",
+    "sub-action": "Craft stunning resumes effortlessly with our free and open source builder. Choose from modern templates and land your dream job.",
+    "action-button": "Get Started",
+    "footer": "Designed and developed by"
+  },
+  "LoginForm": {
+    "welcome": "Welcome back",
+    "google": "Continue with Google",
+    "github": "Continue with GitHub",
+    "or": "or",
+    "passkey": "Continue with Passkey",
+    "email-placeholder": "Enter your email address",
+    "sign-in": "Sign in",
+    "email-valid": "Must be a valid email address",
+    "email-required": "Email is required",
+    "toast-rate-limit": "Rate limit exceeded. Try again in ${retryAfter} seconds",
+    "failed-to-send": "Failed to send magic link. Please try again",
+    "guest": "Sign in as guest"
+  },
+  "EmailSent": {
+    "title": "Check your email",
+    "email-sent": "We sent a temporary sign-in link to {email}. ",
+    "not-you": "Not you?"
+  },
+  "Dashboard": {
+    "resumes": "Resumes"
+  },
+  "UserButton": {
+    "account": "Account",
+    "LogOut": "Log out"
+  },
+  "AccountMenu": {
+    "title": "Account Settings",
+    "subtitle": "Manage your account info",
+    "settings": "Settings",
+    "profile": "Profile",
+    "security": "Security",
+    "profile-page": {
+      "no-name-defined": "No name defined",
+      "update-profile": "Update your profile",
+      "full-name": "Full Name",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "connected-accounts": "Connected Accounts",
+      "connected": "Connected",
+      "link": "Link",
+      "unlink": "Unlink",
+      "unlink-account": "Unlink Account",
+      "unlink-account-description": "Are you sure you want to unlink this account?"
+    },
+    "security-page": {
+      "add-passkey-title": "Are you sure you want to add a passkey?",
+      "add-passkey-description": "This will add a passkey to your account.",
+      "cancel": "Cancel",
+      "add-passkey": "Add Passkey",
+      "passkeys": "Passkeys",
+      "unnamed-passkey": "Unnamed Passkey",
+      "rename": "Rename",
+      "delete": "Delete",
+      "created-at": "Created at",
+      "add-a-passkey": "Add a Passkey",
+      "name-label": "Name",
+      "name-placeholder": "Enter a name for your passkey",
+      "name-required": "Name is required",
+      "delete-passkey-title": "Are you sure you want to delete this passkey?",
+      "cannot-be-undone": "This action cannot be undone.",
+      "delete-passkey": "Delete Passkey",
+      "rename-passkey-title": "Are you sure you want to rename this passkey?",
+      "rename-passkey": "Rename Passkey",
+      "new-name": "New Name",
+      "new-name-placeholder": "Enter a new name for your passkey",
+      "active-devices": "Active Devices",
+      "sign-out-all": "Sign out of all devices",
+      "sign-out-all-dialog-title": "Are you sure you want to sign out of all devices?",
+      "sign-out-all-dialog-description": "This will sign you out of all devices and require you to sign in again.",
+      "sign-out": "Sign out",
+      "this-device": "This device",
+      "expires-at": "Expires at",
+      "sign-out-device": "Sign out of this device",
+      "are-you-sure": "Are you sure?",
+      "signing-out": "Signing out...",
+      "delete-account": "Delete Account",
+      "delete-account-title": "Are you sure you want to delete your account?",
+      "delete-account-description": "This will send you an email with a link to delete your account.",
+      "delete-account-confirmation": "Send Email"
+    }
+  },
+  "ModeToggle": {
+    "dark": "Dark",
+    "light": "Light",
+    "toggle": "Toggle theme",
+    "system": "System"
+  },
+  "Navbar": {
+    "viewOnGithub": "View on Github"
+  },
+  "Sidebar": {
+    "title": "Sidebar",
+    "mobileDescription": "Displays the mobile sidebar."
+  },
+  "PersonalForm": {
+    "firstName": "First Name",
+    "firstNamePlaceholder": "John",
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "Doe",
+    "phone": "Phone",
+    "phonePlaceholder": "(555) 555-5555",
+    "email": "Email",
+    "emailPlaceholder": "johndoe@example.com",
+    "url": "Website",
+    "urlPlaceholder": "https://example.com",
+    "quote": "Quote",
+    "quotePlaceholder": "Your quote here"
+  },
+  "ProfileForm": {
+    "noProfileAdded": "No profile added"
+  },
+  "WorkForm": {
+    "noneAdded": "No {label} added"
+  },
+  "WritingsForm": {
+    "noneAdded": "No {label} added"
+  },
+  "EducationForm": {
+    "noneAdded": "No {label} added"
+  },
+  "ProjectForm": {
+    "noneAdded": "No {label} added"
+  },
+  "WritingSheet": {
+    "add": "Add {label}",
+    "edit": "Edit {label}",
+    "title": "Title",
+    "role": "Role",
+    "medium": "Medium",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "description": "Description",
+    "noneAdded": "No {label} added",
+    "save": "Save {label}",
+    "titleRequired": "Title is required",
+    "roleRequired": "Role is required",
+    "mediumRequired": "Medium is required",
+    "startDateRequired": "Start date is required"
+  },
+  "HonorsForm": {
+    "noneAdded": "No {label} added"
+  },
+  "ExtracurricularForm": {
+    "noneAdded": "No {label} added"
+  },
+  "CertificateForm": {
+    "noneAdded": "No {label} added"
+  },
+  "ComitteesForm": {
+    "noneAdded": "No {label} added"
+  },
+  "PresentationsForm": {
+    "noneAdded": "No presentations added"
+  },
+  "LanguageForm": {
+    "noneAdded": "No {label} added"
+  },
+  "DeleteModal": {
+    "tooltip": "Delete {type}",
+    "title": "Are you sure you want to delete this {type}?",
+    "description": "This action cannot be undone.",
+    "cancel": "Cancel",
+    "delete": "Delete"
+  },
+  "HighlightItem": {
+    "delete": "Delete"
+  },
+  "Item": {
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "ProfileSheet": {
+    "editProfile": "Edit Profile",
+    "addProfile": "Add Profile",
+    "network": "Network",
+    "networkPlaceholder": "e.g. LinkedIn",
+    "username": "Username",
+    "usernamePlaceholder": "e.g. john-doe",
+    "url": "URL",
+    "urlPlaceholder": "e.g. https://linkedin.com/in/john-doe",
+    "saveProfile": "Save Profile",
+    "networkRequired": "Network is required",
+    "usernameRequired": "Username is required",
+    "urlInvalid": "URL is invalid"
+  },
+  "EducationSheet": {
+    "add": "Add {label}",
+    "edit": "Edit {label}",
+    "school": "School",
+    "location": "Location",
+    "degree": "Degree",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "description": "Description",
+    "noDescription": "No education description added",
+    "save": "Save {label}",
+    "schoolRequired": "School is required",
+    "locationRequired": "Location is required",
+    "degreeRequired": "Degree is required",
+    "startDateRequired": "Start date is required"
+  },
+  "WorkSheet": {
+    "add": "Add Work Experience",
+    "edit": "Edit Work Experience",
+    "company": "Company",
+    "location": "Location",
+    "position": "Position",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "highlights": "Highlights",
+    "noHighlight": "No work highlight added",
+    "save": "Save Work Experience",
+    "companyRequired": "Company is required",
+    "locationRequired": "Location is required",
+    "positionRequired": "Position is required",
+    "startDateRequired": "Start date is required"
+  },
+  "ProjectSheet": {
+    "add": "Add Project",
+    "edit": "Edit Project",
+    "title": "Title",
+    "repository": "Repository",
+    "link": "URL",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "programmingLanguages": "Programming Languages",
+    "description": "Description",
+    "noProgrammingLanguage": "No programming language added",
+    "noDescription": "No description added",
+    "save": "Save Project Experience",
+    "titleRequired": "Title is required",
+    "repositoryRequired": "Repository is required",
+    "linkInvalid": "Link must be a valid URL",
+    "startDateRequired": "Start date is required"
+  },
+  "CertificateSheet": {
+    "add": "Add {label}",
+    "edit": "Edit {label}",
+    "title": "Title",
+    "issuer": "Issuer",
+    "date": "Date",
+    "description": "Description",
+    "noDescription": "No description added",
+    "save": "Save {label}",
+    "titleRequired": "Title is required",
+    "issuerRequired": "Issuer is required",
+    "dateRequired": "Date is required"
+  },
+  "ExtracurricularSheet": {
+    "add": "Add {label}",
+    "edit": "Edit {label}",
+    "role": "Role",
+    "organization": "Organization",
+    "location": "Location",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "description": "Description",
+    "noneAdded": "No {label} added",
+    "save": "Save {label}",
+    "roleRequired": "Role is required",
+    "organizationRequired": "Organization is required",
+    "locationRequired": "Location is required",
+    "startDateRequired": "Start date is required"
+  },
+  "ComitteeSheet": {
+    "add": "Add {label}",
+    "edit": "Edit {label}",
+    "year": "Year",
+    "position": "Position",
+    "organization": "Organization",
+    "location": "Location",
+    "save": "Save {label}",
+    "yearRequired": "Year is required",
+    "positionRequired": "Position is required",
+    "organizationRequired": "Organization is required",
+    "locationRequired": "Location is required"
+  },
+  "LanguageSheet": {
+    "add": "Add Language",
+    "edit": "Edit Language",
+    "language": "Language",
+    "fluency": "Fluency",
+    "save": "Save Language",
+    "languageRequired": "Language is required",
+    "fluencyRequired": "Fluency is required"
+  },
+  "PresentationSheet": {
+    "add": "Add {label}",
+    "edit": "Edit {label}",
+    "event": "Event",
+    "role": "Role",
+    "location": "Location",
+    "date": "Date",
+    "description": "Description",
+    "noneAdded": "No {label} added",
+    "save": "Save {label}",
+    "eventRequired": "Event is required",
+    "roleRequired": "Role is required",
+    "locationRequired": "Location is required",
+    "dateRequired": "Date is required"
+  },
+  "HonorsSheet": {
+    "addTooltip": "Add a new {label} label",
+    "editTooltip": "Edit this {label} label",
+    "addTitle": "Add {label}",
+    "editTitle": "Edit {label}",
+    "label": "Label",
+    "honors": "Honors",
+    "noneAdded": "No {label} added",
+    "labelRequired": "Label is required"
+  },
+  "HonorTypeSheet": {
+    "addTooltip": "Add a new honor",
+    "editTooltip": "Edit this honor",
+    "addTitle": "Add Honor",
+    "editTitle": "Edit Honor",
+    "year": "Year",
+    "position": "Position",
+    "honor": "Honor",
+    "location": "Location",
+    "addButton": "Add Honor",
+    "updateButton": "Update Honor"
+  }
+}
