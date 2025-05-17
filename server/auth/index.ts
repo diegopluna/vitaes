@@ -95,6 +95,7 @@ export const auth = betterAuth({
       clientSecret: env.GOOGLE_CLIENT_SECRET,
     },
   },
+  trustedOrigins: ['https://vitaes.io'],
 })
 
 export type Session = Awaited<ReturnType<typeof auth.api.getSession>>
