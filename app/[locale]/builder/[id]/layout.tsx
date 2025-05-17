@@ -56,7 +56,7 @@ export default async function BuilderLayout({
       updatedAt={resumeUpdatedAt}
     >
       <BuilderTabProvider>
-        <ResumeStoreProvider initialResume={resume}>
+        <ResumeStoreProvider initialResume={resume} resumeId={resumeId}>
           <SectionsProvider>
             <AccountSettingsProvider>
               <SidebarProvider>

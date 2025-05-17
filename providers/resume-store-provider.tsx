@@ -15,17 +15,22 @@ export const ResumeStoreContext = createContext<ResumeStoreApi | undefined>(
 export interface ResumeStoreProviderProps {
   children: React.ReactNode
   initialResume?: Resume
+  resumeId?: string
 }
 
 export const ResumeStoreProvider = ({
   children,
   initialResume,
+  resumeId,
 }: ResumeStoreProviderProps) => {
   const storeRef = useRef<ResumeStoreApi | null>(null)
   if (storeRef.current === null) {
-    storeRef.current = createResumeStore({
-      resume: initialResume ?? kendallRoyResume,
-    })
+    storeRef.current = createResumeStore(
+      {
+        resume: initialResume ?? kendallRoyResume,
+      },
+      resumeId,
+    )
   }
 
   return (

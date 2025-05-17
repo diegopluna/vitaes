@@ -21,7 +21,11 @@ export const defaultInitState: ResumeState = {
 
 export const createResumeStore = (
   initState: ResumeState = defaultInitState,
+  resumeId?: string,
 ) => {
+  const storageKey = resumeId
+    ? `vitaes-resume-store-${resumeId}`
+    : 'vitaes-resume-store'
   return createStore<ResumeStore>()(
     persist(
       set => ({
@@ -36,7 +40,7 @@ export const createResumeStore = (
           })),
       }),
       {
-        name: 'vitaes-resume-store',
+        name: storageKey,
         storage: createJSONStorage(() => localStorage),
       },
     ),
