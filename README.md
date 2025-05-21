@@ -50,36 +50,18 @@ cd vitaes
 
 ### 2. Set Up Environment Variables
 
-Since there is no `.env.example` file, you'll need to create a `.env` file in the root of the project. Add the following essential variables, replacing placeholders with your actual credentials and values:
+This project uses environment variables for configuration. An example file with all required variables is provided.
 
-```env
-# Database
-DATABASE_URL="your_postgres_connection_string" # e.g., postgresql://user:password@localhost:5432/vitaes_db
+1.  **Copy the example file:**
+    Create a new file named `.env` by copying `.env.example`:
+    ```bash
+    cp .env.example .env
+    ```
 
-# Redis
-REDIS_URL="redis://localhost:6379"
+2.  **Fill in the values:**
+    Open the newly created `.env` file and fill in the necessary values for your local development environment. These will include database connection strings, API keys for external services, authentication secrets, etc.
 
-# Authentication (Better Auth - specific variables will depend on your chosen providers)
-# Example for a generic OAuth provider:
-# AUTH_GITHUB_ID="your_github_client_id"
-# AUTH_GITHUB_SECRET="your_github_client_secret"
-# AUTH_GOOGLE_ID="your_google_client_id"
-# AUTH_GOOGLE_SECRET="your_google_client_secret"
-AUTH_SECRET="your_very_long_and_secure_auth_secret" # Minimum 32 characters
-
-# Email (Resend)
-RESEND_API_KEY="your_resend_api_key"
-
-# Analytics (Optional)
-# POSTHOG_KEY="your_posthog_project_api_key"
-# POSTHOG_HOST="your_posthog_instance_address" # e.g., https://app.posthog.com
-# OPENPANEL_CLIENT_ID="your_openpanel_client_id"
-# OPENPANEL_TRACK_URL="your_openpanel_track_url"
-
-# Next.js Public Variables (if any, prefix with NEXT_PUBLIC_)
-# NEXT_PUBLIC_APP_URL="http://localhost:3000"
-```
-Refer to `env.ts` for a more complete list of environment variables used by T3 Env.
+Refer to `env.ts` for a more complete list of environment variables and their validation schemas, managed by T3 Env.
 
 ### 3. Install Dependencies
 
