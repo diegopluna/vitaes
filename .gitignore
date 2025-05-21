@@ -30,8 +30,18 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files
+# For local development secrets
+.env
+.env.local
+
+# For environment-specific overrides (generally not committed for infra-managed envs)
+.env.development
+.env.production
+.env.test
+# Add other .env files like .env.staging if used
+
+# IMPORTANT: .env.example IS INTENTIONALLY NOT IGNORED so it can be version controlled.
 
 # vercel
 .vercel
