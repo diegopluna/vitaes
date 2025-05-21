@@ -21,7 +21,7 @@ This project leverages a modern tech stack to provide a robust and performant ex
 *   **API/Data Fetching:** tRPC with TanStack Query (React Query)
 *   **Database:** PostgreSQL
 *   **ORM:** Drizzle ORM
-*   **Authentication:** Better Auth (a configurable, Lucia-based authentication solution)
+*   **Authentication:** Better Auth
 *   **Internationalization (i18n):** `next-intl` for handling translations, `languine` for managing translation files.
 *   **Email:** React Email for templating, Resend for sending emails.
 *   **PDF Generation:** Puppeteer
