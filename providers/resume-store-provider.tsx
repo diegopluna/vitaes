@@ -24,6 +24,17 @@ export const ResumeStoreProvider = ({
   resumeId,
 }: ResumeStoreProviderProps) => {
   const storeRef = useRef<ResumeStoreApi | null>(null)
+
+  // Always clear localStorage for this resumeId before initializing the store
+  if (typeof window !== 'undefined' && initialResume && resumeId) {
+    const storageKey = `vitaes-resume-store-${resumeId}`
+    try {
+      localStorage.removeItem(storageKey)
+    } catch {
+      // Ignore errors (e.g., quota exceeded, private mode)
+    }
+  }
+
   if (storeRef.current === null) {
     storeRef.current = createResumeStore(
       {
