@@ -277,7 +277,7 @@ export const ExtracurricularSheet = ({
                               field.handleChange(
                                 field.state.value.map(h => {
                                   if (h.id === id) {
-                                    return { ...h, text }
+                                    return { ...h, value: text }
                                   }
                                   return h
                                 }),
