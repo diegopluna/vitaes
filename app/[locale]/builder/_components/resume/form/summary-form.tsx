@@ -5,7 +5,7 @@ import { useResumeStore } from '@/providers/resume-store-provider'
 
 export const SummaryForm = () => {
   const { resume, setResumeField } = useResumeStore(s => s)
-  const { summary } = resume.basics
+  const summary = resume.basics.summary || { label: 'Summary', content: '' }
 
   return (
     <div className="flex px-2">
