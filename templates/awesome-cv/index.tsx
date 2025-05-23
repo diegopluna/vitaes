@@ -29,7 +29,9 @@ export default function AwesomeCV({ resume }: Props) {
   return (
     <div className={cn(roboto.className)} style={styles.textText}>
       <ResumeHeader resume={resume} />
-      {resume.basics.summary.length > 0 && <ResumeSummary resume={resume} />}
+      {resume.basics.summary.content.length > 0 && (
+        <ResumeSummary resume={resume} />
+      )}
       {resume.work.content.length > 0 && <ResumeExperience resume={resume} />}
       {resume.honors.content.length > 0 && <ResumeHonors resume={resume} />}
       {resume.presentations.content.length > 0 && (

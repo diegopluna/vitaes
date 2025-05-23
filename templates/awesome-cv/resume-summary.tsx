@@ -6,8 +6,11 @@ export default function ResumeSummary({ resume }: { resume: Resume }) {
 
   return (
     <div className="flex flex-col items-start justify-start w-full">
-      <ResumeSectionHeader label={'Summary'} color={settings.accentColor} />
-      <p className="text-xs text-gray-500">{resume.basics.summary}</p>
+      <ResumeSectionHeader
+        label={resume.basics.summary.label}
+        color={settings.accentColor}
+      />
+      <p className="text-xs text-gray-500">{resume.basics.summary.content}</p>
     </div>
   )
 }

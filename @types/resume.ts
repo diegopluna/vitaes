@@ -21,8 +21,13 @@ export type Basics = {
   email: string
   url: string
   quote: string
-  summary: string
+  summary: Summary
   profiles: Profile[]
+}
+
+export type Summary = {
+  label: string
+  content: string
 }
 
 export type Profile = {

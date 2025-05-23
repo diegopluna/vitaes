@@ -12,11 +12,14 @@ export const SummaryForm = () => {
       <div className="w-full">
         <Textarea
           id="summary"
-          value={summary}
+          value={summary.content}
           onChange={e =>
             setResumeField('basics', {
               ...resume.basics,
-              summary: e.target.value,
+              summary: {
+                ...summary,
+                content: e.target.value,
+              },
             })
           }
         />

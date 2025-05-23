@@ -79,7 +79,7 @@ export const SectionsProvider = ({ children }: SectionsProviderProps) => {
     },
     {
       id: 'summary',
-      title: 'Summary',
+      title: resume.basics.summary.label,
       icon: IconNotes,
       form: <SummaryForm />,
     },

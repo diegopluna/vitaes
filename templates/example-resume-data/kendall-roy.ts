@@ -8,8 +8,11 @@ export const kendallRoyResume: Resume = {
     email: 'kendallroy@waystar.com',
     url: '',
     quote: "Success is not given, it's earned.",
-    summary:
-      'Experienced executive with a strong background in corporate management and strategic decision-making. Proven track record of leadership and innovation.',
+    summary: {
+      label: 'Summary',
+      content:
+        'Experienced executive with a strong background in corporate management and strategic decision-making. Proven track record of leadership and innovation.',
+    },
     profiles: [
       {
         id: 'LinkedIn',

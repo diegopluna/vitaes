@@ -25,17 +25,15 @@ export const ResumeForm = () => {
   const handleInputBlur = () => {
     setEditingId(null)
     if (editingId) {
-      setResumeField(editingId as keyof Resume, {
-        ...resume[editingId as keyof Resume],
-        label: labelValue,
-      })
-    }
-  }
-
-  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      setEditingId(null)
-      if (editingId) {
+      if (editingId === 'summary') {
+        setResumeField('basics', {
+          ...resume.basics,
+          summary: {
+            ...resume.basics.summary,
+            label: labelValue,
+          },
+        })
+      } else {
         setResumeField(editingId as keyof Resume, {
           ...resume[editingId as keyof Resume],
           label: labelValue,
@@ -44,7 +42,29 @@ export const ResumeForm = () => {
     }
   }
 
-  const editableIds = ['personal', 'summary', 'profiles']
+  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      setEditingId(null)
+      if (editingId) {
+        if (editingId === 'summary') {
+          setResumeField('basics', {
+            ...resume.basics,
+            summary: {
+              ...resume.basics.summary,
+              label: labelValue,
+            },
+          })
+        } else {
+          setResumeField(editingId as keyof Resume, {
+            ...resume[editingId as keyof Resume],
+            label: labelValue,
+          })
+        }
+      }
+    }
+  }
+
+  const editableIds = ['personal', 'profiles']
 
   return (
     <ScrollArea>
