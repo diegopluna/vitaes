@@ -9,7 +9,7 @@ export function Footer() {
 				<div className="gap-6 items-center justify-between max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 					<div className="col-span-full xl:col-span-2">
 						<Link to="/" className="flex font-bold items-center">
-							<img src="/favicon.ico" alt="Vitaes" className="size-9" />
+							<img src="/logo.svg" alt="Vitaes" className="size-9" />
 							<span className="text-2xl">Vitaes</span>
 						</Link>
 					</div>

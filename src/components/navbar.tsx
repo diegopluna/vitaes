@@ -37,7 +37,7 @@ export function Navbar() {
 						<SheetHeader className="mb-4 ml-4">
 							<SheetTitle className="flex items-center">
 								<Link to="/" className="flex items-center">
-									<img src="/favicon.ico" alt="Vitaes" className="size-9" />
+									<img src="/logo.svg" alt="Vitaes" className="size-9" />
 									Vitaes
 								</Link>
 							</SheetTitle>
