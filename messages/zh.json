@@ -1,0 +1,20 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"landing": {
+		"action": "建立你的简历",
+		"sub-action": "简历是给人的第一印象。要让它发挥作用。",
+		"action-button": "开始",
+		"footer": "开发者"
+	},
+	"language-selector": {
+		"select-language": "选择语言"
+	},
+	"theme-toggle": {
+		"light": "光",
+		"dark": "黑暗的",
+		"toggle-theme": "切换主题"
+	},
+	"navbar": {
+		"github": "在 GitHub 上查看"
+	}
+}

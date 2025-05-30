@@ -1,0 +1,20 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"landing": {
+		"action": "履歴書を作成する",
+		"sub-action": "履歴書はあなたの第一印象です。大切にしましょう。",
+		"action-button": "始める",
+		"footer": "開発者"
+	},
+	"language-selector": {
+		"select-language": "言語を選択"
+	},
+	"theme-toggle": {
+		"light": "ライト",
+		"dark": "暗い",
+		"toggle-theme": "テーマを切り替える"
+	},
+	"navbar": {
+		"github": "GitHubで見る"
+	}
+}

@@ -1,0 +1,20 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"landing": {
+		"action": "Construye tu currículum con",
+		"sub-action": "Tu currículum es tu primera impresión. Haz que cuente.",
+		"action-button": "Empezar",
+		"footer": "Desarrollado por"
+	},
+	"language-selector": {
+		"select-language": "Seleccionar idioma"
+	},
+	"theme-toggle": {
+		"light": "Luz",
+		"dark": "Oscuro",
+		"toggle-theme": "Cambiar tema"
+	},
+	"navbar": {
+		"github": "Ver en GitHub"
+	}
+}

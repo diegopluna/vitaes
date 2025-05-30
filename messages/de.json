@@ -1,4 +1,8 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
-  "example_message": "Guten Tag {username}"
+  "example_message": "Guten Tag {username}",
+  "landing": {
+    "action": "Erstelle deine Lebenslauf mit",
+    "sub-action": "Ihr Lebenslauf vermittelt den ersten Eindruck. Sorgen Sie dafür, dass er zählt."
+  }
 }

@@ -1,4 +1,20 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
-  "example_message": "Hello world {username}"
+  "landing": {
+    "action": "Build your resume with",
+    "sub-action": "Your resume is your first impression. Make it count.",
+    "action-button": "Get Started",
+    "footer": "Developed by"
+  },
+  "language-selector": {
+    "select-language": "Select Language"
+  },
+  "theme-toggle": {
+    "light": "Light",
+    "dark": "Dark",
+    "toggle-theme": "Toggle Theme"
+  },
+  "navbar": {
+    "github": "View on GitHub"
+  }
 }

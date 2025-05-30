@@ -1,0 +1,20 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"landing": {
+		"action": "Construisez votre CV avec",
+		"sub-action": "Votre CV est votre première impression. Faites-la valoir.",
+		"action-button": "Commencer",
+		"footer": "Développé par"
+	},
+	"language-selector": {
+		"select-language": "Sélectionner la langue"
+	},
+	"theme-toggle": {
+		"light": "Lumière",
+		"dark": "Sombre",
+		"toggle-theme": "Thème bascule"
+	},
+	"navbar": {
+		"github": "Voir sur GitHub"
+	}
+}

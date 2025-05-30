@@ -6,16 +6,16 @@ import {
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 
-import Header from '../components/Header'
-
 import TanStackQueryLayout from '../integrations/tanstack-query/layout.tsx'
 
 import appCss from '../styles.css?url'
 
 import type { QueryClient } from '@tanstack/react-query'
 
+import { ThemeProvider, useTheme } from '@/components/theme-provider.tsx'
 import type { TRPCRouter } from '@/integrations/trpc/router'
 import { seo } from '@/lib/seo.ts'
+import { getThemeServerFn } from '@/lib/theme.ts'
 import { getLocale } from '@/paraglide/runtime.js'
 import type { TRPCOptionsProxy } from '@trpc/tanstack-react-query'
 
@@ -38,6 +38,8 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 			...seo({
 				title: 'Vitaes',
 				description: 'Resume Builder',
+				keywords:
+					'resume, builder, resume builder, resume builder app, resume builder app',
 			}),
 		],
 		links: [
@@ -73,21 +75,28 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 		],
 	}),
 
-	component: () => (
-		<RootDocument>
-			<Header />
-
-			<Outlet />
-			<TanStackRouterDevtools />
-
-			<TanStackQueryLayout />
-		</RootDocument>
-	),
+	component: RootComponent,
+	loader: () => getThemeServerFn(),
 })
 
-function RootDocument({ children }: { children: React.ReactNode }) {
+function RootComponent() {
+	const data = Route.useLoaderData()
 	return (
-		<html lang={getLocale()}>
+		<ThemeProvider theme={data}>
+			<RootDocument>
+				<Outlet />
+				<TanStackRouterDevtools />
+
+				<TanStackQueryLayout />
+			</RootDocument>
+		</ThemeProvider>
+	)
+}
+
+function RootDocument({ children }: { children: React.ReactNode }) {
+	const { theme } = useTheme()
+	return (
+		<html className={theme} lang={getLocale()}>
 			<head>
 				<HeadContent />
 			</head>

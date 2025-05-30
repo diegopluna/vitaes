@@ -1,0 +1,7 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"landing": {
+		"action": "Construa seu currículo com",
+		"sub-action": "Seu currículo é sua primeira impressão. Faça valer a pena."
+	}
+}
