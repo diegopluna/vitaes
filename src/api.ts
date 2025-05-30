@@ -1,6 +1,9 @@
 import {
-  createStartAPIHandler,
-  defaultAPIFileRouteHandler,
+	createStartAPIHandler,
+	defaultAPIFileRouteHandler,
 } from '@tanstack/react-start/api'
+import { paraglideMiddleware } from './paraglide/server'
 
-export default createStartAPIHandler(defaultAPIFileRouteHandler)
+export default createStartAPIHandler((ctx) =>
+	paraglideMiddleware(ctx.request, () => defaultAPIFileRouteHandler(ctx)),
+)

@@ -5,12 +5,13 @@
   "scripts": {
     "dev": "vinxi dev",
     "start": "vinxi start",
-    "build": "vinxi build",
+    "build": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide && vinxi build",
     "serve": "vite preview",
     "test": "vitest run",
     "format": "biome format",
     "lint": "biome lint",
-    "check": "biome check"
+    "check": "biome check",
+    "machine-translate": "inlang machine translate --project project.inlang"
   },
   "dependencies": {
     "@t3-oss/env-core": "^0.12.0",
@@ -40,6 +41,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
+    "@inlang/paraglide-js": "2.0.13",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.2.0",
     "@types/react": "^19.0.8",
@@ -49,6 +51,7 @@
     "typescript": "^5.7.2",
     "vite": "^6.1.0",
     "vitest": "^3.0.5",
-    "web-vitals": "^4.2.4"
+    "web-vitals": "^4.2.4",
+    "@inlang/cli": "^3.0.0"
   }
 }

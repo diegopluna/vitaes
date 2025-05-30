@@ -15,6 +15,8 @@ import appCss from '../styles.css?url'
 import type { QueryClient } from '@tanstack/react-query'
 
 import type { TRPCRouter } from '@/integrations/trpc/router'
+import { seo } from '@/lib/seo.ts'
+import { getLocale } from '@/paraglide/runtime.js'
 import type { TRPCOptionsProxy } from '@trpc/tanstack-react-query'
 
 interface MyRouterContext {
@@ -33,14 +35,40 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				name: 'viewport',
 				content: 'width=device-width, initial-scale=1',
 			},
-			{
+			...seo({
 				title: 'Vitaes',
-			},
+				description: 'Resume Builder',
+			}),
 		],
 		links: [
 			{
 				rel: 'stylesheet',
 				href: appCss,
+			},
+			{
+				rel: 'apple-touch-icon',
+				href: '/apple-touch-icon.png',
+				sizes: '180x180',
+			},
+			{
+				rel: 'icon',
+				sizes: '32x32',
+				type: 'image/png',
+				href: '/favicon-32x32.png',
+			},
+			{
+				rel: 'icon',
+				sizes: '16x16',
+				type: 'image/png',
+				href: '/favicon-16x16.png',
+			},
+			{
+				rel: 'manifest',
+				href: '/site.webmanifest',
+			},
+			{
+				rel: 'icon',
+				href: '/favicon.ico',
 			},
 		],
 	}),
@@ -59,7 +87,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en">
+		<html lang={getLocale()}>
 			<head>
 				<HeadContent />
 			</head>

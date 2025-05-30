@@ -6,5 +6,9 @@ dist-ssr
 .output
 .vinxi
 
+# Environment variables
 .env
 .env.prd
+
+# Paraglide
+paraglide
