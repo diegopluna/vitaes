@@ -1,8 +1,7 @@
-import { env } from '@/env'
+import { env } from '@/env/client'
 import { type Locale, isLocale, strategy } from '@/paraglide/runtime'
 
 export function extractLocale(url: string): Locale | undefined {
-	// TODO: use a env variable here
 	const urlObj = new URL(url, env.VITE_APP_URL)
 	const pathSegments = urlObj.pathname.split('/').filter(Boolean)
 	if (pathSegments.length > 0) {

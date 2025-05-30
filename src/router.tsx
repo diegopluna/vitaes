@@ -6,6 +6,8 @@ import * as TanstackQuery from './integrations/tanstack-query/root-provider'
 import { routeTree } from './routeTree.gen'
 
 import './styles.css'
+import { DefaultCatchBoundary } from './components/default-catch-boundary'
+import { NotFound } from './components/not-found'
 import { getRouterBasePath } from './lib/router-basepath'
 
 // Create a new router instance
@@ -15,6 +17,7 @@ export const createRouter = (pathname?: string) => {
 			routeTree,
 			context: {
 				...TanstackQuery.getContext(),
+				user: null,
 			},
 			scrollRestoration: true,
 			defaultPreloadStaleTime: 0,
@@ -23,6 +26,8 @@ export const createRouter = (pathname?: string) => {
 				return <TanstackQuery.Provider>{props.children}</TanstackQuery.Provider>
 			},
 			basepath: getRouterBasePath(pathname),
+			defaultErrorComponent: DefaultCatchBoundary,
+			defaultNotFoundComponent: NotFound,
 		}),
 		TanstackQuery.getContext().queryClient,
 	)

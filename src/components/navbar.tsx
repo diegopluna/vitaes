@@ -1,3 +1,4 @@
+import type { User } from '@/lib/auth'
 import { m } from '@/paraglide/messages'
 import { IconBrandGithubFilled, IconMenu } from '@tabler/icons-react'
 import { Link } from '@tanstack/react-router'
@@ -14,8 +15,13 @@ import {
 	SheetTitle,
 	SheetTrigger,
 } from './ui/sheet'
+import { UserButton } from './user-button'
 
-export function Navbar() {
+interface NavbarProps {
+	user?: User
+}
+
+export function Navbar({ user }: NavbarProps) {
 	const [isOpen, setIsOpen] = useState(false)
 
 	return (
@@ -69,6 +75,7 @@ export function Navbar() {
 						<IconBrandGithubFilled className="size-5" />
 					</a>
 				</Button>
+				{user && <UserButton user={user} />}
 			</div>
 		</header>
 	)

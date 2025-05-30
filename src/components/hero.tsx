@@ -21,9 +21,8 @@ export function Hero() {
 					</p>
 
 					<div className="space-y-4 md:space-y-0 md:space-x-4">
-						{/* TODO: Add route to sign-in */}
 						<Button asChild className="w-5/6 md:w-1/4 font-bold group/arrow">
-							<Link to="/demo/tanstack-query">
+							<Link to="/sign-in">
 								{m['landing.action-button']()}
 								<IconArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
 							</Link>

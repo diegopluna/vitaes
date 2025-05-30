@@ -14,15 +14,24 @@ import type { QueryClient } from '@tanstack/react-query'
 
 import { ThemeProvider, useTheme } from '@/components/theme-provider.tsx'
 import type { TRPCRouter } from '@/integrations/trpc/router'
+import { type User, auth } from '@/lib/auth.ts'
 import { seo } from '@/lib/seo.ts'
 import { getThemeServerFn } from '@/lib/theme.ts'
 import { getLocale } from '@/paraglide/runtime.js'
+import { createServerFn } from '@tanstack/react-start'
+import { getWebRequest } from '@tanstack/react-start/server'
 import type { TRPCOptionsProxy } from '@trpc/tanstack-react-query'
+
+const getUser = createServerFn({ method: 'GET' }).handler(async () => {
+	const { headers } = getWebRequest()!
+	const session = await auth.api.getSession({ headers })
+	return session?.user || null
+})
 
 interface MyRouterContext {
 	queryClient: QueryClient
-
 	trpc: TRPCOptionsProxy<TRPCRouter>
+	user: User | null
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
@@ -77,6 +86,13 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
 	component: RootComponent,
 	loader: () => getThemeServerFn(),
+	beforeLoad: async ({ context }) => {
+		const user = await context.queryClient.fetchQuery({
+			queryKey: ['user'],
+			queryFn: ({ signal }) => getUser({ signal }),
+		})
+		return { user }
+	},
 })
 
 function RootComponent() {
