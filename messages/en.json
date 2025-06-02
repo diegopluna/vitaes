@@ -21,5 +21,31 @@
     "welcome": "Welcome back!",
     "google": "Continue with Google",
     "github": "Continue with GitHub"
+  },
+  "user-button": {
+    "logout": "Logout"
+  },
+  "dashboard": {
+    "resumes": "Resumes"
+  },
+  "new-resume-card": {
+    "create-new": "Create New",
+    "choose-template": "Choose a template to get started",
+    "add-resume": "Add Resume",
+    "resume-name": "Resume Name",
+    "cancel": "Cancel",
+    "add": "Add",
+    "failed-to-create": "Failed to create resume"
+  },
+  "builder": {
+    "resume-not-found": "Resume not found"
+  },
+  "not-found": {
+    "title": "Not Found",
+    "description": "The page you are looking for does not exist."
+  },
+  "builder-sidebar": {
+    "resume-sections": "Resume Sections",
+    "settings": "Settings"
   }
 }

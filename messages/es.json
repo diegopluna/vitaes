@@ -16,5 +16,32 @@
 	},
 	"navbar": {
 		"github": "Ver en GitHub"
+	},
+	"login": {
+		"welcome": "¡Bienvenido de nuevo!",
+		"google": "Continuar con Google",
+		"github": "Continuar con GitHub"
+	},
+	"user-button": {
+		"logout": "Cerrar sesión"
+	},
+	"dashboard": {
+		"resumes": "Currículums"
+	},
+	"new-resume-card": {
+		"create-new": "Crear nuevo",
+		"choose-template": "Elige una plantilla para comenzar",
+		"add-resume": "Agregar currículum",
+		"resume-name": "Nombre del currículum",
+		"cancel": "Cancelar",
+		"add": "Agregar",
+		"failed-to-create": "No se pudo crear el currículum"
+	},
+	"builder": {
+		"resume-not-found": "No se encontró el currículum"
+	},
+	"not-found": {
+		"title": "Extraviado",
+		"description": "La página que estás buscando no existe."
 	}
 }

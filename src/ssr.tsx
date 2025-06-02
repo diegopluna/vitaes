@@ -19,8 +19,3 @@ export default defineEventHandler((event) =>
 		})(streamHandler)(event),
 	),
 )
-
-// export default createStartHandler({
-// 	createRouter,
-// 	getRouterManifest,
-// })(streamHandler)

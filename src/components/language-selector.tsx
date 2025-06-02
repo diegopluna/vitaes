@@ -55,7 +55,7 @@ export function LanguageSelector({ inSidebar = false }: LanguageSelectorProps) {
 		<DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
 			<DropdownMenuTrigger asChild>
 				{inSidebar ? (
-					<SidebarMenuButton tooltip={'Select Language'}>
+					<SidebarMenuButton tooltip={m['language-selector.select-language']()}>
 						<IconLanguage className="h-[1.2rem] w-[1.2rem]" />
 						<span>{m['language-selector.select-language']()}</span>
 					</SidebarMenuButton>

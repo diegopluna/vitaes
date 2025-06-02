@@ -16,5 +16,32 @@
 	},
 	"navbar": {
 		"github": "Voir sur GitHub"
+	},
+	"login": {
+		"welcome": "Content de te revoir!",
+		"google": "Continuer avec Google",
+		"github": "Continuer avec GitHub"
+	},
+	"user-button": {
+		"logout": "Déconnexion"
+	},
+	"dashboard": {
+		"resumes": "CV"
+	},
+	"new-resume-card": {
+		"create-new": "Créer un nouveau",
+		"choose-template": "Choisissez un modèle pour commencer",
+		"add-resume": "Ajouter un CV",
+		"resume-name": "Nom du CV",
+		"cancel": "Annuler",
+		"add": "Ajouter",
+		"failed-to-create": "Échec de la création du CV"
+	},
+	"builder": {
+		"resume-not-found": "CV non trouvé"
+	},
+	"not-found": {
+		"title": "Non trouvé",
+		"description": "La page que vous recherchez n'existe pas."
 	}
 }

@@ -16,5 +16,32 @@
 	},
 	"navbar": {
 		"github": "GitHubで見る"
+	},
+	"login": {
+		"welcome": "おかえり！",
+		"google": "Googleで続行",
+		"github": "GitHubで続ける"
+	},
+	"user-button": {
+		"logout": "ログアウト"
+	},
+	"dashboard": {
+		"resumes": "履歴書"
+	},
+	"new-resume-card": {
+		"create-new": "新規作成",
+		"choose-template": "テンプレートを選択して始めましょう",
+		"add-resume": "履歴書を追加",
+		"resume-name": "履歴書名",
+		"cancel": "キャンセル",
+		"add": "追加",
+		"failed-to-create": "履歴書の作成に失敗しました"
+	},
+	"builder": {
+		"resume-not-found": "履歴書が見つかりません"
+	},
+	"not-found": {
+		"title": "見つかりません",
+		"description": "探しているページは存在しません。"
 	}
 }

@@ -6,21 +6,20 @@ import {
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 
-import TanStackQueryLayout from '../integrations/tanstack-query/layout.tsx'
-
 import appCss from '../styles.css?url'
 
 import type { QueryClient } from '@tanstack/react-query'
 
 import { ThemeProvider, useTheme } from '@/components/theme-provider.tsx'
-import type { TRPCRouter } from '@/integrations/trpc/router'
-import { type User, auth } from '@/lib/auth.ts'
+import { Toaster } from '@/components/ui/sonner.tsx'
+import { auth } from '@/lib/auth.ts'
 import { seo } from '@/lib/seo.ts'
 import { getThemeServerFn } from '@/lib/theme.ts'
 import { getLocale } from '@/paraglide/runtime.js'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { createServerFn } from '@tanstack/react-start'
 import { getWebRequest } from '@tanstack/react-start/server'
-import type { TRPCOptionsProxy } from '@trpc/tanstack-react-query'
+import type { User } from 'better-auth'
 
 const getUser = createServerFn({ method: 'GET' }).handler(async () => {
 	const { headers } = getWebRequest()!
@@ -30,7 +29,6 @@ const getUser = createServerFn({ method: 'GET' }).handler(async () => {
 
 interface MyRouterContext {
 	queryClient: QueryClient
-	trpc: TRPCOptionsProxy<TRPCRouter>
 	user: User | null
 }
 
@@ -49,6 +47,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				description: 'Resume Builder',
 				keywords:
 					'resume, builder, resume builder, resume builder app, resume builder app',
+				image: '/open-graph.png',
 			}),
 		],
 		links: [
@@ -101,9 +100,10 @@ function RootComponent() {
 		<ThemeProvider theme={data}>
 			<RootDocument>
 				<Outlet />
+				<Toaster richColors />
 				<TanStackRouterDevtools />
 
-				<TanStackQueryLayout />
+				<ReactQueryDevtools buttonPosition="bottom-right" />
 			</RootDocument>
 		</ThemeProvider>
 	)
@@ -112,7 +112,7 @@ function RootComponent() {
 function RootDocument({ children }: { children: React.ReactNode }) {
 	const { theme } = useTheme()
 	return (
-		<html className={theme} lang={getLocale()}>
+		<html className={theme} lang={getLocale()} suppressHydrationWarning>
 			<head>
 				<HeadContent />
 			</head>

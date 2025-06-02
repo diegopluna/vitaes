@@ -2,6 +2,46 @@
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"landing": {
 		"action": "Construa seu currículo com",
-		"sub-action": "Seu currículo é sua primeira impressão. Faça valer a pena."
+		"sub-action": "Seu currículo é sua primeira impressão. Faça valer a pena.",
+		"action-button": "Começar",
+		"footer": "Desenvolvido por"
+	},
+	"language-selector": {
+		"select-language": "Selecione o idioma"
+	},
+	"theme-toggle": {
+		"light": "Luz",
+		"dark": "Escuro",
+		"toggle-theme": "Alternar tema"
+	},
+	"navbar": {
+		"github": "Ver no GitHub"
+	},
+	"login": {
+		"welcome": "Bem vindo de volta!",
+		"google": "Continuar com o Google",
+		"github": "Continuar com o GitHub"
+	},
+	"user-button": {
+		"logout": "Sair"
+	},
+	"dashboard": {
+		"resumes": "Currículos"
+	},
+	"new-resume-card": {
+		"create-new": "Criar novo",
+		"choose-template": "Escolha um modelo para começar",
+		"add-resume": "Adicionar currículo",
+		"resume-name": "Nome do currículo",
+		"cancel": "Cancelar",
+		"add": "Adicionar",
+		"failed-to-create": "Falha ao criar currículo"
+	},
+	"builder": {
+		"resume-not-found": "Currículo não encontrado"
+	},
+	"not-found": {
+		"title": "Não encontrado",
+		"description": "A página que você está procurando não existe."
 	}
 }
