@@ -1,4 +1,5 @@
 import { db } from '@/db'
+import { env as clientEnv } from '@/env/client'
 import { env } from '@/env/server'
 import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
@@ -26,6 +27,7 @@ export const auth = betterAuth({
 			clientSecret: env.GOOGLE_CLIENT_SECRET,
 		},
 	},
+	trustedOrigins: [clientEnv.VITE_APP_URL],
 	plugins: [reactStartCookies()],
 })
 
