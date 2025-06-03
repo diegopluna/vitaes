@@ -12,6 +12,7 @@ import type { QueryClient } from '@tanstack/react-query'
 
 import { ThemeProvider, useTheme } from '@/components/theme-provider.tsx'
 import { Toaster } from '@/components/ui/sonner.tsx'
+import { env } from '@/env/client'
 import { auth } from '@/lib/auth.ts'
 import { Posthog } from '@/lib/posthog'
 import { seo } from '@/lib/seo.ts'
@@ -48,7 +49,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				description: 'Resume Builder',
 				keywords:
 					'resume, builder, resume builder, resume builder app, resume builder app',
-				image: '/open-graph.png',
+				image: `${env.VITE_APP_URL}/open-graph.png`,
 			}),
 		],
 		links: [
