@@ -1,0 +1,312 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"landing": {
+		"action": "履歴書を作成する",
+		"sub-action": "履歴書はあなたの第一印象です。大切にしましょう。",
+		"action-button": "始める",
+		"footer": "開発者"
+	},
+	"language-selector": {
+		"select-language": "言語を選択"
+	},
+	"theme-toggle": {
+		"light": "ライト",
+		"dark": "暗い",
+		"toggle-theme": "テーマを切り替える"
+	},
+	"navbar": {
+		"github": "GitHubで見る"
+	},
+	"login": {
+		"welcome": "おかえり！",
+		"google": "Googleで続行",
+		"github": "GitHubで続ける"
+	},
+	"user-button": {
+		"logout": "ログアウト"
+	},
+	"dashboard": {
+		"resumes": "履歴書"
+	},
+	"new-resume-card": {
+		"create-new": "新規作成",
+		"choose-template": "テンプレートを選択して始めましょう",
+		"add-resume": "履歴書を追加",
+		"resume-name": "履歴書名",
+		"cancel": "キャンセル",
+		"add": "追加",
+		"failed-to-create": "履歴書の作成に失敗しました"
+	},
+	"builder": {
+		"resume-not-found": "履歴書が見つかりません"
+	},
+	"not-found": {
+		"title": "見つかりません",
+		"description": "探しているページは存在しません。"
+	},
+	"builder-sidebar": {
+		"resume-sections": "履歴書のセクション",
+		"settings": "設定"
+	},
+	"builder-header": {
+		"builder": "ビルダー",
+		"saving": "保存中...",
+		"error-saving": "保存中にエラーが発生しました: {error}",
+		"last-saved": "最終保存日時: {time}",
+		"failed-to-generate-pdf": "PDFの生成に失敗しました",
+		"downloading": "ダウンロード中...",
+		"download": "ダウンロード"
+	},
+	"personal-form": {
+		"first-name": "ファーストネーム",
+		"first-name-placeholder": "ジョン",
+		"last-name": "苗字",
+		"last-name-placeholder": "ドウ",
+		"phone": "電話",
+		"phone-placeholder": "+1234567890",
+		"email": "メール",
+		"email-placeholder": "john.doe@example.com",
+		"url": "Webサイト",
+		"url-placeholder": "https://www.john-doe.com",
+		"quote": "引用",
+		"quote-placeholder": "ジョン・ドゥからの引用"
+	},
+	"sections": {
+		"personal": "個人情報",
+		"profiles": "プロフィール"
+	},
+	"profile-sheet": {
+		"edit-profile": "プロフィールを編集",
+		"add-profile": "プロフィールを追加",
+		"network": "ネットワーク",
+		"network-placeholder": "例：LinkedIn",
+		"username": "ユーザー名",
+		"username-placeholder": "例：ジョン・ドウ",
+		"url": "URL",
+		"url-placeholder": "例: https://www.linkedin.com/in/john-doe",
+		"cancel": "キャンセル",
+		"save": "保存",
+		"network-required": "ネットワークが必要です",
+		"username-required": "ユーザー名は必須です",
+		"url-invalid": "URLが無効です"
+	},
+	"delete-modal": {
+		"tooltip": "{type}削除します",
+		"title": "この{type}削除してもよろしいですか?",
+		"description": "この操作は元に戻せません。",
+		"cancel": "キャンセル",
+		"delete": "消去"
+	},
+	"highlight-item": {
+		"delete": "消去"
+	},
+	"item": {
+		"edit": "編集",
+		"delete": "消去"
+	},
+	"profile-form": {
+		"no-profile-added": "プロフィールが追加されていません",
+		"type": "プロフィール"
+	},
+	"work-sheet": {
+		"edit": "編集",
+		"add": "追加",
+		"company": "会社",
+		"location": "位置",
+		"position": "位置",
+		"start-date": "開始日",
+		"end-date": "終了日",
+		"highlights": "ハイライト",
+		"no-highlights-added": "ハイライトは追加されていません",
+		"save": "保存",
+		"company-required": "会社名は必須です",
+		"location-required": "場所が必要です",
+		"position-required": "ポジションは必須です",
+		"start-date-required": "開始日は必須です"
+	},
+	"highlight-type": "ハイライト",
+	"work-form": {
+		"no-work-added": "{label}が追加されていません"
+	},
+	"honor-type-sheet": {
+		"edit": "編集",
+		"add": "追加",
+		"year": "年",
+		"update": "アップデート",
+		"position": "位置",
+		"honor": "名誉",
+		"location": "位置"
+	},
+	"honor-sheet": {
+		"edit": "編集",
+		"add": "追加",
+		"year": "年",
+		"update": "アップデート",
+		"position": "位置",
+		"honor": "名誉",
+		"location": "位置",
+		"label": "ラベル",
+		"honors": "栄誉",
+		"no-honors-added": "{label}が追加されていません",
+		"label-required": "ラベルは必須です"
+	},
+	"honors-form": {
+		"no-honors-added": "{label}が追加されていません"
+	},
+	"presentation-sheet": {
+		"edit": "編集",
+		"add": "追加",
+		"event": "イベント",
+		"role": "役割",
+		"location": "位置",
+		"date": "日付",
+		"description": "説明",
+		"no-presentations-added": "{label}が追加されていません",
+		"save": "保存",
+		"event-required": "イベントは必須です",
+		"role-required": "役割は必須です",
+		"location-required": "場所が必要です",
+		"date-required": "日付は必須です"
+	},
+	"presentations-form": {
+		"no-presentations-added": "{label}が追加されていません"
+	},
+	"writing-sheet": {
+		"edit": "編集",
+		"add": "追加",
+		"title": "タイトル",
+		"role": "役割",
+		"medium": "中くらい",
+		"start-date": "開始日",
+		"end-date": "終了日",
+		"description": "説明",
+		"no-writings-added": "{label}が追加されていません",
+		"save": "保存",
+		"title-required": "タイトルは必須です",
+		"role-required": "役割は必須です",
+		"medium-required": "中程度が必要です",
+		"start-date-required": "開始日は必須です"
+	},
+	"writings-form": {
+		"no-writings-added": "{label}が追加されていません"
+	},
+	"comittee-sheet": {
+		"edit": "編集",
+		"add": "追加",
+		"year": "年",
+		"position": "位置",
+		"organization": "組織",
+		"location": "位置",
+		"save": "保存",
+		"year-required": "年は必須です",
+		"position-required": "ポジションは必須です",
+		"organization-required": "組織化が必要です",
+		"location-required": "場所が必要です"
+	},
+	"comittee-form": {
+		"no-comittees-added": "{label}が追加されていません"
+	},
+	"education-sheet": {
+		"edit": "編集",
+		"add": "追加",
+		"school": "学校",
+		"location": "位置",
+		"degree": "程度",
+		"start-date": "開始日",
+		"end-date": "終了日",
+		"description": "説明",
+		"no-education-added": "{label}が追加されていません",
+		"save": "保存",
+		"school-required": "学校は必須",
+		"location-required": "場所が必要です",
+		"degree-required": "学位が必要です",
+		"start-date-required": "開始日は必須です",
+		"no-education-highlight-added": "{label}ハイライトは追加されていません"
+	},
+	"education-form": {
+		"no-education-added": "{label}が追加されていません"
+	},
+	"extracurricular-sheet": {
+		"edit": "編集",
+		"add": "追加",
+		"role": "役割",
+		"organization": "組織",
+		"location": "位置",
+		"start-date": "開始日",
+		"end-date": "終了日",
+		"description": "説明",
+		"no-extracurricular-highlights-added": "{label}ハイライトは追加されていません",
+		"save": "保存",
+		"role-required": "役割は必須です",
+		"organization-required": "組織化が必要です",
+		"location-required": "場所が必要です",
+		"start-date-required": "開始日は必須です"
+	},
+	"extracurricular-form": {
+		"no-extracurricular-added": "{label}が追加されていません"
+	},
+	"project-sheet": {
+		"edit": "編集",
+		"add": "追加",
+		"title": "タイトル",
+		"repository": "リポジトリ",
+		"link": "URL",
+		"start-date": "開始日",
+		"end-date": "終了日",
+		"description": "説明",
+		"programming-languages": "プログラミング言語",
+		"no-programming-languages-added": "プログラミング言語は追加されていません",
+		"no-description-added": "説明が追加されていません",
+		"save": "保存",
+		"title-required": "タイトルは必須です",
+		"repository-required": "リポジトリが必要です",
+		"link-invalid": "URLが無効です",
+		"start-date-required": "開始日は必須です"
+	},
+	"project-form": {
+		"no-projects-added": "{label}が追加されていません"
+	},
+	"language-sheet": {
+		"edit": "編集",
+		"add": "追加",
+		"language": "言語",
+		"fluency": "流暢さ",
+		"save": "保存",
+		"language-required": "言語は必須です",
+		"fluency-required": "流暢さが必要"
+	},
+	"language-form": {
+		"no-languages-added": "{label}が追加されていません"
+	},
+	"certificate-sheet": {
+		"edit": "編集",
+		"add": "追加",
+		"title": "タイトル",
+		"issuer": "発行者",
+		"date": "日付",
+		"description": "説明",
+		"no-description-added": "説明が追加されていません",
+		"save": "保存",
+		"title-required": "タイトルは必須です",
+		"issuer-required": "発行者は必須です",
+		"date-required": "日付は必須です"
+	},
+	"certificate-form": {
+		"no-certificates-added": "{label}が追加されていません"
+	},
+	"resume-settings": {
+		"select-an-option": "オプションを選択",
+		"label": "モデル",
+		"alignment-left": "左",
+		"alignment-center": "中心",
+		"alignment-right": "右",
+		"alignment": "アライメント",
+		"accent-color": "アクセントカラー",
+		"settings": "設定",
+		"colors": "色",
+		"load-resume": "JSONから履歴書を読み込む"
+	},
+	"resume-card": {
+		"updated": "更新: {time}"
+	}
+}
