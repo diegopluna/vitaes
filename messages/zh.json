@@ -307,6 +307,12 @@
 		"load-resume": "从 JSON 加载简历"
 	},
 	"resume-card": {
-		"updated": "已更新： {time}"
+		"updated": "已更新： {time}",
+		"delete-resume": "删除简历",
+		"delete-resume-description": "您确定要删除{name}吗？此操作无法撤消。",
+		"delete": "删除",
+		"cancel": "取消",
+		"resume-deleted": "简历删除成功",
+		"resume-cloned": "简历克隆成功"
 	}
 }

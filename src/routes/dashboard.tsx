@@ -3,6 +3,7 @@ import { Navbar } from '@/components/navbar'
 import { NewResumeCard } from '@/components/new-resume- card'
 import { ResumeCard } from '@/components/resume-card'
 import { m } from '@/paraglide/messages'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { createFileRoute, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/dashboard')({
@@ -22,7 +23,18 @@ export const Route = createFileRoute('/dashboard')({
 })
 
 function RouteComponent() {
-	const { user, resumes } = Route.useLoaderData()
+	const { user, resumes: initialResumes } = Route.useLoaderData()
+	const queryClient = useQueryClient()
+
+	const { data: resumes = initialResumes } = useQuery({
+		queryKey: ['resumes'],
+		queryFn: listResumes,
+		initialData: initialResumes,
+	})
+
+	const handleResumeDeleted = () => {
+		queryClient.invalidateQueries({ queryKey: ['resumes'] })
+	}
 
 	return (
 		<>
@@ -50,6 +62,7 @@ function RouteComponent() {
 									? new Date(resume.updatedAt).toISOString()
 									: undefined,
 							}}
+							onDelete={handleResumeDeleted}
 						/>
 					))}
 				</div>

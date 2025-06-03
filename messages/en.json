@@ -307,6 +307,12 @@
     "load-resume": "Load Resume from JSON"
   },
   "resume-card": {
-    "updated": "Updated: {time}"
+    "updated": "Updated: {time}",
+    "delete-resume": "Delete Resume",
+    "delete-resume-description": "Are you sure you want to delete {name}? This action cannot be undone.",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "resume-deleted": "Resume deleted successfully",
+    "resume-cloned": "Resume cloned successfully"
   }
 }

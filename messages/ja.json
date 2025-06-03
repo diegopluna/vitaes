@@ -307,6 +307,12 @@
 		"load-resume": "JSONから履歴書を読み込む"
 	},
 	"resume-card": {
-		"updated": "更新: {time}"
+		"updated": "更新: {time}",
+		"delete-resume": "履歴書を削除",
+		"delete-resume-description": "{name}よろしいですか? この操作は元に戻せません。",
+		"delete": "消去",
+		"cancel": "キャンセル",
+		"resume-deleted": "履歴書は正常に削除されました",
+		"resume-cloned": "履歴書の複製に成功しました"
 	}
 }

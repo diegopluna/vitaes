@@ -36,7 +36,6 @@ export const APIRoute = createAPIFileRoute('/api/pdf')({
 		const page = await browser.newPage()
 
 		const cookie = request.headers.get('cookie')
-		console.log(cookie)
 		const cookies = cookie?.split(';')
 		const sessionCookie = cookies?.find((c) => c.includes('session_token'))
 

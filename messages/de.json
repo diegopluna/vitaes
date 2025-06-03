@@ -308,6 +308,12 @@
     "load-resume": "Lebenslauf aus JSON laden"
   },
   "resume-card": {
-    "updated": "Aktualisiert: {time}"
+    "updated": "Aktualisiert: {time}",
+    "delete-resume": "Lebenslauf löschen",
+    "delete-resume-description": "Möchten Sie {name} wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "delete": "Löschen",
+    "cancel": "Stornieren",
+    "resume-deleted": "Lebenslauf erfolgreich gelöscht",
+    "resume-cloned": "Lebenslauf erfolgreich geklont"
   }
 }

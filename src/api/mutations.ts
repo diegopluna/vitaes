@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { updateResume } from './resume'
+import { cloneResume, deleteResume, updateResume } from './resume'
 
 export const useUpdateResume = ({
 	onSuccess,
@@ -8,6 +8,28 @@ export const useUpdateResume = ({
 }) => {
 	return useMutation({
 		mutationFn: updateResume,
+		onSuccess,
+	})
+}
+
+export const useDeleteResume = ({
+	onSuccess,
+}: {
+	onSuccess?: () => void
+}) => {
+	return useMutation({
+		mutationFn: deleteResume,
+		onSuccess,
+	})
+}
+
+export const useCloneResume = ({
+	onSuccess,
+}: {
+	onSuccess?: () => void
+}) => {
+	return useMutation({
+		mutationFn: cloneResume,
 		onSuccess,
 	})
 }

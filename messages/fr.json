@@ -307,6 +307,12 @@
 		"load-resume": "Charger le CV à partir de JSON"
 	},
 	"resume-card": {
-		"updated": "Mis à jour : {time}"
+		"updated": "Mis à jour : {time}",
+		"delete-resume": "Supprimer le CV",
+		"delete-resume-description": "Êtes-vous sûr de vouloir supprimer {name} ? Cette action est irréversible.",
+		"delete": "Supprimer",
+		"cancel": "Annuler",
+		"resume-deleted": "CV supprimé avec succès",
+		"resume-cloned": "CV cloné avec succès"
 	}
 }

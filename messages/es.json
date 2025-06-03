@@ -307,6 +307,12 @@
 		"load-resume": "Cargar currículum desde JSON"
 	},
 	"resume-card": {
-		"updated": "Actualizado: {time}"
+		"updated": "Actualizado: {time}",
+		"delete-resume": "Eliminar currículum",
+		"delete-resume-description": "¿Seguro que desea eliminar {name} ? Esta acción no se puede deshacer.",
+		"delete": "Borrar",
+		"cancel": "Cancelar",
+		"resume-deleted": "Currículum eliminado correctamente",
+		"resume-cloned": "Currículum clonado correctamente"
 	}
 }
