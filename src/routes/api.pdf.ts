@@ -33,31 +33,13 @@ export const APIRoute = createAPIFileRoute('/api/pdf')({
 			// @ts-expect-error - chromium.headless is not typed
 			headless: chromium.headless === true ? 'shell' : true,
 		})
-
-		// Create a browser context to handle cookies properly
-		const context = await browser.createBrowserContext()
+		const page = await browser.newPage()
 
 		const cookie = request.headers.get('cookie')
+		console.log(cookie)
 		if (cookie) {
-			// Parse the cookie string and set individual cookies using context
-			const cookies = cookie
-				.split(';')
-				.map((c) => {
-					const [name, ...rest] = c.trim().split('=')
-					return {
-						name: name.trim(),
-						value: rest.join('=').trim(),
-						domain: new URL(env.VITE_APP_URL).hostname,
-						path: '/',
-					}
-				})
-				.filter((c) => c.name && c.value)
-
-			// Set cookies on the browser context
-			await context.setCookie(...cookies)
+			await page.setExtraHTTPHeaders({ cookie })
 		}
-
-		const page = await context.newPage()
 
 		await page.goto(`${env.VITE_APP_URL}/resume_only/${data.id}`, {
 			waitUntil: 'domcontentloaded',
