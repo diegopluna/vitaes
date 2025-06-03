@@ -15,6 +15,7 @@
     "auth:generate": "npx @better-auth/cli@latest generate --config ./src/lib/auth.ts --output ./src/db/schema/auth-schema.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
+    "db:migrate:prod": "dotenv -f .env.prod -- npx tsx src/db/migrate.ts",
     "db:studio": "drizzle-kit studio",
     "db:push": "drizzle-kit push"
   },
@@ -80,6 +81,7 @@
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
+    "dotenv-cli": "^8.0.0",
     "drizzle-kit": "^0.31.1",
     "jsdom": "^26.0.0",
     "typescript": "^5.7.2",
