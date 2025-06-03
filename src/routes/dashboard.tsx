@@ -31,8 +31,6 @@ function RouteComponent() {
 	// const { data: resumes } = useQuery(trpc.resume.list.queryOptions())
 	const { user, resumes } = Route.useLoaderData()
 
-	console.log(resumes)
-
 	return (
 		<>
 			<Navbar user={user} />
