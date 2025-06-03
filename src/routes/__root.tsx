@@ -83,6 +83,14 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				href: '/favicon.ico',
 			},
 		],
+		scripts: [
+			{
+				defer: true,
+				src: '/js/script.js',
+				'data-domain': 'vitaes.io',
+				'data-website-id': '683f0ec028efdbf0be65ad7d',
+			},
+		],
 	}),
 
 	component: RootComponent,

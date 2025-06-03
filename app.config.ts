@@ -25,6 +25,18 @@ const config = defineConfig({
   },
   server: {
     preset: 'vercel',
+    routeRules: {
+      '/js/script.js': {
+        proxy: {
+          to: 'https://datafa.st/js/script.js',
+        }
+      },
+      '/api/events': {
+        proxy: {
+          to: 'https://datafa.st/api/events',
+        }
+      }
+    }
   }
 })
 
