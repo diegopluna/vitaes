@@ -1,8 +1,11 @@
-import { getResume } from '@/api/resume'
+import { db } from '@/db'
+import { resume } from '@/db/schema'
 import { env } from '@/env/client'
 import { auth } from '@/lib/auth'
 import chromium from '@sparticuz/chromium'
 import { createAPIFileRoute } from '@tanstack/react-start/api'
+import { and } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import puppeteerCore from 'puppeteer-core'
 
 export const APIRoute = createAPIFileRoute('/api/pdf')({
@@ -14,16 +17,12 @@ export const APIRoute = createAPIFileRoute('/api/pdf')({
 
 		const data = (await request.json()) as { id: string }
 
-		const resume = await getResume({ data: { id: data.id } }).catch(() => {
-			return null
+		const foundResume = await db.query.resume.findFirst({
+			where: and(eq(resume.id, data.id), eq(resume.userId, session.user.id)),
 		})
 
-		if (!resume) {
+		if (!foundResume) {
 			return new Response('Resume not found', { status: 404 })
-		}
-
-		if (resume.userId !== session.user.id) {
-			return new Response('Unauthorized', { status: 401 })
 		}
 
 		chromium.setGraphicsMode = false
