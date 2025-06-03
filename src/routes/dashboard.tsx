@@ -1,6 +1,7 @@
 import { listResumes } from '@/api/resume'
 import { Navbar } from '@/components/navbar'
 import { NewResumeCard } from '@/components/new-resume- card'
+import { ResumeCard } from '@/components/resume-card'
 import { m } from '@/paraglide/messages'
 // import { useQuery } from '@tanstack/react-query'
 import { createFileRoute, redirect } from '@tanstack/react-router'
@@ -44,6 +45,22 @@ function RouteComponent() {
 
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
 					<NewResumeCard />
+					{resumes.map((resume) => (
+						<ResumeCard
+							key={resume.id}
+							resume={{
+								id: resume.id,
+								name: resume.name,
+								data: resume.data,
+								createdAt: resume.createdAt
+									? new Date(resume.createdAt).toISOString()
+									: undefined,
+								updatedAt: resume.updatedAt
+									? new Date(resume.updatedAt).toISOString()
+									: undefined,
+							}}
+						/>
+					))}
 				</div>
 			</main>
 		</>

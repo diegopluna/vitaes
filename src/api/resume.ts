@@ -66,3 +66,54 @@ export const getResume = createServerFn({ method: 'GET' })
 
 		return foundResume
 	})
+
+export const updateResumeName = createServerFn({ method: 'POST' })
+	.middleware([loggingMiddleware, authMiddleware])
+	.validator(
+		z.object({
+			id: z.string().uuid(),
+			name: z.string().min(1),
+		}),
+	)
+	.handler(async ({ context, data }) => {
+		const { user } = context
+		const { id, name } = data
+
+		const updatedResume = await db
+			.update(resume)
+			.set({ name })
+			.where(and(eq(resume.id, id), eq(resume.userId, user.id)))
+			.returning()
+
+		if (updatedResume.length === 0) {
+			throw new Error('Failed to update resume name')
+		}
+
+		return updatedResume[0]
+	})
+
+export const updateResume = createServerFn({ method: 'POST' })
+	.middleware([loggingMiddleware, authMiddleware])
+	.validator(
+		z.object({
+			id: z.string().uuid(),
+			name: z.string().min(1),
+			resumeData: z.any(),
+		}),
+	)
+	.handler(async ({ context, data }) => {
+		const { user } = context
+		const { id, name, resumeData } = data
+
+		const updatedResume = await db
+			.update(resume)
+			.set({ name, data: resumeData })
+			.where(and(eq(resume.id, id), eq(resume.userId, user.id)))
+			.returning()
+
+		if (updatedResume.length === 0) {
+			throw new Error('Failed to update resume data')
+		}
+
+		return updatedResume[0]
+	})

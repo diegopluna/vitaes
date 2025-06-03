@@ -26,6 +26,10 @@
       },
       "correctness": {
         "noChildrenProp": "off"
+      },
+      "a11y": {
+        "useKeyWithClickEvents": "off",
+        "noAutofocus": "off"
       }
     }
   },

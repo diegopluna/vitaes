@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as SignInImport } from './routes/sign-in'
 import { Route as DashboardImport } from './routes/dashboard'
 import { Route as IndexImport } from './routes/index'
+import { Route as ResumeonlyIdImport } from './routes/resume_only.$id'
 import { Route as BuilderIdImport } from './routes/builder.$id'
 
 // Create/Update Routes
@@ -33,6 +34,12 @@ const DashboardRoute = DashboardImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ResumeonlyIdRoute = ResumeonlyIdImport.update({
+  id: '/resume_only/$id',
+  path: '/resume_only/$id',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -74,6 +81,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BuilderIdImport
       parentRoute: typeof rootRoute
     }
+    '/resume_only/$id': {
+      id: '/resume_only/$id'
+      path: '/resume_only/$id'
+      fullPath: '/resume_only/$id'
+      preLoaderRoute: typeof ResumeonlyIdImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -84,6 +98,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/sign-in': typeof SignInRoute
   '/builder/$id': typeof BuilderIdRoute
+  '/resume_only/$id': typeof ResumeonlyIdRoute
 }
 
 export interface FileRoutesByTo {
@@ -91,6 +106,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardRoute
   '/sign-in': typeof SignInRoute
   '/builder/$id': typeof BuilderIdRoute
+  '/resume_only/$id': typeof ResumeonlyIdRoute
 }
 
 export interface FileRoutesById {
@@ -99,14 +115,26 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/sign-in': typeof SignInRoute
   '/builder/$id': typeof BuilderIdRoute
+  '/resume_only/$id': typeof ResumeonlyIdRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/sign-in' | '/builder/$id'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/sign-in'
+    | '/builder/$id'
+    | '/resume_only/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/sign-in' | '/builder/$id'
-  id: '__root__' | '/' | '/dashboard' | '/sign-in' | '/builder/$id'
+  to: '/' | '/dashboard' | '/sign-in' | '/builder/$id' | '/resume_only/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/sign-in'
+    | '/builder/$id'
+    | '/resume_only/$id'
   fileRoutesById: FileRoutesById
 }
 
@@ -115,6 +143,7 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   SignInRoute: typeof SignInRoute
   BuilderIdRoute: typeof BuilderIdRoute
+  ResumeonlyIdRoute: typeof ResumeonlyIdRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -122,6 +151,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   SignInRoute: SignInRoute,
   BuilderIdRoute: BuilderIdRoute,
+  ResumeonlyIdRoute: ResumeonlyIdRoute,
 }
 
 export const routeTree = rootRoute
@@ -137,7 +167,8 @@ export const routeTree = rootRoute
         "/",
         "/dashboard",
         "/sign-in",
-        "/builder/$id"
+        "/builder/$id",
+        "/resume_only/$id"
       ]
     },
     "/": {
@@ -151,6 +182,9 @@ export const routeTree = rootRoute
     },
     "/builder/$id": {
       "filePath": "builder.$id.tsx"
+    },
+    "/resume_only/$id": {
+      "filePath": "resume_only.$id.tsx"
     }
   }
 }

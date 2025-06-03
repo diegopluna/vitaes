@@ -43,5 +43,270 @@
 	"not-found": {
 		"title": "未找到",
 		"description": "您要查找的页面不存在。"
+	},
+	"builder-sidebar": {
+		"resume-sections": "简历部分",
+		"settings": "设置"
+	},
+	"builder-header": {
+		"builder": "建造者",
+		"saving": "保存...",
+		"error-saving": "保存错误： {error}",
+		"last-saved": "最后保存： {time}",
+		"failed-to-generate-pdf": "无法生成 PDF",
+		"downloading": "正在下载...",
+		"download": "下载"
+	},
+	"personal-form": {
+		"first-name": "名",
+		"first-name-placeholder": "约翰",
+		"last-name": "姓",
+		"last-name-placeholder": "多伊",
+		"phone": "电话",
+		"phone-placeholder": "+1234567890",
+		"email": "电子邮件",
+		"email-placeholder": "john.doe@example.com",
+		"url": "网站",
+		"url-placeholder": "https://www.john-doe.com",
+		"quote": "引用",
+		"quote-placeholder": "约翰·多伊的引言"
+	},
+	"sections": {
+		"personal": "个人信息",
+		"profiles": "个人资料"
+	},
+	"profile-sheet": {
+		"edit-profile": "编辑个人资料",
+		"add-profile": "添加个人资料",
+		"network": "网络",
+		"network-placeholder": "例如 LinkedIn",
+		"username": "用户名",
+		"username-placeholder": "例如约翰·多伊",
+		"url": "网址",
+		"url-placeholder": "例如https://www.linkedin.com/in/john-doe",
+		"cancel": "取消",
+		"save": "节省",
+		"network-required": "需要网络",
+		"username-required": "用户名是必填项",
+		"url-invalid": "URL无效"
+	},
+	"delete-modal": {
+		"tooltip": "删除{type}",
+		"title": "您确定要删除此{type}吗？",
+		"description": "此操作无法撤消。",
+		"cancel": "取消",
+		"delete": "删除"
+	},
+	"highlight-item": {
+		"delete": "删除"
+	},
+	"item": {
+		"edit": "编辑",
+		"delete": "删除"
+	},
+	"profile-form": {
+		"no-profile-added": "未添加个人资料",
+		"type": "轮廓"
+	},
+	"work-sheet": {
+		"edit": "编辑",
+		"add": "添加",
+		"company": "公司",
+		"location": "地点",
+		"position": "位置",
+		"start-date": "开始日期",
+		"end-date": "结束日期",
+		"highlights": "亮点",
+		"no-highlights-added": "未添加任何亮点",
+		"save": "节省",
+		"company-required": "公司为必填项",
+		"location-required": "位置为必填项",
+		"position-required": "职位必填",
+		"start-date-required": "需要开始日期"
+	},
+	"highlight-type": "强调",
+	"work-form": {
+		"no-work-added": "未添加{label}"
+	},
+	"honor-type-sheet": {
+		"edit": "编辑",
+		"add": "添加",
+		"year": "年",
+		"update": "更新",
+		"position": "位置",
+		"honor": "荣誉",
+		"location": "地点"
+	},
+	"honor-sheet": {
+		"edit": "编辑",
+		"add": "添加",
+		"year": "年",
+		"update": "更新",
+		"position": "位置",
+		"honor": "荣誉",
+		"location": "地点",
+		"label": "标签",
+		"honors": "荣誉",
+		"no-honors-added": "未添加{label}",
+		"label-required": "需要标签"
+	},
+	"honors-form": {
+		"no-honors-added": "未添加{label}"
+	},
+	"presentation-sheet": {
+		"edit": "编辑",
+		"add": "添加",
+		"event": "事件",
+		"role": "角色",
+		"location": "地点",
+		"date": "日期",
+		"description": "描述",
+		"no-presentations-added": "未添加{label}",
+		"save": "节省",
+		"event-required": "活动为必填项",
+		"role-required": "角色是必需的",
+		"location-required": "位置为必填项",
+		"date-required": "日期为必填项"
+	},
+	"presentations-form": {
+		"no-presentations-added": "未添加{label}"
+	},
+	"writing-sheet": {
+		"edit": "编辑",
+		"add": "添加",
+		"title": "标题",
+		"role": "角色",
+		"medium": "中等的",
+		"start-date": "开始日期",
+		"end-date": "结束日期",
+		"description": "描述",
+		"no-writings-added": "未添加{label}",
+		"save": "节省",
+		"title-required": "标题为必填项",
+		"role-required": "角色是必需的",
+		"medium-required": "需要中等",
+		"start-date-required": "需要开始日期"
+	},
+	"writings-form": {
+		"no-writings-added": "未添加{label}"
+	},
+	"comittee-sheet": {
+		"edit": "编辑",
+		"add": "添加",
+		"year": "年",
+		"position": "位置",
+		"organization": "组织",
+		"location": "地点",
+		"save": "节省",
+		"year-required": "年份必填",
+		"position-required": "职位必填",
+		"organization-required": "需要组织",
+		"location-required": "位置为必填项"
+	},
+	"comittee-form": {
+		"no-comittees-added": "未添加{label}"
+	},
+	"education-sheet": {
+		"edit": "编辑",
+		"add": "添加",
+		"school": "学校",
+		"location": "地点",
+		"degree": "程度",
+		"start-date": "开始日期",
+		"end-date": "结束日期",
+		"description": "描述",
+		"no-education-added": "未添加{label}",
+		"save": "节省",
+		"school-required": "学校是必需的",
+		"location-required": "位置为必填项",
+		"degree-required": "需要学位",
+		"start-date-required": "需要开始日期",
+		"no-education-highlight-added": "没有添加{label}突出显示"
+	},
+	"education-form": {
+		"no-education-added": "未添加{label}"
+	},
+	"extracurricular-sheet": {
+		"edit": "编辑",
+		"add": "添加",
+		"role": "角色",
+		"organization": "组织",
+		"location": "地点",
+		"start-date": "开始日期",
+		"end-date": "结束日期",
+		"description": "描述",
+		"no-extracurricular-highlights-added": "没有添加{label}突出显示",
+		"save": "节省",
+		"role-required": "角色是必需的",
+		"organization-required": "需要组织",
+		"location-required": "位置为必填项",
+		"start-date-required": "需要开始日期"
+	},
+	"extracurricular-form": {
+		"no-extracurricular-added": "未添加{label}"
+	},
+	"project-sheet": {
+		"edit": "编辑",
+		"add": "添加",
+		"title": "标题",
+		"repository": "存储库",
+		"link": "网址",
+		"start-date": "开始日期",
+		"end-date": "结束日期",
+		"description": "描述",
+		"programming-languages": "编程语言",
+		"no-programming-languages-added": "未添加任何编程语言",
+		"no-description-added": "未添加描述",
+		"save": "节省",
+		"title-required": "标题为必填项",
+		"repository-required": "需要存储库",
+		"link-invalid": "URL无效",
+		"start-date-required": "需要开始日期"
+	},
+	"project-form": {
+		"no-projects-added": "未添加{label}"
+	},
+	"language-sheet": {
+		"edit": "编辑",
+		"add": "添加",
+		"language": "语言",
+		"fluency": "流利度",
+		"save": "节省",
+		"language-required": "语言是必需的",
+		"fluency-required": "要求流利"
+	},
+	"language-form": {
+		"no-languages-added": "未添加{label}"
+	},
+	"certificate-sheet": {
+		"edit": "编辑",
+		"add": "添加",
+		"title": "标题",
+		"issuer": "发行人",
+		"date": "日期",
+		"description": "描述",
+		"no-description-added": "未添加描述",
+		"save": "节省",
+		"title-required": "标题为必填项",
+		"issuer-required": "发行人为必填项",
+		"date-required": "日期为必填项"
+	},
+	"certificate-form": {
+		"no-certificates-added": "未添加{label}"
+	},
+	"resume-settings": {
+		"select-an-option": "选择一个选项",
+		"label": "模型",
+		"alignment-left": "左边",
+		"alignment-center": "中心",
+		"alignment-right": "正确的",
+		"alignment": "结盟",
+		"accent-color": "强调色",
+		"settings": "设置",
+		"colors": "颜色",
+		"load-resume": "从 JSON 加载简历"
+	},
+	"resume-card": {
+		"updated": "已更新： {time}"
 	}
 }
