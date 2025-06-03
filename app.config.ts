@@ -35,6 +35,11 @@ const config = defineConfig({
         proxy: {
           to: 'https://datafa.st/api/events',
         }
+      },
+      '/prx/ph/**': {
+        proxy: {
+          to: 'https://us.i.posthog.com/**',
+        }
       }
     }
   }
