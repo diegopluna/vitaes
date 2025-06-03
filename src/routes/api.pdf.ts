@@ -37,8 +37,11 @@ export const APIRoute = createAPIFileRoute('/api/pdf')({
 
 		const cookie = request.headers.get('cookie')
 		console.log(cookie)
-		if (cookie) {
-			await page.setExtraHTTPHeaders({ cookie })
+		const cookies = cookie?.split(';')
+		const sessionCookie = cookies?.find((c) => c.includes('session_token'))
+
+		if (sessionCookie) {
+			await page.setExtraHTTPHeaders({ cookie: sessionCookie })
 		}
 
 		await page.goto(`${env.VITE_APP_URL}/resume_only/${data.id}`, {

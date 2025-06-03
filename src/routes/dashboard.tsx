@@ -3,7 +3,6 @@ import { Navbar } from '@/components/navbar'
 import { NewResumeCard } from '@/components/new-resume- card'
 import { ResumeCard } from '@/components/resume-card'
 import { m } from '@/paraglide/messages'
-// import { useQuery } from '@tanstack/react-query'
 import { createFileRoute, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/dashboard')({
@@ -15,9 +14,6 @@ export const Route = createFileRoute('/dashboard')({
 	},
 	loader: async ({ context }) => {
 		const resumes = await listResumes()
-		// await context.queryClient.prefetchQuery(
-		// 	context.trpc.resume.list.queryOptions(),
-		// )
 		return {
 			user: context.user!,
 			resumes,
@@ -26,9 +22,6 @@ export const Route = createFileRoute('/dashboard')({
 })
 
 function RouteComponent() {
-	// const trpc = useTRPC()
-
-	// const { data: resumes } = useQuery(trpc.resume.list.queryOptions())
 	const { user, resumes } = Route.useLoaderData()
 
 	return (
