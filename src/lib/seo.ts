@@ -1,3 +1,5 @@
+import { env } from '@/env/client'
+
 export const seo = ({
 	title,
 	description,
@@ -19,6 +21,8 @@ export const seo = ({
 		{ name: 'twitter:site', content: '@diegopeterl' },
 		{ name: 'og:type', content: 'website' },
 		{ name: 'og:title', content: title },
+		{ name: 'og:site_name', content: 'Vitaes' },
+		{ name: 'og:url', content: env.VITE_APP_URL },
 		{ name: 'og:description', content: description },
 		...(image
 			? [
