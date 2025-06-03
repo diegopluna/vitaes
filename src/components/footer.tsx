@@ -5,7 +5,7 @@ import { Separator } from './ui/separator'
 export function Footer() {
 	return (
 		<footer id="footer" className="container mx-auto py-24 sm:py-32">
-			<div className="p-10 bg-card border border-secondary">
+			<div className="p-10 bg-card border border-secondary rounded-xl">
 				<div className="gap-6 items-center justify-between max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 					<div className="col-span-full xl:col-span-2">
 						<Link to="/" className="flex font-bold items-center">
