@@ -24,7 +24,7 @@ const config = defineConfig({
     ],
   },
   server: {
-    preset: 'vercel'
+    preset: 'vercel',
   }
 })
 

@@ -13,6 +13,7 @@ import type { QueryClient } from '@tanstack/react-query'
 import { ThemeProvider, useTheme } from '@/components/theme-provider.tsx'
 import { Toaster } from '@/components/ui/sonner.tsx'
 import { auth } from '@/lib/auth.ts'
+import { Posthog } from '@/lib/posthog'
 import { seo } from '@/lib/seo.ts'
 import { getThemeServerFn } from '@/lib/theme.ts'
 import { getLocale } from '@/paraglide/runtime.js'
@@ -101,6 +102,7 @@ function RootComponent() {
 			<RootDocument>
 				<Outlet />
 				<Toaster richColors />
+				<Posthog />
 				<TanStackRouterDevtools />
 
 				<ReactQueryDevtools buttonPosition="bottom-right" />
