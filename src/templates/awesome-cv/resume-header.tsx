@@ -24,6 +24,7 @@ import {
 	IconBrandX,
 	IconBrandYoutube,
 	IconBrandZoom,
+	IconWorld,
 } from '@tabler/icons-react'
 import { Home, Mail, Smartphone } from 'lucide-react'
 import { Fragment } from 'react'
@@ -114,7 +115,9 @@ export default function ResumeHeader({ resume }: { resume: Resume }) {
 				)}
 				{basics.profiles.length > 0 &&
 					basics.profiles.map((profile, index) => {
-						const Icon = socialNetworkIcons[profile.network.toLowerCase()]
+						const Icon =
+							socialNetworkIcons[profile.network.toLowerCase()] || IconWorld
+
 						return (
 							<Fragment key={profile.id}>
 								<div className="flex flex-row mx-1">
