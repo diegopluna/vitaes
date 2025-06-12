@@ -8,10 +8,8 @@ import './styles.css'
 import { QueryClient } from '@tanstack/react-query'
 import { DefaultCatchBoundary } from './components/default-catch-boundary'
 import { NotFound } from './components/not-found'
-import { getRouterBasePath } from './lib/router-basepath'
-
 // Create a new router instance
-export const createRouter = (pathname?: string) => {
+export const createRouter = () => {
 	const queryClient = new QueryClient()
 
 	return routerWithQueryClient(
@@ -23,7 +21,6 @@ export const createRouter = (pathname?: string) => {
 			},
 			scrollRestoration: true,
 			defaultPreloadStaleTime: 0,
-			basepath: getRouterBasePath(pathname),
 			defaultErrorComponent: DefaultCatchBoundary,
 			defaultNotFoundComponent: NotFound,
 		}),

@@ -1,5 +1,6 @@
+import { useLanguage } from '@/lib/i18n'
 import { m } from '@/paraglide/messages'
-import { getLocale, locales, setLocale } from '@/paraglide/runtime'
+import { type Locale, locales } from '@/paraglide/runtime'
 import { IconLanguage } from '@tabler/icons-react'
 import { useState } from 'react'
 import { Button } from './ui/button'
@@ -11,35 +12,15 @@ import {
 } from './ui/dropdown-menu'
 import { SidebarMenuButton } from './ui/sidebar'
 
-const localesList = locales.reduce(
-	(acc, locale) => {
-		switch (locale) {
-			case 'en':
-				acc[locale] = 'English'
-				break
-			case 'de':
-				acc[locale] = 'Deutsch'
-				break
-			case 'es':
-				acc[locale] = 'Español'
-				break
-			case 'fr':
-				acc[locale] = 'Français'
-				break
-			case 'ja':
-				acc[locale] = '日本語'
-				break
-			case 'pt':
-				acc[locale] = 'Português'
-				break
-			case 'zh':
-				acc[locale] = '中文'
-				break
-		}
-		return acc
-	},
-	{} as Record<string, string>,
-)
+const LANGUAGE_NAMES: Record<Locale, string> = {
+	en: 'English',
+	de: 'Deutsch',
+	es: 'Español',
+	fr: 'Français',
+	ja: '日本語',
+	pt: 'Português',
+	zh: '中文',
+}
 
 interface LanguageSelectorProps {
 	inSidebar?: boolean
@@ -47,9 +28,7 @@ interface LanguageSelectorProps {
 
 export function LanguageSelector({ inSidebar = false }: LanguageSelectorProps) {
 	const [isOpen, setIsOpen] = useState(false)
-
-	const currentLocale = getLocale()
-	const currentLocaleName = localesList[currentLocale]
+	const [currentLanguage, setLanguage] = useLanguage()
 
 	return (
 		<DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
@@ -63,15 +42,17 @@ export function LanguageSelector({ inSidebar = false }: LanguageSelectorProps) {
 					<Button size="sm" variant="ghost">
 						<div className="flex gap-2 items-center">
 							<IconLanguage className="size-5" />
-							<span className="block lg:hidden">{currentLocaleName}</span>
+							<span className="block lg:hidden">
+								{LANGUAGE_NAMES[currentLanguage]}
+							</span>
 						</div>
 					</Button>
 				)}
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end">
 				{locales.map((locale) => (
-					<DropdownMenuItem key={locale} onClick={() => setLocale(locale)}>
-						{localesList[locale]}
+					<DropdownMenuItem key={locale} onClick={() => setLanguage(locale)}>
+						{LANGUAGE_NAMES[locale]}
 					</DropdownMenuItem>
 				))}
 			</DropdownMenuContent>

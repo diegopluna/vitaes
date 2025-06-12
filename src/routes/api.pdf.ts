@@ -3,12 +3,12 @@ import { resume } from '@/db/schema'
 import { env } from '@/env/client'
 import { auth } from '@/lib/auth'
 import chromium from '@sparticuz/chromium'
-import { createAPIFileRoute } from '@tanstack/react-start/api'
+import { createServerFileRoute } from '@tanstack/react-start/server'
 import { and } from 'drizzle-orm'
 import { eq } from 'drizzle-orm'
 import puppeteerCore from 'puppeteer-core'
 
-export const APIRoute = createAPIFileRoute('/api/pdf')({
+export const ServerRoute = createServerFileRoute('/api/pdf').methods({
 	POST: async ({ request }) => {
 		const session = await auth.api.getSession({ headers: request.headers })
 		if (!session) {

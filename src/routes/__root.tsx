@@ -14,10 +14,10 @@ import { ThemeProvider, useTheme } from '@/components/theme-provider.tsx'
 import { Toaster } from '@/components/ui/sonner.tsx'
 import { env } from '@/env/client'
 import { auth } from '@/lib/auth.ts'
+import { getLanguageFromRequest } from '@/lib/i18n'
 import { Posthog } from '@/lib/posthog'
 import { seo } from '@/lib/seo.ts'
 import { getThemeServerFn } from '@/lib/theme.ts'
-import { getLocale } from '@/paraglide/runtime.js'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { createServerFn } from '@tanstack/react-start'
 import { getWebRequest } from '@tanstack/react-start/server'
@@ -94,20 +94,24 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 	}),
 
 	component: RootComponent,
-	loader: () => getThemeServerFn(),
 	beforeLoad: async ({ context }) => {
+		const language = await getLanguageFromRequest()
 		const user = await context.queryClient.fetchQuery({
 			queryKey: ['user'],
 			queryFn: ({ signal }) => getUser({ signal }),
 		})
-		return { user }
+		return { user, language }
+	},
+	loader: async ({ context }) => {
+		const theme = await getThemeServerFn()
+		return { theme, language: context.language }
 	},
 })
 
 function RootComponent() {
-	const data = Route.useLoaderData()
+	const { theme } = Route.useLoaderData()
 	return (
-		<ThemeProvider theme={data}>
+		<ThemeProvider theme={theme}>
 			<RootDocument>
 				<Outlet />
 				<Toaster richColors />
@@ -122,8 +126,9 @@ function RootComponent() {
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	const { theme } = useTheme()
+	const { language } = Route.useLoaderData()
 	return (
-		<html className={theme} lang={getLocale()} suppressHydrationWarning>
+		<html className={theme} lang={language} suppressHydrationWarning>
 			<head>
 				<HeadContent />
 			</head>
