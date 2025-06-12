@@ -69,7 +69,7 @@ export const useLanguage = () => {
 	const language = match?.context.language ?? DEFAULT_LANGUAGE
 	const setLanguageFn = async (language: Locale) => {
 		await setLanguage({ data: { locale: language } })
-		await router.invalidate()
+		await router.invalidate({ sync: true })
 	}
 	return [language, setLanguageFn] as const
 }
