@@ -101,7 +101,11 @@ export default function ResumeHeader({ resume }: { resume: Resume }) {
 					<div className="flex flex-row mx-1">
 						<Home className="text-[#333333] mx-1" size={16} />
 						<a
-							href={`http://${basics.url}`}
+							href={
+								basics.url.startsWith('http')
+									? basics.url
+									: `http://${basics.url}`
+							}
 							target="_blank"
 							rel="noreferrer"
 							className="text-xs"

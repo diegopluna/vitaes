@@ -23,14 +23,26 @@ export default function ResumeProjects({ resume }: { resume: Resume }) {
 									<span className="text-md font-bold">
 										{project.title}
 										{' - '}
-										<a href={`https://${project.link}`}>{project.link}</a>
+										<a
+											href={
+												project.link.startsWith('http')
+													? project.link
+													: `https://${project.link}`
+											}
+										>
+											{project.link}
+										</a>
 									</span>
 								) : (
 									<span className="text-md font-bold">{project.title}</span>
 								)}
 								{project.repository.length > 0 && (
 									<a
-										href={`https://${project.repository}`}
+										href={
+											project.repository.startsWith('http')
+												? project.repository
+												: `https://${project.repository}`
+										}
 										target="_blank"
 										rel="noopener noreferrer"
 										className={`text-xs ${settings.accentColor} italic`}
