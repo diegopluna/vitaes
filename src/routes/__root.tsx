@@ -10,6 +10,7 @@ import {
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { createServerFn } from '@tanstack/react-start'
 
+import { ThemeProvider } from '@/components/theme-provider'
 import { env } from '@/env/client'
 import { authClient } from '@/lib/auth-client'
 import { seo } from '@/lib/seo'
@@ -118,12 +119,14 @@ function RootComponent() {
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<head>
 				<HeadContent />
 			</head>
 			<body>
-				{children}
+				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+					{children}
+				</ThemeProvider>
 				<TanstackDevtools
 					config={{
 						position: 'bottom-left',
