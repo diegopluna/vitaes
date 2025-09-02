@@ -1,4 +1,4 @@
-'use service'
+'use server'
 
 import { cookies } from 'next/headers'
 import { defaultLocale, type Locale } from '@/i18n/config'

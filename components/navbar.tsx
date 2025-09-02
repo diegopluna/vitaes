@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
+import { LanguageSelector } from './language-selector'
 import { ThemeToggle } from './theme-toggle'
 import { Button } from './ui/button'
 import { Separator } from './ui/separator'
@@ -48,7 +49,7 @@ export function Navbar() {
             </SheetHeader>
             <SheetFooter className="flex-col sm:flex-col justify-start items-start">
               <Separator className="mb-2" />
-              {/* <LanguageSelector /> */}
+              <LanguageSelector />
               <ThemeToggle />
               {/* {user && <UserButton user={user} />} */}
             </SheetFooter>
@@ -57,7 +58,7 @@ export function Navbar() {
       </div>
 
       <div className="hidden lg:flex">
-        {/* <LanguageSelector /> */}
+        <LanguageSelector />
         <ThemeToggle />
         <Button asChild variant="ghost" size="sm" aria-label={t('github')}>
           <a
