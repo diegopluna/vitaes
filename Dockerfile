@@ -12,7 +12,7 @@ COPY . .
 
 RUN pnpm run build
 
-RUN pnpm prude --prod
+RUN pnpm prune --prod
 
 EXPOSE 3000
 
