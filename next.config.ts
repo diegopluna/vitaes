@@ -4,7 +4,19 @@ import type { NextConfig } from 'next'
 const nextConfig: NextConfig = {
   /* config options here */
   output: 'standalone',
-  typedRoutes: true
+  typedRoutes: true,
+  rewrites: async () => {
+    return [
+      {
+        source: '/js/script.js',
+        destination: 'https://plausible.dpeter.dev/js/script.file-downloads.hash.outbound-links.pageview-props.tagged-events.js'
+      },
+      {
+        source: '/api/event',
+        destination: 'https://plausible.dpeter.dev/api/event'
+      }
+    ]
+  } 
 }
 
 export default withSentryConfig(nextConfig, {
