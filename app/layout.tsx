@@ -4,6 +4,7 @@ import './globals.css'
 import Script from 'next/script'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale } from 'next-intl/server'
+import { ConvexClientProvider } from '@/components/convex-provider'
 import { ThemeProvider } from '@/components/theme-provider'
 import { seo } from '@/lib/seo'
 
@@ -43,7 +44,9 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+          <NextIntlClientProvider>
+            <ConvexClientProvider>{children}</ConvexClientProvider>
+          </NextIntlClientProvider>
         </ThemeProvider>
       </body>
       <Script defer={true} data-domain="vitaes.io" src="/js/script.js" />

@@ -5,6 +5,11 @@ export const env = createEnv({
   server: {
     CONVEX_SELF_HOSTED_URL: z.url(),
     CONVEX_SELF_HOSTED_ADMIN_KEY: z.string().min(1),
+    SITE_URL: z.url(),
+    GITHUB_CLIENT_ID: z.string().min(1),
+    GITHUB_CLIENT_SECRET: z.string().min(1),
+    GOOGLE_CLIENT_ID: z.string().min(1),
+    GOOGLE_CLIENT_SECRET: z.string().min(1),
   },
   // If you're using Next.js < 13.4.4, you'll need to specify the runtimeEnv manually
   // runtimeEnv: {

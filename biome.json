@@ -29,6 +29,9 @@
       },
       "a11y": {
         "useHtmlLang": "off"
+      },
+      "style": {
+        "noNonNullAssertion": "off"
       }
     },
     "domains": {
