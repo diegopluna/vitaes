@@ -16,6 +16,14 @@ const config = defineConfig({
     }),
     viteReact(),
   ],
+  server: {
+    proxy: {
+      '/js/script.js': {
+        target: "https://plausible.dpeter.dev/js/script.file-downloads.hash.outbound-links.js",
+        changeOrigin: true
+      }
+    }
+  }
 })
 
 export default config

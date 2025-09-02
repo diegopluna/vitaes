@@ -87,6 +87,13 @@ export const Route = createRootRouteWithContext<{
 				href: '/favicon.ico',
 			},
 		],
+		scripts: [
+			{
+				defer: true,
+				'data-domain': 'vitaes.io',
+				src: '/js/script.js',
+			},
+		],
 	}),
 	beforeLoad: async (ctx) => {
 		// all queries, mutations and action made with TanStack Query will be
