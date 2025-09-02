@@ -12,6 +12,7 @@
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": false,
     "noEmit": true,
+    "allowJs": true,
 
     /* Linting */
     "skipLibCheck": true,

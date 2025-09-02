@@ -15,6 +15,7 @@ import { env } from '@/env/client'
 import { authClient } from '@/lib/auth-client'
 import { seo } from '@/lib/seo'
 import { fetchSession, getCookieName } from '@/lib/server-auth-utils'
+import { getLocale } from '@/paraglide/runtime'
 import { ConvexBetterAuthProvider } from '@convex-dev/better-auth/react'
 import type { ConvexQueryClient } from '@convex-dev/react-query'
 import type { QueryClient } from '@tanstack/react-query'
@@ -107,6 +108,14 @@ export const Route = createRootRouteWithContext<{
 		}
 		return { userId, token }
 	},
+	// errorComponent: (props) => {
+	//   return (
+	//     <RootDocument>
+	//       <DefaultCatchBoundary {...props} />
+	//     </RootDocument>
+	//   );
+	// },
+	// notFoundComponent: () => <NotFound />,
 	component: RootComponent,
 })
 
@@ -126,7 +135,7 @@ function RootComponent() {
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en" suppressHydrationWarning>
+		<html lang={getLocale()} suppressHydrationWarning>
 			<head>
 				<HeadContent />
 			</head>

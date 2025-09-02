@@ -5,12 +5,13 @@
   "scripts": {
     "dev": "vite dev --port 3000",
     "start": "node .output/server/index.mjs",
-    "build": "vite build",
+    "build": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide && vite build",
     "serve": "vite preview",
     "test": "vitest run",
     "format": "biome format",
     "lint": "biome lint",
-    "check": "biome check"
+    "check": "biome check",
+    "machine-translate": "inlang machine translate --project project.inlang"
   },
   "dependencies": {
     "@convex-dev/better-auth": "^0.7.17",
@@ -54,6 +55,8 @@
     "typescript": "^5.7.2",
     "vite": "^6.3.5",
     "vitest": "^3.0.5",
-    "web-vitals": "^4.2.4"
+    "web-vitals": "^4.2.4",
+    "@inlang/paraglide-js": "2.2.0",
+    "@inlang/cli": "^3.0.0"
   }
 }
