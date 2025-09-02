@@ -26,6 +26,9 @@
       "recommended": true,
       "suspicious": {
         "noUnknownAtRules": "off"
+      },
+      "a11y": {
+        "useHtmlLang": "off"
       }
     },
     "domains": {

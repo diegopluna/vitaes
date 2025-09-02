@@ -1,5 +1,6 @@
-import {withSentryConfig} from '@sentry/nextjs';
+import { withSentryConfig } from '@sentry/nextjs'
 import type { NextConfig } from 'next'
+import createNextIntlPlugin from 'next-intl/plugin'
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -9,23 +10,24 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/js/script.js',
-        destination: 'https://plausible.dpeter.dev/js/script.file-downloads.hash.outbound-links.pageview-props.tagged-events.js'
+        destination:
+          'https://plausible.dpeter.dev/js/script.file-downloads.hash.outbound-links.pageview-props.tagged-events.js',
       },
       {
         source: '/api/event',
-        destination: 'https://plausible.dpeter.dev/api/event'
-      }
+        destination: 'https://plausible.dpeter.dev/api/event',
+      },
     ]
-  } 
+  },
 }
 
-export default withSentryConfig(nextConfig, {
+const withSentryNextConfig = withSentryConfig(nextConfig, {
   // For all available options, see:
   // https://www.npmjs.com/package/@sentry/webpack-plugin#options
 
-  org: "dpeter",
+  org: 'dpeter',
 
-  project: "vitaes",
+  project: 'vitaes',
 
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
@@ -40,7 +42,7 @@ export default withSentryConfig(nextConfig, {
   // This can increase your server load as well as your hosting bill.
   // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
   // side errors will fail.
-  tunnelRoute: "/monitoring",
+  tunnelRoute: '/monitoring',
 
   // Automatically tree-shake Sentry logger statements to reduce bundle size
   disableLogger: true,
@@ -49,5 +51,15 @@ export default withSentryConfig(nextConfig, {
   // See the following for more information:
   // https://docs.sentry.io/product/crons/
   // https://vercel.com/docs/cron-jobs
-  automaticVercelMonitors: true
-});
+  automaticVercelMonitors: true,
+})
+
+const withNextIntl = createNextIntlPlugin({
+  experimental: {
+    createMessagesDeclaration: './messages/en.json',
+  },
+})
+
+const withSentryAndNextIntlNextConfig = withNextIntl(withSentryNextConfig)
+
+export default withSentryAndNextIntlNextConfig
