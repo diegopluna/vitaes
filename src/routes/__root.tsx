@@ -1,3 +1,4 @@
+import { wrapCreateRootRouteWithSentry } from '@sentry/tanstackstart-react'
 import { TanstackDevtools } from '@tanstack/react-devtools'
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools'
 import {
@@ -10,12 +11,13 @@ import {
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { createServerFn } from '@tanstack/react-start'
 
+import { SentryWrappedCatchBoundary } from '@/components/default-catch-boundary'
+import { NotFound } from '@/components/not-found'
 import { ThemeProvider } from '@/components/theme-provider'
 import { env } from '@/env/client'
 import { authClient } from '@/lib/auth-client'
 import { seo } from '@/lib/seo'
 import { fetchSession, getCookieName } from '@/lib/server-auth-utils'
-import { getLocale } from '@/paraglide/runtime'
 import { ConvexBetterAuthProvider } from '@convex-dev/better-auth/react'
 import type { ConvexQueryClient } from '@convex-dev/react-query'
 import type { QueryClient } from '@tanstack/react-query'
@@ -35,89 +37,91 @@ const fetchAuth = createServerFn({ method: 'GET' }).handler(async () => {
 	}
 })
 
-export const Route = createRootRouteWithContext<{
-	queryClient: QueryClient
-	convexClient: ConvexReactClient
-	convexQueryClient: ConvexQueryClient
-}>()({
-	head: () => ({
-		meta: [
-			{
-				charSet: 'utf-8',
-			},
-			{
-				name: 'viewport',
-				content: 'width=device-width, initial-scale=1',
-			},
-			...seo({
-				title: 'Vitaes',
-				description: 'Resume Builder',
-				keywords:
-					'resume, builder, resume builder, resume builder app, resume builder app',
-				image: `${env.VITE_APP_URL}/open-graph.png`,
-			}),
-		],
-		links: [
-			{
-				rel: 'stylesheet',
-				href: appCss,
-			},
-			{
-				rel: 'apple-touch-icon',
-				href: '/apple-touch-icon.png',
-				sizes: '180x180',
-			},
-			{
-				rel: 'icon',
-				sizes: '32x32',
-				type: 'image/png',
-				href: '/favicon-32x32.png',
-			},
-			{
-				rel: 'icon',
-				sizes: '16x16',
-				type: 'image/png',
-				href: '/favicon-16x16.png',
-			},
-			{
-				rel: 'manifest',
-				href: '/site.webmanifest',
-			},
-			{
-				rel: 'icon',
-				href: '/favicon.ico',
-			},
-		],
-		scripts: [
-			{
-				defer: true,
-				'data-domain': 'vitaes.io',
-				src: '/js/script.js',
-			},
-		],
+export const Route = wrapCreateRootRouteWithSentry(
+	createRootRouteWithContext<{
+		queryClient: QueryClient
+		convexClient: ConvexReactClient
+		convexQueryClient: ConvexQueryClient
+	}>()({
+		head: () => ({
+			meta: [
+				{
+					charSet: 'utf-8',
+				},
+				{
+					name: 'viewport',
+					content: 'width=device-width, initial-scale=1',
+				},
+				...seo({
+					title: 'Vitaes',
+					description: 'Resume Builder',
+					keywords:
+						'resume, builder, resume builder, resume builder app, resume builder app',
+					image: `${env.VITE_APP_URL}/open-graph.png`,
+				}),
+			],
+			links: [
+				{
+					rel: 'stylesheet',
+					href: appCss,
+				},
+				{
+					rel: 'apple-touch-icon',
+					href: '/apple-touch-icon.png',
+					sizes: '180x180',
+				},
+				{
+					rel: 'icon',
+					sizes: '32x32',
+					type: 'image/png',
+					href: '/favicon-32x32.png',
+				},
+				{
+					rel: 'icon',
+					sizes: '16x16',
+					type: 'image/png',
+					href: '/favicon-16x16.png',
+				},
+				{
+					rel: 'manifest',
+					href: '/site.webmanifest',
+				},
+				{
+					rel: 'icon',
+					href: '/favicon.ico',
+				},
+			],
+			scripts: [
+				{
+					defer: true,
+					'data-domain': 'vitaes.io',
+					src: '/js/script.js',
+				},
+			],
+		}),
+		beforeLoad: async (ctx) => {
+			// all queries, mutations and action made with TanStack Query will be
+			// authenticated by an identity token.
+			const auth = await fetchAuth()
+			const { userId, token } = auth
+			// During SSR only (the only time serverHttpClient exists),
+			// set the auth token for Convex to make HTTP queries with.
+			if (token) {
+				ctx.context.convexQueryClient.serverHttpClient?.setAuth(token)
+			}
+			return { userId, token }
+		},
+		errorComponent: (props) => {
+			return (
+				<RootDocument>
+					<SentryWrappedCatchBoundary {...props} />
+				</RootDocument>
+			)
+		},
+		notFoundComponent: () => <NotFound />,
+		component: RootComponent,
 	}),
-	beforeLoad: async (ctx) => {
-		// all queries, mutations and action made with TanStack Query will be
-		// authenticated by an identity token.
-		const auth = await fetchAuth()
-		const { userId, token } = auth
-		// During SSR only (the only time serverHttpClient exists),
-		// set the auth token for Convex to make HTTP queries with.
-		if (token) {
-			ctx.context.convexQueryClient.serverHttpClient?.setAuth(token)
-		}
-		return { userId, token }
-	},
-	// errorComponent: (props) => {
-	//   return (
-	//     <RootDocument>
-	//       <DefaultCatchBoundary {...props} />
-	//     </RootDocument>
-	//   );
-	// },
-	// notFoundComponent: () => <NotFound />,
-	component: RootComponent,
-})
+)
 
 function RootComponent() {
 	const context = useRouteContext({ from: Route.id })
@@ -135,7 +139,7 @@ function RootComponent() {
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang={getLocale()} suppressHydrationWarning>
+		<html lang="en" suppressHydrationWarning>
 			<head>
 				<HeadContent />
 			</head>

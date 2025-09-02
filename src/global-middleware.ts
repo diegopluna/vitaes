@@ -1,8 +1,13 @@
-import { registerGlobalMiddleware } from '@tanstack/react-start'
-import { localeMiddleware } from './lib/locale-middleware'
+import * as Sentry from '@sentry/tanstackstart-react'
+import {
+	createMiddleware,
+	registerGlobalMiddleware,
+} from '@tanstack/react-start'
 
-// Global middlewares do not work yet with the newest version of @tanstack/react-start.
-// Import localeMiddleware in each server function instead.
 registerGlobalMiddleware({
-	middleware: [localeMiddleware],
+	middleware: [
+		createMiddleware({ type: 'function' }).server(
+			Sentry.sentryGlobalServerMiddlewareHandler(),
+		),
+	],
 })
