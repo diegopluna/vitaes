@@ -1,27 +1,24 @@
-import { getSessionCookie } from 'better-auth/cookies'
-import { type NextRequest, NextResponse } from 'next/server'
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+import { NextResponse } from 'next/server'
 
-const signInRoutes = ['/sign-in']
+const isPublicRoute = createRouteMatcher(['/sign-in(.*)', '/'])
+export default clerkMiddleware(async (auth, req) => {
+  const { userId } = await auth()
 
-export default async function middleware(request: NextRequest) {
-  const sessionCookie = getSessionCookie(request)
+  if (isPublicRoute(req) && userId) {
+    return NextResponse.redirect(new URL('/dashboard', req.url))
+  }
 
-  const isSignInRoute = signInRoutes.includes(request.nextUrl.pathname)
-
-  if (isSignInRoute && !sessionCookie) {
+  if (isPublicRoute(req) && !userId) {
     return NextResponse.next()
   }
 
-  if (!isSignInRoute && !sessionCookie) {
-    return NextResponse.redirect(new URL('/sign-in', request.url))
-  }
-
-  if (isSignInRoute || request.nextUrl.pathname === '/') {
-    return NextResponse.redirect(new URL('/dashboard', request.url))
+  if (!isPublicRoute(req) && !userId) {
+    await auth.protect()
   }
 
   return NextResponse.next()
-}
+})
 
 export const config = {
   // Run middleware on all routes except static assets and api routes
