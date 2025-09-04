@@ -8,6 +8,7 @@ import { getLocale } from 'next-intl/server'
 import { ClerkProvider } from '@/components/clerk-provider'
 import ConvexClientProvider from '@/components/convex-provider'
 import { ThemeProvider } from '@/components/theme-provider'
+import { Toaster } from '@/components/ui/sonner'
 import type { Locale } from '@/i18n/config'
 import { seo } from '@/lib/seo'
 
@@ -61,7 +62,10 @@ export default async function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <NextIntlClientProvider>{children}</NextIntlClientProvider>
+              <NextIntlClientProvider>
+                {children}
+                <Toaster />
+              </NextIntlClientProvider>
             </ThemeProvider>
           </ConvexClientProvider>
         </ClerkProvider>

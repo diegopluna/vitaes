@@ -164,12 +164,14 @@ export const create = mutation({
       })
     }
 
-    await ctx.db.insert('resumes', {
+    const newResumeId = await ctx.db.insert('resumes', {
       name: args.name,
       userId: identity.subject,
       data: getExampleData(args.locale as Locale),
       updatedAt: Date.now(),
     })
+
+    return newResumeId
   },
 })
 

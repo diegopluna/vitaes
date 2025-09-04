@@ -28,7 +28,9 @@
         "noUnknownAtRules": "off"
       },
       "a11y": {
-        "useHtmlLang": "off"
+        "useHtmlLang": "off",
+        "noStaticElementInteractions": "off",
+        "useKeyWithClickEvents": "off"
       },
       "style": {
         "noNonNullAssertion": "off"

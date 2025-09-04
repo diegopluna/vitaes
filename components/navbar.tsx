@@ -1,5 +1,6 @@
 'use client'
 
+import { UserButton } from '@clerk/nextjs'
 import { IconBrandGithubFilled, IconMenu } from '@tabler/icons-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -18,7 +19,11 @@ import {
   SheetTrigger,
 } from './ui/sheet'
 
-export function Navbar() {
+interface NavbarProps {
+  showUserButton?: boolean
+}
+
+export function Navbar({ showUserButton = false }: NavbarProps) {
   const t = useTranslations('navbar')
   const [isOpen, setIsOpen] = useState(false)
 
@@ -51,7 +56,17 @@ export function Navbar() {
               <Separator className="mb-2" />
               <LanguageSelector />
               <ThemeToggle />
-              {/* {user && <UserButton user={user} />} */}
+              {showUserButton && (
+                <UserButton
+                  showName
+                  appearance={{
+                    elements: {
+                      rootBox: 'mx-2.5',
+                      userButtonBox: 'flex flex-row-reverse',
+                    },
+                  }}
+                />
+              )}
             </SheetFooter>
           </SheetContent>
         </Sheet>
@@ -70,7 +85,15 @@ export function Navbar() {
             <IconBrandGithubFilled className="size-5" />
           </a>
         </Button>
-        {/* {user && <UserButton user={user} />} */}
+        {showUserButton && (
+          <UserButton
+            appearance={{
+              elements: {
+                userButtonTrigger: 'mx-2.5',
+              },
+            }}
+          />
+        )}
       </div>
     </header>
   )
