@@ -5,12 +5,12 @@ import { deDE, enUS, esES, frFR, jaJP, ptBR, zhCN } from '@clerk/localizations'
 import Script from 'next/script'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale } from 'next-intl/server'
-import { ClerkProvider } from '@/components/clerk-provider'
-import ConvexClientProvider from '@/components/convex-provider'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
 import type { Locale } from '@/i18n/config'
 import { seo } from '@/lib/seo'
+import { ClerkProvider } from '@/providers/clerk-provider'
+import ConvexClientProvider from '@/providers/convex-provider'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
