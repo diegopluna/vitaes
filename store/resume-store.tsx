@@ -1,4 +1,3 @@
-import { createJSONStorage, persist } from 'zustand/middleware'
 import { createStore } from 'zustand/vanilla'
 
 import type { Resume } from '@/convex/resume/type'
@@ -14,25 +13,16 @@ export type ResumeActions = {
 
 export type ResumeStore = ResumeState & ResumeActions
 
-export const createResumeStore = (resumeId: string, initState: ResumeState) => {
-  const storageKey = `vitaes-resume-${resumeId}`
-  return createStore<ResumeStore>()(
-    persist(
-      (set) => ({
-        ...initState,
-        setResume: (resume) => set({ resume }),
-        setResumeField: (key, value) =>
-          set((state) => ({
-            resume: {
-              ...state.resume,
-              [key]: value,
-            },
-          })),
-      }),
-      {
-        name: storageKey,
-        storage: createJSONStorage(() => localStorage),
-      },
-    ),
-  )
+export const createResumeStore = (init: ResumeState) => {
+  return createStore<ResumeStore>()((set) => ({
+    ...init,
+    setResume: (resume) => set({ resume }),
+    setResumeField: (key, value) =>
+      set((state) => ({
+        resume: {
+          ...state.resume,
+          [key]: value,
+        },
+      })),
+  }))
 }

@@ -13,28 +13,16 @@ export const ResumeStoreContext = createContext<ResumeStoreApi | undefined>(
 export interface ResumeStoreProviderProps {
   children: React.ReactNode
   initialResume: Resume
-  resumeId: string
 }
 
 export const ResumeStoreProvider = ({
   children,
   initialResume,
-  resumeId,
 }: ResumeStoreProviderProps) => {
   const storeRef = useRef<ResumeStoreApi | null>(null)
 
-  // Always clear localStorage for this resumeId before initializing the store
-  if (typeof window !== 'undefined' && initialResume && resumeId) {
-    const storageKey = `vitaes-resume-store-${resumeId}`
-    try {
-      localStorage.removeItem(storageKey)
-    } catch {
-      // Ignore errors (e.g., quota exceeded, private mode)
-    }
-  }
-
   if (storeRef.current === null) {
-    storeRef.current = createResumeStore(resumeId, {
+    storeRef.current = createResumeStore({
       resume: initialResume,
     })
   }

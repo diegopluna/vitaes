@@ -178,8 +178,5 @@ export const agostinhoCarraraResume: Resume = {
       accentColor: 'text-[#00A388]',
       headerAlignment: 'start',
     },
-    ubagaCV: {
-      textColor: 'pink',
-    },
   },
 }

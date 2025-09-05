@@ -181,8 +181,5 @@ export const kingSchultzResume: Resume = {
       accentColor: 'text-[#00A388]',
       headerAlignment: 'start',
     },
-    ubagaCV: {
-      textColor: 'pink',
-    },
   },
 }

@@ -221,8 +221,5 @@ export const sunTzuResume: Resume = {
       accentColor: 'text-[#00A388]',
       headerAlignment: 'start',
     },
-    ubagaCV: {
-      textColor: 'pink',
-    },
   },
 }

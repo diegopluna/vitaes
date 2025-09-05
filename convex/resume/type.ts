@@ -153,7 +153,7 @@ export type Certificate = {
   description: StringWithId[]
 }
 
-export type ResumeModel = 'awesome-cv' | 'ubaga-cv'
+export type ResumeModel = 'awesome-cv'
 
 export type AwesomeCVHeaderAlignment = 'start' | 'center' | 'end'
 export type AwesomeCVColor =
@@ -171,22 +171,7 @@ export type AwesomeCVSettings = {
   headerAlignment: AwesomeCVHeaderAlignment
 }
 
-export type UbagaCVTextColor =
-  | 'black'
-  | 'pink'
-  | 'blue'
-  | 'green'
-  | 'orange'
-  | 'purple'
-  | 'red'
-  | 'teal'
-  | 'yellow'
-export type UbagaCVSettings = {
-  textColor: UbagaCVTextColor
-}
-
 export type Settings = {
   model: ResumeModel
   awesomeCV: AwesomeCVSettings
-  ubagaCV: UbagaCVSettings
 }
