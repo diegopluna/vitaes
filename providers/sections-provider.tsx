@@ -1,7 +1,12 @@
 'use client'
 
+import { IconAt, IconNotes, IconUser } from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
 import { createContext, type JSX, use, useRef } from 'react'
+import { PersonalForm } from '@/app/(auth)/builder/[resumeId]/_components/resume/form/personal-form'
+import { ProfileForm } from '@/app/(auth)/builder/[resumeId]/_components/resume/form/profile-form'
+import { SummaryForm } from '@/app/(auth)/builder/[resumeId]/_components/resume/form/summary-form'
+import { ProfileSheet } from '@/app/(auth)/builder/[resumeId]/_components/resume/sheet/profile-sheet'
 import { useResumeStore } from './resume-store-provider'
 
 export type Section = {
@@ -35,7 +40,27 @@ export const SectionsProvider = ({ children }: SectionsProviderProps) => {
     sectionRefs.current[id] = ref
   }
 
-  const sections: Section[] = []
+  const sections: Section[] = [
+    {
+      id: 'personal',
+      title: t('personal'),
+      icon: IconUser,
+      form: <PersonalForm />,
+    },
+    {
+      id: 'summary',
+      title: resume.basics.summary.label,
+      icon: IconNotes,
+      form: <SummaryForm />,
+    },
+    {
+      id: 'profiles',
+      title: t('profiles'),
+      icon: IconAt,
+      form: <ProfileForm />,
+      sheet: <ProfileSheet />,
+    },
+  ]
 
   return (
     <SectionsContext value={{ sections, sectionRefs, setSectionRef }}>
