@@ -20,6 +20,8 @@ FROM base as runner
 
 WORKDIR /app
 
+RUN corepack enable pnpm && pnpm dlx puppeteer browsers install chrome
+
 ENV NODE_ENV=production
 
 RUN addgroup --system --gid 1001 nodejs

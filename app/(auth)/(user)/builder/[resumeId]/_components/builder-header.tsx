@@ -116,7 +116,6 @@ export function BuilderHeader({ id }: { id: Id<'resumes'> }) {
           </BreadcrumbList>
         </Breadcrumb>
       </div>
-      <DownloadPdfButton id={id} name={name} />
       {isSaving && (
         <div className="text-xs text-muted-foreground px-4 whitespace-nowrap">
           {t('saving')}
@@ -138,6 +137,7 @@ export function BuilderHeader({ id }: { id: Id<'resumes'> }) {
           {t('last-saved', { time: updatedAtRelative })}
         </div>
       ) : null}
+      <DownloadPdfButton id={id} name={name} />
     </header>
   )
 }

@@ -19,13 +19,17 @@ type Props = {
 }
 
 const roboto = Roboto({
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  weight: 'variable',
   subsets: ['latin'],
+  variable: '--font-roboto',
 })
 
 export default function AwesomeCV({ resume }: Props) {
   return (
-    <div className={roboto.className} style={styles.textText}>
+    <div
+      className={`${roboto.variable} subpixel-antialiased`}
+      style={styles.textText}
+    >
       <ResumeHeader resume={resume} />
       {resume.basics.summary.content.length > 0 && (
         <ResumeSummary resume={resume} />

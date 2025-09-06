@@ -1,12 +1,25 @@
 'use client'
 
-import { IconAt, IconNotes, IconUser } from '@tabler/icons-react'
+import {
+  IconAt,
+  IconBriefcase,
+  IconMedal,
+  IconNotes,
+  IconPresentation,
+  IconUser,
+} from '@tabler/icons-react'
 import { useTranslations } from 'next-intl'
 import { createContext, type JSX, use, useRef } from 'react'
-import { PersonalForm } from '@/app/(auth)/builder/[resumeId]/_components/resume/form/personal-form'
-import { ProfileForm } from '@/app/(auth)/builder/[resumeId]/_components/resume/form/profile-form'
-import { SummaryForm } from '@/app/(auth)/builder/[resumeId]/_components/resume/form/summary-form'
-import { ProfileSheet } from '@/app/(auth)/builder/[resumeId]/_components/resume/sheet/profile-sheet'
+import { HonorsForm } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/form/honors-form'
+import { PersonalForm } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/form/personal-form'
+import { PresentationsForm } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/form/presentations-form'
+import { ProfileForm } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/form/profile-form'
+import { SummaryForm } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/form/summary-form'
+import { WorkForm } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/form/work-form'
+import { HonorSheet } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/sheet/honor-sheet'
+import { PresentationSheet } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/sheet/presentation-sheet'
+import { ProfileSheet } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/sheet/profile-sheet'
+import { WorkSheet } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/sheet/work-sheet'
 import { useResumeStore } from './resume-store-provider'
 
 export type Section = {
@@ -59,6 +72,27 @@ export const SectionsProvider = ({ children }: SectionsProviderProps) => {
       icon: IconAt,
       form: <ProfileForm />,
       sheet: <ProfileSheet />,
+    },
+    {
+      id: 'work',
+      title: resume.work.label,
+      icon: IconBriefcase,
+      form: <WorkForm />,
+      sheet: <WorkSheet />,
+    },
+    {
+      id: 'honors',
+      title: resume.honors.label,
+      icon: IconMedal,
+      form: <HonorsForm />,
+      sheet: <HonorSheet />,
+    },
+    {
+      id: 'presentation',
+      title: resume.presentations.label,
+      icon: IconPresentation,
+      form: <PresentationsForm />,
+      sheet: <PresentationSheet />,
     },
   ]
 
