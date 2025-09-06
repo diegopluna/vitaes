@@ -64,7 +64,11 @@ export default function ResumeHeader({ resume }: { resume: Resume }) {
   const { awesomeCV: settings } = resume.settings
   return (
     <div
-      className={`flex flex-col items-${settings.headerAlignment} justify-${settings.headerAlignment}`}
+      className="flex flex-col"
+      style={{
+        justifyContent: settings.headerAlignment,
+        alignItems: settings.headerAlignment,
+      }}
     >
       <div className="flex flex-row my-0 ">
         <h1 className="leading-none text-[32pt] font-thin text-[#5D5D5D] mx-2">

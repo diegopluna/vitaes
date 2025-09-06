@@ -5,6 +5,7 @@ import {
   IconBriefcase,
   IconMedal,
   IconNotes,
+  IconPencil,
   IconPresentation,
   IconUser,
 } from '@tabler/icons-react'
@@ -16,10 +17,12 @@ import { PresentationsForm } from '@/app/(auth)/(user)/builder/[resumeId]/_compo
 import { ProfileForm } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/form/profile-form'
 import { SummaryForm } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/form/summary-form'
 import { WorkForm } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/form/work-form'
+import { WritingsForm } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/form/writings-form'
 import { HonorSheet } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/sheet/honor-sheet'
 import { PresentationSheet } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/sheet/presentation-sheet'
 import { ProfileSheet } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/sheet/profile-sheet'
 import { WorkSheet } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/sheet/work-sheet'
+import { WritingSheet } from '@/app/(auth)/(user)/builder/[resumeId]/_components/resume/sheet/writing-sheet'
 import { useResumeStore } from './resume-store-provider'
 
 export type Section = {
@@ -93,6 +96,13 @@ export const SectionsProvider = ({ children }: SectionsProviderProps) => {
       icon: IconPresentation,
       form: <PresentationsForm />,
       sheet: <PresentationSheet />,
+    },
+    {
+      id: 'writing',
+      title: resume.writings.label,
+      icon: IconPencil,
+      form: <WritingsForm />,
+      sheet: <WritingSheet />,
     },
   ]
 
