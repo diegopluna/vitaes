@@ -18,7 +18,7 @@ export default function ResumeExperience({ resume }: { resume: Resume }) {
                 {experience.location}
               </span>
             </div>
-            <div className="flex justify-between w-full">
+            <div className="flex  justify-between w-full">
               <span className="text-xs text-gray-600">
                 {experience.position.toUpperCase()}
               </span>
