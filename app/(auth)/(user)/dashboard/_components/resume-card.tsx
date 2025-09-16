@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
-import { IconCopy, IconTrash } from '@tabler/icons-react'
-import { useMutation } from 'convex/react'
-import { useRouter } from 'next/navigation'
-import { useTranslations } from 'next-intl'
-import { toast } from 'sonner'
+import { IconCopy, IconTrash } from "@tabler/icons-react";
+import { useMutation } from "convex/react";
+import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,56 +15,57 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
-import { Button } from '@/components/ui/button'
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { api } from '@/convex/_generated/api'
-import type { Id } from '@/convex/_generated/dataModel'
-import type { Resume } from '@/convex/resume/type'
+} from "@/components/ui/card";
+import { api } from "@/convex/_generated/api";
+import type { Id } from "@/convex/_generated/dataModel";
+import type { Resume } from "@/convex/resume/type";
+import ResumeView from "@/components/resume/resume-view";
 
 interface ResumeCardProps {
   resume: {
-    id: string
-    name: string
-    data: Resume
-    createdAt?: string
-    updatedAt?: string
-  }
+    id: string;
+    name: string;
+    data: Resume;
+    createdAt?: string;
+    updatedAt?: string;
+  };
 }
 
 export function ResumeCard({ resume }: ResumeCardProps) {
-  const t = useTranslations('resume-card')
-  const router = useRouter()
+  const t = useTranslations("resume-card");
+  const router = useRouter();
 
-  const deleteResume = useMutation(api.resume.functions.deleteOne)
-  const cloneResume = useMutation(api.resume.functions.clone)
+  const deleteResume = useMutation(api.resume.functions.deleteOne);
+  const cloneResume = useMutation(api.resume.functions.clone);
 
   const handleDelete = () => {
-    deleteResume({ id: resume.id as Id<'resumes'> }).then(() => {
-      toast.success(t('resume-deleted'))
-    })
-  }
+    deleteResume({ id: resume.id as Id<"resumes"> }).then(() => {
+      toast.success(t("resume-deleted"));
+    });
+  };
 
   const handleClone = () => {
-    cloneResume({ id: resume.id as Id<'resumes'> }).then(() => {
-      toast.success(t('resume-cloned'))
-    })
-  }
+    cloneResume({ id: resume.id as Id<"resumes"> }).then(() => {
+      toast.success(t("resume-cloned"));
+    });
+  };
 
   const handleCardClick = () => {
-    router.push(`/builder/${resume.id}`)
-  }
+    router.push(`/builder/${resume.id}`);
+  };
 
   const handleActionClick = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    e.preventDefault()
-  }
+    e.stopPropagation();
+    e.preventDefault();
+  };
 
   return (
     <Card className="bg-muted/60 dark:bg-card flex flex-col h-full overflow-hidden rounded-none group hover:cursor-pointer dark:hover:shadow-muted hover:shadow-lg transition-all duration-300 ease-in-out relative">
@@ -93,18 +94,18 @@ export function ResumeCard({ resume }: ResumeCardProps) {
           </AlertDialogTrigger>
           <AlertDialogContent className="sm:max-w-[425px]">
             <AlertDialogHeader>
-              <AlertDialogTitle>{t('delete-resume')}</AlertDialogTitle>
+              <AlertDialogTitle>{t("delete-resume")}</AlertDialogTitle>
               <AlertDialogDescription>
-                {t('delete-resume-description', { name: resume.name })}
+                {t("delete-resume-description", { name: resume.name })}
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>{t('cancel')}</AlertDialogCancel>
+              <AlertDialogCancel>{t("cancel")}</AlertDialogCancel>
               <AlertDialogAction
                 onClick={handleDelete}
                 className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
               >
-                {t('delete')}
+                {t("delete")}
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
@@ -116,20 +117,18 @@ export function ResumeCard({ resume }: ResumeCardProps) {
             <div className="w-full aspect-[1/1.414] bg-white flex items-center justify-center object-cover group-hover:bg-primary/10 transition-colors duration-300 ease-in-out relative overflow-hidden">
               <div
                 style={{
-                  width: '210mm',
-                  height: '297mm',
-                  position: 'absolute',
-                  top: '0%',
-                  left: '0%',
-                  transform: 'scale(0.35)',
-                  transformOrigin: 'top left',
-                  pointerEvents: 'none',
-                  userSelect: 'none',
+                  width: "210mm",
+                  height: "297mm",
+                  position: "absolute",
+                  top: "0%",
+                  left: "0%",
+                  transform: "scale(0.35)",
+                  transformOrigin: "top left",
+                  pointerEvents: "none",
+                  userSelect: "none",
                 }}
               >
-                {/* <ResumeView resume={resume.data} /> */}
-                Aqui ficaria o curriculo, vamos usar ou o curriculo em si ou
-                automtizar um print dele e salvar no convex
+                <ResumeView resume={resume.data} />
               </div>
             </div>
           </div>
@@ -143,7 +142,7 @@ export function ResumeCard({ resume }: ResumeCardProps) {
           {/* Optionally show created/updated date */}
           {resume.updatedAt && (
             <div className="text-xs text-muted-foreground mb-2">
-              {t('updated', {
+              {t("updated", {
                 time: new Date(resume.updatedAt).toLocaleDateString(),
               })}
             </div>
@@ -154,5 +153,5 @@ export function ResumeCard({ resume }: ResumeCardProps) {
         </CardFooter>
       </div>
     </Card>
-  )
+  );
 }

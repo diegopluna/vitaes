@@ -1,12 +1,12 @@
-'use client'
+"use client";
 
-import { UserButton } from '@clerk/nextjs'
-import { IconBrandGithubFilled, IconSettings } from '@tabler/icons-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useTranslations } from 'next-intl'
-import { LanguageSelector } from '@/components/language-selector'
-import { ThemeToggle } from '@/components/theme-toggle'
+import { UserButton } from "@clerk/nextjs";
+import { IconBrandGithubFilled, IconSettings } from "@tabler/icons-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { LanguageSelector } from "@/components/language-selector";
+import { ThemeToggle } from "@/components/theme-toggle";
 import {
   Sidebar,
   SidebarContent,
@@ -18,37 +18,38 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '@/components/ui/sidebar'
-import { useBuilderTab } from '@/providers/builder-tab-provider'
-import { useSections } from '@/providers/sections-provider'
+} from "@/components/ui/sidebar";
+import { useBuilderTab } from "@/providers/builder-tab-provider";
+import { useSections } from "@/providers/sections-provider";
+import { fa } from "zod/v4/locales";
 
 export function BuilderSidebar() {
-  const t = useTranslations('builder-sidebar')
-  const { sections, sectionRefs } = useSections()
-  const { setActiveTab } = useBuilderTab()
+  const t = useTranslations("builder-sidebar");
+  const { sections, sectionRefs } = useSections();
+  const { setActiveTab } = useBuilderTab();
 
   const scrollToSection = (sectionId: string) => {
-    setActiveTab('resume')
+    setActiveTab("resume");
 
     setTimeout(() => {
-      const sectionElement = sectionRefs.current[sectionId]
+      const sectionElement = sectionRefs.current[sectionId];
       if (sectionElement) {
         const scrollAreaViewport = document.querySelector(
-          '[data-radix-scroll-area-viewport]',
-        )
+          "[data-radix-scroll-area-viewport]",
+        );
         if (scrollAreaViewport) {
-          const offset = 0
-          const elementPosition = sectionElement.offsetTop
-          const offsetPosition = elementPosition - offset
+          const offset = 0;
+          const elementPosition = sectionElement.offsetTop;
+          const offsetPosition = elementPosition - offset;
 
           scrollAreaViewport.scrollTo({
             top: offsetPosition,
-            behavior: 'smooth',
-          })
+            behavior: "smooth",
+          });
         }
       }
-    }, 100)
-  }
+    }, 100);
+  };
 
   return (
     <Sidebar collapsible="icon">
@@ -72,7 +73,7 @@ export function BuilderSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>{t('resume-sections')}</SidebarGroupLabel>
+          <SidebarGroupLabel>{t("resume-sections")}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {sections.map((section) => (
@@ -94,11 +95,11 @@ export function BuilderSidebar() {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton
-                tooltip={t('settings')}
-                onClick={() => setActiveTab('settings')}
+                tooltip={t("settings")}
+                onClick={() => setActiveTab("settings")}
               >
                 <IconSettings />
-                <span>{t('settings')}</span>
+                <span>{t("settings")}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -110,7 +111,7 @@ export function BuilderSidebar() {
             <SidebarMenuButton
               tooltip="Github"
               onClick={() =>
-                window.open('https://github.com/diegopluna/vitaes', '_blank')
+                window.open("https://github.com/diegopluna/vitaes", "_blank")
               }
             >
               <IconBrandGithubFilled />
@@ -128,14 +129,14 @@ export function BuilderSidebar() {
               showName
               appearance={{
                 elements: {
-                  rootBox: 'w-full! h-8!',
+                  rootBox: "w-full! h-8!",
                   userButtonTrigger:
-                    'w-full! p-2! hover:bg-sidebar-accent! hover:text-sidebar-accent-foreground! group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2!',
+                    "w-full! p-2! hover:bg-sidebar-accent! hover:text-sidebar-accent-foreground! group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2!",
                   userButtonBox:
-                    'w-full! flex-row-reverse! justify-end! gap-2! group-data-[collapsible=icon]:justify-center! text-sidebar-foreground!',
+                    "w-full! flex-row-reverse! justify-end! gap-2! group-data-[collapsible=icon]:justify-center! text-sidebar-foreground!",
                   userButtonOuterIdentifier:
-                    'pl-0! group-data-[collapsible=icon]:hidden!',
-                  avatarBox: 'size-4!',
+                    "pl-0! group-data-[collapsible=icon]:hidden!",
+                  avatarBox: "size-4!",
                 },
               }}
             />
@@ -143,5 +144,5 @@ export function BuilderSidebar() {
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
