@@ -5,7 +5,6 @@ import createNextIntlPlugin from 'next-intl/plugin'
 const nextConfig: NextConfig = {
   /* config options here */
   output: 'standalone',
-  typedRoutes: true,
   rewrites: async () => {
     return [
       {
