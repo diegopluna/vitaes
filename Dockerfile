@@ -22,6 +22,17 @@ WORKDIR /app
 
 RUN corepack enable pnpm && pnpm dlx puppeteer browsers install chrome
 
+RUN apk add --no-cache \
+    chromium \
+    nss \
+    freetype \
+    freetype-dev \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont \
+    wqy-zenhei \
+    && rm -rf /var/cache/*
+
 ENV NODE_ENV=production
 
 RUN addgroup --system --gid 1001 nodejs

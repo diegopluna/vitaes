@@ -43,6 +43,7 @@ export async function POST(request: Request) {
       '--no-zygote',
       '--single-process',
     ],
+    ...(process.env.NODE_ENV === "production" && { executablePath: "/usr/bin/chromium"})
   })
   console.log("Opening new page")
   const page = await browser.newPage()
