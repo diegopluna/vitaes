@@ -43,6 +43,7 @@ export async function POST(request: Request) {
       '--no-first-run',
       '--no-zygote',
       '--single-process',
+      '--disable-crash-reporter'
     ],
     ...(process.env.NODE_ENV === "production" && { executablePath: "/usr/bin/chromium"})
   })
