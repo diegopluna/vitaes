@@ -3,7 +3,6 @@ import { fetchQuery } from 'convex/nextjs'
 import puppeteer from 'puppeteer'
 import { api } from '@/convex/_generated/api'
 import type { Id } from '@/convex/_generated/dataModel'
-import { env } from '@/env/client'
 import { env as envServer} from '@/env/server'
 
 export async function POST(request: Request) {
@@ -61,7 +60,7 @@ export async function POST(request: Request) {
   }
 
   console.log("Going to the page")
-  await page.goto(`${env.NEXT_PUBLIC_APP_URL}/resume/${id}`, {
+  await page.goto(`${envServer.INTERNAL_FRONTEND_URL}/resume/${id}`, {
     waitUntil: 'load',
   })
   console.log("Setting emulate media type")

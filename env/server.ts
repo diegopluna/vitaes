@@ -6,7 +6,8 @@ export const env = createEnv({
     CONVEX_SELF_HOSTED_URL: z.url(),
     CONVEX_SELF_HOSTED_ADMIN_KEY: z.string().min(1),
     CLERK_SECRET_KEY: z.string().min(1),
-    INTERNAL_CONVEX_URL: z.url()
+    INTERNAL_CONVEX_URL: z.url(),
+    INTERNAL_FRONTEND_URL: z.url()
   },
   // If you're using Next.js < 13.4.4, you'll need to specify the runtimeEnv manually
   // runtimeEnv: {
