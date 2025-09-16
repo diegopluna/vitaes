@@ -30,7 +30,10 @@ export default async function Page({
       id: resumeId as Id<"resumes">,
     },
     { token: jwtToken },
-  ).catch(() => null);
+  ).catch((e) => {
+    console.log("CONVEX ERROR:", e)
+    return null
+  });
 
   console.log("RESUME:", resume)
 
