@@ -17,8 +17,11 @@ export default async function Page({
   params: Promise<{ resumeId: string }>;
 }) {
   const { resumeId } = await params;
+  console.log("RESUME ID:", resumeId)
   const { getToken, redirectToSignIn } = await auth();
   const jwtToken = await getToken({ template: "convex " });
+  console.log("TOKEN: ", jwtToken)
+
   if (jwtToken === null) return redirectToSignIn();
 
   const resume = await fetchQuery(
@@ -28,6 +31,8 @@ export default async function Page({
     },
     { token: jwtToken },
   ).catch(() => null);
+
+  console.log("RESUME:", resume)
 
   if (!resume) redirect("/dashboard");
 
