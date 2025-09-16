@@ -5,6 +5,7 @@ import { A4Paper } from '@/components/resume/a4-paper'
 import AwesomeCV from '@/components/resume/templates/awesome-cv'
 import { api } from '@/convex/_generated/api'
 import type { Id } from '@/convex/_generated/dataModel'
+import { env } from '@/env/server'
 
 export default async function Page({
   params,
@@ -21,7 +22,7 @@ export default async function Page({
     {
       id: resumeId as Id<'resumes'>,
     },
-    { token: jwtToken },
+    { token: jwtToken, url: env.INTERNAL_CONVEX_URL },
   ).catch(() => null)
 
   if (!resume) notFound()
