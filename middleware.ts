@@ -21,7 +21,6 @@ export default clerkMiddleware(async (auth, req) => {
 })
 
 export const config = {
-  runtime: 'nodejs',
   // Run middleware on all routes except static assets and api routes
   matcher: ['/((?!.*\\..*|_next|api/auth).*)', '/', '/trpc(.*)'],
 }
