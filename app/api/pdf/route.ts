@@ -32,6 +32,7 @@ export async function POST(request: Request) {
 
   console.log("Launching puppeteer...")
 
+  try {
   const browser = await puppeteer.launch({
     headless: true,
     args: [
@@ -80,4 +81,8 @@ export async function POST(request: Request) {
       'Content-Disposition': `attachment; filename=${resume.name}.pdf`,
     },
   })
+  } catch (e) {
+    console.error("[ERROR]:",e)
+    throw e
+  }
 }
