@@ -10,7 +10,6 @@ import { SectionsProvider } from "@/providers/sections-provider";
 import { Builder } from "./_components/builder";
 import { BuilderHeader } from "./_components/builder-header";
 import { BuilderSidebar } from "./_components/builder-sidebar";
-import { env } from "@/env/server";
 
 export default async function Page({
   params,
@@ -30,7 +29,7 @@ export default async function Page({
     {
       id: resumeId as Id<"resumes">,
     },
-    { token: jwtToken, url: env.INTERNAL_CONVEX_URL },
+    { token: jwtToken },
   ).catch((e) => {
     console.log("CONVEX ERROR:", e)
     return null
