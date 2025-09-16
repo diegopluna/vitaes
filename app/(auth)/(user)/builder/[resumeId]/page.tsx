@@ -18,10 +18,8 @@ export default async function Page({
   params: Promise<{ resumeId: string }>;
 }) {
   const { resumeId } = await params;
-  console.log("RESUME ID:", resumeId)
   const { getToken, redirectToSignIn } = await auth();
   const jwtToken = await getToken({ template: "convex " });
-  console.log("TOKEN: ", jwtToken)
 
   if (jwtToken === null) return redirectToSignIn();
 
@@ -31,12 +29,10 @@ export default async function Page({
       id: resumeId as Id<"resumes">,
     },
     { token: jwtToken, url: env.INTERNAL_CONVEX_URL },
-  ).catch((e) => {
-    console.log("CONVEX ERROR:", e)
+  ).catch(() => {
     return null
   });
 
-  console.log("RESUME:", resume)
 
   if (!resume) redirect("/dashboard");
 

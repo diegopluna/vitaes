@@ -4,6 +4,7 @@ import puppeteer from 'puppeteer'
 import { api } from '@/convex/_generated/api'
 import type { Id } from '@/convex/_generated/dataModel'
 import { env } from '@/env/client'
+import { env as envServer} from '@/env/server'
 
 export async function POST(request: Request) {
   const { getToken } = await auth()
@@ -17,7 +18,7 @@ export async function POST(request: Request) {
     {
       id: id as Id<'resumes'>,
     },
-    { token: jwtToken },
+    { token: jwtToken, url: envServer.INTERNAL_CONVEX_URL },
   )
 
   if (!resume) return new Response('Not Found', { status: 404 })
