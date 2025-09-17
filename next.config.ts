@@ -10,11 +10,11 @@ const nextConfig: NextConfig = {
       {
         source: '/js/script.js',
         destination:
-          'http://plausible:8000/js/script.file-downloads.hash.outbound-links.pageview-props.tagged-events.js',
+          'https://plausible.dpeter.dev/js/script.file-downloads.hash.outbound-links.pageview-props.tagged-events.js',
       },
       {
         source: '/api/event',
-        destination: 'http://plausible:8000/api/event',
+        destination: 'https://plausible.dpeter.dev/api/event',
       },
     ]
   },
