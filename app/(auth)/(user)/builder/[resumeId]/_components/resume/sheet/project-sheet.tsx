@@ -84,7 +84,7 @@ export function ProjectSheet({ defaultValues }: { defaultValues?: Project }) {
         value: z.string(),
       }),
     ),
-    link: z.url(t('link-invalid')),
+    link: z.url(t('link-invalid')).optional(),
     startDate: z.string().min(1, t('start-date-required')),
     endDate: z.string(),
   })
