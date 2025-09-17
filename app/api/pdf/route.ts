@@ -53,7 +53,6 @@ export async function POST(request: Request) {
     await page.goto(`${envServer.INTERNAL_FRONTEND_URL}/resume/${id}`, {
       waitUntil: 'load',
     })
-    console.log('Setting emulate media type')
     await page.emulateMediaType('screen')
     const pdfBuffer = await page.pdf({
       format: 'A4',
