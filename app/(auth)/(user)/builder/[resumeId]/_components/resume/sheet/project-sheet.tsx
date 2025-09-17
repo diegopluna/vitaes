@@ -110,6 +110,7 @@ export function ProjectSheet({ defaultValues }: { defaultValues?: Project }) {
   const onSubmit = (value: z.infer<typeof projectExperienceFormSchema>) => {
     const project: Project = {
       ...value,
+      link: value.link || '',
       endDate: value.endDate || '',
       id: `${value.title}`,
       programmingLanguages: value.programmingLanguages.map((p) => {
