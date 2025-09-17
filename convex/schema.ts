@@ -3,9 +3,9 @@ import { v } from 'convex/values'
 
 export default defineSchema({
   resumes: defineTable({
-    userId: v.string(),
+    userEmail: v.string(),
     name: v.string(),
     data: v.any(),
     updatedAt: v.number(), // UNIX Timestamp
-  }).index('by_user_id', ['userId']),
+  }).index('by_user_email', ['userEmail']),
 })

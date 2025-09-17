@@ -26,7 +26,7 @@ export const clone = mutation({
       })
     }
 
-    if (resumeToClone.userId !== identity.subject) {
+    if (resumeToClone.userEmail !== identity.email) {
       throw new ConvexError({
         code: 'UNAUTHORIZED',
         message: 'Resume does not belong to the user',
@@ -36,7 +36,7 @@ export const clone = mutation({
     await ctx.db.insert('resumes', {
       data: resumeToClone.data,
       name: `${resumeToClone.name} (Copy)`,
-      userId: resumeToClone.userId,
+      userEmail: resumeToClone.userEmail,
       updatedAt: Date.now(),
     })
   },
@@ -64,7 +64,7 @@ export const deleteOne = mutation({
       })
     }
 
-    if (resumeToDelete.userId !== identity.subject) {
+    if (resumeToDelete.userEmail !== identity.email) {
       throw new ConvexError({
         code: 'UNAUTHORIZED',
         message: 'Resume does not belong to the user',
@@ -99,7 +99,7 @@ export const update = mutation({
       })
     }
 
-    if (resumeToUpdate.userId !== identity.subject) {
+    if (resumeToUpdate.userEmail !== identity.email) {
       throw new ConvexError({
         code: 'UNAUTHORIZED',
         message: 'Resume does not belong to the user',
@@ -136,7 +136,7 @@ export const updateName = mutation({
       })
     }
 
-    if (resumeToUpdate.userId !== identity.subject) {
+    if (resumeToUpdate.userEmail !== identity.email) {
       throw new ConvexError({
         code: 'UNAUTHORIZED',
         message: 'Resume does not belong to the user',
@@ -166,7 +166,7 @@ export const create = mutation({
 
     const newResumeId = await ctx.db.insert('resumes', {
       name: args.name,
-      userId: identity.subject,
+      userEmail: identity.email as string,
       data: getExampleData(args.locale as Locale),
       updatedAt: Date.now(),
     })
@@ -189,7 +189,7 @@ export const list = query({
 
     const resumes = await ctx.db
       .query('resumes')
-      .withIndex('by_user_id', (q) => q.eq('userId', identity.subject))
+      .withIndex('by_user_email', (q) => q.eq('userEmail', identity.email as string))
       .order('desc')
       .collect()
 
@@ -227,7 +227,7 @@ export const get = query({
       })
     }
 
-    if (resume.userId !== identity.subject) {
+    if (resume.userEmail !== identity.email) {
       throw new ConvexError({
         code: 'UNAUTHORIZED',
         message: 'Resume does not belong to the user',
