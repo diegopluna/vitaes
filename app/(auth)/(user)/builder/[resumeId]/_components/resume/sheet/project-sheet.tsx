@@ -101,7 +101,7 @@ export function ProjectSheet({ defaultValues }: { defaultValues?: Project }) {
       programmingLanguages: defaultValues?.programmingLanguages || [],
       repository: defaultValues?.repository || '',
       description: defaultValues?.description || [],
-      link: defaultValues?.link || '',
+      link: defaultValues?.link,
       startDate: defaultValues?.startDate || '',
       endDate: defaultValues?.endDate || '',
     },
