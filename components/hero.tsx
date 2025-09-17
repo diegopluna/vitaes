@@ -10,7 +10,7 @@ import { Button } from './ui/button'
 export function Hero() {
   const t = useTranslations('landing')
   const locale = useLocale()
-  const { resolvedTheme } = useTheme()
+  const { theme } = useTheme()
 
   return (
     <section className="container mx-auto">
@@ -38,12 +38,11 @@ export function Hero() {
           </div>
         </div>
 
-        {/* TODO: Add Images of the dashboard in light/dark mode and in each language */}
         <div className="relative group mt-14">
           <div className="absolute top-2 lg:-top-8 left-1/2 -translate-x-1/2 w-[90%] mx-auto h-24 lg:h-80 bg-primary/50 blur-3xl" />
           <Image
             alt="Vitaes"
-            src={`/${locale}-${resolvedTheme}.jpeg`}
+            src={`/${locale}-${theme}.jpeg`}
             width={1200}
             height={1800}
             className="w-full md:w-[1200px] mx-auto rounded-lg relative leading-none flex items-center border border-t-2 border-secondary border-t-primary/30"

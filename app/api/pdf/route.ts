@@ -3,7 +3,7 @@ import { fetchQuery } from 'convex/nextjs'
 import puppeteer from 'puppeteer'
 import { api } from '@/convex/_generated/api'
 import type { Id } from '@/convex/_generated/dataModel'
-import { env as envServer} from '@/env/server'
+import { env as envServer } from '@/env/server'
 
 export async function POST(request: Request) {
   const { getToken } = await auth()
@@ -21,56 +21,55 @@ export async function POST(request: Request) {
     { token: jwtToken, url: envServer.INTERNAL_CONVEX_URL },
   )
 
-
   if (!resume) return new Response('Not Found', { status: 404 })
 
-
   try {
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-      '--disable-gpu',
-      '--no-first-run',
-      '--no-zygote',
-      '--single-process',
-      '--disable-crash-reporter'
-    ],
-    ...(process.env.NODE_ENV === "production" && { executablePath: "/usr/bin/chromium"})
-  })
-  const page = await browser.newPage()
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-gpu',
+        '--no-first-run',
+        '--no-zygote',
+        '--single-process',
+        '--disable-crash-reporter',
+      ],
+      ...(process.env.NODE_ENV === 'production' && {
+        executablePath: '/usr/bin/chromium',
+      }),
+    })
+    const page = await browser.newPage()
 
-  const cookie = request.headers.get('cookie')
-  const cookies = cookie?.split(';')
-  const sessionCookie = cookies?.find((c) => c.includes('__session'))
-  console.log("COOKIES:", sessionCookie)
+    const cookie = request.headers.get('cookie')
+    const cookies = cookie?.split(';')
+    const sessionCookie = cookies?.find((c) => c.includes('__session'))
 
-  if (sessionCookie) {
-    await page.setExtraHTTPHeaders({ cookie: cookie as string })
-  }
+    if (sessionCookie) {
+      await page.setExtraHTTPHeaders({ cookie: cookie as string })
+    }
 
-  await page.goto(`${envServer.INTERNAL_FRONTEND_URL}/resume/${id}`, {
-    waitUntil: 'load',
-  })
-  console.log("Setting emulate media type")
-  await page.emulateMediaType('screen')
-  const pdfBuffer = await page.pdf({
-    format: 'A4',
-    margin: { top: '0.8cm', bottom: '1.8cm' },
-  })
-  await browser.close()
+    await page.goto(`${envServer.INTERNAL_FRONTEND_URL}/resume/${id}`, {
+      waitUntil: 'load',
+    })
+    console.log('Setting emulate media type')
+    await page.emulateMediaType('screen')
+    const pdfBuffer = await page.pdf({
+      format: 'A4',
+      margin: { top: '0.8cm', bottom: '1.8cm' },
+    })
+    await browser.close()
 
-  // @ts-expect-error
-  return new Response(pdfBuffer, {
-    headers: {
-      'Content-Type': 'application/pdf',
-      'Content-Disposition': `attachment; filename=${resume.name}.pdf`,
-    },
-  })
+    // @ts-expect-error TS2322
+    return new Response(pdfBuffer, {
+      headers: {
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': `attachment; filename=${resume.name}.pdf`,
+      },
+    })
   } catch (e) {
-    console.error("[ERROR]:",e)
+    console.error('[ERROR]:', e)
     throw e
   }
 }
