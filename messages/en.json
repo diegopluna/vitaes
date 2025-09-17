@@ -1,5 +1,4 @@
 {
-  "$schema": "https://inlang.com/schema/inlang-message-format",
   "landing": {
     "action": "Build your resume with",
     "sub-action": "Your resume is your first impression. Make it count.",
