@@ -23,16 +23,28 @@ import type { Locale } from '@/convex/locale'
 import { useAutoSaveResume } from '@/hooks/use-auto-save-resume'
 import { useResumeStore } from '@/providers/resume-store-provider'
 
-export function BuilderHeader({ id }: { id: Id<'resumes'> }) {
+const getUpdatedAt = (
+  updatedAt: number | undefined,
+  creationTime: number | undefined,
+) => {
+  if (!updatedAt) {
+    if (!creationTime) {
+      return null
+    }
+    return new Date(creationTime)
+  }
+  return new Date(updatedAt)
+}
+
+export function BuilderHeader({ id }: Readonly<{ id: Id<'resumes'> }>) {
   const t = useTranslations('builder-header')
 
   const resumeQuery = useQuery(api.resume.functions.get, { id })
   const name = resumeQuery?.name ?? ''
-  const updatedAt = resumeQuery?.updatedAt
-    ? new Date(resumeQuery.updatedAt)
-    : resumeQuery?._creationTime
-      ? new Date(resumeQuery._creationTime)
-      : null
+  const updatedAt = getUpdatedAt(
+    resumeQuery?.updatedAt,
+    resumeQuery?._creationTime,
+  )
 
   const resume = useResumeStore((s) => s.resume)
 
@@ -102,6 +114,7 @@ export function BuilderHeader({ id }: { id: Id<'resumes'> }) {
                   />
                 ) : (
                   <span
+                    role="button"
                     className="cursor-pointer group-hover:border group-hover:border-primary group-hover:rounded group-hover:px-2 group-hover:py-1 transition-all"
                     onClick={() => setEditingName(true)}
                   >
@@ -142,7 +155,10 @@ export function BuilderHeader({ id }: { id: Id<'resumes'> }) {
   )
 }
 
-function DownloadPdfButton({ id, name }: { id: Id<'resumes'>; name: string }) {
+function DownloadPdfButton({
+  id,
+  name,
+}: Readonly<{ id: Id<'resumes'>; name: string }>) {
   const t = useTranslations('builder-header')
   const [loading, setLoading] = useState(false)
 
