@@ -1,317 +1,319 @@
 {
-  "landing": {
-    "action": "Build your resume with",
-    "sub-action": "Your resume is your first impression. Make it count.",
-    "action-button": "Get Started",
-    "footer": "Developed by"
-  },
-  "language-selector": {
-    "select-language": "Select Language"
-  },
-  "theme-toggle": {
-    "light": "Light",
-    "dark": "Dark",
-    "toggle-theme": "Toggle Theme"
-  },
-  "navbar": {
-    "github": "View on GitHub"
-  },
-  "login": {
-    "welcome": "Welcome back!",
-    "google": "Continue with Google",
-    "github": "Continue with GitHub"
-  },
-  "user-button": {
-    "logout": "Logout"
-  },
-  "dashboard": {
-    "resumes": "Resumes"
-  },
-  "new-resume-card": {
-    "create-new": "Create New",
-    "choose-template": "Choose a template to get started",
-    "add-resume": "Add Resume",
-    "resume-name": "Resume Name",
-    "cancel": "Cancel",
-    "add": "Add",
-    "failed-to-create": "Failed to create resume"
-  },
-  "builder": {
-    "resume-not-found": "Resume not found"
-  },
-  "not-found": {
-    "title": "Not Found",
-    "description": "The page you are looking for does not exist."
-  },
-  "builder-sidebar": {
-    "resume-sections": "Resume Sections",
-    "settings": "Settings"
-  },
-  "builder-header": {
-    "builder": "Builder",
-    "saving": "Saving...",
-    "error-saving": "Error saving: {error}",
-    "last-saved": "Last saved: {time}",
-    "failed-to-generate-pdf": "Failed to generate PDF",
-    "downloading": "Downloading...",
-    "download": "Download"
-  },
-  "personal-form": {
-    "first-name": "First Name",
-    "first-name-placeholder": "John",
-    "last-name": "Last Name",
-    "last-name-placeholder": "Doe",
-    "phone": "Phone",
-    "phone-placeholder": "+1234567890",
-    "email": "Email",
-    "email-placeholder": "john.doe@example.com",
-    "url": "Website",
-    "url-placeholder": "https://www.john-doe.com",
-    "quote": "Quote",
-    "quote-placeholder": "A quote from John Doe"
-  },
-  "sections": {
-    "personal": "Personal Information",
-    "profiles": "Profiles"
-  },
-  "profile-sheet": {
-    "edit-profile": "Edit Profile",
-    "add-profile": "Add Profile",
-    "network": "Network",
-    "network-placeholder": "e.g. LinkedIn",
-    "username": "Username",
-    "username-placeholder": "e.g. john-doe",
-    "url": "URL",
-    "url-placeholder": "e.g. https://www.linkedin.com/in/john-doe",
-    "cancel": "Cancel",
-    "save": "Save",
-    "network-required": "Network is required",
-    "username-required": "Username is required",
-    "url-invalid": "URL is invalid"
-  },
-  "delete-modal": {
-    "tooltip": "Delete {type}",
-    "title": "Are you sure you want to delete this {type}?",
-    "description": "This action cannot be undone.",
-    "cancel": "Cancel",
-    "delete": "Delete"
-  },
-  "highlight-item": {
-    "delete": "Delete"
-  },
-  "item": {
-    "edit": "Edit",
-    "delete": "Delete"
-  },
-  "profile-form": {
-    "no-profile-added": "No profile added",
-    "type": "Profile"
-  },
-  "work-sheet": {
-    "edit": "Edit",
-    "add": "Add",
-    "company": "Company",
-    "location": "Location",
-    "position": "Position",
-    "start-date": "Start Date",
-    "end-date": "End Date",
-    "highlights": "Highlights",
-    "no-highlights-added": "No highlights added",
-    "save": "Save",
-    "company-required": "Company is required",
-    "location-required": "Location is required",
-    "position-required": "Position is required",
-    "start-date-required": "Start date is required"
-  },
-  "highlight-type": "Highlight",
-  "work-form": {
-    "no-work-added": "No {label} added"
-  },
-  "honor-type-sheet": {
-    "edit": "Edit",
-    "add": "Add",
-    "year": "Year",
-    "update": "Update",
-    "position": "Position",
-    "honor": "Honor",
-    "location": "Location"
-  },
-  "honor-sheet": {
-    "edit": "Edit",
-    "add": "Add",
-    "year": "Year",
-    "update": "Update",
-    "position": "Position",
-    "honor": "Honor",
-    "location": "Location",
-    "label": "Label",
-    "honors": "Honors",
-    "no-honors-added": "No {label} added",
-    "label-required": "Label is required"
-  },
-  "honors-form": {
-    "no-honors-added": "No {label} added"
-  },
-  "presentation-sheet": {
-    "edit": "Edit",
-    "add": "Add",
-    "event": "Event",
-    "role": "Role",
-    "location": "Location",
-    "date": "Date",
-    "description": "Description",
-    "no-presentations-added": "No {label} added",
-    "save": "Save",
-    "event-required": "Event is required",
-    "role-required": "Role is required",
-    "location-required": "Location is required",
-    "date-required": "Date is required"
-  },
-  "presentations-form": {
-    "no-presentations-added": "No {label} added"
-  },
-  "writing-sheet": {
-    "edit": "Edit",
-    "add": "Add",
-    "title": "Title",
-    "role": "Role",
-    "medium": "Medium",
-    "start-date": "Start Date",
-    "end-date": "End Date",
-    "description": "Description",
-    "no-writings-added": "No {label} added",
-    "save": "Save",
-    "title-required": "Title is required",
-    "role-required": "Role is required",
-    "medium-required": "Medium is required",
-    "start-date-required": "Start date is required"
-  },
-  "writings-form": {
-    "no-writings-added": "No {label} added"
-  },
-  "comittee-sheet": {
-    "edit": "Edit",
-    "add": "Add",
-    "year": "Year",
-    "position": "Position",
-    "organization": "Organization",
-    "location": "Location",
-    "save": "Save",
-    "year-required": "Year is required",
-    "position-required": "Position is required",
-    "organization-required": "Organization is required",
-    "location-required": "Location is required"
-  },
-  "comittee-form": {
-    "no-comittees-added": "No {label} added"
-  },
-  "education-sheet": {
-    "edit": "Edit",
-    "add": "Add",
-    "school": "School",
-    "location": "Location",
-    "degree": "Degree",
-    "start-date": "Start Date",
-    "end-date": "End Date",
-    "description": "Description",
-    "no-education-added": "No {label} added",
-    "save": "Save",
-    "school-required": "School is required",
-    "location-required": "Location is required",
-    "degree-required": "Degree is required",
-    "start-date-required": "Start date is required",
-    "no-education-highlight-added": "No {label} highlight added"
-  },
-  "education-form": {
-    "no-education-added": "No {label} added"
-  },
-  "extracurricular-sheet": {
-    "edit": "Edit",
-    "add": "Add",
-    "role": "Role",
-    "organization": "Organization",
-    "location": "Location",
-    "start-date": "Start Date",
-    "end-date": "End Date",
-    "description": "Description",
-    "no-extracurricular-highlights-added": "No {label} highlights added",
-    "save": "Save",
-    "role-required": "Role is required",
-    "organization-required": "Organization is required",
-    "location-required": "Location is required",
-    "start-date-required": "Start date is required"
-  },
-  "extracurricular-form": {
-    "no-extracurricular-added": "No {label} added"
-  },
-  "project-sheet": {
-    "edit": "Edit",
-    "add": "Add",
-    "title": "Title",
-    "repository": "Repository",
-    "link": "URL",
-    "start-date": "Start Date",
-    "end-date": "End Date",
-    "description": "Description",
-    "programming-languages": "Programming Languages",
-    "no-programming-languages-added": "No programming languages added",
-    "no-description-added": "No description added",
-    "save": "Save",
-    "title-required": "Title is required",
-    "repository-required": "Repository is required",
-    "link-invalid": "URL is invalid",
-    "start-date-required": "Start date is required"
-  },
-  "project-form": {
-    "no-projects-added": "No {label} added"
-  },
-  "language-sheet": {
-    "edit": "Edit",
-    "add": "Add",
-    "language": "Language",
-    "fluency": "Fluency",
-    "save": "Save",
-    "language-required": "Language is required",
-    "fluency-required": "Fluency is required"
-  },
-  "language-form": {
-    "no-languages-added": "No {label} added"
-  },
-  "certificate-sheet": {
-    "edit": "Edit",
-    "add": "Add",
-    "title": "Title",
-    "issuer": "Issuer",
-    "date": "Date",
-    "description": "Description",
-    "no-description-added": "No description added",
-    "save": "Save",
-    "title-required": "Title is required",
-    "issuer-required": "Issuer is required",
-    "date-required": "Date is required"
-  },
-  "certificate-form": {
-    "no-certificates-added": "No {label} added"
-  },
-  "resume-settings": {
-    "select-an-option": "Select an option",
-    "label": "Model",
-    "alignment-left": "Left",
-    "alignment-center": "Center",
-    "alignment-right": "Right",
-    "alignment": "Alignment",
-    "accent-color": "Accent Color",
-    "settings": "Settings",
-    "colors": "Colors",
-    "load-resume": "Load Resume from JSON"
-  },
-  "resume-card": {
-    "updated": "Updated: {time}",
-    "delete-resume": "Delete Resume",
-    "delete-resume-description": "Are you sure you want to delete {name}? This action cannot be undone.",
-    "delete": "Delete",
-    "cancel": "Cancel",
-    "resume-deleted": "Resume deleted successfully",
-    "resume-cloned": "Resume cloned successfully"
-  }
+	"landing": {
+		"action": "Build your resume with",
+		"sub-action": "Your resume is your first impression. Make it count.",
+		"action-button": "Get Started",
+		"footer": "Developed by"
+	},
+	"language-selector": {
+		"select-language": "Select Language"
+	},
+	"theme-toggle": {
+		"light": "Light",
+		"dark": "Dark",
+		"toggle-theme": "Toggle Theme"
+	},
+	"navbar": {
+		"github": "View on GitHub"
+	},
+	"login": {
+		"welcome": "Welcome back!",
+		"google": "Continue with Google",
+		"github": "Continue with GitHub"
+	},
+	"user-button": {
+		"logout": "Logout"
+	},
+	"dashboard": {
+		"resumes": "Resumes"
+	},
+	"new-resume-card": {
+		"create-new": "Create New",
+		"choose-template": "Choose a template to get started",
+		"add-resume": "Add Resume",
+		"resume-name": "Resume Name",
+		"cancel": "Cancel",
+		"add": "Add",
+		"failed-to-create": "Failed to create resume"
+	},
+	"builder": {
+		"resume-not-found": "Resume not found"
+	},
+	"not-found": {
+		"title": "Not Found",
+		"description": "The page you are looking for does not exist."
+	},
+	"builder-sidebar": {
+		"resume-sections": "Resume Sections",
+		"settings": "Settings"
+	},
+	"builder-header": {
+		"builder": "Builder",
+		"saving": "Saving...",
+		"error-saving": "Error saving: {error}",
+		"last-saved": "Last saved: {time}",
+		"failed-to-generate-pdf": "Failed to generate PDF",
+		"downloading": "Downloading...",
+		"download": "Download"
+	},
+	"personal-form": {
+		"first-name": "First Name",
+		"first-name-placeholder": "John",
+		"last-name": "Last Name",
+		"last-name-placeholder": "Doe",
+		"phone": "Phone",
+		"phone-placeholder": "+1234567890",
+		"email": "Email",
+		"email-placeholder": "john.doe@example.com",
+		"url": "Website",
+		"url-placeholder": "https://www.john-doe.com",
+		"quote": "Quote",
+		"quote-placeholder": "A quote from John Doe"
+	},
+	"sections": {
+		"personal": "Personal Information",
+		"profiles": "Profiles"
+	},
+	"profile-sheet": {
+		"edit-profile": "Edit Profile",
+		"add-profile": "Add Profile",
+		"network": "Network",
+		"network-placeholder": "e.g. LinkedIn",
+		"username": "Username",
+		"username-placeholder": "e.g. john-doe",
+		"url": "URL",
+		"url-placeholder": "e.g. https://www.linkedin.com/in/john-doe",
+		"cancel": "Cancel",
+		"save": "Save",
+		"network-required": "Network is required",
+		"username-required": "Username is required",
+		"url-invalid": "URL is invalid"
+	},
+	"delete-modal": {
+		"tooltip": "Delete {type}",
+		"title": "Are you sure you want to delete this {type}?",
+		"description": "This action cannot be undone.",
+		"cancel": "Cancel",
+		"delete": "Delete"
+	},
+	"highlight-item": {
+		"delete": "Delete"
+	},
+	"item": {
+		"edit": "Edit",
+		"delete": "Delete"
+	},
+	"profile-form": {
+		"no-profile-added": "No profile added",
+		"type": "Profile"
+	},
+	"work-sheet": {
+		"edit": "Edit",
+		"add": "Add",
+		"company": "Company",
+		"location": "Location",
+		"position": "Position",
+		"start-date": "Start Date",
+		"end-date": "End Date",
+		"highlights": "Highlights",
+		"no-highlights-added": "No highlights added",
+		"save": "Save",
+		"company-required": "Company is required",
+		"location-required": "Location is required",
+		"position-required": "Position is required",
+		"start-date-required": "Start date is required"
+	},
+	"highlight-type": "Highlight",
+	"work-form": {
+		"no-work-added": "No {label} added"
+	},
+	"honor-type-sheet": {
+		"edit": "Edit",
+		"add": "Add",
+		"year": "Year",
+		"update": "Update",
+		"position": "Position",
+		"honor": "Honor",
+		"location": "Location"
+	},
+	"honor-sheet": {
+		"edit": "Edit",
+		"add": "Add",
+		"year": "Year",
+		"update": "Update",
+		"position": "Position",
+		"honor": "Honor",
+		"location": "Location",
+		"label": "Label",
+		"honors": "Honors",
+		"no-honors-added": "No {label} added",
+		"label-required": "Label is required"
+	},
+	"honors-form": {
+		"no-honors-added": "No {label} added"
+	},
+	"presentation-sheet": {
+		"edit": "Edit",
+		"add": "Add",
+		"event": "Event",
+		"role": "Role",
+		"location": "Location",
+		"date": "Date",
+		"description": "Description",
+		"no-presentations-added": "No {label} added",
+		"save": "Save",
+		"event-required": "Event is required",
+		"role-required": "Role is required",
+		"location-required": "Location is required",
+		"date-required": "Date is required"
+	},
+	"presentations-form": {
+		"no-presentations-added": "No {label} added"
+	},
+	"writing-sheet": {
+		"edit": "Edit",
+		"add": "Add",
+		"title": "Title",
+		"role": "Role",
+		"medium": "Medium",
+		"start-date": "Start Date",
+		"end-date": "End Date",
+		"description": "Description",
+		"no-writings-added": "No {label} added",
+		"save": "Save",
+		"title-required": "Title is required",
+		"role-required": "Role is required",
+		"medium-required": "Medium is required",
+		"start-date-required": "Start date is required"
+	},
+	"writings-form": {
+		"no-writings-added": "No {label} added"
+	},
+	"comittee-sheet": {
+		"edit": "Edit",
+		"add": "Add",
+		"year": "Year",
+		"position": "Position",
+		"organization": "Organization",
+		"location": "Location",
+		"save": "Save",
+		"year-required": "Year is required",
+		"position-required": "Position is required",
+		"organization-required": "Organization is required",
+		"location-required": "Location is required"
+	},
+	"comittee-form": {
+		"no-comittees-added": "No {label} added"
+	},
+	"education-sheet": {
+		"edit": "Edit",
+		"add": "Add",
+		"school": "School",
+		"location": "Location",
+		"degree": "Degree",
+		"start-date": "Start Date",
+		"end-date": "End Date",
+		"description": "Description",
+		"no-education-added": "No {label} added",
+		"save": "Save",
+		"school-required": "School is required",
+		"location-required": "Location is required",
+		"degree-required": "Degree is required",
+		"start-date-required": "Start date is required",
+		"no-education-highlight-added": "No {label} highlight added"
+	},
+	"education-form": {
+		"no-education-added": "No {label} added"
+	},
+	"extracurricular-sheet": {
+		"edit": "Edit",
+		"add": "Add",
+		"role": "Role",
+		"organization": "Organization",
+		"location": "Location",
+		"start-date": "Start Date",
+		"end-date": "End Date",
+		"description": "Description",
+		"no-extracurricular-highlights-added": "No {label} highlights added",
+		"save": "Save",
+		"role-required": "Role is required",
+		"organization-required": "Organization is required",
+		"location-required": "Location is required",
+		"start-date-required": "Start date is required"
+	},
+	"extracurricular-form": {
+		"no-extracurricular-added": "No {label} added"
+	},
+	"project-sheet": {
+		"edit": "Edit",
+		"add": "Add",
+		"title": "Title",
+		"repository": "Repository",
+		"link": "URL",
+		"start-date": "Start Date",
+		"end-date": "End Date",
+		"description": "Description",
+		"programming-languages": "Programming Languages",
+		"no-programming-languages-added": "No programming languages added",
+		"no-description-added": "No description added",
+		"save": "Save",
+		"title-required": "Title is required",
+		"repository-required": "Repository is required",
+		"link-invalid": "URL is invalid",
+		"start-date-required": "Start date is required"
+	},
+	"project-form": {
+		"no-projects-added": "No {label} added"
+	},
+	"language-sheet": {
+		"edit": "Edit",
+		"add": "Add",
+		"language": "Language",
+		"fluency": "Fluency",
+		"save": "Save",
+		"language-required": "Language is required",
+		"fluency-required": "Fluency is required"
+	},
+	"language-form": {
+		"no-languages-added": "No {label} added"
+	},
+	"certificate-sheet": {
+		"edit": "Edit",
+		"add": "Add",
+		"title": "Title",
+		"issuer": "Issuer",
+		"date": "Date",
+		"description": "Description",
+		"no-description-added": "No description added",
+		"save": "Save",
+		"title-required": "Title is required",
+		"issuer-required": "Issuer is required",
+		"date-required": "Date is required"
+	},
+	"certificate-form": {
+		"no-certificates-added": "No {label} added"
+	},
+	"resume-settings": {
+		"select-an-option": "Select an option",
+		"label": "Model",
+		"alignment-left": "Left",
+		"alignment-center": "Center",
+		"alignment-right": "Right",
+		"alignment": "Alignment",
+		"accent-color": "Accent Color",
+		"settings": "Settings",
+		"colors": "Colors",
+		"load-resume": "Load Resume from JSON"
+	},
+	"resume-card": {
+		"updated": "Updated: {time}",
+		"delete-resume": "Delete Resume",
+		"delete-resume-description": "Are you sure you want to delete {name}? This action cannot be undone.",
+		"delete": "Delete",
+		"cancel": "Cancel",
+		"resume-deleted": "Resume deleted successfully",
+		"resume-cloned": "Resume cloned successfully"
+	},
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"hello_world": "Hello, {name} from en!"
 }

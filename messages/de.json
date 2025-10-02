@@ -1,317 +1,319 @@
 {
-  "landing": {
-    "action": "Erstelle deine Lebenslauf mit",
-    "sub-action": "Ihr Lebenslauf vermittelt den ersten Eindruck. Sorgen Sie dafür, dass er zählt.",
-    "action-button": "Erste Schritte",
-    "footer": "Entwickelt von"
-  },
-  "language-selector": {
-    "select-language": "Sprache auswählen"
-  },
-  "theme-toggle": {
-    "light": "Licht",
-    "dark": "Dunkel",
-    "toggle-theme": "Thema umschalten"
-  },
-  "navbar": {
-    "github": "Auf GitHub anzeigen"
-  },
-  "login": {
-    "welcome": "Willkommen zurück!",
-    "google": "Weiter mit Google",
-    "github": "Weiter mit GitHub"
-  },
-  "user-button": {
-    "logout": "Ausloggen"
-  },
-  "dashboard": {
-    "resumes": "Lebensläufe"
-  },
-  "new-resume-card": {
-    "create-new": "Neu erstellen",
-    "choose-template": "Wählen Sie eine Vorlage aus, um zu beginnen",
-    "add-resume": "Lebenslauf hinzufügen",
-    "resume-name": "Name des Lebenslaufs",
-    "cancel": "Stornieren",
-    "add": "Hinzufügen",
-    "failed-to-create": "Lebenslauf konnte nicht erstellt werden"
-  },
-  "builder": {
-    "resume-not-found": "Lebenslauf nicht gefunden"
-  },
-  "not-found": {
-    "title": "Nicht gefunden",
-    "description": "Die gesuchte Seite existiert nicht."
-  },
-  "builder-sidebar": {
-    "resume-sections": "Abschnitte des Lebenslaufs",
-    "settings": "Einstellungen"
-  },
-  "builder-header": {
-    "builder": "Baumeister",
-    "saving": "Speichern...",
-    "error-saving": "Fehler beim Speichern: {error}",
-    "last-saved": "Zuletzt gespeichert: {time}",
-    "failed-to-generate-pdf": "PDF konnte nicht erstellt werden",
-    "downloading": "Wird heruntergeladen...",
-    "download": "Herunterladen"
-  },
-  "personal-form": {
-    "first-name": "Vorname",
-    "first-name-placeholder": "John",
-    "last-name": "Nachname",
-    "last-name-placeholder": "Damhirschkuh",
-    "phone": "Telefon",
-    "phone-placeholder": "+1234567890",
-    "email": "E-Mail",
-    "email-placeholder": "john.doe@example.com",
-    "url": "Webseite",
-    "url-placeholder": "https://www.john-doe.com",
-    "quote": "Zitat",
-    "quote-placeholder": "Ein Zitat von John Doe"
-  },
-  "sections": {
-    "personal": "Persönliche Informationen",
-    "profiles": "Profile"
-  },
-  "profile-sheet": {
-    "edit-profile": "Profil bearbeiten",
-    "add-profile": "Profil hinzufügen",
-    "network": "Netzwerk",
-    "network-placeholder": "zB LinkedIn",
-    "username": "Benutzername",
-    "username-placeholder": "zB John-Doe",
-    "url": "URL",
-    "url-placeholder": "zB https://www.linkedin.com/in/john-doe",
-    "cancel": "Stornieren",
-    "save": "Speichern",
-    "network-required": "Netzwerk ist erforderlich",
-    "username-required": "Benutzername ist erforderlich",
-    "url-invalid": "Die URL ist ungültig"
-  },
-  "delete-modal": {
-    "tooltip": "Löschen Sie {type}",
-    "title": "Möchten Sie diesen {type} wirklich löschen?",
-    "description": "Diese Aktion kann nicht rückgängig gemacht werden.",
-    "cancel": "Stornieren",
-    "delete": "Löschen"
-  },
-  "highlight-item": {
-    "delete": "Löschen"
-  },
-  "item": {
-    "edit": "Bearbeiten",
-    "delete": "Löschen"
-  },
-  "profile-form": {
-    "no-profile-added": "Kein Profil hinzugefügt",
-    "type": "Profil"
-  },
-  "work-sheet": {
-    "edit": "Bearbeiten",
-    "add": "Hinzufügen",
-    "company": "Unternehmen",
-    "location": "Standort",
-    "position": "Position",
-    "start-date": "Startdatum",
-    "end-date": "Enddatum",
-    "highlights": "Highlights",
-    "no-highlights-added": "Keine Highlights hinzugefügt",
-    "save": "Speichern",
-    "company-required": "Firma ist erforderlich",
-    "location-required": "Standort ist erforderlich",
-    "position-required": "Position ist erforderlich",
-    "start-date-required": "Startdatum ist erforderlich"
-  },
-  "highlight-type": "Highlight",
-  "work-form": {
-    "no-work-added": "Kein {label} hinzugefügt"
-  },
-  "honor-type-sheet": {
-    "edit": "Bearbeiten",
-    "add": "Hinzufügen",
-    "year": "Jahr",
-    "update": "Aktualisieren",
-    "position": "Position",
-    "honor": "Ehre",
-    "location": "Standort"
-  },
-  "honor-sheet": {
-    "edit": "Bearbeiten",
-    "add": "Hinzufügen",
-    "year": "Jahr",
-    "update": "Aktualisieren",
-    "position": "Position",
-    "honor": "Ehre",
-    "location": "Standort",
-    "label": "Etikett",
-    "honors": "Ehrungen",
-    "no-honors-added": "Kein {label} hinzugefügt",
-    "label-required": "Etikett ist erforderlich"
-  },
-  "honors-form": {
-    "no-honors-added": "Kein {label} hinzugefügt"
-  },
-  "presentation-sheet": {
-    "edit": "Bearbeiten",
-    "add": "Hinzufügen",
-    "event": "Ereignis",
-    "role": "Rolle",
-    "location": "Standort",
-    "date": "Datum",
-    "description": "Beschreibung",
-    "no-presentations-added": "Kein {label} hinzugefügt",
-    "save": "Speichern",
-    "event-required": "Ereignis ist erforderlich",
-    "role-required": "Rolle ist erforderlich",
-    "location-required": "Standort ist erforderlich",
-    "date-required": "Datum ist erforderlich"
-  },
-  "presentations-form": {
-    "no-presentations-added": "Kein {label} hinzugefügt"
-  },
-  "writing-sheet": {
-    "edit": "Bearbeiten",
-    "add": "Hinzufügen",
-    "title": "Titel",
-    "role": "Rolle",
-    "medium": "Medium",
-    "start-date": "Startdatum",
-    "end-date": "Enddatum",
-    "description": "Beschreibung",
-    "no-writings-added": "Kein {label} hinzugefügt",
-    "save": "Speichern",
-    "title-required": "Titel ist erforderlich",
-    "role-required": "Rolle ist erforderlich",
-    "medium-required": "Medium ist erforderlich",
-    "start-date-required": "Startdatum ist erforderlich"
-  },
-  "writings-form": {
-    "no-writings-added": "Kein {label} hinzugefügt"
-  },
-  "comittee-sheet": {
-    "edit": "Bearbeiten",
-    "add": "Hinzufügen",
-    "year": "Jahr",
-    "position": "Position",
-    "organization": "Organisation",
-    "location": "Standort",
-    "save": "Speichern",
-    "year-required": "Jahr ist erforderlich",
-    "position-required": "Position ist erforderlich",
-    "organization-required": "Organisation ist gefragt",
-    "location-required": "Standort ist erforderlich"
-  },
-  "comittee-form": {
-    "no-comittees-added": "Kein {label} hinzugefügt"
-  },
-  "education-sheet": {
-    "edit": "Bearbeiten",
-    "add": "Hinzufügen",
-    "school": "Schule",
-    "location": "Standort",
-    "degree": "Grad",
-    "start-date": "Startdatum",
-    "end-date": "Enddatum",
-    "description": "Beschreibung",
-    "no-education-added": "Kein {label} hinzugefügt",
-    "save": "Speichern",
-    "school-required": "Schule ist Pflicht",
-    "location-required": "Standort ist erforderlich",
-    "degree-required": "Abschluss erforderlich",
-    "start-date-required": "Startdatum ist erforderlich",
-    "no-education-highlight-added": "Keine {label} hinzugefügt"
-  },
-  "education-form": {
-    "no-education-added": "Kein {label} hinzugefügt"
-  },
-  "extracurricular-sheet": {
-    "edit": "Bearbeiten",
-    "add": "Hinzufügen",
-    "role": "Rolle",
-    "organization": "Organisation",
-    "location": "Standort",
-    "start-date": "Startdatum",
-    "end-date": "Enddatum",
-    "description": "Beschreibung",
-    "no-extracurricular-highlights-added": "Keine {label} Hervorhebungen hinzugefügt",
-    "save": "Speichern",
-    "role-required": "Rolle ist erforderlich",
-    "organization-required": "Organisation ist gefragt",
-    "location-required": "Standort ist erforderlich",
-    "start-date-required": "Startdatum ist erforderlich"
-  },
-  "extracurricular-form": {
-    "no-extracurricular-added": "Kein {label} hinzugefügt"
-  },
-  "project-sheet": {
-    "edit": "Bearbeiten",
-    "add": "Hinzufügen",
-    "title": "Titel",
-    "repository": "Archiv",
-    "link": "URL",
-    "start-date": "Startdatum",
-    "end-date": "Enddatum",
-    "description": "Beschreibung",
-    "programming-languages": "Programmiersprachen",
-    "no-programming-languages-added": "Keine Programmiersprachen hinzugefügt",
-    "no-description-added": "Keine Beschreibung hinzugefügt",
-    "save": "Speichern",
-    "title-required": "Titel ist erforderlich",
-    "repository-required": "Repository ist erforderlich",
-    "link-invalid": "Die URL ist ungültig",
-    "start-date-required": "Startdatum ist erforderlich"
-  },
-  "project-form": {
-    "no-projects-added": "Kein {label} hinzugefügt"
-  },
-  "language-sheet": {
-    "edit": "Bearbeiten",
-    "add": "Hinzufügen",
-    "language": "Sprache",
-    "fluency": "Flüssigkeit",
-    "save": "Speichern",
-    "language-required": "Sprache ist erforderlich",
-    "fluency-required": "Fließende Sprachkenntnisse sind erforderlich"
-  },
-  "language-form": {
-    "no-languages-added": "Kein {label} hinzugefügt"
-  },
-  "certificate-sheet": {
-    "edit": "Bearbeiten",
-    "add": "Hinzufügen",
-    "title": "Titel",
-    "issuer": "Emittent",
-    "date": "Datum",
-    "description": "Beschreibung",
-    "no-description-added": "Keine Beschreibung hinzugefügt",
-    "save": "Speichern",
-    "title-required": "Titel ist erforderlich",
-    "issuer-required": "Emittent ist erforderlich",
-    "date-required": "Datum ist erforderlich"
-  },
-  "certificate-form": {
-    "no-certificates-added": "Kein {label} hinzugefügt"
-  },
-  "resume-settings": {
-    "select-an-option": "Wählen Sie eine Option",
-    "label": "Modell",
-    "alignment-left": "Links",
-    "alignment-center": "Center",
-    "alignment-right": "Rechts",
-    "alignment": "Ausrichtung",
-    "accent-color": "Akzentfarbe",
-    "settings": "Einstellungen",
-    "colors": "Farben",
-    "load-resume": "Lebenslauf aus JSON laden"
-  },
-  "resume-card": {
-    "updated": "Aktualisiert: {time}",
-    "delete-resume": "Lebenslauf löschen",
-    "delete-resume-description": "Möchten Sie {name} wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
-    "delete": "Löschen",
-    "cancel": "Stornieren",
-    "resume-deleted": "Lebenslauf erfolgreich gelöscht",
-    "resume-cloned": "Lebenslauf erfolgreich geklont"
-  }
+	"landing": {
+		"action": "Erstelle deine Lebenslauf mit",
+		"sub-action": "Ihr Lebenslauf vermittelt den ersten Eindruck. Sorgen Sie dafür, dass er zählt.",
+		"action-button": "Erste Schritte",
+		"footer": "Entwickelt von"
+	},
+	"language-selector": {
+		"select-language": "Sprache auswählen"
+	},
+	"theme-toggle": {
+		"light": "Licht",
+		"dark": "Dunkel",
+		"toggle-theme": "Thema umschalten"
+	},
+	"navbar": {
+		"github": "Auf GitHub anzeigen"
+	},
+	"login": {
+		"welcome": "Willkommen zurück!",
+		"google": "Weiter mit Google",
+		"github": "Weiter mit GitHub"
+	},
+	"user-button": {
+		"logout": "Ausloggen"
+	},
+	"dashboard": {
+		"resumes": "Lebensläufe"
+	},
+	"new-resume-card": {
+		"create-new": "Neu erstellen",
+		"choose-template": "Wählen Sie eine Vorlage aus, um zu beginnen",
+		"add-resume": "Lebenslauf hinzufügen",
+		"resume-name": "Name des Lebenslaufs",
+		"cancel": "Stornieren",
+		"add": "Hinzufügen",
+		"failed-to-create": "Lebenslauf konnte nicht erstellt werden"
+	},
+	"builder": {
+		"resume-not-found": "Lebenslauf nicht gefunden"
+	},
+	"not-found": {
+		"title": "Nicht gefunden",
+		"description": "Die gesuchte Seite existiert nicht."
+	},
+	"builder-sidebar": {
+		"resume-sections": "Abschnitte des Lebenslaufs",
+		"settings": "Einstellungen"
+	},
+	"builder-header": {
+		"builder": "Baumeister",
+		"saving": "Speichern...",
+		"error-saving": "Fehler beim Speichern: {error}",
+		"last-saved": "Zuletzt gespeichert: {time}",
+		"failed-to-generate-pdf": "PDF konnte nicht erstellt werden",
+		"downloading": "Wird heruntergeladen...",
+		"download": "Herunterladen"
+	},
+	"personal-form": {
+		"first-name": "Vorname",
+		"first-name-placeholder": "John",
+		"last-name": "Nachname",
+		"last-name-placeholder": "Damhirschkuh",
+		"phone": "Telefon",
+		"phone-placeholder": "+1234567890",
+		"email": "E-Mail",
+		"email-placeholder": "john.doe@example.com",
+		"url": "Webseite",
+		"url-placeholder": "https://www.john-doe.com",
+		"quote": "Zitat",
+		"quote-placeholder": "Ein Zitat von John Doe"
+	},
+	"sections": {
+		"personal": "Persönliche Informationen",
+		"profiles": "Profile"
+	},
+	"profile-sheet": {
+		"edit-profile": "Profil bearbeiten",
+		"add-profile": "Profil hinzufügen",
+		"network": "Netzwerk",
+		"network-placeholder": "zB LinkedIn",
+		"username": "Benutzername",
+		"username-placeholder": "zB John-Doe",
+		"url": "URL",
+		"url-placeholder": "zB https://www.linkedin.com/in/john-doe",
+		"cancel": "Stornieren",
+		"save": "Speichern",
+		"network-required": "Netzwerk ist erforderlich",
+		"username-required": "Benutzername ist erforderlich",
+		"url-invalid": "Die URL ist ungültig"
+	},
+	"delete-modal": {
+		"tooltip": "Löschen Sie {type}",
+		"title": "Möchten Sie diesen {type} wirklich löschen?",
+		"description": "Diese Aktion kann nicht rückgängig gemacht werden.",
+		"cancel": "Stornieren",
+		"delete": "Löschen"
+	},
+	"highlight-item": {
+		"delete": "Löschen"
+	},
+	"item": {
+		"edit": "Bearbeiten",
+		"delete": "Löschen"
+	},
+	"profile-form": {
+		"no-profile-added": "Kein Profil hinzugefügt",
+		"type": "Profil"
+	},
+	"work-sheet": {
+		"edit": "Bearbeiten",
+		"add": "Hinzufügen",
+		"company": "Unternehmen",
+		"location": "Standort",
+		"position": "Position",
+		"start-date": "Startdatum",
+		"end-date": "Enddatum",
+		"highlights": "Highlights",
+		"no-highlights-added": "Keine Highlights hinzugefügt",
+		"save": "Speichern",
+		"company-required": "Firma ist erforderlich",
+		"location-required": "Standort ist erforderlich",
+		"position-required": "Position ist erforderlich",
+		"start-date-required": "Startdatum ist erforderlich"
+	},
+	"highlight-type": "Highlight",
+	"work-form": {
+		"no-work-added": "Kein {label} hinzugefügt"
+	},
+	"honor-type-sheet": {
+		"edit": "Bearbeiten",
+		"add": "Hinzufügen",
+		"year": "Jahr",
+		"update": "Aktualisieren",
+		"position": "Position",
+		"honor": "Ehre",
+		"location": "Standort"
+	},
+	"honor-sheet": {
+		"edit": "Bearbeiten",
+		"add": "Hinzufügen",
+		"year": "Jahr",
+		"update": "Aktualisieren",
+		"position": "Position",
+		"honor": "Ehre",
+		"location": "Standort",
+		"label": "Etikett",
+		"honors": "Ehrungen",
+		"no-honors-added": "Kein {label} hinzugefügt",
+		"label-required": "Etikett ist erforderlich"
+	},
+	"honors-form": {
+		"no-honors-added": "Kein {label} hinzugefügt"
+	},
+	"presentation-sheet": {
+		"edit": "Bearbeiten",
+		"add": "Hinzufügen",
+		"event": "Ereignis",
+		"role": "Rolle",
+		"location": "Standort",
+		"date": "Datum",
+		"description": "Beschreibung",
+		"no-presentations-added": "Kein {label} hinzugefügt",
+		"save": "Speichern",
+		"event-required": "Ereignis ist erforderlich",
+		"role-required": "Rolle ist erforderlich",
+		"location-required": "Standort ist erforderlich",
+		"date-required": "Datum ist erforderlich"
+	},
+	"presentations-form": {
+		"no-presentations-added": "Kein {label} hinzugefügt"
+	},
+	"writing-sheet": {
+		"edit": "Bearbeiten",
+		"add": "Hinzufügen",
+		"title": "Titel",
+		"role": "Rolle",
+		"medium": "Medium",
+		"start-date": "Startdatum",
+		"end-date": "Enddatum",
+		"description": "Beschreibung",
+		"no-writings-added": "Kein {label} hinzugefügt",
+		"save": "Speichern",
+		"title-required": "Titel ist erforderlich",
+		"role-required": "Rolle ist erforderlich",
+		"medium-required": "Medium ist erforderlich",
+		"start-date-required": "Startdatum ist erforderlich"
+	},
+	"writings-form": {
+		"no-writings-added": "Kein {label} hinzugefügt"
+	},
+	"comittee-sheet": {
+		"edit": "Bearbeiten",
+		"add": "Hinzufügen",
+		"year": "Jahr",
+		"position": "Position",
+		"organization": "Organisation",
+		"location": "Standort",
+		"save": "Speichern",
+		"year-required": "Jahr ist erforderlich",
+		"position-required": "Position ist erforderlich",
+		"organization-required": "Organisation ist gefragt",
+		"location-required": "Standort ist erforderlich"
+	},
+	"comittee-form": {
+		"no-comittees-added": "Kein {label} hinzugefügt"
+	},
+	"education-sheet": {
+		"edit": "Bearbeiten",
+		"add": "Hinzufügen",
+		"school": "Schule",
+		"location": "Standort",
+		"degree": "Grad",
+		"start-date": "Startdatum",
+		"end-date": "Enddatum",
+		"description": "Beschreibung",
+		"no-education-added": "Kein {label} hinzugefügt",
+		"save": "Speichern",
+		"school-required": "Schule ist Pflicht",
+		"location-required": "Standort ist erforderlich",
+		"degree-required": "Abschluss erforderlich",
+		"start-date-required": "Startdatum ist erforderlich",
+		"no-education-highlight-added": "Keine {label} hinzugefügt"
+	},
+	"education-form": {
+		"no-education-added": "Kein {label} hinzugefügt"
+	},
+	"extracurricular-sheet": {
+		"edit": "Bearbeiten",
+		"add": "Hinzufügen",
+		"role": "Rolle",
+		"organization": "Organisation",
+		"location": "Standort",
+		"start-date": "Startdatum",
+		"end-date": "Enddatum",
+		"description": "Beschreibung",
+		"no-extracurricular-highlights-added": "Keine {label} Hervorhebungen hinzugefügt",
+		"save": "Speichern",
+		"role-required": "Rolle ist erforderlich",
+		"organization-required": "Organisation ist gefragt",
+		"location-required": "Standort ist erforderlich",
+		"start-date-required": "Startdatum ist erforderlich"
+	},
+	"extracurricular-form": {
+		"no-extracurricular-added": "Kein {label} hinzugefügt"
+	},
+	"project-sheet": {
+		"edit": "Bearbeiten",
+		"add": "Hinzufügen",
+		"title": "Titel",
+		"repository": "Archiv",
+		"link": "URL",
+		"start-date": "Startdatum",
+		"end-date": "Enddatum",
+		"description": "Beschreibung",
+		"programming-languages": "Programmiersprachen",
+		"no-programming-languages-added": "Keine Programmiersprachen hinzugefügt",
+		"no-description-added": "Keine Beschreibung hinzugefügt",
+		"save": "Speichern",
+		"title-required": "Titel ist erforderlich",
+		"repository-required": "Repository ist erforderlich",
+		"link-invalid": "Die URL ist ungültig",
+		"start-date-required": "Startdatum ist erforderlich"
+	},
+	"project-form": {
+		"no-projects-added": "Kein {label} hinzugefügt"
+	},
+	"language-sheet": {
+		"edit": "Bearbeiten",
+		"add": "Hinzufügen",
+		"language": "Sprache",
+		"fluency": "Flüssigkeit",
+		"save": "Speichern",
+		"language-required": "Sprache ist erforderlich",
+		"fluency-required": "Fließende Sprachkenntnisse sind erforderlich"
+	},
+	"language-form": {
+		"no-languages-added": "Kein {label} hinzugefügt"
+	},
+	"certificate-sheet": {
+		"edit": "Bearbeiten",
+		"add": "Hinzufügen",
+		"title": "Titel",
+		"issuer": "Emittent",
+		"date": "Datum",
+		"description": "Beschreibung",
+		"no-description-added": "Keine Beschreibung hinzugefügt",
+		"save": "Speichern",
+		"title-required": "Titel ist erforderlich",
+		"issuer-required": "Emittent ist erforderlich",
+		"date-required": "Datum ist erforderlich"
+	},
+	"certificate-form": {
+		"no-certificates-added": "Kein {label} hinzugefügt"
+	},
+	"resume-settings": {
+		"select-an-option": "Wählen Sie eine Option",
+		"label": "Modell",
+		"alignment-left": "Links",
+		"alignment-center": "Center",
+		"alignment-right": "Rechts",
+		"alignment": "Ausrichtung",
+		"accent-color": "Akzentfarbe",
+		"settings": "Einstellungen",
+		"colors": "Farben",
+		"load-resume": "Lebenslauf aus JSON laden"
+	},
+	"resume-card": {
+		"updated": "Aktualisiert: {time}",
+		"delete-resume": "Lebenslauf löschen",
+		"delete-resume-description": "Möchten Sie {name} wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+		"delete": "Löschen",
+		"cancel": "Stornieren",
+		"resume-deleted": "Lebenslauf erfolgreich gelöscht",
+		"resume-cloned": "Lebenslauf erfolgreich geklont"
+	},
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"hello_world": "Hello, {name} from de!"
 }
