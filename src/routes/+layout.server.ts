@@ -4,6 +4,6 @@ import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = ({ locals }) => {
   return {
-    ...buildClerkProps(locals.auth())
+    ...buildClerkProps(locals.auth()),
   };
 };

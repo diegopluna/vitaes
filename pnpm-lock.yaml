@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@clerk/localizations':
+        specifier: ^3.25.5
+        version: 3.25.5
       '@clerk/themes':
         specifier: ^2.4.23
         version: 2.4.23
@@ -131,6 +134,10 @@ packages:
 
   '@clerk/backend@2.17.0':
     resolution: {integrity: sha512-PyQJ1pIoqovf5ZH4lXus8bQ7N5dBmohBWPlzl2HxJklOU4YVFjBARNBqw28JitaQ8TgpLvLXffWFG8DpUpIgjg==}
+    engines: {node: '>=18.17.0'}
+
+  '@clerk/localizations@3.25.5':
+    resolution: {integrity: sha512-CRksWw5kTnxYaCfwpfQw2t0YswPnP3PML/9SpZecZYOZVnvqVkl1VriMONhV7IXrMq1PuAIw5eurKagFdzEhpw==}
     engines: {node: '>=18.17.0'}
 
   '@clerk/shared@3.27.1':
@@ -2225,6 +2232,10 @@ snapshots:
     transitivePeerDependencies:
       - react
       - react-dom
+
+  '@clerk/localizations@3.25.5':
+    dependencies:
+      '@clerk/types': 4.90.0
 
   '@clerk/shared@3.27.1(react@19.2.0)':
     dependencies:

@@ -55,6 +55,7 @@
 		]
 	},
 	"dependencies": {
+		"@clerk/localizations": "^3.25.5",
 		"@clerk/themes": "^2.4.23",
 		"convex": "^1.27.3",
 		"mode-watcher": "^1.1.0",

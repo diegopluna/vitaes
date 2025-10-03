@@ -2,4 +2,4 @@
 	import { SignIn } from 'svelte-clerk';
 </script>
 
-<SignIn />
+<SignIn withSignUp />
