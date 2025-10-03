@@ -1,8 +1,8 @@
 import { ConvexError, v } from 'convex/values'
-import type { Locale } from '../../i18n/config'
 import { mutation, query } from '../_generated/server'
 import { getExampleData } from './exampleData/getExampleData'
 import type { Resume } from './type'
+import { Locale } from '../locale'
 
 export const clone = mutation({
   args: {

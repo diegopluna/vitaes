@@ -20,14 +20,17 @@
 		"@eslint/compat": "^1.2.5",
 		"@eslint/js": "^9.22.0",
 		"@inlang/paraglide-js": "^2.0.0",
+		"@internationalized/date": "^3.10.0",
 		"@lucide/svelte": "^0.544.0",
 		"@playwright/test": "^1.49.1",
 		"@sveltejs/adapter-node": "^5.2.12",
+		"@sveltejs/enhanced-img": "^0.8.3",
 		"@sveltejs/kit": "^2.22.0",
 		"@sveltejs/vite-plugin-svelte": "^6.0.0",
 		"@tailwindcss/vite": "^4.0.0",
 		"@types/node": "^22",
 		"@vitest/browser": "^3.2.3",
+		"bits-ui": "^2.11.4",
 		"clsx": "^2.1.1",
 		"eslint": "^9.22.0",
 		"eslint-config-prettier": "^10.0.1",
@@ -57,7 +60,9 @@
 	"dependencies": {
 		"@clerk/localizations": "^3.25.5",
 		"@clerk/themes": "^2.4.23",
+		"@tabler/icons-svelte": "^3.35.0",
 		"convex": "^1.27.3",
+		"convex-svelte": "^0.0.11",
 		"mode-watcher": "^1.1.0",
 		"svelte-clerk": "^0.17.4"
 	}

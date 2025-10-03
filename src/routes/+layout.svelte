@@ -7,6 +7,8 @@
 	import { env } from '$env/dynamic/public';
 	import { getLocale, type Locale } from '$lib/paraglide/runtime';
 	import { deDE, enUS, esES, frFR, jaJP, ptBR, zhCN } from '@clerk/localizations';
+	import { PUBLIC_CONVEX_URL } from '$env/static/public';
+	import { setupConvex } from 'convex-svelte';
 
 	let { children } = $props();
 
@@ -21,6 +23,8 @@
 
 		return enUS;
 	};
+
+	setupConvex(PUBLIC_CONVEX_URL);
 </script>
 
 <svelte:head>
