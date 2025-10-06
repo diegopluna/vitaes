@@ -132,9 +132,9 @@ export function WritingSheet({ defaultValues }: { defaultValues?: Writing }) {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-1 flex-col h-5/6"
+            className="flex flex-1 flex-col h-full"
           >
-            <ScrollArea>
+            <ScrollArea className="flex-1">
               <div className="grid gap-4 py-4 px-1">
                 <FormField
                   control={form.control}
@@ -264,6 +264,9 @@ export function WritingSheet({ defaultValues }: { defaultValues?: Writing }) {
                 />
               </div>
             </ScrollArea>
+            <Button className="mt-4" type="submit">
+              {t('save')}
+            </Button>
           </form>
         </Form>
       </SheetContent>
