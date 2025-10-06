@@ -147,7 +147,8 @@
     "label": "标签",
     "honors": "荣誉",
     "no-honors-added": "未添加{label}",
-    "label-required": "需要标签"
+    "label-required": "需要标签",
+    "save": "节省"
   },
   "honors-form": {
     "no-honors-added": "未添加{label}"

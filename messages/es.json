@@ -147,7 +147,8 @@
     "label": "Etiqueta",
     "honors": "Honores",
     "no-honors-added": "No se agregó {label}",
-    "label-required": "Se requiere etiqueta"
+    "label-required": "Se requiere etiqueta",
+    "save": "Ahorrar"
   },
   "honors-form": {
     "no-honors-added": "No se agregó {label}"

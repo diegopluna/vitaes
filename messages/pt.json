@@ -147,7 +147,8 @@
     "label": "Rótulo",
     "honors": "Honras",
     "no-honors-added": "Nenhum {label} adicionado",
-    "label-required": "Rótulo é obrigatório"
+    "label-required": "Rótulo é obrigatório",
+    "save": "Salvar"
   },
   "honors-form": {
     "no-honors-added": "Nenhum {label} adicionado"

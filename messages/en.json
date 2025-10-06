@@ -147,7 +147,8 @@
     "label": "Label",
     "honors": "Honors",
     "no-honors-added": "No {label} added",
-    "label-required": "Label is required"
+    "label-required": "Label is required",
+    "save": "Save"
   },
   "honors-form": {
     "no-honors-added": "No {label} added"

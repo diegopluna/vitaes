@@ -147,7 +147,8 @@
     "label": "ラベル",
     "honors": "栄誉",
     "no-honors-added": "{label}が追加されていません",
-    "label-required": "ラベルは必須です"
+    "label-required": "ラベルは必須です",
+    "save": "保存"
   },
   "honors-form": {
     "no-honors-added": "{label}が追加されていません"

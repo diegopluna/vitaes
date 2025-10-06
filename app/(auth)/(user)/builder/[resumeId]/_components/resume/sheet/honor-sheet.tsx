@@ -137,7 +137,7 @@ export function HonorSheet({
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-1 flex-col h-5/6"
           >
-            <ScrollArea>
+            <ScrollArea className="flex-1 h-0">
               <div className="grid gap-4 py-4 px-1">
                 <FormField
                   control={form.control}
@@ -229,6 +229,9 @@ export function HonorSheet({
                 />
               </div>
             </ScrollArea>
+            <Button className="mt-4" type="submit">
+              {t('save')}
+            </Button>
           </form>
         </Form>
       </SheetContent>

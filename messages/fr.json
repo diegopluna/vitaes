@@ -147,7 +147,8 @@
     "label": "Étiquette",
     "honors": "Honneurs",
     "no-honors-added": "Aucun {label} ajouté",
-    "label-required": "L'étiquette est obligatoire"
+    "label-required": "L'étiquette est obligatoire",
+    "save": "Sauvegarder"
   },
   "honors-form": {
     "no-honors-added": "Aucun {label} ajouté"
