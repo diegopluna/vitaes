@@ -18,6 +18,7 @@ import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools'
 import { useState } from 'react'
 import { ThemeProvider } from '@/components/theme-provider'
 import Header from '@/components/header'
+import '../index.css'
 
 export interface RouterAppContext {
   orpc: typeof orpc
