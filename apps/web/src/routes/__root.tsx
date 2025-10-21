@@ -1,8 +1,8 @@
 import Loader from '@/components/loader'
 import { Toaster } from '@/components/ui/sonner'
-import { orpc, link } from '@/utils/orpc'
-import { createORPCClient } from '@orpc/client'
-import { createTanstackQueryUtils } from '@orpc/tanstack-query'
+import { orpc } from '@/utils/orpc'
+// import { createORPCClient } from '@orpc/client'
+// import { createTanstackQueryUtils } from '@orpc/tanstack-query'
 import type { QueryClient } from '@tanstack/react-query'
 import {
   createRootRouteWithContext,
@@ -11,11 +11,11 @@ import {
   useRouterState,
 } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import type { AppRouterClient } from '@vitaes/api/routers/index'
+// import type { AppRouterClient } from '@vitaes/api/routers/index'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools'
 
-import { useState } from 'react'
+// import { useState } from 'react'
 import { ThemeProvider } from '@/components/theme-provider'
 import Header from '@/components/header'
 import '../index.css'
@@ -51,8 +51,8 @@ function RootLayout() {
     select: (s) => s.isLoading,
   })
 
-  const [client] = useState<AppRouterClient>(() => createORPCClient(link))
-  const [orpcUtils] = useState(() => createTanstackQueryUtils(client))
+  // const [client] = useState<AppRouterClient>(() => createORPCClient(link))
+  // const [orpcUtils] = useState(() => createTanstackQueryUtils(client))
 
   return (
     <>
