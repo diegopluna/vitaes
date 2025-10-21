@@ -42,11 +42,11 @@
     "zod": "^4.1.11"
   },
   "devDependencies": {
-    "turbo": "^2.5.4",
-    "@biomejs/biome": "2.2.6",
-    "ultracite": "5.6.4",
+    "@types/bun": "^1.2.6",
+    "@vitaes/eslint-config": "workspace:*",
+    "prettier": "^3.6.2",
     "tsdown": "^0.15.5",
-    "@types/bun": "^1.2.6"
+    "turbo": "^2.5.4"
   },
   "packageManager": "bun@1.3.0"
 }
