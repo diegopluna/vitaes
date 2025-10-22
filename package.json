@@ -36,7 +36,8 @@
     "db:watch": "turbo -F @vitaes/db db:watch",
     "db:stop": "turbo -F @vitaes/db db:stop",
     "db:down": "turbo -F @vitaes/db db:down",
-    "lint:ci": "turbo lint:ci"
+    "lint:ci": "turbo lint:ci",
+    "test": "turbo test"
   },
   "dependencies": {
     "dotenv": "^17.2.2",
