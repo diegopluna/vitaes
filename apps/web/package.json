@@ -7,6 +7,7 @@
     "dev": "vite --port=3001",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "lint:ci": "eslint . --format json --output-file eslint-report.json --max-warnings=-1",
     "serve": "vite preview",
     "start": "vite",
     "check-types": "tsc --noEmit"
