@@ -49,3 +49,5 @@ coverage
 .cache
 tmp
 temp
+
+eslint-report.json

@@ -24,10 +24,11 @@
     "@vitaes/db": "workspace:*"
   },
   "devDependencies": {
-    "typescript": "catalog:",
     "@types/bun": "^1.2.6",
-    "tsdown": "catalog:",
     "@vitaes/eslint-config": "workspace:*",
-    "@vitaes/typescript-config": "workspace:*"
+    "@vitaes/typescript-config": "workspace:*",
+    "eslint": "^9.38.0",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
   }
 }

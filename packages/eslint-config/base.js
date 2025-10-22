@@ -10,11 +10,11 @@ import tseslint from "typescript-eslint";
  *
  * @type {import("eslint").Linter.Config[]}
  * */
-export const config = [
+export default [
     eslintConfigPrettier,
     js.configs.recommended,
     turboPlugin.configs['flat/recommended'],
-    tseslint.configs.recommended,
+    ...tseslint.configs.recommended,
     {
         languageOptions: {
             ecmaVersion: 2020,

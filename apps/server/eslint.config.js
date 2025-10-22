@@ -1,4 +1,4 @@
-import backendConfig from "@vitaes/eslint-config/backend";
+import {config} from "@vitaes/eslint-config/backend";
 
 /** @type {import("eslint").Linter.Config} */
-export default backendConfig
+export default [...config]

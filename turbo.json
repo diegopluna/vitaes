@@ -5,13 +5,15 @@
 		"build": {
 			"dependsOn": ["^build"],
 			"inputs": ["$TURBO_DEFAULT$", ".env*"],
-			"outputs": ["dist/**"]
+			"outputs": ["dist/**"],
+			"env": ["CORS_ORIGIN"]
 		},
 		"lint": {
 			"dependsOn": ["^lint"]
 		},
 		"lint:ci": {
-			"dependsOn": ["^lint:ci"]
+			"dependsOn": ["^lint:ci"],
+			"env": ["CORS_ORIGIN"]
 		},
 		"check-types": {
 			"dependsOn": ["^check-types"]
