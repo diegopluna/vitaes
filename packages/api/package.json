@@ -15,7 +15,8 @@
     "build": "tsdown"
   },
   "devDependencies": {
-    "tsdown": "catalog:"
+    "tsdown": "catalog:",
+    "@vitaes/typescript-config": "workspace:*"
   },
   "peerDependencies": {
     "typescript": "^5"

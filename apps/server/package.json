@@ -20,12 +20,13 @@
     "zod": "catalog:",
     "@vitaes/api": "workspace:*",
     "@vitaes/auth": "workspace:*",
-    "@vitaes/db": "workspace:*",
-    "@vitaes/eslint-config": "workspace:*"
+    "@vitaes/db": "workspace:*"
   },
   "devDependencies": {
     "typescript": "catalog:",
     "@types/bun": "^1.2.6",
-    "tsdown": "catalog:"
+    "tsdown": "catalog:",
+    "@vitaes/eslint-config": "workspace:*",
+    "@vitaes/typescript-config": "workspace:*"
   }
 }

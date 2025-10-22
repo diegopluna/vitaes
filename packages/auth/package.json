@@ -24,6 +24,7 @@
     "better-auth": "catalog:",
     "dotenv": "catalog:",
     "zod": "catalog:",
-    "@vitaes/db": "workspace:*"
+    "@vitaes/db": "workspace:*",
+    "@vitaes/typescript-config": "workspace:*"
   }
 }

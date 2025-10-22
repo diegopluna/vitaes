@@ -44,6 +44,7 @@
   "devDependencies": {
     "@types/bun": "^1.2.6",
     "@vitaes/eslint-config": "workspace:*",
+    "@vitaes/typescript-config": "workspace:*",
     "prettier": "^3.6.2",
     "tsdown": "^0.15.5",
     "turbo": "^2.5.4"

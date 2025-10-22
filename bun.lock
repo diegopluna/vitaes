@@ -10,6 +10,7 @@
       "devDependencies": {
         "@types/bun": "^1.2.6",
         "@vitaes/eslint-config": "workspace:*",
+        "@vitaes/typescript-config": "workspace:*",
         "prettier": "^3.6.2",
         "tsdown": "^0.15.5",
         "turbo": "^2.5.4",
@@ -25,7 +26,6 @@
         "@vitaes/api": "workspace:*",
         "@vitaes/auth": "workspace:*",
         "@vitaes/db": "workspace:*",
-        "@vitaes/eslint-config": "workspace:*",
         "better-auth": "catalog:",
         "dotenv": "catalog:",
         "elysia": "catalog:",
@@ -33,12 +33,14 @@
       },
       "devDependencies": {
         "@types/bun": "^1.2.6",
+        "@vitaes/eslint-config": "workspace:*",
+        "@vitaes/typescript-config": "workspace:*",
         "tsdown": "catalog:",
         "typescript": "catalog:",
       },
     },
     "apps/web": {
-      "name": "app",
+      "name": "web",
       "version": "0.0.0",
       "dependencies": {
         "@orpc/client": "catalog:",
@@ -97,6 +99,7 @@
         "zod": "catalog:",
       },
       "devDependencies": {
+        "@vitaes/typescript-config": "workspace:*",
         "tsdown": "catalog:",
       },
       "peerDependencies": {
@@ -107,6 +110,7 @@
       "name": "@vitaes/auth",
       "dependencies": {
         "@vitaes/db": "workspace:*",
+        "@vitaes/typescript-config": "workspace:*",
         "better-auth": "catalog:",
         "dotenv": "catalog:",
         "zod": "catalog:",
@@ -128,6 +132,7 @@
       },
       "devDependencies": {
         "@types/pg": "^8.11.11",
+        "@vitaes/typescript-config": "workspace:*",
         "drizzle-kit": "^0.31.2",
         "tsdown": "catalog:",
       },
@@ -149,6 +154,10 @@
         "prettier": "^3.6.2",
         "typescript-eslint": "^8.46.2",
       },
+    },
+    "packages/typescript-config": {
+      "name": "@vitaes/typescript-config",
+      "version": "0.0.0",
     },
   },
   "catalog": {
@@ -706,6 +715,8 @@
 
     "@vitaes/eslint-config": ["@vitaes/eslint-config@workspace:packages/eslint-config"],
 
+    "@vitaes/typescript-config": ["@vitaes/typescript-config@workspace:packages/typescript-config"],
+
     "@vitejs/plugin-react": ["@vitejs/plugin-react@5.0.4", "", { "dependencies": { "@babel/core": "^7.28.4", "@babel/plugin-transform-react-jsx-self": "^7.27.1", "@babel/plugin-transform-react-jsx-source": "^7.27.1", "@rolldown/pluginutils": "1.0.0-beta.38", "@types/babel__core": "^7.20.5", "react-refresh": "^0.17.0" }, "peerDependencies": { "vite": "^4.2.0 || ^5.0.0 || ^6.0.0 || ^7.0.0" } }, "sha512-La0KD0vGkVkSk6K+piWDKRUyg8Rl5iAIKRMH0vMJI0Eg47bq1eOxmoObAaQG37WMW9MSyk7Cs8EIWwJC1PtzKA=="],
 
     "acorn": ["acorn@8.15.0", "", { "bin": { "acorn": "bin/acorn" } }, "sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg=="],
@@ -719,8 +730,6 @@
     "ansis": ["ansis@4.2.0", "", {}, "sha512-HqZ5rWlFjGiV0tDm3UxxgNRqsOTniqoKZu0pIAfh7TZQMGuZK+hH0drySty0si0QXj1ieop4+SkSfPZBPPkHig=="],
 
     "anymatch": ["anymatch@3.1.3", "", { "dependencies": { "normalize-path": "^3.0.0", "picomatch": "^2.0.4" } }, "sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw=="],
-
-    "app": ["app@workspace:apps/web"],
 
     "argparse": ["argparse@2.0.1", "", {}, "sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q=="],
 
@@ -1285,6 +1294,8 @@
     "util-deprecate": ["util-deprecate@1.0.2", "", {}, "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw=="],
 
     "vite": ["rolldown-vite@7.1.14", "", { "dependencies": { "@oxc-project/runtime": "0.92.0", "fdir": "^6.5.0", "lightningcss": "^1.30.1", "picomatch": "^4.0.3", "postcss": "^8.5.6", "rolldown": "1.0.0-beta.41", "tinyglobby": "^0.2.15" }, "optionalDependencies": { "fsevents": "~2.3.3" }, "peerDependencies": { "@types/node": "^20.19.0 || >=22.12.0", "esbuild": "^0.25.0", "jiti": ">=1.21.0", "less": "^4.0.0", "sass": "^1.70.0", "sass-embedded": "^1.70.0", "stylus": ">=0.54.8", "sugarss": "^5.0.0", "terser": "^5.16.0", "tsx": "^4.8.1", "yaml": "^2.4.2" }, "optionalPeers": ["@types/node", "esbuild", "jiti", "less", "sass", "sass-embedded", "stylus", "sugarss", "terser", "tsx", "yaml"], "bin": { "vite": "bin/vite.js" } }, "sha512-eSiiRJmovt8qDJkGyZuLnbxAOAdie6NCmmd0NkTC0RJI9duiSBTfr8X2mBYJOUFzxQa2USaHmL99J9uMxkjCyw=="],
+
+    "web": ["web@workspace:apps/web"],
 
     "webpack-virtual-modules": ["webpack-virtual-modules@0.6.2", "", {}, "sha512-66/V2i5hQanC51vBQKPH4aI8NMAcBW59FVBs+rC7eGHupMyfn34q7rZIE+ETlJ+XTevqfUhVVBgSUNSW2flEUQ=="],
 
