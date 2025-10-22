@@ -45,7 +45,7 @@ jobs:
   typecheck:
     name: Typecheck
     runs-on: ubuntu-latest
-    needs: [setup]
+    needs: [lint]
 
     steps:
       - name: Checkout code
@@ -65,7 +65,7 @@ jobs:
   test:
     name: Tests
     runs-on: ubuntu-latest
-    needs: [setup]
+    needs: [typecheck]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
