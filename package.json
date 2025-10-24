@@ -2,24 +2,6 @@
   "name": "vitaes",
   "private": true,
   "type": "module",
-  "workspaces": {
-    "packages": [
-      "apps/*",
-      "packages/*"
-    ],
-    "catalog": {
-      "elysia": "^1.3.21",
-      "@orpc/server": "^1.9.0",
-      "@orpc/openapi": "^1.9.0",
-      "@orpc/zod": "^1.9.0",
-      "better-auth": "^1.3.13",
-      "dotenv": "^17.2.2",
-      "zod": "^4.1.11",
-      "typescript": "^5.8.2",
-      "tsdown": "^0.15.5",
-      "@orpc/client": "^1.9.0"
-    }
-  },
   "scripts": {
     "check": "biome check --write .",
     "dev": "turbo dev",
@@ -44,12 +26,12 @@
     "zod": "^4.1.11"
   },
   "devDependencies": {
-    "@types/bun": "^1.2.6",
+    "@types/node": "catalog:",
     "@vitaes/eslint-config": "workspace:*",
     "@vitaes/typescript-config": "workspace:*",
     "prettier": "^3.6.2",
     "tsdown": "^0.15.5",
     "turbo": "^2.5.4"
   },
-  "packageManager": "bun@1.3.0"
+  "packageManager": "pnpm@10.18.3"
 }
