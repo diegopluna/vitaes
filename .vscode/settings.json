@@ -1,6 +1,2 @@
 {
-    "sonarlint.connectedMode.project": {
-        "connectionId": "https-sonar-dpeter-dev",
-        "projectKey": "diegopluna_vitaes_2426377d-812b-43ce-94a0-b87c3864fcd1"
-    }
 }

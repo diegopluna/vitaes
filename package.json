@@ -3,7 +3,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "biome check --write .",
     "dev": "turbo dev",
     "build": "turbo build",
     "check-types": "turbo check-types",
@@ -19,7 +18,8 @@
     "db:stop": "turbo -F @vitaes/db db:stop",
     "db:down": "turbo -F @vitaes/db db:down",
     "lint:ci": "turbo lint:ci",
-    "test": "turbo test"
+    "test:projects": "vitest run",
+    "test:projects:watch": "vitest --watch"
   },
   "dependencies": {
     "dotenv": "^17.2.2",
@@ -31,7 +31,9 @@
     "@vitaes/typescript-config": "workspace:*",
     "prettier": "^3.6.2",
     "tsdown": "^0.15.5",
-    "turbo": "^2.5.4"
+    "turbo": "^2.5.4",
+    "@vitaes/vitest-config": "workspace:*",
+    "vitest": "catalog:"
   },
   "packageManager": "pnpm@10.18.3"
 }

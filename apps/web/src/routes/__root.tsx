@@ -14,6 +14,7 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 // import type { AppRouterClient } from '@vitaes/api/routers/index'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools'
+import { FormDevtoolsPlugin } from '@tanstack/react-form-devtools'
 
 // import { useState } from 'react'
 import { ThemeProvider } from '@/components/theme-provider'
@@ -74,6 +75,7 @@ function RootLayout() {
             name: 'TanStack Router',
             render: <TanStackRouterDevtoolsPanel />,
           },
+          FormDevtoolsPlugin(),
         ]}
       />
     </>

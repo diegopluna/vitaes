@@ -30,6 +30,7 @@
     "dotenv": "catalog:",
     "zod": "catalog:",
     "@vitaes/auth": "workspace:*",
-    "@vitaes/db": "workspace:*"
+    "@vitaes/db": "workspace:*",
+    "@vitaes/types": "workspace:*"
   }
 }

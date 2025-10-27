@@ -55,6 +55,9 @@
 			"persistent": true
 		},
 		"test": {
+			"dependsOn":["^test", "@vitaes/vitest-config#build"]
+		},
+		"test:watch": {
 			"cache": false,
 			"persistent": true
 		}

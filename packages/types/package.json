@@ -1,0 +1,16 @@
+{
+    "name": "@vitaes/types",
+    "version": "0.0.0",
+    "scripts": {
+        "lint:ci": "eslint . --format json --output-file eslint-report.json --max-warnings=-1",
+        "check-types": "tsc --noEmit",
+        "format": "prettier --write ."
+    },
+    "devDependencies": {
+        "@vitaes/typescript-config": "workspace:*",
+        "typescript": "catalog:"
+    },
+    "exports": {
+        "./resume": "./src/resume.ts"
+    }
+}
