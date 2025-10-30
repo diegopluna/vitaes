@@ -20,6 +20,7 @@ import { FormDevtoolsPlugin } from '@tanstack/react-form-devtools'
 import { ThemeProvider } from '@/components/theme-provider'
 import Header from '@/components/header'
 import '../index.css'
+import { seo } from '@/lib/seo'
 
 export interface RouterAppContext {
   orpc: typeof orpc
@@ -30,18 +31,18 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
   component: RootLayout,
   head: () => ({
     meta: [
-      {
+      ...seo({
         title: 'Vitaes',
-      },
-      {
-        name: 'description',
-        content: 'Vitaes is a web application',
-      },
+        description: 'Resume Builder',
+        keywords:
+          'resume, builder, resume builder, resume builder app, resume builder app',
+        image: `${import.meta.env.VITE_APP_URL}/open-graph.png`,
+      }),
     ],
     links: [
       {
         rel: 'icon',
-        href: '/favicon.ico',
+        href: '/logo.svg',
       },
     ],
   }),
