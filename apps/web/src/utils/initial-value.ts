@@ -1,4 +1,4 @@
-import type { IResume } from '@/components/resume/types'
+import type { IResume } from '@vitaes/types/resume'
 
 export const initialValue: IResume = {
   config: {
@@ -7,18 +7,14 @@ export const initialValue: IResume = {
     sectionColorHighlight: true,
     fontSize: 9,
     pageSize: 'A4',
-    margins: {
-      top: '0.8cm',
-      right: '1.4cm',
-      bottom: '1.8cm',
-      left: '1.4cm',
-    },
   },
 
   personalInfo: {
     firstName: 'Byungjin',
     lastName: 'Park',
-    photo: 'https://github.com/diegopluna.png',
+    photo: {
+      url: 'https://github.com/diegopluna.png',
+    },
     position: 'Software Architect · Security Expert',
     address: '42-8, Bangbae-ro 15-gil, Seocho-gu, Seoul, 00681, Rep. of KOREA',
     socials: [
@@ -55,14 +51,14 @@ export const initialValue: IResume = {
     {
       id: 'summary-1',
       title: 'Summary',
-      type: 'paragraph',
+      type: 'text',
       content:
         'Current Site Reliability Engineer at start-up company Kasa. 7+ years experience specializing in the backend development, infrastructure automation, and computer hacking/security. Super nerd who loves Vim, Linux and OS X and enjoys to customize all of the development environment. Interested in devising a better problem-solving method for challenging tasks, and learning new technologies and tools if the need arises.',
     },
     {
       id: 'experience-1',
       title: 'Work Experience',
-      type: 'entries',
+      type: 'timeline',
       entries: [
         {
           id: 'exp-1',
@@ -143,82 +139,85 @@ export const initialValue: IResume = {
     {
       id: 'honors-1',
       title: 'Honors & Awards',
-      type: 'honors',
-      subsections: [
-        {
-          id: 'honors-int-1',
-          title: 'International',
-          honors: [
-            {
-              id: 'honor-1',
-              date: '2018',
-              position: 'Finalist',
-              title: 'DEFCON 26th CTF Hacking Competition World Final',
-              location: 'Las Vegas, U.S.A',
-            },
-            {
-              id: 'honor-2',
-              date: '2017',
-              position: 'Finalist',
-              title: 'DEFCON 25th CTF Hacking Competition World Final',
-              location: 'Las Vegas, U.S.A',
-            },
-            {
-              id: 'honor-3',
-              date: '2014',
-              position: 'Finalist',
-              title: 'DEFCON 22nd CTF Hacking Competition World Final',
-              location: 'Las Vegas, U.S.A',
-            },
-            {
-              id: 'honor-4',
-              date: '2013',
-              position: 'Finalist',
-              title: 'DEFCON 21st CTF Hacking Competition World Final',
-              location: 'Las Vegas, U.S.A',
-            },
-            {
-              id: 'honor-5',
-              date: '2011',
-              position: 'Finalist',
-              title: 'DEFCON 19th CTF Hacking Competition World Final',
-              location: 'Las Vegas, U.S.A',
-            },
-          ],
-        },
-        {
-          id: 'honors-dom-1',
-          title: 'Domestic',
-          honors: [
-            {
-              id: 'honor-6',
-              date: '2015',
-              position: '3rd Place',
-              title: 'WITHCON Hacking Competition Final',
-              location: 'Seoul, S.Korea',
-            },
-            {
-              id: 'honor-7',
-              date: '2017',
-              position: 'Silver Prize',
-              title: 'KISA HDCON Hacking Competition Final',
-              location: 'Seoul, S.Korea',
-            },
-            {
-              id: 'honor-8',
-              date: '2013',
-              position: 'Silver Prize',
-              title: 'KISA HDCON Hacking Competition Final',
-              location: 'Seoul, S.Korea',
-            },
-          ],
-        },
-      ],
+      type: 'list',
+      structure: {
+        type: 'grouped',
+        subsections: [
+          {
+            id: 'honors-int-1',
+            title: 'International',
+            items: [
+              {
+                id: 'honor-1',
+                date: '2018',
+                position: 'Finalist',
+                title: 'DEFCON 26th CTF Hacking Competition World Final',
+                location: 'Las Vegas, U.S.A',
+              },
+              {
+                id: 'honor-2',
+                date: '2017',
+                position: 'Finalist',
+                title: 'DEFCON 25th CTF Hacking Competition World Final',
+                location: 'Las Vegas, U.S.A',
+              },
+              {
+                id: 'honor-3',
+                date: '2014',
+                position: 'Finalist',
+                title: 'DEFCON 22nd CTF Hacking Competition World Final',
+                location: 'Las Vegas, U.S.A',
+              },
+              {
+                id: 'honor-4',
+                date: '2013',
+                position: 'Finalist',
+                title: 'DEFCON 21st CTF Hacking Competition World Final',
+                location: 'Las Vegas, U.S.A',
+              },
+              {
+                id: 'honor-5',
+                date: '2011',
+                position: 'Finalist',
+                title: 'DEFCON 19th CTF Hacking Competition World Final',
+                location: 'Las Vegas, U.S.A',
+              },
+            ],
+          },
+          {
+            id: 'honors-dom-1',
+            title: 'Domestic',
+            items: [
+              {
+                id: 'honor-6',
+                date: '2015',
+                position: '3rd Place',
+                title: 'WITHCON Hacking Competition Final',
+                location: 'Seoul, S.Korea',
+              },
+              {
+                id: 'honor-7',
+                date: '2017',
+                position: 'Silver Prize',
+                title: 'KISA HDCON Hacking Competition Final',
+                location: 'Seoul, S.Korea',
+              },
+              {
+                id: 'honor-8',
+                date: '2013',
+                position: 'Silver Prize',
+                title: 'KISA HDCON Hacking Competition Final',
+                location: 'Seoul, S.Korea',
+              },
+            ],
+          },
+        ],
+      },
     },
     {
       id: 'presentation-1',
       title: 'Presentation',
-      type: 'entries',
+      type: 'timeline',
       entries: [
         {
           id: 'pres-1',
@@ -247,7 +246,7 @@ export const initialValue: IResume = {
     {
       id: 'writing-1',
       title: 'Writing',
-      type: 'entries',
+      type: 'timeline',
       entries: [
         {
           id: 'writ-1',
@@ -264,28 +263,31 @@ export const initialValue: IResume = {
     {
       id: 'committees-1',
       title: 'Program Committees',
-      type: 'honors',
-      honors: [
-        {
-          id: 'comm-1',
-          date: '2016',
-          position: 'Problem Writer',
-          title: '2016 CODEGATE Hacking Competition World Final',
-          location: 'S.Korea',
-        },
-        {
-          id: 'comm-2',
-          date: '2013',
-          position: 'Organizer & Co-director',
-          title: '1st POSTECH Hackathon',
-          location: 'S.Korea',
-        },
-      ],
+      type: 'list',
+      structure: {
+        type: 'flat',
+        items: [
+          {
+            id: 'comm-1',
+            date: '2016',
+            position: 'Problem Writer',
+            title: '2016 CODEGATE Hacking Competition World Final',
+            location: 'S.Korea',
+          },
+          {
+            id: 'comm-2',
+            date: '2013',
+            position: 'Organizer & Co-director',
+            title: '1st POSTECH Hackathon',
+            location: 'S.Korea',
+          },
+        ],
+      },
     },
     {
       id: 'extracurricular-1',
       title: 'Extracurricular Activity',
-      type: 'entries',
+      type: 'timeline',
       entries: [
         {
           id: 'extra-1',
@@ -316,7 +318,7 @@ export const initialValue: IResume = {
     {
       id: 'education-1',
       title: 'Education',
-      type: 'entries',
+      type: 'timeline',
       entries: [
         {
           id: 'edu-1',

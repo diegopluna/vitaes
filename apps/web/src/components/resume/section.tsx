@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from '@react-pdf/renderer'
 import type { Styles } from './styles'
-import { colors } from './colors'
+import { colors } from '@vitaes/types/colors'
 
 interface SectionProps {
   title: string

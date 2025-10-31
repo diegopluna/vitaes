@@ -1,5 +1,5 @@
 import { StyleSheet } from '@react-pdf/renderer'
-import { colors, type AwesomeColor } from '../colors'
+import { colors, type AwesomeColor } from '@vitaes/types/colors'
 
 export const createStyles = (themeColor: AwesomeColor = 'awesome-red') => {
   const awesome = colors[themeColor]

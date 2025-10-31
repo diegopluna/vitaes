@@ -1,166 +1,176 @@
-export type Resume = {
-  basics: Basics
-  work: LabeledSection<Work>
-  honors: LabeledSection<HonorsPerLabel>
-  presentations: LabeledSection<Presentation>
-  writings: LabeledSection<Writing>
-  committees: LabeledSection<Committee>
-  education: LabeledSection<Education>
-  extracurriculars: LabeledSection<Extracurricular>
-  projects: LabeledSection<Project>
-  languages: LabeledSection<Language>
-  certificates: LabeledSection<Certificate>
-  settings: Settings
-}
+import z from 'zod'
+import { AwesomeColorSchema } from './colors'
 
-export type Basics = {
-  firstName: string
-  lastName: string
-  phone: string
-  email: string
-  url: string
-  quote: string
-  summary: Summary
-  profiles: Profile[]
-}
+export const SocialPlatformSchema = z.enum([
+  'mobile',
+  'email',
+  'homepage',
+  'github',
+  'gitlab',
+  'linkedin',
+  'twitter',
+  'stackoverflow',
+  'skype',
+  'reddit',
+  'xing',
+  'medium',
+  'googlescholar',
+])
 
-export type Summary = {
-  label: string
-  content: string
-}
+export const SocialProfileSchema = z.object({
+  id: z.string(),
+  platform: SocialPlatformSchema,
+  value: z.string(),
+  display: z.string().optional(),
+  url: z.string().url().optional(),
+})
 
-export type Profile = {
-  id: string
-  network: string
-  username: string
-  url: string
-}
+export const PersonalInfoSchema = z.object({
+  firstName: z.string(),
+  lastName: z.string(),
+  position: z.string(),
+  address: z.string(),
+  socials: z.array(SocialProfileSchema),
+  quote: z.string().optional(),
+  photo: z
+    .object({
+      url: z.string().url(),
+      shape: z.enum(['circle', 'rectangle']).optional(),
+      edge: z.enum(['edge', 'noedge']).optional(),
+      align: z.enum(['left', 'right']).optional(),
+    })
+    .optional(),
+})
 
-export type StringWithId = {
-  id: string
-  value: string
-}
+export const BaseItemSchema = z.object({
+  id: z.string(),
+})
 
-export type LabeledSection<T> = {
-  label: string
-  content: T[]
-}
+export const EntryItemSchema = BaseItemSchema.extend({
+  position: z.string(),
+  title: z.string(),
+  location: z.string(),
+  date: z.string(),
+  description: z.string().optional(),
+  items: z.array(z.string()).optional(),
+})
 
-export type Work = {
-  id: string
-  company: string
-  location: string
-  position: string
-  startDate: string
-  endDate: string
-  highlights: StringWithId[]
-}
+export const ListItemSchema = BaseItemSchema.extend({
+  date: z.string(),
+  position: z.string(),
+  title: z.string(),
+  location: z.string(),
+})
 
-export type Honor = {
-  id: string
-  year: string
-  position: string
-  honor: string
-  location: string
-}
+export const ListSubsectionSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  items: z.array(ListItemSchema),
+})
 
-export type HonorsPerLabel = {
-  id: string
-  label: string
-  honors: Honor[]
-}
+export const CategoryItemSchema = BaseItemSchema.extend({
+  type: z.string(),
+  items: z.array(z.string()),
+})
 
-export type Presentation = {
-  id: string
-  event: string
-  role: string
-  location: string
-  date: string
-  description: StringWithId[]
-}
+export const SubentryItemSchema = BaseItemSchema.extend({
+  position: z.string().optional(),
+  title: z.string(),
+  date: z.string(),
+  description: z.string().optional(),
+})
 
-export type Writing = {
-  id: string
-  title: string
-  role: string
-  medium: string
-  startDate: string
-  endDate: string
-  description: StringWithId[]
-}
+export const SectionTypeSchema = z.enum([
+  'text',
+  'timeline',
+  'list',
+  'taxonomy',
+])
 
-export type Committee = {
-  id: string
-  year: string
-  position: string
-  organization: string
-  location: string
-}
+export const BaseSectionSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  type: SectionTypeSchema,
+})
 
-export type Education = {
-  id: string
-  school: string
-  location: string
-  degree: string
-  startDate: string
-  endDate: string
-  description: StringWithId[]
-}
+export const TextSectionSchema = BaseSectionSchema.extend({
+  type: z.literal('text'),
+  content: z.string(),
+})
 
-export type Extracurricular = {
-  id: string
-  role: string
-  organization: string
-  location: string
-  startDate: string
-  endDate: string
-  description: StringWithId[]
-}
+export const TimelineSectionSchema = BaseSectionSchema.extend({
+  type: z.literal('timeline'),
+  entries: z.array(EntryItemSchema),
+})
 
-export type Project = {
-  id: string
-  title: string
-  programmingLanguages: StringWithId[]
-  repository: string
-  description: StringWithId[]
-  link: string
-  startDate: string
-  endDate: string
-}
+export const ListSectionSchema = BaseSectionSchema.extend({
+  type: z.literal('list'),
+  structure: z.discriminatedUnion('type', [
+    z.object({
+      type: z.literal('flat'),
+      items: z.array(ListItemSchema),
+    }),
+    z.object({
+      type: z.literal('grouped'),
+      subsections: z.array(ListSubsectionSchema),
+    }),
+  ]),
+})
 
-export type Language = {
-  id: string
-  language: string
-  fluency: string
-}
+export const TaxonomySectionSchema = BaseSectionSchema.extend({
+  type: z.literal('taxonomy'),
+  categories: z.array(CategoryItemSchema),
+})
 
-export type Certificate = {
-  id: string
-  title: string
-  issuer: string
-  date: string
-  description: StringWithId[]
-}
+export const SectionSchema = z.discriminatedUnion('type', [
+  TextSectionSchema,
+  TimelineSectionSchema,
+  ListSectionSchema,
+  TaxonomySectionSchema,
+])
 
-export type ResumeModel = 'awesome-cv'
+export const ResumeConfigSchema = z.object({
+  themeColor: AwesomeColorSchema,
+  headerAlign: z.enum(['left', 'center', 'right']),
+  sectionColorHighlight: z.boolean(),
+  fontSize: z.number().positive(),
+  pageSize: z.enum(['A4', 'LETTER']),
+})
 
-export type AwesomeCVHeaderAlignment = 'start' | 'center' | 'end'
-export type AwesomeCVColor =
-  | 'text-[#00A388]'
-  | 'text-[#0395DE]'
-  | 'text-[#DC3522]'
-  | 'text-[#EF4089]'
-  | 'text-[#FF6138]'
-  | 'text-[#27AE60]'
-  | 'text-[#95A5A6]'
-  | 'text-[#131A28]'
+export const ResumeSchema = z.object({
+  config: ResumeConfigSchema,
+  personalInfo: PersonalInfoSchema,
+  sections: z.array(SectionSchema),
+})
 
-export type AwesomeCVSettings = {
-  accentColor: AwesomeCVColor
-  headerAlignment: AwesomeCVHeaderAlignment
-}
+export type SocialPlatform = z.infer<typeof SocialPlatformSchema>
+export type SocialProfile = z.infer<typeof SocialProfileSchema>
+export type PersonalInfo = z.infer<typeof PersonalInfoSchema>
+export type BaseItem = z.infer<typeof BaseItemSchema>
+export type EntryItem = z.infer<typeof EntryItemSchema>
+export type ListItem = z.infer<typeof ListItemSchema>
+export type ListSubsection = z.infer<typeof ListSubsectionSchema>
+export type CategoryItem = z.infer<typeof CategoryItemSchema>
+export type SubentryItem = z.infer<typeof SubentryItemSchema>
+export type SectionType = z.infer<typeof SectionTypeSchema>
+export type TextSection = z.infer<typeof TextSectionSchema>
+export type TimelineSection = z.infer<typeof TimelineSectionSchema>
+export type ListSection = z.infer<typeof ListSectionSchema>
+export type TaxonomySection = z.infer<typeof TaxonomySectionSchema>
+export type Section = z.infer<typeof SectionSchema>
+export type ResumeConfig = z.infer<typeof ResumeConfigSchema>
+export type IResume = z.infer<typeof ResumeSchema>
 
-export type Settings = {
-  model: ResumeModel
-  awesomeCV: AwesomeCVSettings
-}
+export const isTextSection = (section: Section): section is TextSection =>
+  section.type === 'text'
+
+export const isTimelineSection = (
+  section: Section,
+): section is TimelineSection => section.type === 'timeline'
+
+export const isListSection = (section: Section): section is ListSection =>
+  section.type === 'list'
+
+export const isTaxonomySection = (
+  section: Section,
+): section is TaxonomySection => section.type === 'taxonomy'

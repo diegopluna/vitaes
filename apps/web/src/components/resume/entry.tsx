@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text } from '@react-pdf/renderer'
 import type { Styles } from './styles'
-import type { EntryItem } from './types'
+import type { EntryItem } from '@vitaes/types/resume'
 
 interface EntryProps {
   data: EntryItem

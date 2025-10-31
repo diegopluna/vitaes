@@ -1,9 +1,9 @@
 import { Link, Text, View } from '@react-pdf/renderer'
-import type { PersonalInfo } from './types'
+import type { PersonalInfo } from '@vitaes/types/resume'
 import type { Styles } from './styles'
 import { Fragment } from 'react/jsx-runtime'
 import { getSocialConfig } from './utils/social-helpers'
-import { colors } from './colors'
+import { colors } from '@vitaes/types/colors'
 
 interface HeaderProps {
   info: PersonalInfo

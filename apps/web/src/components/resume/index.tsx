@@ -4,12 +4,12 @@ import 'react-pdf/dist/Page/TextLayer.css'
 
 import { Header } from './header'
 import {
-  isEntriesSection,
-  isHonorsSection,
-  isParagraphSection,
-  isSkillsSection,
+  isListSection,
+  isTaxonomySection,
+  isTextSection,
+  isTimelineSection,
   type IResume,
-} from './types'
+} from '@vitaes/types/resume'
 import { createStyles } from './styles'
 import './fonts'
 import { Footer } from './footer'
@@ -18,8 +18,8 @@ import { Paragraph } from './paragraph'
 import { Entry } from './entry'
 import { Items } from './items'
 import { Subsection } from './subsection'
-import { Skills } from './skills'
-import { Honors } from './honors'
+import { Taxonomy } from './taxonomy'
+import { ListItems } from './list-items'
 
 export const ResumePDF = ({ value }: { value: IResume }) => {
   const styles = createStyles(value.config.themeColor)
@@ -45,11 +45,11 @@ export const ResumePDF = ({ value }: { value: IResume }) => {
             styles={styles}
             highlight={value.config.sectionColorHighlight}
           >
-            {isParagraphSection(section) && (
+            {isTextSection(section) && (
               <Paragraph content={section.content} styles={styles} />
             )}
 
-            {isEntriesSection(section) && (
+            {isTimelineSection(section) && (
               <View style={styles.entriesContainer}>
                 {section.entries.map((entry) => (
                   <Entry key={entry.id} data={entry} styles={styles}>
@@ -61,26 +61,26 @@ export const ResumePDF = ({ value }: { value: IResume }) => {
               </View>
             )}
 
-            {isHonorsSection(section) && (
+            {isListSection(section) && (
               <>
-                {section.subsections ? (
-                  section.subsections.map((subsection) => (
+                {section.structure.type === 'grouped' ? (
+                  section.structure.subsections.map((subsection) => (
                     <Subsection
                       key={subsection.id}
                       title={subsection.title}
                       styles={styles}
                     >
-                      <Honors honors={subsection.honors} styles={styles} />
+                      <ListItems items={subsection.items} styles={styles} />
                     </Subsection>
                   ))
-                ) : section.honors ? (
-                  <Honors honors={section.honors} styles={styles} />
+                ) : section.structure.type === 'flat' ? (
+                  <ListItems items={section.structure.items} styles={styles} />
                 ) : null}
               </>
             )}
 
-            {isSkillsSection(section) && (
-              <Skills skills={section.skills} styles={styles} />
+            {isTaxonomySection(section) && (
+              <Taxonomy categories={section.categories} styles={styles} />
             )}
           </Section>
         ))}

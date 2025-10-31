@@ -5,7 +5,7 @@ import { pdfjs, Document, Page } from 'react-pdf'
 import { useAsync } from 'react-use'
 import { ResumePDF } from './resume'
 import type { OnDocumentLoadSuccess } from 'react-pdf/dist/shared/types.js'
-import type { IResume } from './resume/types'
+import type { IResume } from '@vitaes/types/resume'
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',

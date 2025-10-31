@@ -1,3 +1,5 @@
+import z from 'zod'
+
 export const colors = {
   // Gray-scale colors
   white: '#FFFFFF',
@@ -40,3 +42,14 @@ export type AwesomeColor =
   | 'awesome-nephritis'
   | 'awesome-concrete'
   | 'awesome-darknight'
+
+export const AwesomeColorSchema = z.enum([
+  'awesome-emerald',
+  'awesome-skyblue',
+  'awesome-red',
+  'awesome-pink',
+  'awesome-orange',
+  'awesome-nephritis',
+  'awesome-concrete',
+  'awesome-darknight',
+])

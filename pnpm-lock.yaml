@@ -418,6 +418,10 @@ importers:
         version: 8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3)
 
   packages/types:
+    dependencies:
+      zod:
+        specifier: 'catalog:'
+        version: 4.1.12
     devDependencies:
       '@vitaes/typescript-config':
         specifier: workspace:*

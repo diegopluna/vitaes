@@ -6,11 +6,15 @@
         "check-types": "tsc --noEmit",
         "format": "prettier --write ."
     },
+    "dependencies": {
+        "zod": "catalog:"
+    },
     "devDependencies": {
         "@vitaes/typescript-config": "workspace:*",
         "typescript": "catalog:"
     },
     "exports": {
-        "./resume": "./src/resume.ts"
+        "./resume": "./src/resume.ts",
+        "./colors": "./src/colors.ts"
     }
 }

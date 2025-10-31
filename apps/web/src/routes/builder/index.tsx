@@ -2,7 +2,7 @@ import { PDFViewer } from '@/components/pdf-viewer'
 import { createFileRoute } from '@tanstack/react-router'
 import { useState, useTransition } from 'react'
 import { Input } from '@/components/ui/input'
-import type { IResume } from '@/components/resume/types'
+import { ResumeSchema, type IResume } from '@vitaes/types/resume'
 import { initialValue } from '@/utils/initial-value'
 import { useForm } from '@tanstack/react-form'
 import { Field, FieldLabel } from '@/components/ui/field'
@@ -17,6 +17,9 @@ function RouteComponent() {
 
   const form = useForm({
     defaultValues: initialValue,
+    validators: {
+      onChange: ResumeSchema,
+    },
     onSubmit: (values) => {
       setFinalValue(values.value)
     },

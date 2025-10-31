@@ -1,4 +1,4 @@
-import type { SocialPlatform, SocialProfile } from '../types'
+import type { SocialPlatform, SocialProfile } from '@vitaes/types/resume'
 import * as Icons from '../icons'
 
 interface SocialConfig {
