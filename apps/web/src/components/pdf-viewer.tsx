@@ -24,7 +24,6 @@ const DocumentWrapper = styled.div`
   flex: 1;
   padding: 1em;
   display: flex;
-  z-index: 500;
   align-items: center;
   justify-content: center;
 
