@@ -1,4 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { useHotkeys } from 'react-hotkeys-hook'
 
 import { useState } from 'react'
@@ -81,13 +82,13 @@ export function Editor() {
           </TabsTrigger>
         </TabsList>
       </div>
-      <div className="flex-1 overflow-auto">
+      <ScrollArea className="flex-1 h-full pb-12">
         <TabsContent value="personal" className="space-y-4 p-6 mt-0">
           <PersonalForm form={form} />
         </TabsContent>
         <TabsContent value="sections">Sections</TabsContent>
         <TabsContent value="theme">Theme</TabsContent>
-      </div>
+      </ScrollArea>
     </Tabs>
   )
 }

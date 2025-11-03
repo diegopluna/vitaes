@@ -86,6 +86,7 @@ export const SocialsForm = withForm({
                   >
                     {field.state.value.map((profile, index) => (
                       <SocialsItem
+                        key={profile.id}
                         form={form}
                         profile={profile}
                         index={index}

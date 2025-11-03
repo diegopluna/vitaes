@@ -1,4 +1,5 @@
 import { PDFViewer } from '@/components/pdf-viewer'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { createFileRoute } from '@tanstack/react-router'
 import { useState } from 'react'
 import { Editor } from './-components/editor'
@@ -22,13 +23,13 @@ function RouteComponent() {
       <div className="flex flex-col overflow-hidden border-r">
         <Editor />
       </div>
-      <div className="flex-1 overflow-auto bg-muted/50">
+      <ScrollArea className="flex-1 h-full bg-muted/50">
         <PDFViewer
           value={resume}
           onUrlChange={setDocumentUrl}
           onRenderError={setError}
         />
-      </div>
+      </ScrollArea>
     </div>
   )
 }

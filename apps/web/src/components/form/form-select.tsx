@@ -27,7 +27,7 @@ export function FormSelect({
   const field = useFieldContext<string>()
   const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid
   return (
-    <Field orientation="responsive" data-invalid={isInvalid}>
+    <Field orientation="vertical" data-invalid={isInvalid}>
       <FieldContent>
         <FieldLabel htmlFor={field.name}>{label}</FieldLabel>
         {isInvalid && <FieldError errors={field.state.meta.errors} />}
