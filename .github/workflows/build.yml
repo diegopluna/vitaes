@@ -169,4 +169,38 @@ jobs:
         timeout-minutes: 5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    
+  detect-changes:
+    name: Detect Changes
+    strategy:
+      matrix:
+        node-version: [22]
+    needs: [sonar]
+    runs-on: ubuntu-latest
+    outputs:
+      affected-apps: ${{ steps.affected.outputs.apps }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.18.3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Get affected apps
+        id: affected
+        run: |
+          # Get Affected apps since last commit on main
+          AFFECTED=$(pnpm turbo run build --filter="...[origin/main]" --dry-run=json | jq -r '.packages | map(select(startswith("apps/"))) | unique | @json')
+          echo "apps=${AFFECTED}" >> $GITHUB_OUTPUT
+          echo "Affected apps: ${AFFECTED}"
