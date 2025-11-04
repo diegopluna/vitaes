@@ -7,7 +7,6 @@ interface SocialConfig {
   getDisplay: (value: string) => string
 }
 
-// TODO: Handle Icons as SVG in @react-pdf/renderer
 const socialConfigs: Record<SocialPlatform, SocialConfig> = {
   mobile: {
     IconComponent: Icons.MobileIcon,

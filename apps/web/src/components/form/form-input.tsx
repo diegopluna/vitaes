@@ -7,7 +7,7 @@ type FormInputProps = {
   placeholder?: string
 }
 
-export function FormInput({ label, placeholder }: FormInputProps) {
+export function FormInput({ label, placeholder }: Readonly<FormInputProps>) {
   const field = useFieldContext<string>()
   const value = field.state.value
 

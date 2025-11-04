@@ -9,8 +9,8 @@
     <div id="app"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script>
-      window.op = window.op||function(...args){(window.op.q=window.op.q||[]).push(args);};
-      window.op('init', {
+      globalThis.op = globalThis.op||function(...args){(globalThis.op.q=globalThis.op.q||[]).push(args);};
+      globalThis.op('init', {
         clientId: 'fdb30404-92c5-4022-9efb-42a6795c3d0b',
         trackScreenViews: true,
         trackOutgoingLinks: true,

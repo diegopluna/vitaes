@@ -9,8 +9,8 @@ interface ItemsProps {
 export const Items = ({ items, styles }: ItemsProps) => {
   return (
     <View style={styles.items}>
-      {items.map((item, idx) => (
-        <View key={idx} style={styles.item}>
+      {items.map((item) => (
+        <View key={item} style={styles.item}>
           <Text style={styles.itemBullet}>•</Text>
           <Text style={styles.itemText}>{item}</Text>
         </View>

@@ -23,7 +23,7 @@ export function FormSelect({
   options,
   placeholder,
   className,
-}: FormSelectProps) {
+}: Readonly<FormSelectProps>) {
   const field = useFieldContext<string>()
   const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid
   return (

@@ -70,7 +70,7 @@ export function PDFViewer({
   value,
   onUrlChange,
   onRenderError,
-}: PDFViewerProps) {
+}: Readonly<PDFViewerProps>) {
   // const [numPages, setNumPages] = useState<number | null>(null)
   const [currentPage, setCurrentPage] = useState(1)
   const [previousRenderValue, setPreviousRenderValue] = useState<
@@ -89,14 +89,6 @@ export function PDFViewer({
   useEffect(() => onUrlChange(render.value), [render.value])
 
   useEffect(() => onRenderError(render.error), [render.error])
-
-  // const onPreviousPage = () => {
-  //   setCurrentPage((prev) => prev - 1)
-  // }
-
-  // const onNextPage = () => {
-  //   setCurrentPage((prev) => prev + 1)
-  // }
 
   const onDocumentLoad: OnDocumentLoadSuccess = (d) => {
     // setNumPages(d.numPages)

@@ -10,8 +10,8 @@ interface ListItemsProps {
 export const ListItems = ({ items, styles }: ListItemsProps) => {
   return (
     <View style={styles.honorsContainer}>
-      {items.map((item, idx) => (
-        <View key={idx} style={styles.honorRow}>
+      {items.map((item) => (
+        <View key={item.id} style={styles.honorRow}>
           <Text style={styles.honorDate}>{item.date}</Text>
           <View style={styles.honorContent}>
             <Text>

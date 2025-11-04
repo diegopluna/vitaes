@@ -3,7 +3,9 @@ import { AuthQueryProvider } from '@daveyplate/better-auth-tanstack'
 import { AuthUIProviderTanstack } from '@daveyplate/better-auth-ui/tanstack'
 import { Link, useRouter } from '@tanstack/react-router'
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   const router = useRouter()
   return (
     <AuthQueryProvider>
