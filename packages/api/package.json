@@ -1,0 +1,36 @@
+{
+  "name": "@vitaes/api",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "default": "./src/*.ts"
+    }
+  },
+  "type": "module",
+  "scripts": {
+    "build": "tsdown"
+  },
+  "devDependencies": {
+    "tsdown": "catalog:",
+    "@vitaes/typescript-config": "workspace:*"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@orpc/server": "catalog:",
+    "@orpc/client": "catalog:",
+    "@orpc/openapi": "catalog:",
+    "@orpc/zod": "catalog:",
+    "hono": "catalog:",
+    "dotenv": "catalog:",
+    "zod": "catalog:",
+    "@vitaes/auth": "workspace:*",
+    "@vitaes/db": "workspace:*",
+    "@vitaes/types": "workspace:*"
+  }
+}

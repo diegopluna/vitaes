@@ -1,0 +1,17 @@
+{
+    "name": "@vitaes/vitest-config",
+    "version": "0.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch"
+    },
+    "dependencies": {
+        "vitest": "catalog:"
+    },
+    "devDependencies": {
+        "@vitaes/typescript-config": "workspace:*",
+        "typescript": "catalog:"
+    }
+}
