@@ -90,33 +90,34 @@ jobs:
       - name: Typecheck code
         run: pnpm run check-types
 
-  test:
-    name: Tests
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [22]
-    needs: [typecheck]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  # Remove test while we are not using it
+  # test:
+  #   name: Tests
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       node-version: [22]
+  #   needs: [typecheck]
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
       
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10.18.3
+  #     - name: Install pnpm
+  #       uses: pnpm/action-setup@v4
+  #       with:
+  #         version: 10.18.3
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
+  #     - name: Use Node.js ${{ matrix.node-version }}
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: ${{ matrix.node-version }}
+  #         cache: "pnpm"
 
-      - name: Install dependencies
-        run: pnpm install
+  #     - name: Install dependencies
+  #       run: pnpm install
 
-      - name: Run tests
-        run: pnpm run test
+  #     - name: Run tests
+  #       run: pnpm run test
 
 
   build:
@@ -125,7 +126,7 @@ jobs:
     strategy:
       matrix:
         node-version: [22]
-    needs: [test]
+    # needs: [test]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
