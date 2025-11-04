@@ -201,7 +201,15 @@ jobs:
       - name: Get affected apps
         id: affected
         run: |
-          # Get Affected apps since last commit on main
-          AFFECTED=$(pnpm turbo run build --filter="...[origin/main]" --dry-run=json | jq -r '.packages | map(select(startswith("apps/"))) | unique | @json')
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+           #  For PRs, compare against the base branch
+           BASE_REF="origin/${{ github.base_ref }}"
+          else
+            # For direct pushes to main, compare against previous commit
+            BASE_REF="HEAD^1"
+          fi
+
+          echo "Comparing against ${BASE_REF}"
+          AFFECTED=$(pnpm turbo run build --filter="...[${BASE_REF}]" --dry-run=json | jq -r '[.packages[] | map(select(startswith("apps/"))] | unique | @json')
           echo "apps=${AFFECTED}" >> $GITHUB_OUTPUT
           echo "Affected apps: ${AFFECTED}"
