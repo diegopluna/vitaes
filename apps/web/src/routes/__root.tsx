@@ -21,6 +21,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import Header from '@/components/header'
 import '../index.css'
 import { seo } from '@/lib/seo'
+import { Providers } from '@/components/providers'
 
 export interface RouterAppContext {
   orpc: typeof orpc
@@ -59,13 +60,15 @@ function RootLayout() {
   return (
     <>
       <HeadContent />
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <div className="grid grid-rows-[auto_1fr] h-svh">
-          <Header />
-          {isFetching ? <Loader /> : <Outlet />}
-          <Toaster richColors />
-        </div>
-      </ThemeProvider>
+      <Providers>
+        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+          <div className="grid grid-rows-[auto_1fr] h-svh">
+            <Header />
+            {isFetching ? <Loader /> : <Outlet />}
+            <Toaster richColors />
+          </div>
+        </ThemeProvider>
+      </Providers>
       <TanStackDevtools
         plugins={[
           {

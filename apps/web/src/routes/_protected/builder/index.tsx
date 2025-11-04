@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { Editor } from './-components/editor'
 import { useResumeStore } from '@/store/resume-store'
 
-export const Route = createFileRoute('/builder/')({
+export const Route = createFileRoute('/_protected/builder/')({
   component: RouteComponent,
 })
 

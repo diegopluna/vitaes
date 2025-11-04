@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { ModeToggle } from './mode-toggle'
-import UserMenu from './user-menu'
+import { UserButton } from '@daveyplate/better-auth-ui'
 
 export default function Header() {
   const links = [
@@ -22,7 +22,7 @@ export default function Header() {
         </nav>
         <div className="flex items-center gap-2">
           <ModeToggle />
-          <UserMenu />
+          <UserButton className="bg-transparent" />
         </div>
       </div>
       <hr />

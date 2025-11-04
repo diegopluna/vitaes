@@ -2,7 +2,7 @@ name: vitaes
 
 services:
   postgres:
-    image: postgres
+    image: postgres:17
     container_name: vitaes-postgres
     environment:
       POSTGRES_DB: vitaes

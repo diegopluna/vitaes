@@ -1,20 +1,9 @@
-import { authClient } from '@/lib/auth-client'
 import { orpc } from '@/utils/orpc'
 import { useQuery } from '@tanstack/react-query'
-import { createFileRoute, redirect } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/dashboard')({
+export const Route = createFileRoute('/_protected/dashboard')({
   component: RouteComponent,
-  beforeLoad: async () => {
-    const session = await authClient.getSession()
-    if (!session.data) {
-      redirect({
-        to: '/login',
-        throw: true,
-      })
-    }
-    return { session }
-  },
 })
 
 function RouteComponent() {

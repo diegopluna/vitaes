@@ -1,4 +1,45 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
-  "example_message": "Hello world {username}"
+  "login": {
+    "title": "Login",
+    "description": "Welcome back to Vitaes",
+    "social": {
+      "google": "Sign in with Google",
+      "github": "Sign in with GitHub"
+    },
+    "signInWith": "Sign in with"
+  },
+  "settings": {
+    "name": {
+      "label": "Name",
+      "placeholder": "Name",
+      "description": "Please enter your full name, or a display name.",
+      "instructions": "Please use 32 characters at maximum.",
+      "saveChanges": "Save"
+    },
+    "providers": {
+      "label": "Providers",
+      "description": "Manage your account providers.",
+      "saveChanges": "Save",
+      "link": "Link",
+      "unlink": "Unlink"
+    },
+    "sessions": {
+      "label": "Sessions",
+      "description": "Manage your active sessions.",
+      "placeholder": "Session",
+      "instructions": "Click on a session to end it.",
+      "saveChanges": "Save",
+      "currentSession": "Current session",
+      "signOut": "Sign out",
+      "revoke": "Revoke"
+    },
+    "deleteAccount": {
+      "label": "Delete account",
+      "description": "Permanently remove your account and all of its contents. This action is not reversible, so please continue with caution.",
+      "button": "Delete account",
+      "instructions": "Please confirm the deletion of your account. This action is not reversible, so please continue with caution.",
+      "cancel": "Cancel"
+    }
+  }
 }
