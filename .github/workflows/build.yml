@@ -210,6 +210,6 @@ jobs:
           fi
 
           echo "Comparing against ${BASE_REF}"
-          AFFECTED=$(pnpm turbo run build --filter="...[${BASE_REF}]" --dry-run=json | jq -r '[.packages[] | map(select(startswith("apps/"))] | unique | @json')
+          AFFECTED=$(pnpm turbo run build --filter="...[${BASE_REF}]" --dry-run=json | jq -r '[.packages[] | select(startswith("apps/"))] | @json')
           echo "apps=${AFFECTED}" >> $GITHUB_OUTPUT
           echo "Affected apps: ${AFFECTED}"
