@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3001",
-    "build": "tsc -b && vite build",
+    "build": "pnpm dlx @inlang/paraglide-js compile --project ./project.inlang --outdir ./src/paraglide && tsc -b && vite build",
     "lint": "eslint .",
     "lint:ci": "eslint . --format json --output-file eslint-report.json --max-warnings=-1",
     "serve": "vite preview",
