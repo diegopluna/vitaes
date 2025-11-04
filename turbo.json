@@ -11,10 +11,7 @@
 		"lint": {
 			"dependsOn": ["^lint"]
 		},
-		"lint:ci": {
-			"dependsOn": ["^lint:ci"],
-			"env": ["CORS_ORIGIN"]
-		},
+		"lint:ci": {},
 		"check-types": {
 			"dependsOn": ["^check-types"]
 		},
