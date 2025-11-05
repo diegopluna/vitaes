@@ -183,6 +183,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -206,7 +208,7 @@ jobs:
            BASE_REF="origin/${{ github.base_ref }}"
           else
             # For direct pushes to main, compare against previous commit
-            BASE_REF="HEAD^1"
+            BASE_REF="${{ github.event.before }}"
           fi
 
           echo "Comparing against ${BASE_REF}"
