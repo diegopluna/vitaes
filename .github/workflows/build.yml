@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   setup:
@@ -156,8 +159,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-
+          fetch-depth: 0
       - name: Scan code with SonarQube
         uses: SonarSource/sonarqube-scan-action@v6
         env:
@@ -171,56 +173,83 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     
-  detect-changes:
-    name: Detect Changes
-    strategy:
-      matrix:
-        node-version: [22]
+  web-changed:
     needs: [sonar]
+    uses: ./.github/workflows/turbo-changed.yml
+    with:
+      workspace_name: web
+      base_ref:
+        ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+
+  server-changed:
+    needs: [sonar]
+    uses: ./.github/workflows/turbo-changed.yml
+    with:
+      workspace_name: server
+      base_ref:
+        ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+
+  publish_web:
+    name: Publish Web
+    needs: [web-changed]
+    if: ${{ needs.web-changed.outputs.changed == 'true' }}
     runs-on: ubuntu-latest
-    env:
-      TURBO_RUN_FILTER: ${{ github.event_name == 'pull_request' && '...[origin/main]' || '...[HEAD^]'}}
-    outputs:
-      changed-web: ${{ steps.changed-web.outputs.result }}
-      changed-server: ${{ steps.changed-server.outputs.result }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
         with:
-          version: 10.18.3
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
+          push: true
+          tags: vitaes/web:latest
+          context: ./apps/web
 
-      - name: Install dependencies
-        run: pnpm install
+  publish_server:
+    name: Publish Server
+    needs: [server-changed]
+    if: ${{ needs.server-changed.outputs.changed == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Changeset
-        id: changeset
-        run: |
-          content=`pnpm run build --filter=$TURBO_RUN_FILTER --dry-run=json`
-          # the following lines are required for multi line json
-          content="${content//'%'/'%25'}"
-          content="${content//$'\n'/'%0A'}"
-          content="${content//$'\r'/'%0D'}"
-          echo "::set-output name=result::$content"
-        
-      - name: Changed web?
-        id: changed-web
-        if: ${{ contains(fromJSON(steps.changeset.outputs.result).packages, 'web') }}
-        run: |
-          echo "::set-output name=result::true"
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Changed server?
-        id: changed-server
-        if: ${{ contains(fromJSON(steps.changeset.outputs.result).packages, 'server') }}
-        run: |
-          echo "::set-output name=result::true"
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: vitaes/server:latest
+          context: ./apps/server
+
+      
+      
+
+      

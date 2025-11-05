@@ -1,0 +1,48 @@
+name: Check if a workspace changed
+
+on:
+  workflow_call:
+    inputs:
+      workspace_name:
+        description: 'Name of the workspace, aka the app name in the package.json file'
+        required: true
+        type: string
+      # The base here varies depending on if we're using this workflow in a PR or on a push to a branch, or on the creation of a release/tag
+      # e.g., For PRs, we want to use `github.event.pull_request.base.sha` to tell turbo to see which packages changed since that SHA
+      # e.g., For a branch push/merges, the above sha isn't available, so instead, we reference `github.event.before` to determine the previous `HEAD` of the branch we just pushed onto
+      # e.g., For releases, we want to use the previous tag, see `cd-release.yml`
+      #   See SO answer for more info https://stackoverflow.com/a/61861763/2379922
+      base_ref:
+        description: 'The base git ref to use to diff for changes'
+        required: true
+        type: string
+    outputs:
+      changed:
+        description: 'Did the inputed workspace (i.e., package) change according to turbo-ignore? Return "true" or "false"'
+        value: ${{ jobs.changed.outputs.changed }}
+jobs:
+  changed:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.changed.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # https://github.com/actions/checkout#checkout-v3, see `fetch-depth`,
+          # we set to `0` so the referenced commits are available for the command below
+          fetch-depth: 0
+
+      - name: Did workspace change?
+        id: changed
+        # `turbo-ignore` exits with 0 if workspace didn't change, and a non-zero (error) if it did change
+        # evaluate exit code to output true/false if packaged changed.
+        run: |
+          # disable "exit on failure"
+          set +e  
+          npx -y turbo-ignore ${{ inputs.workspace_name }} --fallback ${{ inputs.base_ref }}
+          if [ $? -eq 0 ]
+          then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
