@@ -216,7 +216,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: vitaes/web:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/vitaes-web:latest
           context: .
           file: apps/web/Dockerfile
 
@@ -247,7 +247,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: vitaes/server:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/vitaes-server:latest
           context: .
           file: apps/server/Dockerfile
 

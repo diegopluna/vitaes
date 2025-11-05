@@ -11,6 +11,9 @@ export const appRouter = {
       user: context.session?.user,
     }
   }),
+  helloWorld: publicProcedure.handler(() => {
+    return 'Hello World'
+  }),
 }
 export type AppRouter = typeof appRouter
 export type AppRouterClient = RouterClient<typeof appRouter>
