@@ -31,5 +31,6 @@
     "tsdown": "catalog:",
     "typescript": "catalog:",
     "@types/node": "catalog:"
-  }
+  },
+  "packageManager": "pnpm@10.18.3"
 }
