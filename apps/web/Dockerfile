@@ -23,14 +23,17 @@ COPY --from=builder /app/out/json/ .
 RUN pnpm install --frozen-lockfile
 
 COPY --from=builder /app/out/full/ .
-RUN pnpm turbo run build
+RUN pnpm turbo run build --filter=web...
 
 FROM base AS runner
 
-COPY --from=installer . .
-COPY --from=installer ./app/apps/web/dist/ .
+# Preserve pnpm layout and pruned workspace
+COPY --from=installer /app /app
+
+WORKDIR /app/apps/web
 
 ENV NODE_ENV=production
 EXPOSE 3001
 
-CMD ["pnpm", "run", "start"]
+# Use the production preview server for built assets
+CMD ["pnpm", "run", "serve"]
