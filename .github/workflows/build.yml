@@ -178,8 +178,11 @@ jobs:
         node-version: [22]
     needs: [sonar]
     runs-on: ubuntu-latest
+    env:
+      TURBO_RUN_FILTER: ${{ github.event_name == 'pull_request' && '...[origin/main]' || '...[HEAD^]'}}
     outputs:
-      affected-apps: ${{ steps.affected.outputs.apps }}
+      changed-web: ${{ steps.changed-web.outputs.result }}
+      changed-server: ${{ steps.changed-server.outputs.result }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -200,18 +203,24 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Get affected apps
-        id: affected
+      - name: Changeset
+        id: changeset
         run: |
-          if [ "${{ github.event_name }}" == "pull_request" ]; then
-           #  For PRs, compare against the base branch
-           BASE_REF="origin/${{ github.base_ref }}"
-          else
-            # For direct pushes to main, compare against previous commit
-            BASE_REF="${{ github.event.before }}"
-          fi
+          content=`pnpm run build --filter=$TURBO_RUN_FILTER --dry-run=json`
+          # the following lines are required for multi line json
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          echo "::set-output name=result::$content"
+        
+      - name: Changed web?
+        id: changed-web
+        if: ${{ contains(fromJSON(steps.changeset.outputs.result).packages, 'web') }}
+        run: |
+          echo "::set-output name=result::true"
 
-          echo "Comparing against ${BASE_REF}"
-          AFFECTED=$(pnpm turbo run build --filter="...[${BASE_REF}]" --dry-run=json | jq -r '[.packages[] | select(startswith("apps/"))] | @json')
-          echo "apps=${AFFECTED}" >> $GITHUB_OUTPUT
-          echo "Affected apps: ${AFFECTED}"
+      - name: Changed server?
+        id: changed-server
+        if: ${{ contains(fromJSON(steps.changeset.outputs.result).packages, 'server') }}
+        run: |
+          echo "::set-output name=result::true"
