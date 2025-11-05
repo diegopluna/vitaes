@@ -31,7 +31,7 @@ WORKDIR /app
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 hono
 
-COPY --from=installer --chown=hono:nodejs /node_modules /app/node_modules
+COPY --from=installer --chown=hono:nodejs /app/node_modules /app/node_modules
 COPY --from=installer --chown=hono:nodejs /app/apps/server/dist/ /app/dist/
 COPY --from=installer --chown=hono:nodejs /app/apps/server/package.json /app/package.json
 
