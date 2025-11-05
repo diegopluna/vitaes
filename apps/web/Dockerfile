@@ -33,7 +33,7 @@ COPY --from=installer /app /app
 WORKDIR /app/apps/web
 
 ENV NODE_ENV=production
-EXPOSE 3001
+EXPOSE 4173
 
 # Use the production preview server for built assets
 CMD ["pnpm", "run", "serve"]
