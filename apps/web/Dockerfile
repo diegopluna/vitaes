@@ -26,6 +26,7 @@ COPY --from=builder /app/out/full/ .
 RUN pnpm turbo run build --filter=web...
 
 FROM base AS runner
+RUN pnpm install --global serve
 
 # Preserve pnpm layout and pruned workspace
 COPY --from=installer /app /app
@@ -36,4 +37,4 @@ ENV NODE_ENV=production
 EXPOSE 4173
 
 # Use the production preview server for built assets
-CMD ["pnpm", "run", "serve"]
+CMD ["serve", "-s", "dist", "-l", "4173"]
