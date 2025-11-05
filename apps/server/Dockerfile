@@ -23,7 +23,7 @@ COPY --from=builder /app/out/json/ .
 RUN pnpm install --frozen-lockfile
 
 COPY --from=builder /app/out/full/ .
-RUN pnpm turbo run build
+RUN pnpm turbo run build --filter=server...
 
 FROM base AS runner
 WORKDIR /app
@@ -31,12 +31,13 @@ WORKDIR /app
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 hono
 
-COPY --from=installer --chown=hono:nodejs /app/node_modules /app/node_modules
-COPY --from=installer --chown=hono:nodejs /app/apps/server/dist/ /app/dist/
-COPY --from=installer --chown=hono:nodejs /app/apps/server/package.json /app/package.json
+# Copy the entire pruned workspace to preserve pnpm layout and dependencies
+COPY --from=installer --chown=hono:nodejs /app /app
+
+WORKDIR /app/apps/server
 
 USER hono
 ENV NODE_ENV=production
 EXPOSE 3000
 
-CMD ["node", "/app/distindex.js"]
+CMD ["node", "dist/index.js"]
