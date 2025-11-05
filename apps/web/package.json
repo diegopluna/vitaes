@@ -8,7 +8,7 @@
     "build": "pnpm dlx @inlang/paraglide-js compile --project ./project.inlang --outdir ./src/paraglide && tsc -b && vite build",
     "lint": "eslint .",
     "lint:ci": "eslint . --format json --output-file eslint-report.json --max-warnings=-1",
-    "serve": "vite preview",
+    "serve": "vite preview --host 0.0.0.0",
     "start": "vite",
     "check-types": "tsc --noEmit",
     "test": "vitest run",
