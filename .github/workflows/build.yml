@@ -217,7 +217,8 @@ jobs:
         with:
           push: true
           tags: vitaes/web:latest
-          context: ./apps/web
+          context: .
+          file: apps/web/Dockerfile
 
   publish_server:
     name: Publish Server
@@ -247,7 +248,8 @@ jobs:
         with:
           push: true
           tags: vitaes/server:latest
-          context: ./apps/server
+          context: .
+          file: apps/server/Dockerfile
 
       
       
