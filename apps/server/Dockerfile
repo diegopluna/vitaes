@@ -26,11 +26,17 @@ COPY --from=builder /app/out/full/ .
 RUN pnpm turbo run build
 
 FROM base AS runner
+WORKDIR /app
 
-COPY --from=installer . .
-COPY --from=installer ./app/apps/server/dist/ .
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 hono
 
+COPY --from=installer --chown=hono:nodejs /node_modules /app/node_modules
+COPY --from=installer --chown=hono:nodejs /app/apps/server/dist/ /app/dist/
+COPY --from=installer --chown=hono:nodejs /app/apps/server/package.json /app/package.json
+
+USER hono
 ENV NODE_ENV=production
 EXPOSE 3000
 
-CMD ["node", "index.js"]
+CMD ["node", "/app/distindex.js"]

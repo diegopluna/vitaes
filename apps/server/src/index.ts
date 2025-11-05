@@ -73,7 +73,7 @@ app.use('/*', async (c, next) => {
 })
 
 app.get('/', (c) => {
-  return c.text('Vitaes Server is running 🚀')
+  return c.text('Vitaes Server is running')
 })
 
 serve(
