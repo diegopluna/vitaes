@@ -217,8 +217,8 @@ export const createStyles = (themeColor: AwesomeColor = 'awesome-red') => {
 
     // Items (bullet points)
     items: {
-      marginTop: '-4mm',
-      marginBottom: '-4mm',
+      marginTop: '-1mm',
+      marginBottom: '0mm',
     },
     item: {
       flexDirection: 'row',
