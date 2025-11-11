@@ -391,6 +391,9 @@ importers:
 
   packages/db:
     dependencies:
+      '@vitaes/types':
+        specifier: workspace:*
+        version: link:../types
       dotenv:
         specifier: 'catalog:'
         version: 17.2.3

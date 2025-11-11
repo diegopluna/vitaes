@@ -8,6 +8,20 @@
       "when": 1762221951731,
       "tag": "0000_luxuriant_slipstream",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1762776045494,
+      "tag": "0001_exotic_praxagora",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1762827242652,
+      "tag": "0002_workable_shinko_yamashiro",
+      "breakpoints": true
     }
   ]
 }
