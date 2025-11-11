@@ -2,7 +2,7 @@ import { withForm } from '@/components/form/form-context'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { initialValue } from '@/utils/initial-value'
-import { Trash2 } from 'lucide-react'
+import { Plus, Trash2 } from 'lucide-react'
 import { TimelineBulletPointsEditor } from './timeline-bullet-points-editor'
 
 export const TimelineSectionEditor = withForm({
@@ -71,6 +71,25 @@ export const TimelineSectionEditor = withForm({
                   />
                 </Card>
               ))}
+              <Button
+                variant="outline"
+                size="sm"
+                className="w-full"
+                onClick={() =>
+                  form.pushFieldValue(`sections[${index}].entries`, {
+                    id: Date.now().toString(),
+                    position: '',
+                    date: '',
+                    title: '',
+                    location: '',
+                    description: '',
+                    items: [],
+                  })
+                }
+              >
+                <Plus className="size-4 mr-2" />
+                Add Entry
+              </Button>
             </div>
           )
         }}

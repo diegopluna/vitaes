@@ -240,7 +240,7 @@ export const createStyles = (themeColor: AwesomeColor = 'awesome-red') => {
     // Honor styles
     honorsContainer: {
       marginTop: '2.5mm',
-      marginBottom: '-2mm',
+      marginBottom: '0mm',
     },
     honorRow: {
       flexDirection: 'row',

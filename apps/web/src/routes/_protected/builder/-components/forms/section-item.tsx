@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { TextSectionEditor } from './section-editors/text-section-editor'
 import { TimelineSectionEditor } from './section-editors/timeline-section-editor'
+import { ListSectionEditor } from './section-editors/list-section-editor'
 
 export const SectionItem = withForm({
   defaultValues: initialValue,
@@ -95,6 +96,9 @@ export const SectionItem = withForm({
             )}
             {section.type === 'timeline' && (
               <TimelineSectionEditor form={form} index={index} />
+            )}
+            {section.type === 'list' && (
+              <ListSectionEditor form={form} index={index} />
             )}
           </div>
         )}
