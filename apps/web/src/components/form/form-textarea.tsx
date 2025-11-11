@@ -7,6 +7,7 @@ type FormTextareaProps = {
   placeholder?: string
   className?: string
   rows?: number
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
 }
 
 export function FormTextarea({
@@ -14,6 +15,7 @@ export function FormTextarea({
   placeholder,
   className,
   rows = 2,
+  onChange,
 }: Readonly<FormTextareaProps>) {
   const field = useFieldContext<string>()
   const value = field.state.value
@@ -28,7 +30,11 @@ export function FormTextarea({
         name={field.name}
         value={value}
         onBlur={field.handleBlur}
-        onChange={(e) => field.handleChange(e.target.value)}
+        onChange={
+          onChange
+            ? (e) => onChange(e)
+            : (e) => field.handleChange(e.target.value)
+        }
         aria-invalid={isInvalid}
         placeholder={placeholder}
         className={className}

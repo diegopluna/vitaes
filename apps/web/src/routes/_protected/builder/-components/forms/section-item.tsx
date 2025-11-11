@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { TextSectionEditor } from './section-editors/text-section-editor'
 import { TimelineSectionEditor } from './section-editors/timeline-section-editor'
 import { ListSectionEditor } from './section-editors/list-section-editor'
+import { TaxonomySectionEditor } from './section-editors/taxonomy-section-editor'
 
 export const SectionItem = withForm({
   defaultValues: initialValue,
@@ -99,6 +100,9 @@ export const SectionItem = withForm({
             )}
             {section.type === 'list' && (
               <ListSectionEditor form={form} index={index} />
+            )}
+            {section.type === 'taxonomy' && (
+              <TaxonomySectionEditor form={form} index={index} />
             )}
           </div>
         )}
