@@ -8,6 +8,7 @@ import { initialValue } from '@/utils/initial-value'
 import { ResumeSchema } from '@vitaes/types/resume'
 import { useResumeStore } from '@/store/resume-store'
 import { useAppForm } from '@/components/form/form-context'
+import { SectionsForm } from './forms/sections-form'
 
 export function Editor() {
   const { setResume, setSaving } = useResumeStore()
@@ -86,7 +87,9 @@ export function Editor() {
         <TabsContent value="personal" className="space-y-4 p-6 mt-0">
           <PersonalForm form={form} />
         </TabsContent>
-        <TabsContent value="sections">Sections</TabsContent>
+        <TabsContent value="sections">
+          <SectionsForm form={form} />
+        </TabsContent>
         <TabsContent value="theme">Theme</TabsContent>
       </ScrollArea>
     </Tabs>

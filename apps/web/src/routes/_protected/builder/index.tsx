@@ -20,7 +20,7 @@ function RouteComponent() {
 
   return (
     <div className="h-full flex overflow-hidden">
-      <div className="flex flex-col overflow-hidden border-r">
+      <div className="flex flex-col overflow-hidden border-r  w-[525px]">
         <Editor />
       </div>
       <ScrollArea className="flex-1 h-full bg-muted/50">

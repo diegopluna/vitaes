@@ -1,18 +1,20 @@
 import { Field, FieldError, FieldLabel } from '../ui/field'
-import { Input } from '../ui/input'
+import { Textarea } from '../ui/textarea'
 import { useFieldContext } from './form-context'
 
-type FormInputProps = {
+type FormTextareaProps = {
   label?: string
   placeholder?: string
   className?: string
+  rows?: number
 }
 
-export function FormInput({
+export function FormTextarea({
   label,
   placeholder,
   className,
-}: Readonly<FormInputProps>) {
+  rows = 2,
+}: Readonly<FormTextareaProps>) {
   const field = useFieldContext<string>()
   const value = field.state.value
 
@@ -21,7 +23,7 @@ export function FormInput({
   return (
     <Field data-invalid={isInvalid}>
       {label && <FieldLabel htmlFor={field.name}>{label}</FieldLabel>}
-      <Input
+      <Textarea
         id={field.name}
         name={field.name}
         value={value}
@@ -29,8 +31,8 @@ export function FormInput({
         onChange={(e) => field.handleChange(e.target.value)}
         aria-invalid={isInvalid}
         placeholder={placeholder}
-        type="text"
         className={className}
+        rows={rows}
       />
       {isInvalid && <FieldError errors={field.state.meta.errors} />}
     </Field>
