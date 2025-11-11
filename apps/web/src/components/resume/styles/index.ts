@@ -291,8 +291,7 @@ export const createStyles = (themeColor: AwesomeColor = 'awesome-red') => {
       fontSize: 10,
       color: colors.darktext,
       width: '20%',
-      textAlign: 'right',
-      paddingRight: 10,
+      textAlign: 'left',
     },
     skillSet: {
       fontFamily: 'Source Sans Pro',

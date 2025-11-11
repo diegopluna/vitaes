@@ -40,7 +40,8 @@ export const TaxonomySectionEditor = withForm({
                           field.setValue(
                             e.target.value
                               .split(',')
-                              .map((item) => item.trim()),
+                              .map((item) => item.trim())
+                              .filter(Boolean),
                           )
                         }
                       />
