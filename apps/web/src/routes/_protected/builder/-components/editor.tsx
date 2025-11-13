@@ -9,6 +9,7 @@ import { ResumeSchema } from '@vitaes/types/resume'
 import { useResumeStore } from '@/store/resume-store'
 import { useAppForm } from '@/components/form/form-context'
 import { SectionsForm } from './forms/sections-form'
+import { ThemeForm } from './forms/theme-form'
 
 export function Editor() {
   const { setResume, setSaving } = useResumeStore()
@@ -90,7 +91,9 @@ export function Editor() {
         <TabsContent value="sections">
           <SectionsForm form={form} />
         </TabsContent>
-        <TabsContent value="theme">Theme</TabsContent>
+        <TabsContent value="theme" className="space-y-4 p-6 mt-0">
+          <ThemeForm form={form} />
+        </TabsContent>
       </ScrollArea>
     </Tabs>
   )
