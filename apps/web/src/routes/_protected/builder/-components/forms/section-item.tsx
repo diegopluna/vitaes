@@ -66,7 +66,11 @@ export const SectionItem = withForm({
           />
           <div className="flex items-center gap-1">
             <span className="text-xs text-muted-foreground px-2 py-1 bg-background rounded">
-              {section.type}
+              {section.type === 'list'
+                ? section.structure.type === 'flat'
+                  ? 'list'
+                  : 'grouped list'
+                : section.type}
             </span>
             <Button
               variant="ghost"

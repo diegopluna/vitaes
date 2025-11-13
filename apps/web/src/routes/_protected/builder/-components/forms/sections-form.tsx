@@ -29,14 +29,17 @@ export const SectionsForm = withForm({
         coordinateGetter: sortableKeyboardCoordinates,
       }),
     )
-    const generateSection = (type: SectionType) => {
+    const generateSection = (type: SectionType | 'grouped-list') => {
       const section: Section = {
         id: Date.now().toString(),
         title: 'New Section',
-        type,
+        type: type === 'grouped-list' ? 'list' : type,
         ...(type === 'text' && { content: '' }),
         ...(type === 'timeline' && { entries: [] }),
         ...(type === 'list' && { structure: { type: 'flat', items: [] } }),
+        ...(type === 'grouped-list' && {
+          structure: { type: 'grouped', subsections: [] },
+        }),
         ...(type === 'taxonomy' && { categories: [] }),
       } as Section
       return section
@@ -62,7 +65,7 @@ export const SectionsForm = withForm({
       <form.AppField name="sections" mode="array">
         {(field) => (
           <div className="space-y-4">
-            <div className="flex justify-around flex-wrap pb-4 border-b">
+            <div className="flex gap-2 px-2 flex-wrap pb-4 border-b">
               <Button
                 onClick={() => field.pushValue(generateSection('text'))}
                 variant="outline"
@@ -86,6 +89,14 @@ export const SectionsForm = withForm({
               >
                 <Plus className="size-4 mr-2" />
                 List
+              </Button>
+              <Button
+                onClick={() => field.pushValue(generateSection('grouped-list'))}
+                variant="outline"
+                size="sm"
+              >
+                <Plus className="size-4 mr-2" />
+                Grouped List
               </Button>
               <Button
                 onClick={() => field.pushValue(generateSection('taxonomy'))}
