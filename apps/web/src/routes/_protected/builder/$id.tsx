@@ -36,7 +36,7 @@ function RouteComponent() {
       initialLastSaved={initialResume.updatedAt}
       initialResume={initialResume.data!}
     >
-      <BuilderHeader />
+      <BuilderHeader documentUrl={documentUrl ?? ''} />
       <div className="h-full flex overflow-hidden">
         <div className="flex flex-col overflow-hidden border-r  w-[525px]">
           <Editor initialResume={initialResume.data!} />

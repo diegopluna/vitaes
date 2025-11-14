@@ -2,8 +2,14 @@ import { Link } from '@tanstack/react-router'
 import { ModeToggle } from './mode-toggle'
 import { UserButton } from '@daveyplate/better-auth-ui'
 import { useResumeStore } from '@/context/use-resume-store'
+import { Button } from './ui/button'
+import { Download } from 'lucide-react'
 
-export default function BuilderHeader() {
+export default function BuilderHeader({
+  documentUrl,
+}: {
+  documentUrl: string
+}) {
   const { lastSaved, isSaving } = useResumeStore()
   const links = [
     { to: '/', label: 'Home' },
@@ -24,6 +30,12 @@ export default function BuilderHeader() {
         </nav>
         <div className="flex items-center gap-2">
           <span>{isSaving ? 'Saving...' : lastSaved.toLocaleString()}</span>
+          <Button variant="outline" asChild>
+            <a href={documentUrl} download="resume.pdf">
+              <Download className="size-4" />
+              Download
+            </a>
+          </Button>
           <ModeToggle />
           <UserButton className="bg-transparent" />
         </div>
