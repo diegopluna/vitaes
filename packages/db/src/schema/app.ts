@@ -1,6 +1,7 @@
 import {
   boolean,
   index,
+  integer,
   json,
   pgTable,
   text,
@@ -22,11 +23,13 @@ export const resume = pgTable(
     createdAt: timestamp('created_at').notNull().defaultNow(),
     updatedAt: timestamp('updated_at').notNull().defaultNow(),
     isPublic: boolean('is_public').notNull().default(false),
-    url: text('url').notNull().unique(),
+    slug: text('slug').notNull().unique(),
+    views: integer('views').notNull().default(0),
+    downloads: integer('downloads').notNull().default(0),
   },
   (table) => [
     index('idx_resume_user_email').on(table.userEmail),
-    index('idx_resume_url').on(table.url),
+    index('idx_resume_slug').on(table.slug),
     unique('uk_resume_name_user_email').on(table.name, table.userEmail),
   ],
 )

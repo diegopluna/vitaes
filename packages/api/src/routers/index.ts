@@ -5,6 +5,8 @@ import z from 'zod'
 import { exampleResumes } from '@vitaes/types/resume'
 import { resume } from '@vitaes/db/schema/app'
 import { uuidv7 } from 'uuidv7'
+import { uniqueSlug } from '../utils'
+import { eq } from 'drizzle-orm'
 
 export const appRouter = {
   healthCheck: publicProcedure.handler(() => {
@@ -26,20 +28,26 @@ export const appRouter = {
     })
     return resumes
   }),
-  getResumeByUrl: protectedProcedure
-    .input(z.object({ url: z.string() }))
+  getResumeBySlug: publicProcedure
+    .input(z.object({ slug: z.string() }))
     .handler(async ({ context, input }) => {
-      const { url: resumeUrl } = input
-      const currentUser = context.session.user
-      const resume = await db.query.resume.findFirst({
-        where: ({ url }, { eq }) => eq(url, resumeUrl),
+      const { slug: resumeSlug } = input
+      const queriedResume = await db.query.resume.findFirst({
+        where: ({ slug }, { eq }) => eq(slug, resumeSlug),
       })
-      if (!resume) {
+      if (!queriedResume) {
         throw new ORPCError('NOT_FOUND')
       }
-      if (!resume.isPublic && resume.userEmail !== currentUser.email) {
+      if (
+        !queriedResume.isPublic &&
+        queriedResume.userEmail !== context.session?.user.email
+      ) {
         throw new ORPCError('FORBIDDEN')
       }
+      await db
+        .update(resume)
+        .set({ views: queriedResume.views + 1 })
+        .where(eq(resume.id, queriedResume.id))
       return resume
     }),
   getResumeById: protectedProcedure
@@ -75,7 +83,7 @@ export const appRouter = {
           name,
           userEmail: currentUser.email,
           data: exampleResume,
-          url: uuidv7(),
+          slug: uniqueSlug(currentUser.email, name),
         })
         .returning()
 
@@ -84,6 +92,28 @@ export const appRouter = {
       }
 
       return createdResume
+    }),
+  setDownloadCount: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .handler(async ({ context, input }) => {
+      const { id: resumeId } = input
+      const queriedResume = await db.query.resume.findFirst({
+        where: ({ id }, { eq }) => eq(id, resumeId),
+      })
+      if (!queriedResume) {
+        throw new ORPCError('NOT_FOUND')
+      }
+      if (
+        !queriedResume.isPublic &&
+        queriedResume.userEmail !== context.session?.user.email
+      ) {
+        throw new ORPCError('FORBIDDEN')
+      }
+      await db
+        .update(resume)
+        .set({ downloads: queriedResume.downloads + 1 })
+        .where(eq(resume.id, resumeId))
+      return queriedResume
     }),
 }
 
