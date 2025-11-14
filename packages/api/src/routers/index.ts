@@ -2,6 +2,9 @@ import { db } from '@vitaes/db'
 import { protectedProcedure, publicProcedure } from '../index'
 import { ORPCError, type RouterClient } from '@orpc/server'
 import z from 'zod'
+import { exampleResumes } from '@vitaes/types/resume'
+import { resume } from '@vitaes/db/schema/app'
+import { uuidv7 } from 'uuidv7'
 
 export const appRouter = {
   healthCheck: publicProcedure.handler(() => {
@@ -52,6 +55,35 @@ export const appRouter = {
         throw new ORPCError('NOT_FOUND')
       }
       return resume
+    }),
+  createResume: protectedProcedure
+    .input(
+      z.object({
+        name: z.string(),
+        language: z.enum(Object.keys(exampleResumes)),
+      }),
+    )
+    .handler(async ({ context, input }) => {
+      const { name, language } = input
+      const exampleResume =
+        exampleResumes[language as keyof typeof exampleResumes]
+      const currentUser = context.session.user
+      const [createdResume] = await db
+        .insert(resume)
+        .values({
+          id: uuidv7(),
+          name,
+          userEmail: currentUser.email,
+          data: exampleResume,
+          url: uuidv7(),
+        })
+        .returning()
+
+      if (!createdResume) {
+        throw new ORPCError('INTERNAL_SERVER_ERROR')
+      }
+
+      return createdResume
     }),
 }
 

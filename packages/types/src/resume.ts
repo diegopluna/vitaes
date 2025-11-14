@@ -1,5 +1,12 @@
 import z from 'zod'
 import { AwesomeColorSchema } from './colors'
+import { kendallRoyNew } from './example-data/en'
+import { inigoMontoyaNew } from './example-data/es'
+import { arseneLupinNew } from './example-data/fr'
+import { kingSchultzNew } from './example-data/de'
+import { golDRogerNew } from './example-data/ja'
+import { agostinhoCarraraResume } from './example-data/pt'
+import { sunTzuNew } from './example-data/zh'
 
 export const SocialPlatformSchema = z.enum([
   'mobile',
@@ -174,3 +181,13 @@ export const isListSection = (section: Section): section is ListSection =>
 export const isTaxonomySection = (
   section: Section,
 ): section is TaxonomySection => section.type === 'taxonomy'
+
+export const exampleResumes = {
+  en: kendallRoyNew,
+  es: inigoMontoyaNew,
+  fr: arseneLupinNew,
+  de: kingSchultzNew,
+  ja: golDRogerNew,
+  pt: agostinhoCarraraResume,
+  zh: sunTzuNew,
+}
