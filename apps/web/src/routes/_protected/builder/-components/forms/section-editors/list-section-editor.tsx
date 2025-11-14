@@ -2,10 +2,10 @@ import { withForm } from '@/components/form/form-context'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Plus, Trash2 } from 'lucide-react'
-import { initialValue } from '@/utils/initial-value'
+import { kendallRoyNew } from '@vitaes/types/example-data/en'
 
 export const ListSectionEditor = withForm({
-  defaultValues: initialValue,
+  defaultValues: kendallRoyNew,
   props: {
     index: 0,
   },

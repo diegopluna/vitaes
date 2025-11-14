@@ -4,31 +4,43 @@ import { useHotkeys } from 'react-hotkeys-hook'
 
 import { useState } from 'react'
 import { PersonalForm } from './forms/personal-form'
-import { initialValue } from '@/utils/initial-value'
 import { ResumeSchema } from '@vitaes/types/resume'
-import { useResumeStore } from '@/store/resume-store'
 import { useAppForm } from '@/components/form/form-context'
 import { SectionsForm } from './forms/sections-form'
 import { ThemeForm } from './forms/theme-form'
+import { useResumeStore } from '@/context/use-resume-store'
+import type { IResume } from '@vitaes/types/resume'
+import { useMutation } from '@tanstack/react-query'
+import { orpc } from '@/utils/orpc'
+import { useParams } from '@tanstack/react-router'
 
-export function Editor() {
-  const { setResume, setSaving } = useResumeStore()
+export function Editor({ initialResume }: { initialResume: IResume }) {
+  const { id } = useParams({ from: '/_protected/builder/$id' })
+  const { setResume, setIsSaving, setLastSaved } = useResumeStore()
   const [activeTab, setActiveTab] = useState<string>('personal')
   const isMac = navigator.userAgent.includes('Mac')
+  const updateResume = useMutation(orpc.updateResume.mutationOptions())
 
   const form = useAppForm({
-    defaultValues: initialValue,
+    defaultValues: initialResume,
     validators: {
       onChange: ResumeSchema,
     },
     listeners: {
       onChangeDebounceMs: 500,
       onChange: (values) => {
-        console.log('Changed!')
         if (values.formApi.state.isValid) {
-          setSaving(true)
           setResume(values.formApi.state.values)
-          setSaving(false)
+          setIsSaving(true)
+          updateResume
+            .mutateAsync({
+              id,
+              data: values.formApi.state.values,
+            })
+            .then((savedResume) => {
+              setLastSaved(savedResume.updatedAt)
+            })
+          setIsSaving(false)
         }
       },
     },

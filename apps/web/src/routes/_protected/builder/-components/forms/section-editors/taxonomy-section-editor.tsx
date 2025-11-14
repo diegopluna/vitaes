@@ -1,11 +1,11 @@
 import { withForm } from '@/components/form/form-context'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { initialValue } from '@/utils/initial-value'
+import { kendallRoyNew } from '@vitaes/types/example-data/en'
 import { Plus, Trash2 } from 'lucide-react'
 
 export const TaxonomySectionEditor = withForm({
-  defaultValues: initialValue,
+  defaultValues: kendallRoyNew,
   props: {
     index: 0,
   },

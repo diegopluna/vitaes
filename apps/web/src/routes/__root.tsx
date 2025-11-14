@@ -18,7 +18,6 @@ import { FormDevtoolsPlugin } from '@tanstack/react-form-devtools'
 
 // import { useState } from 'react'
 import { ThemeProvider } from '@/components/theme-provider'
-import Header from '@/components/header'
 import '../index.css'
 import { seo } from '@/lib/seo'
 import { Providers } from '@/components/providers'
@@ -63,7 +62,6 @@ function RootLayout() {
       <Providers>
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
           <div className="grid grid-rows-[auto_1fr] h-svh">
-            <Header />
             {isFetching ? <Loader /> : <Outlet />}
             <Toaster richColors />
           </div>

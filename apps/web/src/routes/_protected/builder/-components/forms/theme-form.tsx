@@ -1,9 +1,9 @@
 import { withForm } from '@/components/form/form-context'
-import { initialValue } from '@/utils/initial-value'
 import { AwesomeColorSchema } from '@vitaes/types/colors'
+import { kendallRoyNew } from '@vitaes/types/example-data/en'
 
 export const ThemeForm = withForm({
-  defaultValues: initialValue,
+  defaultValues: kendallRoyNew,
   render: function Render({ form }) {
     return (
       <>

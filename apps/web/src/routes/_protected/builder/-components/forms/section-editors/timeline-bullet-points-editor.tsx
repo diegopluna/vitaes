@@ -1,11 +1,11 @@
 import { withForm } from '@/components/form/form-context'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
-import { initialValue } from '@/utils/initial-value'
+import { kendallRoyNew } from '@vitaes/types/example-data/en'
 import { Plus, Trash2 } from 'lucide-react'
 
 export const TimelineBulletPointsEditor = withForm({
-  defaultValues: initialValue,
+  defaultValues: kendallRoyNew,
   props: {
     sectionIndex: 0,
     entryIndex: 0,

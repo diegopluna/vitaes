@@ -1,8 +1,8 @@
 import { withForm } from '@/components/form/form-context'
-import { initialValue } from '@/utils/initial-value'
+import { kendallRoyNew } from '@vitaes/types/example-data/en'
 
 export const TextSectionEditor = withForm({
-  defaultValues: initialValue,
+  defaultValues: kendallRoyNew,
   props: {
     index: 0,
   },

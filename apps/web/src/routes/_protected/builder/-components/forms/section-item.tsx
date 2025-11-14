@@ -1,5 +1,5 @@
 import { withForm } from '@/components/form/form-context'
-import { initialValue } from '@/utils/initial-value'
+import { kendallRoyNew } from '@vitaes/types/example-data/en'
 import { useSortable } from '@dnd-kit/sortable'
 import type { Section } from '@vitaes/types/resume'
 import { CSS } from '@dnd-kit/utilities'
@@ -13,7 +13,7 @@ import { ListSectionEditor } from './section-editors/list-section-editor'
 import { TaxonomySectionEditor } from './section-editors/taxonomy-section-editor'
 
 export const SectionItem = withForm({
-  defaultValues: initialValue,
+  defaultValues: kendallRoyNew,
   props: {
     section: {} as Section,
     index: 0,

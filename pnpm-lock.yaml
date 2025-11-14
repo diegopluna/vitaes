@@ -471,6 +471,9 @@ importers:
       '@vitaes/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      tsdown:
+        specifier: 'catalog:'
+        version: 0.15.9(typescript@5.9.3)
       typescript:
         specifier: 'catalog:'
         version: 5.9.3

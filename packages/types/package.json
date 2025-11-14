@@ -1,7 +1,9 @@
 {
     "name": "@vitaes/types",
     "version": "0.0.0",
+    "type": "module",
     "scripts": {
+        "build": "tsdown",
         "check-types": "tsc --noEmit",
         "format": "prettier --write ."
     },
@@ -10,10 +12,13 @@
     },
     "devDependencies": {
         "@vitaes/typescript-config": "workspace:*",
+        "tsdown": "catalog:",
         "typescript": "catalog:"
     },
     "exports": {
-        "./resume": "./src/resume.ts",
-        "./colors": "./src/colors.ts"
+      "./*": {
+        "types": "./dist/*.d.ts",
+        "default": "./src/*.ts"
+      }
     }
 }

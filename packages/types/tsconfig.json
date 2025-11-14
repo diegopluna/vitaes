@@ -1,5 +1,10 @@
 {
 	"extends": "@vitaes/typescript-config/base.json",
-	"include": ["."],
-    "exclude": ["node_modules"]
+	"compilerOptions": {
+		"declaration": true,
+		"declarationMap": true,
+		"sourceMap": true,
+		"outDir": "dist",
+		"composite": true
+	}
 }

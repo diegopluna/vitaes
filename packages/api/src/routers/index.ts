@@ -2,7 +2,7 @@ import { db } from '@vitaes/db'
 import { protectedProcedure, publicProcedure } from '../index'
 import { ORPCError, type RouterClient } from '@orpc/server'
 import z from 'zod'
-import { exampleResumes } from '@vitaes/types/resume'
+import { exampleResumes, ResumeSchema } from '@vitaes/types/resume'
 import { resume } from '@vitaes/db/schema/app'
 import { uuidv7 } from 'uuidv7'
 import { uniqueSlug } from '../utils'
@@ -92,6 +92,24 @@ export const appRouter = {
       }
 
       return createdResume
+    }),
+  updateResume: protectedProcedure
+    .input(z.object({ id: z.string(), data: ResumeSchema }))
+    .handler(async ({ context, input }) => {
+      const { id: resumeId, data } = input
+      const currentUser = context.session.user
+      const queriedResume = await db.query.resume.findFirst({
+        where: ({ id, userEmail }, { eq, and }) =>
+          and(eq(id, resumeId), eq(userEmail, currentUser.email)),
+      })
+      if (!queriedResume) {
+        throw new ORPCError('NOT_FOUND')
+      }
+      await db
+        .update(resume)
+        .set({ data, updatedAt: new Date() })
+        .where(eq(resume.id, resumeId))
+      return queriedResume
     }),
   setDownloadCount: publicProcedure
     .input(z.object({ id: z.string() }))

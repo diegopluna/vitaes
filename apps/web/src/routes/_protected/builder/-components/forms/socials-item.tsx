@@ -1,5 +1,5 @@
 import { withForm } from '@/components/form/form-context'
-import { initialValue } from '@/utils/initial-value'
+import { kendallRoyNew } from '@vitaes/types/example-data/en'
 import { useSortable } from '@dnd-kit/sortable'
 import { SocialPlatformSchema, type SocialProfile } from '@vitaes/types/resume'
 import { CSS } from '@dnd-kit/utilities'
@@ -8,7 +8,7 @@ import { GripVertical, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export const SocialsItem = withForm({
-  defaultValues: initialValue,
+  defaultValues: kendallRoyNew,
   props: {
     profile: {} as SocialProfile,
     index: 0,

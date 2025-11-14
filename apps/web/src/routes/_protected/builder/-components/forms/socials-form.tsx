@@ -1,6 +1,6 @@
 import { withForm } from '@/components/form/form-context'
 import { Button } from '@/components/ui/button'
-import { initialValue } from '@/utils/initial-value'
+import { kendallRoyNew } from '@vitaes/types/example-data/en'
 import {
   closestCenter,
   DndContext,
@@ -21,7 +21,7 @@ import { SocialsItem } from './socials-item'
 import { FieldGroup, FieldLegend, FieldSet } from '@/components/ui/field'
 
 export const SocialsForm = withForm({
-  defaultValues: initialValue,
+  defaultValues: kendallRoyNew,
   render: function Render({ form }) {
     const sensors = useSensors(
       useSensor(PointerSensor),

@@ -5,7 +5,7 @@ import { pdfjs, Document, Page } from 'react-pdf'
 import { useAsync } from 'react-use'
 import { ResumePDF } from './resume'
 import type { OnDocumentLoadSuccess } from 'react-pdf/dist/shared/types.js'
-import type { IResume } from '@vitaes/types/resume'
+import { useResumeStore } from '@/context/use-resume-store'
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -61,16 +61,15 @@ const Message = styled.div<{ active: boolean }>`
 `
 
 interface PDFViewerProps {
-  value: IResume
   onUrlChange: (value: string | null | undefined) => void
   onRenderError: (error?: Error) => void
 }
 
 export function PDFViewer({
-  value,
   onUrlChange,
   onRenderError,
 }: Readonly<PDFViewerProps>) {
+  const { resume: value } = useResumeStore()
   // const [numPages, setNumPages] = useState<number | null>(null)
   const [currentPage, setCurrentPage] = useState(1)
   const [previousRenderValue, setPreviousRenderValue] = useState<

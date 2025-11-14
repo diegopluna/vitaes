@@ -1,9 +1,9 @@
 import { withForm } from '@/components/form/form-context'
-import { initialValue } from '@/utils/initial-value'
+import { kendallRoyNew } from '@vitaes/types/example-data/en'
 import { SocialsForm } from './socials-form'
 
 export const PersonalForm = withForm({
-  defaultValues: initialValue,
+  defaultValues: kendallRoyNew,
   render: function Render({ form }) {
     return (
       <>
