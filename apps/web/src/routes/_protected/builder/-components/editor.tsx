@@ -13,6 +13,7 @@ import type { IResume } from '@vitaes/types/resume'
 import { useMutation } from '@tanstack/react-query'
 import { orpc } from '@/utils/orpc'
 import { useParams } from '@tanstack/react-router'
+import { toast } from 'sonner'
 
 export function Editor({ initialResume }: { initialResume: IResume }) {
   const { id } = useParams({ from: '/_protected/builder/$id' })
@@ -40,7 +41,12 @@ export function Editor({ initialResume }: { initialResume: IResume }) {
             .then((savedResume) => {
               setLastSaved(savedResume.updatedAt)
             })
-          setIsSaving(false)
+            .catch(() => {
+              toast.error('Failed to save resume')
+            })
+            .finally(() => {
+              setIsSaving(false)
+            })
         }
       },
     },

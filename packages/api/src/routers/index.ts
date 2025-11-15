@@ -133,6 +133,24 @@ export const appRouter = {
         .where(eq(resume.id, resumeId))
       return queriedResume
     }),
+  updateResumeName: protectedProcedure
+    .input(z.object({ id: z.string(), name: z.string() }))
+    .handler(async ({ context, input }) => {
+      const { id: resumeId, name } = input
+      const currentUser = context.session.user
+      const queriedResume = await db.query.resume.findFirst({
+        where: ({ id, userEmail }, { eq, and }) =>
+          and(eq(id, resumeId), eq(userEmail, currentUser.email)),
+      })
+      if (!queriedResume) {
+        throw new ORPCError('NOT_FOUND')
+      }
+      await db
+        .update(resume)
+        .set({ name, updatedAt: new Date() })
+        .where(eq(resume.id, resumeId))
+      return queriedResume
+    }),
 }
 
 export type AppRouter = typeof appRouter
