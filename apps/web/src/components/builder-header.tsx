@@ -11,6 +11,8 @@ import { z } from 'zod'
 import { orpc } from '@/utils/orpc'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
+import { LanguageSelector } from './language-selector'
+import { m } from '@/paraglide/messages'
 
 export default function BuilderHeader({
   documentUrl,
@@ -42,7 +44,9 @@ export default function BuilderHeader({
       name: resumeName,
     },
     validators: {
-      onChange: z.object({ name: z.string().min(1) }),
+      onChange: z.object({
+        name: z.string().min(1, { message: m['validation.name']() }),
+      }),
     },
     listeners: {
       onChangeDebounceMs: 500,
@@ -56,7 +60,7 @@ export default function BuilderHeader({
               setLastSaved(savedResume.updatedAt)
             })
             .catch(() => {
-              toast.error('Failed to update resume name')
+              toast.error(m['editor.failedToUpdateName']())
             })
             .finally(() => {
               setIsSaving(false)
@@ -80,16 +84,25 @@ export default function BuilderHeader({
         </nav>
         <div className="flex items-center gap-2">
           <span className="text-sm text-muted-foreground">
-            {isSaving ? 'Saving...' : `Last saved: ${distanceToNow}`}
+            {isSaving
+              ? m['editor.saving']()
+              : m['editor.lastSaved']({ distanceToNow })}
           </span>
           <Button variant="outline" asChild>
             <a href={documentUrl} download="resume.pdf">
               <Download className="size-4" />
-              Download
+              {m['editor.download']()}
             </a>
           </Button>
           <ModeToggle />
-          <UserButton className="bg-transparent" />
+          <LanguageSelector />
+          <UserButton
+            className="bg-transparent"
+            localization={{
+              SIGN_OUT: m['userButton.signOut'](),
+              SETTINGS: m['userButton.settings'](),
+            }}
+          />
         </div>
       </div>
       <hr />

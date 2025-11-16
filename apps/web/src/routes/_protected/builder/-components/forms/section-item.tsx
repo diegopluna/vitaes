@@ -11,6 +11,7 @@ import { TextSectionEditor } from './section-editors/text-section-editor'
 import { TimelineSectionEditor } from './section-editors/timeline-section-editor'
 import { ListSectionEditor } from './section-editors/list-section-editor'
 import { TaxonomySectionEditor } from './section-editors/taxonomy-section-editor'
+import { m } from '@/paraglide/messages'
 
 export const SectionItem = withForm({
   defaultValues: kendallRoyNew,
@@ -48,6 +49,20 @@ export const SectionItem = withForm({
       )
     }
 
+    const getSectionType = () => {
+      if (section.type === 'list') {
+        return section.structure.type === 'flat'
+          ? m['editor.sectionsForm.list']()
+          : m['editor.sectionsForm.groupedList']()
+      }
+      if (section.type === 'taxonomy') {
+        return m['editor.sectionsForm.taxonomy']()
+      }
+      return section.type === 'text'
+        ? m['editor.sectionsForm.text']()
+        : m['editor.sectionsForm.timeline']()
+    }
+
     return (
       <Card ref={setNodeRef} style={style} className="overflow-hidden">
         <div className="flex items-center gap-2 p-3">
@@ -61,16 +76,15 @@ export const SectionItem = withForm({
           <form.AppField
             name={`sections[${index}].title`}
             children={(field) => (
-              <field.FormInput className="flex-1 h-8 font-medium bg-background" />
+              <field.FormInput
+                placeholder={m['editor.sectionsForm.sectionItem.title']()}
+                className="flex-1 h-8 font-medium bg-background"
+              />
             )}
           />
           <div className="flex items-center gap-1">
             <span className="text-xs text-muted-foreground px-2 py-1 bg-background rounded">
-              {section.type === 'list'
-                ? section.structure.type === 'flat'
-                  ? 'list'
-                  : 'grouped list'
-                : section.type}
+              {getSectionType()}
             </span>
             <Button
               variant="ghost"

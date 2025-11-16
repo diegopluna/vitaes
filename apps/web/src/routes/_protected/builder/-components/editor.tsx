@@ -14,6 +14,7 @@ import { useMutation } from '@tanstack/react-query'
 import { orpc } from '@/utils/orpc'
 import { useParams } from '@tanstack/react-router'
 import { toast } from 'sonner'
+import { m } from '@/paraglide/messages'
 
 export function Editor({ initialResume }: { initialResume: IResume }) {
   const { id } = useParams({ from: '/_protected/builder/$id' })
@@ -42,7 +43,7 @@ export function Editor({ initialResume }: { initialResume: IResume }) {
               setLastSaved(savedResume.updatedAt)
             })
             .catch(() => {
-              toast.error('Failed to save resume')
+              toast.error(m['editor.failedToSave']())
             })
             .finally(() => {
               setIsSaving(false)
@@ -77,7 +78,7 @@ export function Editor({ initialResume }: { initialResume: IResume }) {
             value="personal"
             className="text-sm flex items-center justify-center gap-2"
           >
-            <span>Personal Info</span>
+            <span>{m['editor.personalInfo']()}</span>
             <kbd className="hidden sm:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
               <span className="text-xs">{isMac ? '⌘' : 'Ctrl'}</span>1
             </kbd>
@@ -86,7 +87,7 @@ export function Editor({ initialResume }: { initialResume: IResume }) {
             value="sections"
             className="text-sm flex items-center justify-center gap-2"
           >
-            <span>Sections</span>
+            <span>{m['editor.sections']()}</span>
             <kbd className="hidden sm:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
               <span className="text-xs">{isMac ? '⌘' : 'Ctrl'}</span>2
             </kbd>
@@ -95,7 +96,7 @@ export function Editor({ initialResume }: { initialResume: IResume }) {
             value="theme"
             className="text-sm flex items-center justify-center gap-2"
           >
-            <span>Theme</span>
+            <span>{m['editor.theme']()}</span>
             <kbd className="hidden sm:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
               <span className="text-xs">{isMac ? '⌘' : 'Ctrl'}</span>3
             </kbd>

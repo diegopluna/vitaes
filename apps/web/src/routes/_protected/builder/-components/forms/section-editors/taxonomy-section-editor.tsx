@@ -1,6 +1,7 @@
 import { withForm } from '@/components/form/form-context'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { m } from '@/paraglide/messages'
 import { kendallRoyNew } from '@vitaes/types/example-data/en'
 import { Plus, Trash2 } from 'lucide-react'
 
@@ -17,11 +18,15 @@ export const TaxonomySectionEditor = withForm({
             <div className="space-y-3">
               {field.state.value.map((category, categoryIdx) => (
                 <Card key={category.id} className="p-3 space-y-2 bg-muted/30">
-                  <div className="flex items-center justify-between">
-                    <form.AppField
-                      name={`sections[${index}].categories[${categoryIdx}].type`}
-                      children={(field) => <field.FormInput />}
-                    />
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-medium text-muted-foreground">
+                      {m[
+                        'editor.sectionsForm.sectionEditors.taxonomy.category'
+                      ]({
+                        index: categoryIdx + 1,
+                      })}
+                    </span>
+
                     <Button
                       variant="ghost"
                       size="sm"
@@ -32,10 +37,23 @@ export const TaxonomySectionEditor = withForm({
                     </Button>
                   </div>
                   <form.AppField
+                    name={`sections[${index}].categories[${categoryIdx}].type`}
+                    children={(field) => (
+                      <field.FormInput
+                        label={m[
+                          'editor.sectionsForm.sectionEditors.taxonomy.type'
+                        ]()}
+                      />
+                    )}
+                  />
+                  <form.AppField
                     name={`sections[${index}].categories[${categoryIdx}].items`}
                     children={(field) => (
                       <field.FormTextarea
                         rows={2}
+                        label={m[
+                          'editor.sectionsForm.sectionEditors.taxonomy.items'
+                        ]()}
                         onChange={(e) =>
                           field.setValue(
                             e.target.value
@@ -62,7 +80,7 @@ export const TaxonomySectionEditor = withForm({
                 }
               >
                 <Plus className="size-4 mr-2" />
-                Add Category
+                {m['editor.sectionsForm.sectionEditors.taxonomy.addCategory']()}
               </Button>
             </div>
           )

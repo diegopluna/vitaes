@@ -1,4 +1,5 @@
 import { withForm } from '@/components/form/form-context'
+import { m } from '@/paraglide/messages'
 import { kendallRoyNew } from '@vitaes/types/example-data/en'
 
 export const TextSectionEditor = withForm({
@@ -10,7 +11,12 @@ export const TextSectionEditor = withForm({
     return (
       <form.AppField
         name={`sections[${index}].content`}
-        children={(field) => <field.FormTextarea rows={6} />}
+        children={(field) => (
+          <field.FormTextarea
+            rows={6}
+            label={m['editor.sectionsForm.sectionEditors.text.content']()}
+          />
+        )}
       />
     )
   },

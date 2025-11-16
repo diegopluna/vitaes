@@ -1,11 +1,13 @@
 import styled from '@emotion/styled'
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { pdf } from '@react-pdf/renderer'
 import { pdfjs, Document, Page } from 'react-pdf'
 import { useAsync } from 'react-use'
 import { ResumePDF } from './resume'
 import type { OnDocumentLoadSuccess } from 'react-pdf/dist/shared/types.js'
 import { useResumeStore } from '@/context/use-resume-store'
+import { m } from '@/paraglide/messages'
+import { Separator } from './ui/separator'
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -70,7 +72,7 @@ export function PDFViewer({
   onRenderError,
 }: Readonly<PDFViewerProps>) {
   const { resume: value } = useResumeStore()
-  // const [numPages, setNumPages] = useState<number | null>(null)
+  const [numPages, setNumPages] = useState<number | null>(null)
   const [currentPage, setCurrentPage] = useState(1)
   const [previousRenderValue, setPreviousRenderValue] = useState<
     string | null | undefined
@@ -90,7 +92,7 @@ export function PDFViewer({
   useEffect(() => onRenderError(render.error), [render.error])
 
   const onDocumentLoad: OnDocumentLoadSuccess = (d) => {
-    // setNumPages(d.numPages)
+    setNumPages(d.numPages)
     setCurrentPage((prev) => Math.min(prev, d.numPages))
   }
 
@@ -107,7 +109,7 @@ export function PDFViewer({
       <Message active={shouldShowTextLoader}>Rendering PDF...</Message>
 
       <Message active={!render.loading && !value}>
-        You are not rendering a valid document
+        {m['pdfViewer.noDocument']()}
       </Message>
       <DocumentWrapper>
         {shouldShowPreviousDocument && previousRenderValue ? (
@@ -127,11 +129,17 @@ export function PDFViewer({
           loading={null}
           onLoadSuccess={onDocumentLoad}
         >
-          <Page
-            key={currentPage}
-            pageNumber={currentPage}
-            onRenderSuccess={() => setPreviousRenderValue(render.value)}
-          />
+          {numPages &&
+            Array.from({ length: numPages }).map((_, index) => (
+              <Fragment key={index}>
+                <Page
+                  key={index}
+                  pageNumber={index + 1}
+                  onRenderSuccess={() => setPreviousRenderValue(render.value)}
+                />
+                {index < numPages - 1 && <Separator className="my-4" />}
+              </Fragment>
+            ))}
         </Document>
       </DocumentWrapper>
     </Wrapper>

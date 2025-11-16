@@ -1,4 +1,5 @@
 import { withForm } from '@/components/form/form-context'
+import { m } from '@/paraglide/messages'
 import { AwesomeColorSchema } from '@vitaes/types/colors'
 import { kendallRoyNew } from '@vitaes/types/example-data/en'
 
@@ -11,7 +12,7 @@ export const ThemeForm = withForm({
           name="config.themeColor"
           children={(field) => (
             <field.FormSelect
-              label="Theme Color"
+              label={m['editor.themeForm.themeColor']()}
               options={Object.values(AwesomeColorSchema.enum).map((color) => ({
                 label: color
                   .replace('awesome-', '')
@@ -26,7 +27,7 @@ export const ThemeForm = withForm({
           name="config.headerAlign"
           children={(field) => (
             <field.FormSelect
-              label="Header Align"
+              label={m['editor.themeForm.headerAlign']()}
               options={['left', 'center', 'right'].map((align) => ({
                 label: align.toUpperCase(),
                 value: align,
@@ -38,7 +39,7 @@ export const ThemeForm = withForm({
           name="config.pageSize"
           children={(field) => (
             <field.FormSelect
-              label="Page Size"
+              label={m['editor.themeForm.pageSize']()}
               options={[
                 { label: 'A4', value: 'A4' },
                 { label: 'LETTER', value: 'LETTER' },

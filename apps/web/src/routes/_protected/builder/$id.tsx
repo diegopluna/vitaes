@@ -28,7 +28,6 @@ function RouteComponent() {
     null,
   )
   const [error, setError] = useState<Error | undefined>(undefined)
-  console.log(documentUrl)
   console.log(error)
 
   return (

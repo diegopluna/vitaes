@@ -4,6 +4,7 @@ import { Card } from '@/components/ui/card'
 import { kendallRoyNew } from '@vitaes/types/example-data/en'
 import { Plus, Trash2 } from 'lucide-react'
 import { TimelineBulletPointsEditor } from './timeline-bullet-points-editor'
+import { m } from '@/paraglide/messages'
 
 export const TimelineSectionEditor = withForm({
   defaultValues: kendallRoyNew,
@@ -29,7 +30,9 @@ export const TimelineSectionEditor = withForm({
                 <Card key={entry.id} className="p-3 space-y-3 bg-muted/30">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-medium text-muted-foreground">
-                      Entry {entryIdx + 1}
+                      {m['editor.sectionsForm.sectionEditors.timeline.entry']({
+                        index: entryIdx + 1,
+                      })}
                     </span>
                     <Button
                       variant="ghost"
@@ -43,25 +46,55 @@ export const TimelineSectionEditor = withForm({
                   <div className="grid grid-cols-2 gap-2">
                     <form.AppField
                       name={`sections[${index}].entries[${entryIdx}].position`}
-                      children={(field) => <field.FormInput label="Position" />}
+                      children={(field) => (
+                        <field.FormInput
+                          label={m[
+                            'editor.sectionsForm.sectionEditors.timeline.position'
+                          ]()}
+                        />
+                      )}
                     />
+                    {/* TODO: Add date range editor */}
                     <form.AppField
                       name={`sections[${index}].entries[${entryIdx}].date`}
-                      children={(field) => <field.FormInput label="Date" />}
+                      children={(field) => (
+                        <field.FormInput
+                          label={m[
+                            'editor.sectionsForm.sectionEditors.timeline.date'
+                          ]()}
+                        />
+                      )}
                     />
                   </div>
                   <form.AppField
                     name={`sections[${index}].entries[${entryIdx}].title`}
-                    children={(field) => <field.FormInput label="Title" />}
+                    children={(field) => (
+                      <field.FormInput
+                        label={m[
+                          'editor.sectionsForm.sectionEditors.timeline.title'
+                        ]()}
+                      />
+                    )}
                   />
                   <form.AppField
                     name={`sections[${index}].entries[${entryIdx}].location`}
-                    children={(field) => <field.FormInput label="Location" />}
+                    children={(field) => (
+                      <field.FormInput
+                        label={m[
+                          'editor.sectionsForm.sectionEditors.timeline.location'
+                        ]()}
+                      />
+                    )}
                   />
                   <form.AppField
                     name={`sections[${index}].entries[${entryIdx}].description`}
                     children={(field) => (
-                      <field.FormTextarea rows={2} label="Description" />
+                      <field.FormTextarea
+                        rows={2}
+                        label={m[
+                          'editor.sectionsForm.sectionEditors.timeline.description'
+                        ]()}
+                      />
                     )}
                   />
                   <TimelineBulletPointsEditor
@@ -88,7 +121,7 @@ export const TimelineSectionEditor = withForm({
                 }
               >
                 <Plus className="size-4 mr-2" />
-                Add Entry
+                {m['editor.sectionsForm.sectionEditors.timeline.addEntry']()}
               </Button>
             </div>
           )

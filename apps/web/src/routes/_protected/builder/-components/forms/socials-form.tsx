@@ -19,6 +19,7 @@ import {
 import { PlusIcon } from 'lucide-react'
 import { SocialsItem } from './socials-item'
 import { FieldGroup, FieldLegend, FieldSet } from '@/components/ui/field'
+import { m } from '@/paraglide/messages'
 
 export const SocialsForm = withForm({
   defaultValues: kendallRoyNew,
@@ -57,7 +58,7 @@ export const SocialsForm = withForm({
             <FieldSet className="gap-3">
               <div className="flex items-center justify-between">
                 <FieldLegend className="mb-0" variant="label">
-                  Social Profiles
+                  {m['editor.personalForm.socials.socialProfiles']()}
                 </FieldLegend>
                 <Button
                   variant="outline"
@@ -71,7 +72,7 @@ export const SocialsForm = withForm({
                   }
                 >
                   <PlusIcon className="size-4" />
-                  Add Profile
+                  {m['editor.personalForm.socials.addProfile']()}
                 </Button>
               </div>
               <FieldGroup>

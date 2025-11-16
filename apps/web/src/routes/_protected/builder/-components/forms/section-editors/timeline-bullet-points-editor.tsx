@@ -1,6 +1,7 @@
 import { withForm } from '@/components/form/form-context'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
+import { m } from '@/paraglide/messages'
 import { kendallRoyNew } from '@vitaes/types/example-data/en'
 import { Plus, Trash2 } from 'lucide-react'
 
@@ -19,7 +20,11 @@ export const TimelineBulletPointsEditor = withForm({
           return (
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label className="text-xs">Bullet Points</Label>
+                <Label className="text-xs">
+                  {m[
+                    'editor.sectionsForm.sectionEditors.timeline.bulletPoints'
+                  ]()}
+                </Label>
                 <Button
                   variant="ghost"
                   size="sm"

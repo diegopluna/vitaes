@@ -17,6 +17,7 @@ export const seo = ({
     { name: 'twitter:description', content: description },
     { name: 'twitter:creator', content: '@diegopeterl' },
     { name: 'twitter:site', content: '@diegopeterl' },
+    { name: 'twitter:url', content: import.meta.env.VITE_APP_URL },
     { name: 'og:type', content: 'website' },
     { name: 'og:title', content: title },
     { name: 'og:site_name', content: 'Vitaes' },

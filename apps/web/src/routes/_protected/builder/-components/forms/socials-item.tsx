@@ -6,6 +6,7 @@ import { CSS } from '@dnd-kit/utilities'
 import { Card } from '@/components/ui/card'
 import { GripVertical, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { m } from '@/paraglide/messages'
 
 export const SocialsItem = withForm({
   defaultValues: kendallRoyNew,
@@ -61,7 +62,9 @@ export const SocialsItem = withForm({
               <GripVertical className="w-4 h-4 text-muted-foreground" />
             </div>
             <span className="text-xs font-medium text-muted-foreground">
-              Profile {index + 1}
+              {m['editor.personalForm.socials.items.profile']({
+                index: index + 1,
+              })}
             </span>
           </div>
           <Button
@@ -78,7 +81,7 @@ export const SocialsItem = withForm({
             name={`personalInfo.socials[${index}].platform`}
             children={(field) => (
               <field.FormSelect
-                label="Platform"
+                label={m['editor.personalForm.socials.items.platform']()}
                 options={socialPlatformOptions}
               />
             )}
@@ -86,13 +89,17 @@ export const SocialsItem = withForm({
           <form.AppField
             name={`personalInfo.socials[${index}].value`}
             children={(field) => (
-              <field.FormInput label="Value (e.g. username, email, or URL)" />
+              <field.FormInput
+                label={m['editor.personalForm.socials.items.value']()}
+              />
             )}
           />
           <form.AppField
             name={`personalInfo.socials[${index}].display`}
             children={(field) => (
-              <field.FormInput label="Display text (optional)" />
+              <field.FormInput
+                label={m['editor.personalForm.socials.items.display']()}
+              />
             )}
           />
         </div>

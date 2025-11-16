@@ -19,6 +19,7 @@ import {
 import type { Section, SectionType } from '@vitaes/types/resume'
 import { Plus } from 'lucide-react'
 import { SectionItem } from './section-item'
+import { m } from '@/paraglide/messages'
 
 export const SectionsForm = withForm({
   defaultValues: kendallRoyNew,
@@ -72,7 +73,7 @@ export const SectionsForm = withForm({
                 size="sm"
               >
                 <Plus className="size-4 mr-2" />
-                Text
+                {m['editor.sectionsForm.text']()}
               </Button>
               <Button
                 onClick={() => field.pushValue(generateSection('timeline'))}
@@ -80,7 +81,7 @@ export const SectionsForm = withForm({
                 size="sm"
               >
                 <Plus className="size-4 mr-2" />
-                Timeline
+                {m['editor.sectionsForm.timeline']()}
               </Button>
               <Button
                 onClick={() => field.pushValue(generateSection('list'))}
@@ -88,7 +89,7 @@ export const SectionsForm = withForm({
                 size="sm"
               >
                 <Plus className="size-4 mr-2" />
-                List
+                {m['editor.sectionsForm.list']()}
               </Button>
               <Button
                 onClick={() => field.pushValue(generateSection('grouped-list'))}
@@ -96,7 +97,7 @@ export const SectionsForm = withForm({
                 size="sm"
               >
                 <Plus className="size-4 mr-2" />
-                Grouped List
+                {m['editor.sectionsForm.groupedList']()}
               </Button>
               <Button
                 onClick={() => field.pushValue(generateSection('taxonomy'))}
@@ -104,7 +105,7 @@ export const SectionsForm = withForm({
                 size="sm"
               >
                 <Plus className="size-4 mr-2" />
-                Taxonomy
+                {m['editor.sectionsForm.taxonomy']()}
               </Button>
             </div>
             <DndContext

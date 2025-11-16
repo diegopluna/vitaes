@@ -41,5 +41,95 @@
       "instructions": "Please confirm the deletion of your account. This action is not reversible, so please continue with caution.",
       "cancel": "Cancel"
     }
+  },
+  "validation": {
+    "name": "Name must be at least 1 character"
+  },
+  "editor": {
+    "saving": "Saving...",
+    "lastSaved": "Last saved: {distanceToNow}",
+    "failedToUpdateName": "Failed to update resume name",
+    "download": "Download",
+    "failedToSave": "Failed to save resume",
+    "personalInfo": "Personal Info",
+    "sections": "Sections",
+    "theme": "Theme",
+    "personalForm": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "position": "Position",
+      "address": "Address",
+      "quote": "Quote",
+      "socials": {
+        "socialProfiles": "Social Profiles",
+        "addProfile": "Add Profile",
+        "items": {
+          "profile": "Profile {index}",
+          "platform": "Platform",
+          "value": "Value (e.g. username, email, or URL)",
+          "display": "Display text (optional)"
+        }
+      }
+    },
+    "sectionsForm": {
+      "text": "Text",
+      "timeline": "Timeline",
+      "list": "List",
+      "groupedList": "Grouped List",
+      "taxonomy": "Taxonomy",
+      "sectionItem": {
+        "title": "Title"
+      },
+      "sectionEditors": {
+        "timeline": {
+          "entry": "Entry {index}",
+          "position": "Position",
+          "date": "Date",
+          "title": "Title",
+          "location": "Location",
+          "description": "Description",
+          "bulletPoints": "Bullet Points",
+          "addEntry": "Add Entry"
+        },
+        "list": {
+          "subsectionTitle": "Subsection Title",
+          "item": "Item {index}",
+          "position": "Position",
+          "date": "Date",
+          "title": "Title",
+          "location": "Location",
+          "description": "Description",
+          "addItem": "Add Item",
+          "addSubsection": "Add Subsection"
+        },
+        "taxonomy": {
+          "category": "Category {index}",
+          "addCategory": "Add Category",
+          "type": "Type",
+          "items": "Items"
+        },
+        "text": {
+          "content": "Content"
+        }
+      }
+    },
+    "themeForm": {
+      "themeColor": "Theme Color",
+      "headerAlign": "Header Align",
+      "pageSize": "Page Size"
+    }
+  },
+  "themeToggle": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "toggleTheme": "Toggle theme"
+  },
+  "userButton": {
+    "signOut": "Sign Out",
+    "settings": "Settings"
+  },
+  "pdfViewer": {
+    "noDocument": "You are not rendering a valid document"
   }
 }
