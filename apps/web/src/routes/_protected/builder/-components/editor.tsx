@@ -4,7 +4,7 @@ import { useHotkeys } from 'react-hotkeys-hook'
 
 import { useState } from 'react'
 import { PersonalForm } from './forms/personal-form'
-import { ResumeSchema } from '@vitaes/types/resume'
+import { ResumeValidationSchema } from '@vitaes/types/resume'
 import { useAppForm } from '@/components/form/form-context'
 import { SectionsForm } from './forms/sections-form'
 import { ThemeForm } from './forms/theme-form'
@@ -26,7 +26,7 @@ export function Editor({ initialResume }: { initialResume: IResume }) {
   const form = useAppForm({
     defaultValues: initialResume,
     validators: {
-      onChange: ResumeSchema,
+      onChange: ResumeValidationSchema,
     },
     listeners: {
       onChangeDebounceMs: 500,

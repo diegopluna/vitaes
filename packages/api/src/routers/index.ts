@@ -2,7 +2,11 @@ import { db } from '@vitaes/db'
 import { protectedProcedure, publicProcedure } from '../index'
 import { ORPCError, type RouterClient } from '@orpc/server'
 import z from 'zod'
-import { exampleResumes, ResumeSchema } from '@vitaes/types/resume'
+import {
+  exampleResumes,
+  ResumeSchema,
+  ResumeValidationSchema,
+} from '@vitaes/types/resume'
 import { resume } from '@vitaes/db/schema/app'
 import { uuidv7 } from 'uuidv7'
 import { uniqueSlug } from '../utils'
@@ -26,7 +30,10 @@ export const appRouter = {
     const resumes = await db.query.resume.findMany({
       where: ({ userEmail }, { eq }) => eq(userEmail, currentUser.email),
     })
-    return resumes
+    return resumes.map((resume) => ({
+      ...resume,
+      data: resume.data ? ResumeSchema.parse(resume.data) : null,
+    }))
   }),
   getResumeBySlug: publicProcedure
     .input(z.object({ slug: z.string() }))
@@ -48,7 +55,12 @@ export const appRouter = {
         .update(resume)
         .set({ views: queriedResume.views + 1 })
         .where(eq(resume.id, queriedResume.id))
-      return resume
+      return {
+        ...queriedResume,
+        data: queriedResume.data
+          ? ResumeSchema.parse(queriedResume.data)
+          : null,
+      }
     }),
   getResumeById: protectedProcedure
     .input(z.object({ id: z.string() }))
@@ -62,7 +74,10 @@ export const appRouter = {
       if (!resume) {
         throw new ORPCError('NOT_FOUND')
       }
-      return resume
+      return {
+        ...resume,
+        data: resume.data ? ResumeSchema.parse(resume.data) : null,
+      }
     }),
   createResume: protectedProcedure
     .input(
@@ -94,7 +109,7 @@ export const appRouter = {
       return createdResume
     }),
   updateResume: protectedProcedure
-    .input(z.object({ id: z.string(), data: ResumeSchema }))
+    .input(z.object({ id: z.string(), data: ResumeValidationSchema }))
     .handler(async ({ context, input }) => {
       const { id: resumeId, data } = input
       const currentUser = context.session.user

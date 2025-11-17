@@ -24,12 +24,6 @@ import { ListItems } from './list-items'
 export const ResumePDF = ({ value }: { value: IResume }) => {
   const styles = createStyles(value.config.themeColor)
 
-  const today = new Date().toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  })
-
   return (
     <Document>
       <Page size={value.config.pageSize} style={styles.page}>
@@ -85,9 +79,9 @@ export const ResumePDF = ({ value }: { value: IResume }) => {
           </Section>
         ))}
         <Footer
-          left={today}
-          center={`${value.personalInfo.firstName} ${value.personalInfo.lastName} · Résumé`}
-          right="1"
+          left={value.config.footerLeft}
+          center={value.config.footerCenter}
+          right={value.config.footerRight}
           styles={styles}
         />
       </Page>

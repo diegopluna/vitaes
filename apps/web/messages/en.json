@@ -116,7 +116,13 @@
     "themeForm": {
       "themeColor": "Theme Color",
       "headerAlign": "Header Align",
-      "pageSize": "Page Size"
+      "pageSize": "Page Size",
+      "footerLeft": "Footer Left",
+      "footerCenter": "Footer Center",
+      "footerRight": "Footer Right",
+      "footerText": "Text",
+      "footerTextPlaceholder": "Enter footer text",
+      "showPageNumber": "Show Page Number"
     }
   },
   "themeToggle": {

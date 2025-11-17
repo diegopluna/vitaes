@@ -136,16 +136,68 @@ export const SectionSchema = z.discriminatedUnion('type', [
   TaxonomySectionSchema,
 ])
 
-export const ResumeConfigSchema = z.object({
+export const FooterOptionSchema = z.object({
+  text: z.string(),
+  showPageNumber: z.boolean(),
+})
+
+const defaultFooterOption: z.infer<typeof FooterOptionSchema> = {
+  text: '',
+  showPageNumber: false,
+}
+
+const defaultFooterRight: z.infer<typeof FooterOptionSchema> = {
+  text: '',
+  showPageNumber: true,
+}
+
+const ResumeConfigInputSchema = z.object({
   themeColor: AwesomeColorSchema,
   headerAlign: z.enum(['left', 'center', 'right']),
   sectionColorHighlight: z.boolean(),
   fontSize: z.number().positive(),
   pageSize: z.enum(['A4', 'LETTER']),
+  footerLeft: FooterOptionSchema.optional(),
+  footerCenter: FooterOptionSchema.optional(),
+  footerRight: FooterOptionSchema.optional(),
 })
 
-export const ResumeSchema = z.object({
-  config: ResumeConfigSchema,
+export const ResumeConfigSchema = ResumeConfigInputSchema.transform((data) => ({
+  ...data,
+  footerLeft: data.footerLeft ?? defaultFooterOption,
+  footerCenter: data.footerCenter ?? defaultFooterOption,
+  footerRight: data.footerRight ?? defaultFooterRight,
+}))
+
+const ResumeConfigValidationSchema = z.object({
+  themeColor: AwesomeColorSchema,
+  headerAlign: z.enum(['left', 'center', 'right']),
+  sectionColorHighlight: z.boolean(),
+  fontSize: z.number().positive(),
+  pageSize: z.enum(['A4', 'LETTER']),
+  footerLeft: FooterOptionSchema,
+  footerCenter: FooterOptionSchema,
+  footerRight: FooterOptionSchema,
+})
+
+const ResumeInputSchema = z.object({
+  config: ResumeConfigInputSchema,
+  personalInfo: PersonalInfoSchema,
+  sections: z.array(SectionSchema),
+})
+
+export const ResumeSchema = ResumeInputSchema.transform((data) => ({
+  ...data,
+  config: {
+    ...data.config,
+    footerLeft: data.config.footerLeft ?? defaultFooterOption,
+    footerCenter: data.config.footerCenter ?? defaultFooterOption,
+    footerRight: data.config.footerRight ?? defaultFooterRight,
+  },
+}))
+
+export const ResumeValidationSchema = z.object({
+  config: ResumeConfigValidationSchema,
   personalInfo: PersonalInfoSchema,
   sections: z.array(SectionSchema),
 })
@@ -165,6 +217,7 @@ export type TimelineSection = z.infer<typeof TimelineSectionSchema>
 export type ListSection = z.infer<typeof ListSectionSchema>
 export type TaxonomySection = z.infer<typeof TaxonomySectionSchema>
 export type Section = z.infer<typeof SectionSchema>
+export type FooterOption = z.infer<typeof FooterOptionSchema>
 export type ResumeConfig = z.infer<typeof ResumeConfigSchema>
 export type IResume = z.infer<typeof ResumeSchema>
 

@@ -1,11 +1,24 @@
 import { withForm } from '@/components/form/form-context'
 import { m } from '@/paraglide/messages'
+import { useStore } from '@tanstack/react-form'
 import { AwesomeColorSchema } from '@vitaes/types/colors'
 import { kendallRoyNew } from '@vitaes/types/example-data/en'
 
 export const ThemeForm = withForm({
   defaultValues: kendallRoyNew,
   render: function Render({ form }) {
+    const pageNumberLeft = useStore(
+      form.store,
+      (state) => state.values.config.footerLeft.showPageNumber,
+    )
+    const pageNumberCenter = useStore(
+      form.store,
+      (state) => state.values.config.footerCenter.showPageNumber,
+    )
+    const pageNumberRight = useStore(
+      form.store,
+      (state) => state.values.config.footerRight.showPageNumber,
+    )
     return (
       <>
         <form.AppField
@@ -47,6 +60,77 @@ export const ThemeForm = withForm({
             />
           )}
         />
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <h3 className="text-sm font-medium">
+              {m['editor.themeForm.footerLeft']()}
+            </h3>
+            <form.AppField
+              name="config.footerLeft.text"
+              children={(field) => (
+                <field.FormInput
+                  label={m['editor.themeForm.footerText']()}
+                  placeholder={m['editor.themeForm.footerTextPlaceholder']()}
+                  disabled={pageNumberLeft}
+                />
+              )}
+            />
+            <form.AppField
+              name="config.footerLeft.showPageNumber"
+              children={(field) => (
+                <field.FormCheckbox
+                  label={m['editor.themeForm.showPageNumber']()}
+                />
+              )}
+            />
+          </div>
+          <div className="space-y-2">
+            <h3 className="text-sm font-medium">
+              {m['editor.themeForm.footerCenter']()}
+            </h3>
+            <form.AppField
+              name="config.footerCenter.text"
+              children={(field) => (
+                <field.FormInput
+                  label={m['editor.themeForm.footerText']()}
+                  placeholder={m['editor.themeForm.footerTextPlaceholder']()}
+                  disabled={pageNumberCenter}
+                />
+              )}
+            />
+            <form.AppField
+              name="config.footerCenter.showPageNumber"
+              children={(field) => (
+                <field.FormCheckbox
+                  label={m['editor.themeForm.showPageNumber']()}
+                />
+              )}
+            />
+          </div>
+          <div className="space-y-2">
+            <h3 className="text-sm font-medium">
+              {m['editor.themeForm.footerRight']()}
+            </h3>
+            <form.AppField
+              name="config.footerRight.text"
+              children={(field) => (
+                <field.FormInput
+                  label={m['editor.themeForm.footerText']()}
+                  placeholder={m['editor.themeForm.footerTextPlaceholder']()}
+                  disabled={pageNumberRight}
+                />
+              )}
+            />
+            <form.AppField
+              name="config.footerRight.showPageNumber"
+              children={(field) => (
+                <field.FormCheckbox
+                  label={m['editor.themeForm.showPageNumber']()}
+                />
+              )}
+            />
+          </div>
+        </div>
       </>
     )
   },

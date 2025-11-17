@@ -7,6 +7,18 @@ export const kendallRoyNew: IResume = {
     sectionColorHighlight: true,
     fontSize: 9,
     pageSize: 'A4',
+    footerLeft: {
+      text: '',
+      showPageNumber: false,
+    },
+    footerCenter: {
+      text: '',
+      showPageNumber: false,
+    },
+    footerRight: {
+      text: '',
+      showPageNumber: true,
+    },
   },
 
   personalInfo: {
