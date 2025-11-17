@@ -11,6 +11,7 @@ import { resume } from '@vitaes/db/schema/app'
 import { uuidv7 } from 'uuidv7'
 import { uniqueSlug } from '../utils'
 import { eq } from 'drizzle-orm'
+import { uploadThumbnail as uploadThumbnailToS3 } from '../utils/s3'
 
 export const appRouter = {
   healthCheck: publicProcedure.handler(() => {
@@ -165,6 +166,41 @@ export const appRouter = {
         .set({ name, updatedAt: new Date() })
         .where(eq(resume.id, resumeId))
       return queriedResume
+    }),
+  uploadThumbnail: protectedProcedure
+    .input(
+      z.object({
+        resumeId: z.string(),
+        thumbnail: z.string(), // base64 encoded image data
+      }),
+    )
+    .handler(async ({ context, input }) => {
+      const { resumeId, thumbnail } = input
+      const currentUser = context.session.user
+
+      // Verify resume belongs to user
+      const queriedResume = await db.query.resume.findFirst({
+        where: ({ id, userEmail }, { eq, and }) =>
+          and(eq(id, resumeId), eq(userEmail, currentUser.email)),
+      })
+      if (!queriedResume) {
+        throw new ORPCError('NOT_FOUND')
+      }
+
+      // Convert base64 to buffer
+      const base64Data = thumbnail.replace(/^data:image\/\w+;base64,/, '')
+      const buffer = Buffer.from(base64Data, 'base64')
+
+      // Upload thumbnail to MinIO
+      const thumbnailUrl = await uploadThumbnailToS3(resumeId, buffer)
+
+      // Update resume with thumbnail URL
+      await db
+        .update(resume)
+        .set({ thumbnailUrl, updatedAt: new Date() })
+        .where(eq(resume.id, resumeId))
+
+      return { thumbnailUrl }
     }),
 }
 

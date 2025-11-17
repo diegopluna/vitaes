@@ -4,6 +4,9 @@ import { orpc } from '@/utils/orpc'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
+import { ResumeCard } from '@/components/resume-card'
+import { Button } from '@/components/ui/button'
+import { Plus } from 'lucide-react'
 
 export const Route = createFileRoute('/_protected/dashboard')({
   component: RouteComponent,
@@ -14,7 +17,7 @@ function RouteComponent() {
   const currentLocale = getLocale()
   const navigate = useNavigate()
 
-  const privateData = useQuery(orpc.privateData.queryOptions())
+  // const privateData = useQuery(orpc.privateData.queryOptions())
   const listResumes = useQuery(orpc.listResumes.queryOptions())
 
   const createResume = useMutation(
@@ -25,41 +28,64 @@ function RouteComponent() {
     }),
   )
 
+  const handleCreateResume = async () => {
+    const create = await safeCall(
+      createResume.mutateAsync({
+        language: currentLocale,
+        name: 'New Resume',
+      }),
+    )
+    if (create.error) {
+      toast.error(create.error.message)
+    } else {
+      navigate({ to: '/builder/$id', params: { id: create.data.id } })
+    }
+  }
+
+  const handleEdit = (id: string) => {
+    navigate({ to: '/builder/$id', params: { id } })
+  }
+
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <p>Welcome {session.data?.user.name}</p>
-      <p>API: {privateData.data?.message}</p>
-      <button
-        className="bg-blue-500 text-white p-2 rounded-md"
-        onClick={async () => {
-          const create = await safeCall(
-            createResume.mutateAsync({
-              language: currentLocale,
-              name: 'New Resume 2',
-            }),
-          )
-          if (create.error) {
-            toast.error(create.error.message)
-          } else {
-            navigate({ to: '/builder/$id', params: { id: create.data.id } })
-          }
-        }}
-      >
-        Create Resume
-      </button>
-      <ul>
-        {listResumes.data?.map((resume) => (
-          <li
-            onClick={() =>
-              navigate({ to: '/builder/$id', params: { id: resume.id } })
-            }
-            key={resume.id}
-          >
-            {resume.name}
-          </li>
-        ))}
-      </ul>
+    <div className="container mx-auto p-6 space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold">Dashboard</h1>
+          <p className="text-muted-foreground mt-1">
+            Welcome back, {session.data?.user.name}
+          </p>
+        </div>
+        <Button onClick={handleCreateResume}>
+          <Plus className="size-4" />
+          Create Resume
+        </Button>
+      </div>
+
+      {listResumes.isLoading && (
+        <div className="text-center py-12 text-muted-foreground">
+          Loading resumes...
+        </div>
+      )}
+
+      {listResumes.data && listResumes.data.length === 0 && (
+        <div className="text-center py-12">
+          <p className="text-muted-foreground mb-4">
+            You don't have any resumes yet.
+          </p>
+          <Button onClick={handleCreateResume}>
+            <Plus className="size-4" />
+            Create Your First Resume
+          </Button>
+        </div>
+      )}
+
+      {listResumes.data && listResumes.data.length > 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {listResumes.data.map((resume) => (
+            <ResumeCard key={resume.id} resume={resume} onEdit={handleEdit} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }

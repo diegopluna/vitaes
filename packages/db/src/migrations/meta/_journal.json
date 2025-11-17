@@ -36,6 +36,13 @@
       "when": 1763138765927,
       "tag": "0004_eager_valkyrie",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1763383337173,
+      "tag": "0005_glorious_dark_beast",
+      "breakpoints": true
     }
   ]
 }

@@ -1,0 +1,1 @@
+ALTER TABLE "resume" ADD COLUMN "thumbnail_url" text;

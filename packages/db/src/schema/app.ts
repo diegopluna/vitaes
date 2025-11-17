@@ -26,6 +26,7 @@ export const resume = pgTable(
     slug: text('slug').notNull().unique(),
     views: integer('views').notNull().default(0),
     downloads: integer('downloads').notNull().default(0),
+    thumbnailUrl: text('thumbnail_url'),
   },
   (table) => [
     index('idx_resume_user_email').on(table.userEmail),

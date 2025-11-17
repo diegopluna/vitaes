@@ -15,6 +15,8 @@ import { orpc } from '@/utils/orpc'
 import { useParams } from '@tanstack/react-router'
 import { toast } from 'sonner'
 import { m } from '@/paraglide/messages'
+import { generateThumbnail } from '@/utils/generate-thumbnail'
+import { safeCall } from '@/lib/utils'
 
 export function Editor({ initialResume }: { initialResume: IResume }) {
   const { id } = useParams({ from: '/_protected/builder/$id' })
@@ -22,6 +24,7 @@ export function Editor({ initialResume }: { initialResume: IResume }) {
   const [activeTab, setActiveTab] = useState<string>('personal')
   const isMac = navigator.userAgent.includes('Mac')
   const updateResume = useMutation(orpc.updateResume.mutationOptions())
+  const uploadThumbnail = useMutation(orpc.uploadThumbnail.mutationOptions())
 
   const form = useAppForm({
     defaultValues: initialResume,
@@ -39,8 +42,20 @@ export function Editor({ initialResume }: { initialResume: IResume }) {
               id,
               data: values.formApi.state.values,
             })
-            .then((savedResume) => {
+            .then(async (savedResume) => {
               setLastSaved(savedResume.updatedAt)
+              // Generate and upload thumbnail after successful save
+              const thumbnail = await safeCall(
+                generateThumbnail(values.formApi.state.values),
+              )
+              if (thumbnail.error) {
+                toast.error('Failed to generate thumbnail')
+                return
+              }
+              await uploadThumbnail.mutateAsync({
+                resumeId: id,
+                thumbnail: thumbnail.data!,
+              })
             })
             .catch(() => {
               toast.error(m['editor.failedToSave']())
