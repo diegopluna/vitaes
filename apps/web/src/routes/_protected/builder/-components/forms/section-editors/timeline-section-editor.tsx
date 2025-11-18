@@ -46,49 +46,54 @@ export const TimelineSectionEditor = withForm({
                   <div className="grid grid-cols-2 gap-2">
                     <form.AppField
                       name={`sections[${index}].entries[${entryIdx}].position`}
-                      children={(field) => (
+                    >
+                      {(field) => (
                         <field.FormInput
                           label={m[
                             'editor.sectionsForm.sectionEditors.timeline.position'
                           ]()}
                         />
                       )}
-                    />
+                    </form.AppField>
                     {/* TODO: Add date range editor */}
                     <form.AppField
                       name={`sections[${index}].entries[${entryIdx}].date`}
-                      children={(field) => (
+                    >
+                      {(field) => (
                         <field.FormInput
                           label={m[
                             'editor.sectionsForm.sectionEditors.timeline.date'
                           ]()}
                         />
                       )}
-                    />
+                    </form.AppField>
                   </div>
                   <form.AppField
                     name={`sections[${index}].entries[${entryIdx}].title`}
-                    children={(field) => (
+                  >
+                    {(field) => (
                       <field.FormInput
                         label={m[
                           'editor.sectionsForm.sectionEditors.timeline.title'
                         ]()}
                       />
                     )}
-                  />
+                  </form.AppField>
                   <form.AppField
                     name={`sections[${index}].entries[${entryIdx}].location`}
-                    children={(field) => (
+                  >
+                    {(field) => (
                       <field.FormInput
                         label={m[
                           'editor.sectionsForm.sectionEditors.timeline.location'
                         ]()}
                       />
                     )}
-                  />
+                  </form.AppField>
                   <form.AppField
                     name={`sections[${index}].entries[${entryIdx}].description`}
-                    children={(field) => (
+                  >
+                    {(field) => (
                       <field.FormTextarea
                         rows={2}
                         label={m[
@@ -96,7 +101,7 @@ export const TimelineSectionEditor = withForm({
                         ]()}
                       />
                     )}
-                  />
+                  </form.AppField>
                   <TimelineBulletPointsEditor
                     form={form}
                     sectionIndex={index}

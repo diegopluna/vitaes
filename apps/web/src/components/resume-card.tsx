@@ -53,7 +53,7 @@ export function ResumeCard({
   onTogglePublic,
   onShare,
   onDuplicate,
-}: ResumeCardProps) {
+}: Readonly<ResumeCardProps>) {
   const [isDownloading, setIsDownloading] = useState(false)
   const themeColor = resume.data?.config.themeColor || 'awesome-emerald'
   const colorValue = colors[themeColor]
@@ -79,7 +79,7 @@ export function ResumeCard({
       link.download = `${resume.name}.pdf`
       document.body.appendChild(link)
       link.click()
-      document.body.removeChild(link)
+      link.remove()
       URL.revokeObjectURL(url)
     } catch {
       toast.error(m['resumeCard.downloadFailed']())

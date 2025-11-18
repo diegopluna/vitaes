@@ -19,9 +19,13 @@ interface ShareDialogProps {
   onOpenChange: (open: boolean) => void
 }
 
-export function ShareDialog({ open, slug, onOpenChange }: ShareDialogProps) {
+export function ShareDialog({
+  open,
+  slug,
+  onOpenChange,
+}: Readonly<ShareDialogProps>) {
   const [copied, setCopied] = useState(false)
-  const shareUrl = `${window.location.origin}/view/${slug}`
+  const shareUrl = `${globalThis.location.origin}/view/${slug}`
 
   const handleCopy = async () => {
     try {
@@ -40,7 +44,7 @@ export function ShareDialog({ open, slug, onOpenChange }: ShareDialogProps) {
       document.body.appendChild(textArea)
       textArea.select()
       try {
-        document.execCommand('copy')
+        await navigator.clipboard.writeText(shareUrl)
         setCopied(true)
         toast.success(m['shareDialog.copied']())
         setTimeout(() => {
@@ -49,7 +53,7 @@ export function ShareDialog({ open, slug, onOpenChange }: ShareDialogProps) {
       } catch {
         toast.error('Failed to copy link')
       }
-      document.body.removeChild(textArea)
+      textArea.remove()
     }
   }
 
@@ -79,13 +83,9 @@ export function ShareDialog({ open, slug, onOpenChange }: ShareDialogProps) {
               className="shrink-0"
             >
               {copied ? (
-                <>
-                  <Check className="size-4" />
-                </>
+                <Check className="size-4" />
               ) : (
-                <>
-                  <Copy className="size-4" />
-                </>
+                <Copy className="size-4" />
               )}
             </Button>
           </div>
@@ -96,7 +96,7 @@ export function ShareDialog({ open, slug, onOpenChange }: ShareDialogProps) {
             variant="outline"
             onClick={() => onOpenChange(false)}
           >
-            Close
+            {m['shareDialog.close']()}
           </Button>
         </DialogFooter>
       </DialogContent>

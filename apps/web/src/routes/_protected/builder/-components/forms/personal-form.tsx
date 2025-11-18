@@ -9,37 +9,32 @@ export const PersonalForm = withForm({
     return (
       <>
         <div className="grid grid-cols-2 gap-4">
-          <form.AppField
-            name="personalInfo.firstName"
-            children={(field) => (
+          <form.AppField name="personalInfo.firstName">
+            {(field) => (
               <field.FormInput label={m['editor.personalForm.firstName']()} />
             )}
-          />
-          <form.AppField
-            name="personalInfo.lastName"
-            children={(field) => (
+          </form.AppField>
+          <form.AppField name="personalInfo.lastName">
+            {(field) => (
               <field.FormInput label={m['editor.personalForm.lastName']()} />
             )}
-          />
+          </form.AppField>
         </div>
-        <form.AppField
-          name="personalInfo.position"
-          children={(field) => (
+        <form.AppField name="personalInfo.position">
+          {(field) => (
             <field.FormInput label={m['editor.personalForm.position']()} />
           )}
-        />
-        <form.AppField
-          name="personalInfo.address"
-          children={(field) => (
+        </form.AppField>
+        <form.AppField name="personalInfo.address">
+          {(field) => (
             <field.FormInput label={m['editor.personalForm.address']()} />
           )}
-        />
-        <form.AppField
-          name="personalInfo.quote"
-          children={(field) => (
+        </form.AppField>
+        <form.AppField name="personalInfo.quote">
+          {(field) => (
             <field.FormInput label={m['editor.personalForm.quote']()} />
           )}
-        />
+        </form.AppField>
         <SocialsForm form={form} />
       </>
     )

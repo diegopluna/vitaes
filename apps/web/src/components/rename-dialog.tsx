@@ -23,7 +23,7 @@ export function RenameDialog({
   currentName,
   onOpenChange,
   onConfirm,
-}: RenameDialogProps) {
+}: Readonly<RenameDialogProps>) {
   const form = useAppForm({
     defaultValues: {
       name: currentName,
@@ -60,14 +60,13 @@ export function RenameDialog({
             </DialogDescription>
           </DialogHeader>
           <div className="py-4">
-            <form.AppField
-              name="name"
-              children={(field) => (
+            <form.AppField name="name">
+              {(field) => (
                 <field.FormInput
                   placeholder={m['dialogs.renameResume.placeholder']()}
                 />
               )}
-            />
+            </form.AppField>
           </div>
           <DialogFooter>
             <Button

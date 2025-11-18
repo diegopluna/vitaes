@@ -23,7 +23,9 @@ interface PublicResumeViewerProps {
   }
 }
 
-export function PublicResumeViewer({ resume }: PublicResumeViewerProps) {
+export function PublicResumeViewer({
+  resume,
+}: Readonly<PublicResumeViewerProps>) {
   const [documentUrl, setDocumentUrl] = useState<string | null | undefined>(
     null,
   )
@@ -46,7 +48,7 @@ export function PublicResumeViewer({ resume }: PublicResumeViewerProps) {
     link.download = `${resume.name}.pdf`
     document.body.appendChild(link)
     link.click()
-    document.body.removeChild(link)
+    link.remove()
 
     op.track('Resume Downloaded', {
       resumeId: resume.id,

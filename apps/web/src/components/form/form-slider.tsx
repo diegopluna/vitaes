@@ -9,7 +9,12 @@ type FormSliderProps = {
   step?: number
 }
 
-export function FormSlider({ label, min, max, step }: FormSliderProps) {
+export function FormSlider({
+  label,
+  min,
+  max,
+  step,
+}: Readonly<FormSliderProps>) {
   const field = useFieldContext<number>()
   const value = field.state.value
   const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid

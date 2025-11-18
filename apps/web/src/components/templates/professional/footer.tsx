@@ -6,7 +6,6 @@ interface FooterProps {
   left: FooterOption
   center: FooterOption
   right: FooterOption
-  pageNumber?: number
   styles: Styles
 }
 

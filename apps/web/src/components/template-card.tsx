@@ -16,6 +16,7 @@ export const TemplateCard = ({
 }: TemplateCardProps) => {
   return (
     <div
+      role="button"
       className={cn(
         'relative cursor-pointer rounded-lg border-2 overflow-hidden group',
         selected

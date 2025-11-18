@@ -9,15 +9,14 @@ export const TextSectionEditor = withForm({
   },
   render: function Render({ form, index }) {
     return (
-      <form.AppField
-        name={`sections[${index}].content`}
-        children={(field) => (
+      <form.AppField name={`sections[${index}].content`}>
+        {(field) => (
           <field.FormTextarea
             rows={6}
             label={m['editor.sectionsForm.sectionEditors.text.content']()}
           />
         )}
-      />
+      </form.AppField>
     )
   },
 })

@@ -23,7 +23,7 @@ export function CreateResumeDialog({
   open,
   onOpenChange,
   onConfirm,
-}: CreateResumeDialogProps) {
+}: Readonly<CreateResumeDialogProps>) {
   const form = useAppForm({
     defaultValues: {
       name: '',
@@ -58,29 +58,26 @@ export function CreateResumeDialog({
             </DialogDescription>
           </DialogHeader>
           <div className="py-4 space-y-4">
-            <form.AppField
-              name="name"
-              children={(field) => (
+            <form.AppField name="name">
+              {(field) => (
                 <field.FormInput
                   placeholder={m['dialogs.createResume.placeholder']()}
                 />
               )}
-            />
+            </form.AppField>
             <div className="space-y-2">
               <h3 className="text-sm font-medium">Choose a Template</h3>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {TemplateSchema.options.map((template) => (
-                  <form.AppField
-                    key={template}
-                    name="template"
-                    children={(field) => (
+                  <form.AppField key={template} name="template">
+                    {(field) => (
                       <TemplateCard
                         name={template}
                         selected={field.state.value === template}
-                        onClick={() => field.handleChange(template)}
+                        onClick={() => field.handleChange(template as Template)}
                       />
                     )}
-                  />
+                  </form.AppField>
                 ))}
               </div>
             </div>

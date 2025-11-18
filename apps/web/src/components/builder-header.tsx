@@ -17,9 +17,9 @@ import { op } from '@/lib/op'
 
 export default function BuilderHeader({
   documentUrl,
-}: {
+}: Readonly<{
   documentUrl: string
-}) {
+}>) {
   const { id } = useParams({ from: '/_protected/builder/$id' })
   const {
     lastSaved,
@@ -78,10 +78,9 @@ export default function BuilderHeader({
           <Link to="/dashboard">
             <ArrowLeft className="size-6" />
           </Link>
-          <form.AppField
-            name="name"
-            children={(field) => <field.FormInput />}
-          />
+          <form.AppField name="name">
+            {(field) => <field.FormInput />}
+          </form.AppField>
         </nav>
         <div className="flex items-center gap-2">
           <span className="text-sm text-muted-foreground">

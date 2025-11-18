@@ -22,7 +22,7 @@ export function DeleteDialog({
   resumeName,
   onOpenChange,
   onConfirm,
-}: DeleteDialogProps) {
+}: Readonly<DeleteDialogProps>) {
   const handleConfirm = () => {
     onConfirm()
     onOpenChange(false)

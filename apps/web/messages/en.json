@@ -233,7 +233,8 @@
     "title": "Share Resume",
     "description": "Copy this link to share your resume",
     "copy": "Copy Link",
-    "copied": "Link copied!"
+    "copied": "Link copied!",
+    "close": "Close"
   },
   "publicViewer": {
     "download": "Download",

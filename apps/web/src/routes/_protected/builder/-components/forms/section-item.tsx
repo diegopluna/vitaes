@@ -73,15 +73,14 @@ export const SectionItem = withForm({
           >
             <GripVertical className="size-4 text-muted-foreground" />
           </div>
-          <form.AppField
-            name={`sections[${index}].title`}
-            children={(field) => (
+          <form.AppField name={`sections[${index}].title`}>
+            {(field) => (
               <field.FormInput
                 placeholder={m['editor.sectionsForm.sectionItem.title']()}
                 className="flex-1 h-8 font-medium bg-background"
               />
             )}
-          />
+          </form.AppField>
           <div className="flex items-center gap-1">
             <span className="text-xs text-muted-foreground px-2 py-1 bg-background rounded">
               {getSectionType()}

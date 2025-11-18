@@ -23,14 +23,15 @@ export const ListSectionEditor = withForm({
                       <div className="flex items-center gap-2 flex-1">
                         <form.AppField
                           name={`sections[${index}].structure.subsections[${subIdx}].title`}
-                          children={(field) => (
+                        >
+                          {(field) => (
                             <field.FormInput
                               placeholder={m[
                                 'editor.sectionsForm.sectionEditors.list.subsectionTitle'
                               ]()}
                             />
                           )}
-                        />
+                        </form.AppField>
                       </div>
                       <Button
                         variant="ghost"
@@ -70,46 +71,50 @@ export const ListSectionEditor = withForm({
                                 <div className="grid grid-cols-2 gap-2">
                                   <form.AppField
                                     name={`sections[${index}].structure.subsections[${subIdx}].items[${itemIdx}].position`}
-                                    children={(field) => (
+                                  >
+                                    {(field) => (
                                       <field.FormInput
                                         label={m[
                                           'editor.sectionsForm.sectionEditors.list.position'
                                         ]()}
                                       />
                                     )}
-                                  />
+                                  </form.AppField>
                                   {/* TODO: Add date range editor */}
                                   <form.AppField
                                     name={`sections[${index}].structure.subsections[${subIdx}].items[${itemIdx}].date`}
-                                    children={(field) => (
+                                  >
+                                    {(field) => (
                                       <field.FormInput
                                         label={m[
                                           'editor.sectionsForm.sectionEditors.list.date'
                                         ]()}
                                       />
                                     )}
-                                  />
+                                  </form.AppField>
                                 </div>
                                 <form.AppField
                                   name={`sections[${index}].structure.subsections[${subIdx}].items[${itemIdx}].title`}
-                                  children={(field) => (
+                                >
+                                  {(field) => (
                                     <field.FormInput
                                       label={m[
                                         'editor.sectionsForm.sectionEditors.list.title'
                                       ]()}
                                     />
                                   )}
-                                />
+                                </form.AppField>
                                 <form.AppField
                                   name={`sections[${index}].structure.subsections[${subIdx}].items[${itemIdx}].location`}
-                                  children={(field) => (
+                                >
+                                  {(field) => (
                                     <field.FormInput
                                       label={m[
                                         'editor.sectionsForm.sectionEditors.list.location'
                                       ]()}
                                     />
                                   )}
-                                />
+                                </form.AppField>
                               </Card>
                             ))}
                           </div>
@@ -165,46 +170,50 @@ export const ListSectionEditor = withForm({
                   <div className="grid grid-cols-2 gap-2">
                     <form.AppField
                       name={`sections[${index}].structure.items[${itemIdx}].position`}
-                      children={(field) => (
+                    >
+                      {(field) => (
                         <field.FormInput
                           label={m[
                             'editor.sectionsForm.sectionEditors.list.position'
                           ]()}
                         />
                       )}
-                    />
+                    </form.AppField>
                     {/* TODO: Add date range editor */}
                     <form.AppField
                       name={`sections[${index}].structure.items[${itemIdx}].date`}
-                      children={(field) => (
+                    >
+                      {(field) => (
                         <field.FormInput
                           label={m[
                             'editor.sectionsForm.sectionEditors.list.date'
                           ]()}
                         />
                       )}
-                    />
+                    </form.AppField>
                   </div>
                   <form.AppField
                     name={`sections[${index}].structure.items[${itemIdx}].title`}
-                    children={(field) => (
+                  >
+                    {(field) => (
                       <field.FormInput
                         label={m[
                           'editor.sectionsForm.sectionEditors.list.title'
                         ]()}
                       />
                     )}
-                  />
+                  </form.AppField>
                   <form.AppField
                     name={`sections[${index}].structure.items[${itemIdx}].location`}
-                    children={(field) => (
+                  >
+                    {(field) => (
                       <field.FormInput
                         label={m[
                           'editor.sectionsForm.sectionEditors.list.location'
                         ]()}
                       />
                     )}
-                  />
+                  </form.AppField>
                 </Card>
               ))}
               <Button

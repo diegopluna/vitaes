@@ -6,7 +6,6 @@ interface SectionProps {
   title: string
   children: React.ReactNode
   styles: Styles
-  highlight?: boolean
 }
 
 export const Section: React.FC<SectionProps> = ({

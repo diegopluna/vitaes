@@ -14,7 +14,7 @@ export function ResumeProvider({
   initialResume,
   initialLastSaved,
   initialResumeName,
-}: ResumeProviderProps) {
+}: Readonly<ResumeProviderProps>) {
   const [resume, setResume] = useState<IResume>(initialResume)
   const [resumeName, setResumeName] = useState<string>(initialResumeName)
   const [lastSaved, setLastSaved] = useState<Date>(initialLastSaved)

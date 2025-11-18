@@ -38,8 +38,9 @@ export const TimelineBulletPointsEditor = withForm({
                 <div key={idx} className="flex gap-2">
                   <form.AppField
                     name={`sections[${sectionIndex}].entries[${entryIndex}].items[${idx}]`}
-                    children={(field) => <field.FormInput />}
-                  />
+                  >
+                    {(field) => <field.FormInput />}
+                  </form.AppField>
                   <Button
                     variant="ghost"
                     size="sm"

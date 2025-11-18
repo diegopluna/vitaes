@@ -133,7 +133,6 @@ export function PDFViewer({
             Array.from({ length: numPages }).map((_, index) => (
               <Fragment key={index}>
                 <Page
-                  key={index}
                   pageNumber={index + 1}
                   onRenderSuccess={() => setPreviousRenderValue(render.value)}
                 />

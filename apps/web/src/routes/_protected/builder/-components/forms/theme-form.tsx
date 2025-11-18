@@ -27,39 +27,35 @@ export const ThemeForm = withForm({
           <h3 className="text-sm font-medium">Template</h3>
           <div className="grid grid-cols-2 gap-4">
             {TemplateSchema.options.map((template) => (
-              <form.AppField
-                key={template}
-                name="config.template"
-                children={(field) => (
+              <form.AppField key={template} name="config.template">
+                {(field) => (
                   <TemplateCard
                     name={template}
                     selected={field.state.value === template}
                     onClick={() => field.handleChange(template)}
                   />
                 )}
-              />
+              </form.AppField>
             ))}
           </div>
         </div>
 
-        <form.AppField
-          name="config.themeColor"
-          children={(field) => (
+        <form.AppField name="config.themeColor">
+          {(field) => (
             <field.FormSelect
               label={m['editor.themeForm.themeColor']()}
               options={Object.values(AwesomeColorSchema.enum).map((color) => ({
                 label: color
                   .replace('awesome-', '')
-                  .replace(/-/g, ' ')
+                  .replaceAll(/-/g, ' ')
                   .toUpperCase(),
                 value: color,
               }))}
             />
           )}
-        />
-        <form.AppField
-          name="config.headerAlign"
-          children={(field) => (
+        </form.AppField>
+        <form.AppField name="config.headerAlign">
+          {(field) => (
             <field.FormSelect
               label={m['editor.themeForm.headerAlign']()}
               options={['left', 'center', 'right'].map((align) => ({
@@ -68,10 +64,9 @@ export const ThemeForm = withForm({
               }))}
             />
           )}
-        />
-        <form.AppField
-          name="config.pageSize"
-          children={(field) => (
+        </form.AppField>
+        <form.AppField name="config.pageSize">
+          {(field) => (
             <field.FormSelect
               label={m['editor.themeForm.pageSize']()}
               options={[
@@ -80,76 +75,70 @@ export const ThemeForm = withForm({
               ]}
             />
           )}
-        />
+        </form.AppField>
         <div className="space-y-4">
           <div className="space-y-2">
             <h3 className="text-sm font-medium">
               {m['editor.themeForm.footerLeft']()}
             </h3>
-            <form.AppField
-              name="config.footerLeft.text"
-              children={(field) => (
+            <form.AppField name="config.footerLeft.text">
+              {(field) => (
                 <field.FormInput
                   label={m['editor.themeForm.footerText']()}
                   placeholder={m['editor.themeForm.footerTextPlaceholder']()}
                   disabled={pageNumberLeft}
                 />
               )}
-            />
-            <form.AppField
-              name="config.footerLeft.showPageNumber"
-              children={(field) => (
+            </form.AppField>
+            <form.AppField name="config.footerLeft.showPageNumber">
+              {(field) => (
                 <field.FormCheckbox
                   label={m['editor.themeForm.showPageNumber']()}
                 />
               )}
-            />
+            </form.AppField>
           </div>
           <div className="space-y-2">
             <h3 className="text-sm font-medium">
               {m['editor.themeForm.footerCenter']()}
             </h3>
-            <form.AppField
-              name="config.footerCenter.text"
-              children={(field) => (
+            <form.AppField name="config.footerCenter.text">
+              {(field) => (
                 <field.FormInput
                   label={m['editor.themeForm.footerText']()}
                   placeholder={m['editor.themeForm.footerTextPlaceholder']()}
                   disabled={pageNumberCenter}
                 />
               )}
-            />
-            <form.AppField
-              name="config.footerCenter.showPageNumber"
-              children={(field) => (
+            </form.AppField>
+            <form.AppField name="config.footerCenter.showPageNumber">
+              {(field) => (
                 <field.FormCheckbox
                   label={m['editor.themeForm.showPageNumber']()}
                 />
               )}
-            />
+            </form.AppField>
           </div>
           <div className="space-y-2">
             <h3 className="text-sm font-medium">
               {m['editor.themeForm.footerRight']()}
             </h3>
-            <form.AppField
-              name="config.footerRight.text"
-              children={(field) => (
+            <form.AppField name="config.footerRight.text">
+              {(field) => (
                 <field.FormInput
                   label={m['editor.themeForm.footerText']()}
                   placeholder={m['editor.themeForm.footerTextPlaceholder']()}
                   disabled={pageNumberRight}
                 />
               )}
-            />
-            <form.AppField
-              name="config.footerRight.showPageNumber"
-              children={(field) => (
+            </form.AppField>
+            <form.AppField name="config.footerRight.showPageNumber">
+              {(field) => (
                 <field.FormCheckbox
                   label={m['editor.themeForm.showPageNumber']()}
                 />
               )}
-            />
+            </form.AppField>
           </div>
         </div>
       </>

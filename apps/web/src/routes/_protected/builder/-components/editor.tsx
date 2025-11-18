@@ -18,7 +18,9 @@ import { m } from '@/paraglide/messages'
 import { generateThumbnail } from '@/utils/generate-thumbnail'
 import { safeCall } from '@/lib/utils'
 
-export function Editor({ initialResume }: { initialResume: IResume }) {
+export function Editor({
+  initialResume,
+}: Readonly<{ initialResume: IResume }>) {
   const { id } = useParams({ from: '/_protected/builder/$id' })
   const { setResume, setIsSaving, setLastSaved } = useResumeStore()
   const [activeTab, setActiveTab] = useState<string>('personal')

@@ -38,17 +38,19 @@ export const TaxonomySectionEditor = withForm({
                   </div>
                   <form.AppField
                     name={`sections[${index}].categories[${categoryIdx}].type`}
-                    children={(field) => (
+                  >
+                    {(field) => (
                       <field.FormInput
                         label={m[
                           'editor.sectionsForm.sectionEditors.taxonomy.type'
                         ]()}
                       />
                     )}
-                  />
+                  </form.AppField>
                   <form.AppField
                     name={`sections[${index}].categories[${categoryIdx}].items`}
-                    children={(field) => (
+                  >
+                    {(field) => (
                       <field.FormTextarea
                         rows={2}
                         label={m[
@@ -64,7 +66,7 @@ export const TaxonomySectionEditor = withForm({
                         }
                       />
                     )}
-                  />
+                  </form.AppField>
                 </Card>
               ))}
               <Button

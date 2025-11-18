@@ -4,7 +4,7 @@ import type { IResume } from '@vitaes/types/resume'
 import * as pdfjsLib from 'pdfjs-dist'
 
 // Set up PDF.js worker
-if (typeof window !== 'undefined') {
+if (typeof globalThis.window !== 'undefined') {
   pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.min.mjs',
     import.meta.url,
