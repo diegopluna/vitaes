@@ -6,6 +6,7 @@ import {
   exampleResumes,
   ResumeSchema,
   ResumeValidationSchema,
+  TemplateSchema,
 } from '@vitaes/types/resume'
 import { resume } from '@vitaes/db/schema/app'
 import { uuidv7 } from 'uuidv7'
@@ -88,13 +89,23 @@ export const appRouter = {
     .input(
       z.object({
         name: z.string(),
-        language: z.enum(Object.keys(exampleResumes)),
+        language: z.enum(Object.keys(exampleResumes) as [string, ...string[]]),
+        template: TemplateSchema.optional(),
       }),
     )
     .handler(async ({ context, input }) => {
-      const { name, language } = input
+      const { name, language, template = 'awesome' } = input
       const exampleResume =
         exampleResumes[language as keyof typeof exampleResumes]
+
+      const initialData = {
+        ...exampleResume,
+        config: {
+          ...exampleResume.config,
+          template,
+        },
+      }
+
       const currentUser = context.session.user
       const [createdResume] = await db
         .insert(resume)
@@ -102,7 +113,7 @@ export const appRouter = {
           id: uuidv7(),
           name,
           userEmail: currentUser.email,
-          data: exampleResume,
+          data: initialData,
           slug: uniqueSlug(currentUser.email, name),
         })
         .returning()

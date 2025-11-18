@@ -3,6 +3,8 @@ import { m } from '@/paraglide/messages'
 import { useStore } from '@tanstack/react-form'
 import { AwesomeColorSchema } from '@vitaes/types/colors'
 import { kendallRoyNew } from '@vitaes/types/example-data/en'
+import { TemplateSchema } from '@vitaes/types/resume'
+import { TemplateCard } from '@/components/template-card'
 
 export const ThemeForm = withForm({
   defaultValues: kendallRoyNew,
@@ -21,6 +23,25 @@ export const ThemeForm = withForm({
     )
     return (
       <>
+        <div className="space-y-2">
+          <h3 className="text-sm font-medium">Template</h3>
+          <div className="grid grid-cols-2 gap-4">
+            {TemplateSchema.options.map((template) => (
+              <form.AppField
+                key={template}
+                name="config.template"
+                children={(field) => (
+                  <TemplateCard
+                    name={template}
+                    selected={field.state.value === template}
+                    onClick={() => field.handleChange(template)}
+                  />
+                )}
+              />
+            ))}
+          </div>
+        </div>
+
         <form.AppField
           name="config.themeColor"
           children={(field) => (

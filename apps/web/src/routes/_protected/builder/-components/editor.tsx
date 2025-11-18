@@ -40,7 +40,14 @@ export function Editor({ initialResume }: { initialResume: IResume }) {
           updateResume
             .mutateAsync({
               id,
-              data: values.formApi.state.values,
+              data: {
+                ...values.formApi.state.values,
+                config: {
+                  ...values.formApi.state.values.config,
+                  template:
+                    values.formApi.state.values.config.template ?? 'awesome',
+                },
+              },
             })
             .then(async (savedResume) => {
               setLastSaved(savedResume.updatedAt)

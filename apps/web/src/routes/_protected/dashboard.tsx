@@ -18,6 +18,7 @@ import { UserButton } from '@daveyplate/better-auth-ui'
 import { useState } from 'react'
 import { m } from '@/paraglide/messages'
 import { op } from '@/lib/op'
+import type { Template } from '@vitaes/types/resume'
 
 export const Route = createFileRoute('/_protected/dashboard')({
   component: RouteComponent,
@@ -116,11 +117,15 @@ function RouteComponent() {
     setCreateDialogOpen(true)
   }
 
-  const handleCreateResumeConfirm = async (name: string) => {
+  const handleCreateResumeConfirm = async (
+    name: string,
+    template: Template,
+  ) => {
     const create = await safeCall(
       createResume.mutateAsync({
         language: currentLocale,
         name,
+        template,
       }),
     )
     if (create.error) {

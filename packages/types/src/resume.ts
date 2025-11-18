@@ -24,6 +24,13 @@ export const SocialPlatformSchema = z.enum([
   'googlescholar',
 ])
 
+export const TemplateSchema = z.enum([
+  'awesome',
+  'modern',
+  'professional',
+  'bold',
+])
+
 export const SocialProfileSchema = z.object({
   id: z.string(),
   platform: SocialPlatformSchema,
@@ -152,6 +159,7 @@ const defaultFooterRight: z.infer<typeof FooterOptionSchema> = {
 }
 
 const ResumeConfigInputSchema = z.object({
+  template: TemplateSchema.optional(),
   themeColor: AwesomeColorSchema,
   headerAlign: z.enum(['left', 'center', 'right']),
   sectionColorHighlight: z.boolean(),
@@ -164,12 +172,14 @@ const ResumeConfigInputSchema = z.object({
 
 export const ResumeConfigSchema = ResumeConfigInputSchema.transform((data) => ({
   ...data,
+  template: data.template ?? 'awesome',
   footerLeft: data.footerLeft ?? defaultFooterOption,
   footerCenter: data.footerCenter ?? defaultFooterOption,
   footerRight: data.footerRight ?? defaultFooterRight,
 }))
 
 const ResumeConfigValidationSchema = z.object({
+  template: TemplateSchema,
   themeColor: AwesomeColorSchema,
   headerAlign: z.enum(['left', 'center', 'right']),
   sectionColorHighlight: z.boolean(),
@@ -217,6 +227,7 @@ export type TimelineSection = z.infer<typeof TimelineSectionSchema>
 export type ListSection = z.infer<typeof ListSectionSchema>
 export type TaxonomySection = z.infer<typeof TaxonomySectionSchema>
 export type Section = z.infer<typeof SectionSchema>
+export type Template = z.infer<typeof TemplateSchema>
 export type FooterOption = z.infer<typeof FooterOptionSchema>
 export type ResumeConfig = z.infer<typeof ResumeConfigSchema>
 export type IResume = z.infer<typeof ResumeSchema>

@@ -2,6 +2,7 @@ import type { IResume } from '../resume'
 
 export const kendallRoyNew: IResume = {
   config: {
+    template: 'awesome',
     themeColor: 'awesome-emerald',
     headerAlign: 'left',
     sectionColorHighlight: true,
