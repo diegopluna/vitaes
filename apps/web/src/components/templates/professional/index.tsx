@@ -33,12 +33,7 @@ export const ProfessionalTemplate = ({ value }: { value: IResume }) => {
           align={value.config.headerAlign}
         />
         {value.sections.map((section) => (
-          <Section
-            key={section.id}
-            title={section.title}
-            styles={styles}
-            highlight={value.config.sectionColorHighlight}
-          >
+          <Section key={section.id} title={section.title} styles={styles}>
             {isTextSection(section) && (
               <Paragraph content={section.content} styles={styles} />
             )}
