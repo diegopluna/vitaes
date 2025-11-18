@@ -202,6 +202,42 @@ export const appRouter = {
 
       return { thumbnailUrl }
     }),
+  deleteResume: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .handler(async ({ context, input }) => {
+      const { id: resumeId } = input
+      const currentUser = context.session.user
+      const queriedResume = await db.query.resume.findFirst({
+        where: ({ id, userEmail }, { eq, and }) =>
+          and(eq(id, resumeId), eq(userEmail, currentUser.email)),
+      })
+      if (!queriedResume) {
+        throw new ORPCError('NOT_FOUND')
+      }
+      await db.delete(resume).where(eq(resume.id, resumeId))
+      return { success: true }
+    }),
+  updateResumePublicStatus: protectedProcedure
+    .input(z.object({ id: z.string(), isPublic: z.boolean() }))
+    .handler(async ({ context, input }) => {
+      const { id: resumeId, isPublic } = input
+      const currentUser = context.session.user
+      const queriedResume = await db.query.resume.findFirst({
+        where: ({ id, userEmail }, { eq, and }) =>
+          and(eq(id, resumeId), eq(userEmail, currentUser.email)),
+      })
+      if (!queriedResume) {
+        throw new ORPCError('NOT_FOUND')
+      }
+      await db
+        .update(resume)
+        .set({ isPublic, updatedAt: new Date() })
+        .where(eq(resume.id, resumeId))
+      const updatedResume = await db.query.resume.findFirst({
+        where: ({ id }, { eq }) => eq(id, resumeId),
+      })
+      return updatedResume!
+    }),
 }
 
 export type AppRouter = typeof appRouter

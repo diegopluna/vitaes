@@ -137,5 +137,51 @@
   },
   "pdfViewer": {
     "noDocument": "You are not rendering a valid document"
+  },
+  "dialogs": {
+    "deleteResume": {
+      "title": "Delete Resume",
+      "description": "Are you sure you want to delete {resumeName}? This action cannot be undone.",
+      "button": "Delete",
+      "cancel": "Cancel"
+    },
+    "renameResume": {
+      "title": "Rename Resume",
+      "description": "Enter a new name for your resume.",
+      "button": "Save",
+      "cancel": "Cancel",
+      "placeholder": "Resume name"
+    },
+    "createResume": {
+      "title": "Create Resume",
+      "description": "Enter a name for your new resume.",
+      "button": "Create",
+      "cancel": "Cancel",
+      "placeholder": "Resume name"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back, {name}",
+    "createResume": "Create Resume",
+    "loadingResumes": "Loading resumes...",
+    "noResumes": "You don't have any resumes yet.",
+    "createYourFirstResume": "Create Your First Resume",
+    "deletedResume": "Resume deleted successfully",
+    "failedToDeleteResume": "Failed to delete resume",
+    "updatedResumeVisibility": "Resume is now {visibility}",
+    "failedToUpdateResumeVisibility": "Failed to update resume visibility"
+  },
+  "resumeCard": {
+    "views": "{views} views",
+    "downloads": "Downloads",
+    "private": "Private",
+    "public": "Public",
+    "rename": "Rename",
+    "makePrivate": "Make Private",
+    "makePublic": "Make Public",
+    "duplicate": "Duplicate",
+    "delete": "Delete",
+    "updated": "Updated {distanceToNow}"
   }
 }

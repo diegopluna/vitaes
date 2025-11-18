@@ -87,9 +87,9 @@ export function PDFViewer({
     return url
   }, [value])
 
-  useEffect(() => onUrlChange(render.value), [render.value])
+  useEffect(() => onUrlChange(render.value), [render.value, onUrlChange])
 
-  useEffect(() => onRenderError(render.error), [render.error])
+  useEffect(() => onRenderError(render.error), [render.error, onRenderError])
 
   const onDocumentLoad: OnDocumentLoadSuccess = (d) => {
     setNumPages(d.numPages)

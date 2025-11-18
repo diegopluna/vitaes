@@ -6,10 +6,19 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { MoreVertical, Download, Globe, Lock } from 'lucide-react'
+import {
+  MoreVertical,
+  Download,
+  Globe,
+  Lock,
+  Pencil,
+  Trash2,
+  Share2,
+} from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns'
 import { colors } from '@vitaes/types/colors'
 import type { AwesomeColor } from '@vitaes/types/colors'
+import { m } from '@/paraglide/messages'
 
 interface ResumeCardProps {
   resume: {
@@ -31,20 +40,20 @@ interface ResumeCardProps {
     } | null
   }
   onEdit: (id: string) => void
-  onDelete?: (id: string) => void
+  onRename: (id: string) => void
+  onDelete: (id: string) => void
+  onTogglePublic: (id: string) => void
   onDuplicate?: (id: string) => void
 }
 
 export function ResumeCard({
   resume,
   onEdit,
+  onRename,
   onDelete,
+  onTogglePublic,
   onDuplicate,
 }: ResumeCardProps) {
-  const personName = resume.data
-    ? `${resume.data.personalInfo.firstName} ${resume.data.personalInfo.lastName}`
-    : 'Untitled'
-
   const themeColor = resume.data?.config.themeColor || 'awesome-emerald'
   const colorValue = colors[themeColor]
 
@@ -58,7 +67,7 @@ export function ResumeCard({
       onClick={() => onEdit(resume.id)}
     >
       <CardHeader className="p-0">
-        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-t-xl bg-muted">
+        <div className="relative aspect-4/5 w-full overflow-hidden rounded-t-xl bg-muted">
           {resume.thumbnailUrl ? (
             <img
               src={resume.thumbnailUrl}
@@ -81,8 +90,9 @@ export function ResumeCard({
       <CardContent className="p-4">
         <div className="space-y-1">
           <h3 className="font-semibold leading-tight">{resume.name}</h3>
-          <p className="text-sm text-muted-foreground">{personName}</p>
-          <p className="text-xs text-muted-foreground">Updated {lastUpdated}</p>
+          <p className="text-xs text-muted-foreground">
+            {m['resumeCard.updated']({ distanceToNow: lastUpdated })}
+          </p>
         </div>
       </CardContent>
       <CardFooter className="flex items-center justify-between border-t p-4">
@@ -90,15 +100,15 @@ export function ResumeCard({
           {resume.isPublic ? (
             <div className="flex items-center gap-1">
               <Globe className="size-3" />
-              <span>{resume.views} views</span>
+              <span>{m['resumeCard.views']({ views: resume.views })}</span>
             </div>
           ) : (
             <div className="flex items-center gap-1">
               <Lock className="size-3" />
-              <span>Private</span>
+              <span>{m['resumeCard.private']()}</span>
             </div>
           )}
-          {resume.isPublic && resume.downloads > 0 && (
+          {resume.isPublic && (
             <div className="flex items-center gap-1">
               <Download className="size-3" />
               <span>{resume.downloads}</span>
@@ -121,10 +131,29 @@ export function ResumeCard({
             <DropdownMenuItem
               onClick={(e) => {
                 e.stopPropagation()
-                onEdit(resume.id)
+                onRename(resume.id)
               }}
             >
-              Edit
+              <Pencil className="size-4" />
+              {m['resumeCard.rename']()}
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={(e) => {
+                e.stopPropagation()
+                onTogglePublic(resume.id)
+              }}
+            >
+              {resume.isPublic ? (
+                <>
+                  <Lock className="size-4" />
+                  {m['resumeCard.makePrivate']()}
+                </>
+              ) : (
+                <>
+                  <Share2 className="size-4" />
+                  {m['resumeCard.makePublic']()}
+                </>
+              )}
             </DropdownMenuItem>
             {onDuplicate && (
               <DropdownMenuItem
@@ -133,20 +162,19 @@ export function ResumeCard({
                   onDuplicate(resume.id)
                 }}
               >
-                Duplicate
+                {m['resumeCard.duplicate']()}
               </DropdownMenuItem>
             )}
-            {onDelete && (
-              <DropdownMenuItem
-                variant="destructive"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  onDelete(resume.id)
-                }}
-              >
-                Delete
-              </DropdownMenuItem>
-            )}
+            <DropdownMenuItem
+              variant="destructive"
+              onClick={(e) => {
+                e.stopPropagation()
+                onDelete(resume.id)
+              }}
+            >
+              <Trash2 className="size-4" />
+              {m['resumeCard.delete']()}
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </CardFooter>
