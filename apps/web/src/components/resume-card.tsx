@@ -24,6 +24,7 @@ interface ResumeCardProps {
   resume: {
     id: string
     name: string
+    slug: string
     thumbnailUrl: string | null
     updatedAt: Date
     views: number
@@ -43,6 +44,7 @@ interface ResumeCardProps {
   onRename: (id: string) => void
   onDelete: (id: string) => void
   onTogglePublic: (id: string) => void
+  onShare?: (slug: string) => void
   onDuplicate?: (id: string) => void
 }
 
@@ -52,6 +54,7 @@ export function ResumeCard({
   onRename,
   onDelete,
   onTogglePublic,
+  onShare,
   onDuplicate,
 }: ResumeCardProps) {
   const themeColor = resume.data?.config.themeColor || 'awesome-emerald'
@@ -155,6 +158,17 @@ export function ResumeCard({
                 </>
               )}
             </DropdownMenuItem>
+            {resume.isPublic && onShare && (
+              <DropdownMenuItem
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onShare(resume.slug)
+                }}
+              >
+                <Share2 className="size-4" />
+                {m['resumeCard.share']()}
+              </DropdownMenuItem>
+            )}
             {onDuplicate && (
               <DropdownMenuItem
                 onClick={(e) => {

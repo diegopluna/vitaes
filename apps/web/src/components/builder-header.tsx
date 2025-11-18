@@ -89,7 +89,7 @@ export default function BuilderHeader({
               : m['editor.lastSaved']({ distanceToNow })}
           </span>
           <Button variant="outline" asChild>
-            <a href={documentUrl} download="resume.pdf">
+            <a href={documentUrl} download={`${resumeName}.pdf`}>
               <Download className="size-4" />
               {m['editor.download']()}
             </a>

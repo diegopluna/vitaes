@@ -30,6 +30,7 @@ export const appRouter = {
     const currentUser = context.session.user
     const resumes = await db.query.resume.findMany({
       where: ({ userEmail }, { eq }) => eq(userEmail, currentUser.email),
+      orderBy: ({ updatedAt }, { desc }) => desc(updatedAt),
     })
     return resumes.map((resume) => ({
       ...resume,
@@ -52,10 +53,13 @@ export const appRouter = {
       ) {
         throw new ORPCError('FORBIDDEN')
       }
-      await db
-        .update(resume)
-        .set({ views: queriedResume.views + 1 })
-        .where(eq(resume.id, queriedResume.id))
+      // Only increment views for public resumes
+      if (queriedResume.isPublic) {
+        await db
+          .update(resume)
+          .set({ views: queriedResume.views + 1 })
+          .where(eq(resume.id, queriedResume.id))
+      }
       return {
         ...queriedResume,
         data: queriedResume.data
@@ -143,10 +147,13 @@ export const appRouter = {
       ) {
         throw new ORPCError('FORBIDDEN')
       }
-      await db
-        .update(resume)
-        .set({ downloads: queriedResume.downloads + 1 })
-        .where(eq(resume.id, resumeId))
+      // Only increment downloads for public resumes
+      if (queriedResume.isPublic) {
+        await db
+          .update(resume)
+          .set({ downloads: queriedResume.downloads + 1 })
+          .where(eq(resume.id, resumeId))
+      }
       return queriedResume
     }),
   updateResumeName: protectedProcedure

@@ -182,6 +182,18 @@
     "makePublic": "Make Public",
     "duplicate": "Duplicate",
     "delete": "Delete",
-    "updated": "Updated {distanceToNow}"
+    "updated": "Updated {distanceToNow}",
+    "share": "Share"
+  },
+  "shareDialog": {
+    "title": "Share Resume",
+    "description": "Copy this link to share your resume",
+    "copy": "Copy Link",
+    "copied": "Link copied!"
+  },
+  "publicViewer": {
+    "download": "Download",
+    "notFound": "Resume not found",
+    "notPublic": "This resume is private"
   }
 }

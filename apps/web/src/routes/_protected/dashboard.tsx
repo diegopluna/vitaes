@@ -10,6 +10,7 @@ import { Plus } from 'lucide-react'
 import { RenameDialog } from '@/components/rename-dialog'
 import { DeleteDialog } from '@/components/delete-dialog'
 import { CreateResumeDialog } from '@/components/create-resume-dialog'
+import { ShareDialog } from '@/components/share-dialog'
 import { generateThumbnail } from '@/utils/generate-thumbnail'
 import { ModeToggle } from '@/components/mode-toggle'
 import { LanguageSelector } from '@/components/language-selector'
@@ -50,6 +51,14 @@ function RouteComponent() {
   })
 
   const [createDialogOpen, setCreateDialogOpen] = useState(false)
+
+  const [shareDialog, setShareDialog] = useState<{
+    open: boolean
+    slug: string
+  }>({
+    open: false,
+    slug: '',
+  })
 
   const createResume = useMutation(
     orpc.createResume.mutationOptions({
@@ -188,6 +197,13 @@ function RouteComponent() {
     }
   }
 
+  const handleShare = (slug: string) => {
+    setShareDialog({
+      open: true,
+      slug,
+    })
+  }
+
   return (
     <div className="container mx-auto p-6 space-y-6">
       <div className="flex items-center justify-between">
@@ -246,6 +262,7 @@ function RouteComponent() {
               onTogglePublic={() =>
                 handleTogglePublic(resume.id, resume.isPublic)
               }
+              onShare={handleShare}
             />
           ))}
         </div>
@@ -273,6 +290,12 @@ function RouteComponent() {
         open={createDialogOpen}
         onOpenChange={setCreateDialogOpen}
         onConfirm={handleCreateResumeConfirm}
+      />
+
+      <ShareDialog
+        open={shareDialog.open}
+        slug={shareDialog.slug}
+        onOpenChange={(open) => setShareDialog({ open, slug: '' })}
       />
     </div>
   )
