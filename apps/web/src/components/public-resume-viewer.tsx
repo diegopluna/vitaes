@@ -11,6 +11,7 @@ import { safeCall } from '@/lib/utils'
 import { ModeToggle } from './mode-toggle'
 import { LanguageSelector } from './language-selector'
 import type { IResume } from '@vitaes/types/resume'
+import { op } from '@/lib/op'
 
 interface PublicResumeViewerProps {
   resume: {
@@ -46,6 +47,10 @@ export function PublicResumeViewer({ resume }: PublicResumeViewerProps) {
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
+
+    op.track('Resume Downloaded', {
+      resumeId: resume.id,
+    })
   }
 
   if (!resume.data) {

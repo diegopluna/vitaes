@@ -8,6 +8,7 @@ import { safeCall } from '@/lib/utils'
 import { toast } from 'sonner'
 import { ResumeProvider } from '@/context/resume-provider'
 import BuilderHeader from '@/components/builder-header'
+import { op } from '@/lib/op'
 
 export const Route = createFileRoute('/_protected/builder/$id')({
   component: RouteComponent,
@@ -29,6 +30,10 @@ function RouteComponent() {
   )
   const [error, setError] = useState<Error | undefined>(undefined)
   console.log(error)
+
+  op.track('Builder Visited', {
+    resumeId: initialResume.id,
+  })
 
   return (
     <ResumeProvider

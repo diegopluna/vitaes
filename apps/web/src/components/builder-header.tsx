@@ -13,6 +13,7 @@ import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { LanguageSelector } from './language-selector'
 import { m } from '@/paraglide/messages'
+import { op } from '@/lib/op'
 
 export default function BuilderHeader({
   documentUrl,
@@ -89,7 +90,11 @@ export default function BuilderHeader({
               : m['editor.lastSaved']({ distanceToNow })}
           </span>
           <Button variant="outline" asChild>
-            <a href={documentUrl} download={`${resumeName}.pdf`}>
+            <a
+              href={documentUrl}
+              download={`${resumeName}.pdf`}
+              onClick={() => op.track('Resume Downloaded', { resumeId: id })}
+            >
               <Download className="size-4" />
               {m['editor.download']()}
             </a>

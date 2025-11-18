@@ -17,6 +17,7 @@ import { LanguageSelector } from '@/components/language-selector'
 import { UserButton } from '@daveyplate/better-auth-ui'
 import { useState } from 'react'
 import { m } from '@/paraglide/messages'
+import { op } from '@/lib/op'
 
 export const Route = createFileRoute('/_protected/dashboard')({
   component: RouteComponent,
@@ -127,6 +128,11 @@ function RouteComponent() {
       return
     }
 
+    op.track('Resume Created', {
+      resumeId: create.data.id,
+      name,
+    })
+
     navigate({ to: '/builder/$id', params: { id: create.data.id } })
 
     if (create.data.data) {
@@ -210,6 +216,10 @@ function RouteComponent() {
           visibility: !currentStatus ? 'public' : 'private',
         }),
       )
+      op.track('Resume Visibility Updated', {
+        resumeId: id,
+        visibility: !currentStatus ? 'public' : 'private',
+      })
     }
   }
 
@@ -230,8 +240,13 @@ function RouteComponent() {
       toast.error(m['dashboard.duplicateError']())
     } else {
       toast.success(m['dashboard.duplicateSuccess']())
+      op.track('Resume Duplicated', {
+        resumeId: id,
+      })
     }
   }
+
+  op.track('Dashboard Visited')
 
   return (
     <div className="relative min-h-screen bg-background">

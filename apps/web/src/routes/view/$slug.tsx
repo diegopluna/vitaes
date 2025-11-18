@@ -4,6 +4,7 @@ import { orpc } from '@/utils/orpc'
 import { safeCall } from '@/lib/utils'
 import { toast } from 'sonner'
 import { m } from '@/paraglide/messages'
+import { op } from '@/lib/op'
 
 export const Route = createFileRoute('/view/$slug')({
   component: RouteComponent,
@@ -46,6 +47,8 @@ function RouteComponent() {
       </div>
     )
   }
-
+  op.track('Public Resume Viewed', {
+    resumeId: resume.id,
+  })
   return <PublicResumeViewer resume={resume} />
 }

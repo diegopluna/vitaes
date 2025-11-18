@@ -3,6 +3,7 @@ import { Toaster } from '@/components/ui/sonner'
 import { orpc } from '@/utils/orpc'
 // import { createORPCClient } from '@orpc/client'
 // import { createTanstackQueryUtils } from '@orpc/tanstack-query'
+import { op } from '@/lib/op'
 import type { QueryClient } from '@tanstack/react-query'
 import {
   createRootRouteWithContext,
@@ -55,6 +56,7 @@ function RootLayout() {
 
   // const [client] = useState<AppRouterClient>(() => createORPCClient(link))
   // const [orpcUtils] = useState(() => createTanstackQueryUtils(client))
+  op.track('Landing Page')
 
   return (
     <>

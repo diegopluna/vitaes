@@ -1,4 +1,5 @@
 import { authClient } from '@/lib/auth-client'
+import { op } from '@/lib/op'
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_protected')({
@@ -16,5 +17,14 @@ export const Route = createFileRoute('/_protected')({
 })
 
 function RouteComponent() {
+  const { session } = Route.useRouteContext()
+  op.identify({
+    profileId: session.data?.user.id ?? '',
+    email: session.data?.user.email,
+    firstName: session.data?.user.name.split(' ')[0],
+    lastName: session.data?.user.name.split(' ')[1],
+    avatar: session.data?.user.image ?? '',
+  })
+
   return <Outlet />
 }

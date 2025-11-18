@@ -157,6 +157,9 @@ importers:
       '@emotion/styled':
         specifier: ^11.14.1
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.2)(react@19.2.0))(@types/react@19.2.2)(react@19.2.0)
+      '@openpanel/web':
+        specifier: ^1.0.2
+        version: 1.0.2
       '@orpc/client':
         specifier: 'catalog:'
         version: 1.10.0
@@ -1489,6 +1492,12 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
+
+  '@openpanel/sdk@1.0.0':
+    resolution: {integrity: sha512-FNmmfjdXoC/VHEjA+WkrQ4lyM5lxEmV7xDd57uj4E+lIS0sU3DLG2mV/dpS8AscnZbUvuMn3kPhiLCqYzuv/gg==}
+
+  '@openpanel/web@1.0.2':
+    resolution: {integrity: sha512-vU9Z9Kc0dxyE4abTi9KAu2zDE2/z4RDcHDLk9NwNRgrZGDlYereOatwKNnvrwfU96066bjfOrSd+vbjmkmsOoA==}
 
   '@orpc/client@1.10.0':
     resolution: {integrity: sha512-5KDvC5eoZ3hCtn4lrWthXAXe+cV4UtWuAO96nRoMfJLBvGwARKbhK6mKZYq7xJuaRqpByzCAhbYAY5BNRxOK8Q==}
@@ -6495,6 +6504,12 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.1
+
+  '@openpanel/sdk@1.0.0': {}
+
+  '@openpanel/web@1.0.2':
+    dependencies:
+      '@openpanel/sdk': 1.0.0
 
   '@orpc/client@1.10.0':
     dependencies:
