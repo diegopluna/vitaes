@@ -27,7 +27,11 @@ export const TemplateCard = ({
     >
       <div className="aspect-210/297 bg-muted flex items-center justify-center text-muted-foreground text-sm">
         {/* Placeholder for thumbnail */}
-        {name} Preview
+        <img
+          src={`/${name}.png`}
+          alt={name}
+          className="w-full h-full object-cover"
+        />
       </div>
       {selected && (
         <div className="absolute top-2 right-2 bg-primary text-primary-foreground rounded-full p-1">
