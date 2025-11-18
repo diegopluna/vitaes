@@ -59,6 +59,10 @@
       "button": "Delete account",
       "instructions": "Please confirm the deletion of your account. This action is not reversible, so please continue with caution.",
       "cancel": "Cancel"
+    },
+    "hero": {
+      "title": "Settings",
+      "subtitle": "Control your profile, sessions, and account access."
     }
   },
   "validation": {

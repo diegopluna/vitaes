@@ -18,7 +18,7 @@ function RouteComponent() {
   return (
     <div className="relative min-h-screen bg-background">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_60%)]" />
-      <div className="relative mx-auto flex max-w-4xl flex-col gap-8 px-6 py-10">
+      <div className="relative mx-auto flex max-w-4xl flex-col gap-8 px-8 py-10">
         <Link
           to="/dashboard"
           className="fixed left-4 top-4 z-20 inline-flex items-center gap-2 rounded border border-white/15 bg-background/80 px-3 py-1 text-xs uppercase tracking-[0.3em] text-muted-foreground transition hover:border-primary/40 hover:text-foreground"
@@ -29,10 +29,10 @@ function RouteComponent() {
         <header className="flex flex-col gap-4 border-b border-white/10 pb-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-primary">
-              Settings
+              {m['settings.hero.title']()}
             </p>
             <p className="text-sm text-muted-foreground">
-              Control your profile, sessions, and account access.
+              {m['settings.hero.subtitle']()}
             </p>
           </div>
           <div className="flex items-center gap-2">
