@@ -11,6 +11,9 @@ import { RenameDialog } from '@/components/rename-dialog'
 import { DeleteDialog } from '@/components/delete-dialog'
 import { CreateResumeDialog } from '@/components/create-resume-dialog'
 import { generateThumbnail } from '@/utils/generate-thumbnail'
+import { ModeToggle } from '@/components/mode-toggle'
+import { LanguageSelector } from '@/components/language-selector'
+import { UserButton } from '@daveyplate/better-auth-ui'
 import { useState } from 'react'
 import { m } from '@/paraglide/messages'
 
@@ -196,10 +199,21 @@ function RouteComponent() {
             })}
           </p>
         </div>
-        <Button onClick={handleCreateResume}>
-          <Plus className="size-4" />
-          {m['dashboard.createResume']()}
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button onClick={handleCreateResume}>
+            <Plus className="size-4" />
+            {m['dashboard.createResume']()}
+          </Button>
+          <ModeToggle />
+          <LanguageSelector />
+          <UserButton
+            className="bg-transparent"
+            localization={{
+              SIGN_OUT: m['userButton.signOut'](),
+              SETTINGS: m['userButton.settings'](),
+            }}
+          />
+        </div>
       </div>
 
       {listResumes.isLoading && (
