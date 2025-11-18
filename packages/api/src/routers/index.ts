@@ -224,6 +224,58 @@ export const appRouter = {
       await db.delete(resume).where(eq(resume.id, resumeId))
       return { success: true }
     }),
+  duplicateResume: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .handler(async ({ context, input }) => {
+      const currentUser = context.session.user
+      const originalResume = await db.query.resume.findFirst({
+        where: ({ id, userEmail }, { eq, and }) =>
+          and(eq(id, input.id), eq(userEmail, currentUser.email)),
+      })
+      if (!originalResume) {
+        throw new ORPCError('NOT_FOUND')
+      }
+
+      const existingNames = new Set(
+        (
+          await db.query.resume.findMany({
+            where: ({ userEmail }, { eq }) => eq(userEmail, currentUser.email),
+            columns: { name: true },
+          })
+        ).map((entry) => entry.name),
+      )
+
+      const baseName = `${originalResume.name} copy`
+      let candidateName = baseName
+      let suffix = 2
+      while (existingNames.has(candidateName)) {
+        candidateName = `${baseName} ${suffix}`
+        suffix += 1
+      }
+
+      const [duplicatedResume] = await db
+        .insert(resume)
+        .values({
+          id: uuidv7(),
+          name: candidateName,
+          userEmail: currentUser.email,
+          data: originalResume.data,
+          slug: uniqueSlug(currentUser.email, candidateName),
+          thumbnailUrl: originalResume.thumbnailUrl,
+        })
+        .returning()
+
+      if (!duplicatedResume) {
+        throw new ORPCError('INTERNAL_SERVER_ERROR')
+      }
+
+      return {
+        ...duplicatedResume,
+        data: duplicatedResume.data
+          ? ResumeSchema.parse(duplicatedResume.data)
+          : null,
+      }
+    }),
   updateResumePublicStatus: protectedProcedure
     .input(z.object({ id: z.string(), isPublic: z.boolean() }))
     .handler(async ({ context, input }) => {

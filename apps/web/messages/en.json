@@ -7,7 +7,26 @@
       "google": "Sign in with Google",
       "github": "Sign in with GitHub"
     },
-    "signInWith": "Sign in with"
+    "signInWith": "Sign in with",
+    "goBack": "Back to landing",
+    "systemLabel": "LOGIN.MOD",
+    "hero": {
+      "title": "Authenticate with confidence.",
+      "subtitle": "Secure access to your Vitaes workspace. The entire resume-building experience is ready the moment you sign in.",
+      "points": {
+        "realTime": "Real-time editor with instant PDF preview",
+        "free": "Unlimited resumes, 100% free forever",
+        "sharing": "Share public links and track engagement"
+      }
+    },
+    "form": {
+      "authSystem": "auth.system",
+      "ready": "READY"
+    },
+    "footer": {
+      "left": "Vitaes Platform v1.0.0",
+      "right": "All systems operational"
+    }
   },
   "settings": {
     "name": {
@@ -170,7 +189,25 @@
     "deletedResume": "Resume deleted successfully",
     "failedToDeleteResume": "Failed to delete resume",
     "updatedResumeVisibility": "Resume is now {visibility}",
-    "failedToUpdateResumeVisibility": "Failed to update resume visibility"
+    "failedToUpdateResumeVisibility": "Failed to update resume visibility",
+    "hero": {
+      "title": "All your resumes. One minimal workspace.",
+      "subtitle": "Draft, duplicate, share, and export without limits. Stay organized and keep every version within reach.",
+      "preview": "View public resume"
+    },
+    "stats": {
+      "total": "Total resumes",
+      "public": "Public resumes",
+      "views": "Total views",
+      "downloads": "Total downloads"
+    },
+    "empty": {
+      "title": "No resumes yet",
+      "subtitle": "Start by creating your first resume and store every iteration here.",
+      "cta": "Create your first resume"
+    },
+    "duplicateSuccess": "Resume duplicated",
+    "duplicateError": "Failed to duplicate resume"
   },
   "resumeCard": {
     "views": "{views} views",
@@ -183,7 +220,10 @@
     "duplicate": "Duplicate",
     "delete": "Delete",
     "updated": "Updated {distanceToNow}",
-    "share": "Share"
+    "share": "Share",
+    "download": "Download PDF",
+    "downloading": "Downloading...",
+    "downloadFailed": "Failed to download resume"
   },
   "shareDialog": {
     "title": "Share Resume",
@@ -195,5 +235,90 @@
     "download": "Download",
     "notFound": "Resume not found",
     "notPublic": "This resume is private"
+  },
+  "landing": {
+    "hero": {
+      "headline": "Build Professional Resumes in Minutes",
+      "subheadline": "Create stunning resumes with our free, easy-to-use builder. 100% free forever.",
+      "cta": "Get Started Free",
+      "title": "Build Professional Resumes in Minutes",
+      "subtitle": "Create stunning, ATS-friendly resumes with real-time preview. Export to PDF instantly. 100% free, forever.",
+      "signIn": "Sign In",
+      "badge": "100% Free Forever",
+      "freeCopy": "No limits, no tiers, no paywalls. Build unlimited resumes and export them whenever you're ready—completely free, forever."
+    },
+    "features": {
+      "realTimePreview": {
+        "title": "Real-time PDF Preview",
+        "description": "See your resume come to life as you type with instant PDF preview"
+      },
+      "customizableThemes": {
+        "title": "Customizable Themes",
+        "description": "Choose from beautiful color themes to make your resume stand out"
+      },
+      "publicSharing": {
+        "title": "Public Sharing",
+        "description": "Share your resume with a simple link - no downloads needed"
+      },
+      "downloadPdf": {
+        "title": "Download as PDF",
+        "description": "Export your resume as a professional PDF ready for applications"
+      },
+      "title": "Everything You Need to Stand Out",
+      "preview": {
+        "title": "Real-time PDF Preview",
+        "description": "See your resume come to life as you type. What you see is what you get."
+      },
+      "themes": {
+        "title": "Customizable Themes",
+        "description": "Choose from professional color schemes and layouts that match your style."
+      },
+      "sharing": {
+        "title": "Public Sharing & Analytics",
+        "description": "Share your resume online and track views and downloads in real-time."
+      },
+      "download": {
+        "title": "Instant PDF Downloads",
+        "description": "Export your resume to PDF format instantly, ready to send to employers."
+      },
+      "free": {
+        "title": "100% Free Forever",
+        "description": "No hidden fees, no premium plans. All features included, completely free."
+      },
+      "subtitle": "Everything you need to create a standout resume in one elegant, intuitive workspace."
+    },
+    "benefits": {
+      "noDesignSkills": "No Design Skills Required",
+      "professionalTemplates": "Professional Templates",
+      "exportInstantly": "Export to PDF Instantly",
+      "shareOnline": "Share Your Resume Online",
+      "title": "Why Choose Vitaes?",
+      "noDesign": "No design skills required",
+      "professional": "Professional templates included",
+      "instant": "Export to PDF instantly",
+      "share": "Share your resume online with a unique link"
+    },
+    "header": {
+      "signIn": "Sign In"
+    },
+    "footer": {
+      "github": "GitHub",
+      "madeWith": "Made with",
+      "by": "by"
+    },
+    "preview": {
+      "label": "Preview",
+      "liveSync": "Live Sync",
+      "caption": "Pixel-perfect output every time",
+      "items": {
+        "dragDrop": "Drag & drop sections, rearrange instantly",
+        "themes": "Switch themes without losing your structure",
+        "share": "Share a public link + track views & downloads"
+      },
+      "resumeBuilder": "Resume Builder"
+    }
+  },
+  "navigation": {
+    "backToDashboard": "Back to dashboard"
   }
 }
