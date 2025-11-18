@@ -29,7 +29,6 @@ function RouteComponent() {
   const currentLocale = getLocale()
   const navigate = useNavigate()
 
-  // const privateData = useQuery(orpc.privateData.queryOptions())
   const listResumes = useQuery(orpc.listResumes.queryOptions())
 
   const [renameDialog, setRenameDialog] = useState<{
