@@ -23,6 +23,13 @@ COPY --from=builder /app/out/json/ .
 RUN pnpm install --frozen-lockfile
 
 COPY --from=builder /app/out/full/ .
+
+ARG VITE_SERVER_URL
+ARG VITE_APP_URL
+
+ENV VITE_SERVER_URL=$VITE_SERVER_URL
+ENV VITE_APP_URL=$VITE_APP_URL
+
 RUN pnpm turbo run build --filter=web...
 
 FROM base AS runner

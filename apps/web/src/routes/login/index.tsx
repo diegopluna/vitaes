@@ -36,7 +36,7 @@ function RouteComponent() {
               DISABLED_CREDENTIALS_DESCRIPTION: m['login.description'](),
               SIGN_IN_WITH: m['login.signInWith'](),
             }}
-            redirectTo={`${import.meta.env.VITE_APP_URL}/dashboard`}
+            redirectTo={'/dashboard'}
           />
         </div>
       </main>
