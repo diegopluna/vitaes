@@ -19,10 +19,8 @@ export async function generateThumbnail(
   resume: IResume,
 ): Promise<string | null> {
   try {
-    // Generate PDF blob
     const pdfBlob = await pdf(<ResumePDF value={resume} />).toBlob()
 
-    // Load PDF document
     const loadingTask = pdfjsLib.getDocument({
       data: await pdfBlob.arrayBuffer(),
     })
