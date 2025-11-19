@@ -17,6 +17,7 @@ export function Providers({
         account={{
           basePath: '/',
         }}
+        baseURL={import.meta.env.VITE_SERVER_URL}
         navigate={(href) => router.navigate({ href })}
         replace={(href) => router.navigate({ href, replace: true })}
         Link={({ href, ...props }) => <Link to={href} {...props} />}
