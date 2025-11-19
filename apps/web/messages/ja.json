@@ -1,0 +1,329 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "login": {
+    "title": "ログイン",
+    "description": "Vitaesへようこそ",
+    "social": {
+      "google": "Googleでサインイン",
+      "github": "GitHubでサインイン"
+    },
+    "signInWith": "サインイン",
+    "goBack": "ランディングページに戻る",
+    "systemLabel": "LOGIN.MOD",
+    "hero": {
+      "title": "自信を持って認証してください。",
+      "subtitle": "Vitaesワークスペースへの安全なアクセス。サインインした瞬間から、完全な履歴書作成エクスペリエンスが利用可能です。",
+      "points": {
+        "realTime": "即時PDFプレビュー付きのリアルタイムエディター",
+        "free": "無制限の履歴書、永久に100%無料",
+        "sharing": "公開リンクを共有してエンゲージメントを追跡"
+      }
+    },
+    "form": {
+      "authSystem": "auth.system",
+      "ready": "準備完了"
+    },
+    "footer": {
+      "left": "Vitaes Platform v1.0.0",
+      "right": "すべてのシステムが稼働中"
+    }
+  },
+  "settings": {
+    "name": {
+      "label": "名前",
+      "placeholder": "名前",
+      "description": "フルネームまたは表示名を入力してください。",
+      "instructions": "最大32文字を使用してください。",
+      "saveChanges": "保存"
+    },
+    "providers": {
+      "label": "プロバイダー",
+      "description": "アカウントプロバイダーを管理します。",
+      "saveChanges": "保存",
+      "link": "リンク",
+      "unlink": "リンク解除"
+    },
+    "sessions": {
+      "label": "セッション",
+      "description": "アクティブなセッションを管理します。",
+      "placeholder": "セッション",
+      "instructions": "セッションをクリックして終了します。",
+      "saveChanges": "保存",
+      "currentSession": "現在のセッション",
+      "signOut": "サインアウト",
+      "revoke": "取り消し"
+    },
+    "deleteAccount": {
+      "label": "アカウントを削除",
+      "description": "アカウントとそのすべてのコンテンツを完全に削除します。この操作は元に戻せませんので、慎重に続行してください。",
+      "button": "アカウントを削除",
+      "instructions": "アカウントの削除を確認してください。この操作は元に戻せませんので、慎重に続行してください。",
+      "cancel": "キャンセル"
+    },
+    "hero": {
+      "title": "設定",
+      "subtitle": "プロフィール、セッション、アカウントアクセスを管理します。"
+    }
+  },
+  "validation": {
+    "name": "名前は少なくとも1文字である必要があります"
+  },
+  "editor": {
+    "saving": "保存中...",
+    "lastSaved": "最終保存: {distanceToNow}",
+    "failedToUpdateName": "履歴書名の更新に失敗しました",
+    "download": "ダウンロード",
+    "failedToSave": "履歴書の保存に失敗しました",
+    "personalInfo": "個人情報",
+    "sections": "セクション",
+    "theme": "テーマ",
+    "personalForm": {
+      "firstName": "名",
+      "lastName": "姓",
+      "position": "役職",
+      "address": "住所",
+      "quote": "引用",
+      "socials": {
+        "socialProfiles": "ソーシャルプロフィール",
+        "addProfile": "プロフィールを追加",
+        "items": {
+          "profile": "プロフィール {index}",
+          "platform": "プラットフォーム",
+          "value": "値（例：ユーザー名、メール、またはURL）",
+          "display": "表示テキスト（オプション）"
+        }
+      }
+    },
+    "sectionsForm": {
+      "text": "テキスト",
+      "timeline": "タイムライン",
+      "list": "リスト",
+      "groupedList": "グループ化されたリスト",
+      "taxonomy": "タクソノミー",
+      "sectionItem": {
+        "title": "タイトル"
+      },
+      "sectionEditors": {
+        "timeline": {
+          "entry": "エントリー {index}",
+          "position": "役職",
+          "date": "日付",
+          "title": "タイトル",
+          "location": "場所",
+          "description": "説明",
+          "bulletPoints": "箇条書き",
+          "addEntry": "エントリーを追加"
+        },
+        "list": {
+          "subsectionTitle": "サブセクションのタイトル",
+          "item": "アイテム {index}",
+          "position": "役職",
+          "date": "日付",
+          "title": "タイトル",
+          "location": "場所",
+          "description": "説明",
+          "addItem": "アイテムを追加",
+          "addSubsection": "サブセクションを追加"
+        },
+        "taxonomy": {
+          "category": "カテゴリー {index}",
+          "addCategory": "カテゴリーを追加",
+          "type": "タイプ",
+          "items": "アイテム"
+        },
+        "text": {
+          "content": "コンテンツ"
+        }
+      }
+    },
+    "themeForm": {
+      "themeColor": "テーマカラー",
+      "headerAlign": "ヘッダーの配置",
+      "pageSize": "ページサイズ",
+      "footerLeft": "フッター左",
+      "footerCenter": "フッター中央",
+      "footerRight": "フッター右",
+      "footerText": "テキスト",
+      "footerTextPlaceholder": "フッターテキストを入力",
+      "showPageNumber": "ページ番号を表示"
+    }
+  },
+  "themeToggle": {
+    "light": "ライト",
+    "dark": "ダーク",
+    "system": "システム",
+    "toggleTheme": "テーマを切り替える"
+  },
+  "userButton": {
+    "signOut": "サインアウト",
+    "settings": "設定"
+  },
+  "pdfViewer": {
+    "noDocument": "有効なドキュメントをレンダリングしていません"
+  },
+  "dialogs": {
+    "deleteResume": {
+      "title": "履歴書を削除",
+      "description": "{resumeName}を削除してもよろしいですか？この操作は元に戻せません。",
+      "button": "削除",
+      "cancel": "キャンセル"
+    },
+    "renameResume": {
+      "title": "履歴書の名前を変更",
+      "description": "履歴書の新しい名前を入力してください。",
+      "button": "保存",
+      "cancel": "キャンセル",
+      "placeholder": "履歴書名"
+    },
+    "createResume": {
+      "title": "履歴書を作成",
+      "description": "新しい履歴書の名前を入力してください。",
+      "button": "作成",
+      "cancel": "キャンセル",
+      "placeholder": "履歴書名"
+    }
+  },
+  "dashboard": {
+    "title": "ダッシュボード",
+    "welcome": "おかえりなさい、{name}",
+    "createResume": "履歴書を作成",
+    "loadingResumes": "履歴書を読み込んでいます...",
+    "noResumes": "まだ履歴書がありません。",
+    "createYourFirstResume": "最初の履歴書を作成",
+    "deletedResume": "履歴書が正常に削除されました",
+    "failedToDeleteResume": "履歴書の削除に失敗しました",
+    "updatedResumeVisibility": "履歴書は現在{visibility}です",
+    "failedToUpdateResumeVisibility": "履歴書の表示設定の更新に失敗しました",
+    "hero": {
+      "title": "すべての履歴書。1つのミニマルなワークスペース。",
+      "subtitle": "制限なしで下書き、複製、共有、エクスポート。整理された状態を保ち、すべてのバージョンをすぐに利用できます。",
+      "preview": "公開履歴書を表示"
+    },
+    "stats": {
+      "total": "履歴書の合計",
+      "public": "公開履歴書",
+      "views": "総閲覧数",
+      "downloads": "総ダウンロード数"
+    },
+    "empty": {
+      "title": "まだ履歴書がありません",
+      "subtitle": "最初の履歴書を作成し、すべての反復をここに保存します。",
+      "cta": "最初の履歴書を作成"
+    },
+    "duplicateSuccess": "履歴書を複製しました",
+    "duplicateError": "履歴書の複製に失敗しました"
+  },
+  "resumeCard": {
+    "views": "{views} 回の閲覧",
+    "downloads": "ダウンロード",
+    "private": "非公開",
+    "public": "公開",
+    "rename": "名前を変更",
+    "makePrivate": "非公開にする",
+    "makePublic": "公開にする",
+    "duplicate": "複製",
+    "delete": "削除",
+    "updated": "{distanceToNow}に更新",
+    "share": "共有",
+    "download": "PDFをダウンロード",
+    "downloading": "ダウンロード中...",
+    "downloadFailed": "履歴書のダウンロードに失敗しました"
+  },
+  "shareDialog": {
+    "title": "履歴書を共有",
+    "description": "このリンクをコピーして履歴書を共有してください",
+    "copy": "リンクをコピー",
+    "copied": "リンクをコピーしました！",
+    "close": "閉じる"
+  },
+  "publicViewer": {
+    "download": "ダウンロード",
+    "notFound": "履歴書が見つかりません",
+    "notPublic": "この履歴書は非公開です"
+  },
+  "landing": {
+    "hero": {
+      "headline": "数分でプロフェッショナルな履歴書を作成",
+      "subheadline": "無料で使いやすいビルダーで素晴らしい履歴書を作成します。永久に100%無料。",
+      "cta": "無料で始める",
+      "title": "数分でプロフェッショナルな履歴書を作成",
+      "subtitle": "リアルタイムプレビューで素晴らしいATS対応の履歴書を作成します。即座にPDFにエクスポート。永久に100%無料。",
+      "signIn": "サインイン",
+      "badge": "永久に100%無料",
+      "freeCopy": "制限なし、階層なし、ペイウォールなし。無制限の履歴書を作成し、準備ができたらいつでもエクスポートできます—完全に無料、永久に。"
+    },
+    "features": {
+      "realTimePreview": {
+        "title": "リアルタイムPDFプレビュー",
+        "description": "入力しながら即座にPDFプレビューで履歴書が生き生きと表示されます"
+      },
+      "customizableThemes": {
+        "title": "カスタマイズ可能なテーマ",
+        "description": "美しいカラーテーマから選んで履歴書を目立たせましょう"
+      },
+      "publicSharing": {
+        "title": "公開共有",
+        "description": "シンプルなリンクで履歴書を共有 - ダウンロード不要"
+      },
+      "downloadPdf": {
+        "title": "PDFとしてダウンロード",
+        "description": "応募準備の整ったプロフェッショナルなPDFとして履歴書をエクスポート"
+      },
+      "title": "目立つために必要なすべて",
+      "preview": {
+        "title": "リアルタイムPDFプレビュー",
+        "description": "入力しながら履歴書が生き生きと表示されます。見たものがそのまま得られます。"
+      },
+      "themes": {
+        "title": "カスタマイズ可能なテーマ",
+        "description": "あなたのスタイルに合ったプロフェッショナルな配色とレイアウトから選択します。"
+      },
+      "sharing": {
+        "title": "公開共有と分析",
+        "description": "オンラインで履歴書を共有し、リアルタイムで閲覧数とダウンロード数を追跡します。"
+      },
+      "download": {
+        "title": "即座のPDFダウンロード",
+        "description": "履歴書を即座にPDF形式にエクスポートし、雇用主に送信する準備が整います。"
+      },
+      "free": {
+        "title": "永久に100%無料",
+        "description": "隠れた料金なし、プレミアムプランなし。すべての機能が含まれ、完全に無料。"
+      },
+      "subtitle": "エレガントで直感的なワークスペースで、目立つ履歴書を作成するために必要なすべて。"
+    },
+    "benefits": {
+      "noDesignSkills": "デザインスキル不要",
+      "professionalTemplates": "プロフェッショナルなテンプレート",
+      "exportInstantly": "即座にPDFにエクスポート",
+      "shareOnline": "オンラインで履歴書を共有",
+      "title": "なぜVitaesを選ぶのか？",
+      "noDesign": "デザインスキル不要",
+      "professional": "プロフェッショナルなテンプレートが含まれています",
+      "instant": "即座にPDFにエクスポート",
+      "share": "ユニークなリンクでオンラインで履歴書を共有"
+    },
+    "header": {
+      "signIn": "サインイン"
+    },
+    "footer": {
+      "github": "GitHub",
+      "madeWith": "作成",
+      "by": "作者"
+    },
+    "preview": {
+      "label": "プレビュー",
+      "liveSync": "ライブ同期",
+      "caption": "毎回ピクセルパーフェクトな出力",
+      "items": {
+        "dragDrop": "セクションをドラッグ＆ドロップ、即座に並べ替え",
+        "themes": "構造を失わずにテーマを切り替え",
+        "share": "公開リンクを共有 + 閲覧数とダウンロード数を追跡"
+      },
+      "resumeBuilder": "履歴書ビルダー"
+    }
+  },
+  "navigation": {
+    "backToDashboard": "ダッシュボードに戻る"
+  }
+}

@@ -1,4 +1,329 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
-  "example_message": "Guten Tag {username}"
+  "login": {
+    "title": "Anmelden",
+    "description": "Willkommen zurück bei Vitaes",
+    "social": {
+      "google": "Mit Google anmelden",
+      "github": "Mit GitHub anmelden"
+    },
+    "signInWith": "Anmelden mit",
+    "goBack": "Zurück zur Startseite",
+    "systemLabel": "LOGIN.MOD",
+    "hero": {
+      "title": "Authentifizieren Sie sich mit Vertrauen.",
+      "subtitle": "Sicherer Zugriff auf Ihren Vitaes-Arbeitsbereich. Das gesamte Lebenslauf-Erlebnis ist bereit, sobald Sie sich anmelden.",
+      "points": {
+        "realTime": "Echtzeit-Editor mit sofortiger PDF-Vorschau",
+        "free": "Unbegrenzte Lebensläufe, für immer 100% kostenlos",
+        "sharing": "Öffentliche Links teilen und Engagement verfolgen"
+      }
+    },
+    "form": {
+      "authSystem": "auth.system",
+      "ready": "BEREIT"
+    },
+    "footer": {
+      "left": "Vitaes Platform v1.0.0",
+      "right": "Alle Systeme betriebsbereit"
+    }
+  },
+  "settings": {
+    "name": {
+      "label": "Name",
+      "placeholder": "Name",
+      "description": "Bitte geben Sie Ihren vollständigen Namen oder einen Anzeigenamen ein.",
+      "instructions": "Bitte verwenden Sie maximal 32 Zeichen.",
+      "saveChanges": "Speichern"
+    },
+    "providers": {
+      "label": "Anbieter",
+      "description": "Verwalten Sie Ihre Kontoanbieter.",
+      "saveChanges": "Speichern",
+      "link": "Verknüpfen",
+      "unlink": "Verknüpfung aufheben"
+    },
+    "sessions": {
+      "label": "Sitzungen",
+      "description": "Verwalten Sie Ihre aktiven Sitzungen.",
+      "placeholder": "Sitzung",
+      "instructions": "Klicken Sie auf eine Sitzung, um sie zu beenden.",
+      "saveChanges": "Speichern",
+      "currentSession": "Aktuelle Sitzung",
+      "signOut": "Abmelden",
+      "revoke": "Widerrufen"
+    },
+    "deleteAccount": {
+      "label": "Konto löschen",
+      "description": "Entfernen Sie Ihr Konto und alle seine Inhalte dauerhaft. Diese Aktion ist nicht rückgängig zu machen, also fahren Sie bitte vorsichtig fort.",
+      "button": "Konto löschen",
+      "instructions": "Bitte bestätigen Sie die Löschung Ihres Kontos. Diese Aktion ist nicht rückgängig zu machen, also fahren Sie bitte vorsichtig fort.",
+      "cancel": "Abbrechen"
+    },
+    "hero": {
+      "title": "Einstellungen",
+      "subtitle": "Verwalten Sie Ihr Profil, Ihre Sitzungen und Ihren Kontozugriff."
+    }
+  },
+  "validation": {
+    "name": "Name muss mindestens 1 Zeichen lang sein"
+  },
+  "editor": {
+    "saving": "Speichern...",
+    "lastSaved": "Zuletzt gespeichert: {distanceToNow}",
+    "failedToUpdateName": "Fehler beim Aktualisieren des Lebenslaufnamens",
+    "download": "Herunterladen",
+    "failedToSave": "Fehler beim Speichern des Lebenslaufs",
+    "personalInfo": "Persönliche Informationen",
+    "sections": "Abschnitte",
+    "theme": "Design",
+    "personalForm": {
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "position": "Position",
+      "address": "Adresse",
+      "quote": "Zitat",
+      "socials": {
+        "socialProfiles": "Soziale Profile",
+        "addProfile": "Profil hinzufügen",
+        "items": {
+          "profile": "Profil {index}",
+          "platform": "Plattform",
+          "value": "Wert (z.B. Benutzername, E-Mail oder URL)",
+          "display": "Anzeigetext (optional)"
+        }
+      }
+    },
+    "sectionsForm": {
+      "text": "Text",
+      "timeline": "Zeitstrahl",
+      "list": "Liste",
+      "groupedList": "Gruppierte Liste",
+      "taxonomy": "Taxonomie",
+      "sectionItem": {
+        "title": "Titel"
+      },
+      "sectionEditors": {
+        "timeline": {
+          "entry": "Eintrag {index}",
+          "position": "Position",
+          "date": "Datum",
+          "title": "Titel",
+          "location": "Ort",
+          "description": "Beschreibung",
+          "bulletPoints": "Aufzählungspunkte",
+          "addEntry": "Eintrag hinzufügen"
+        },
+        "list": {
+          "subsectionTitle": "Unterabschnittstitel",
+          "item": "Element {index}",
+          "position": "Position",
+          "date": "Datum",
+          "title": "Titel",
+          "location": "Ort",
+          "description": "Beschreibung",
+          "addItem": "Element hinzufügen",
+          "addSubsection": "Unterabschnitt hinzufügen"
+        },
+        "taxonomy": {
+          "category": "Kategorie {index}",
+          "addCategory": "Kategorie hinzufügen",
+          "type": "Typ",
+          "items": "Elemente"
+        },
+        "text": {
+          "content": "Inhalt"
+        }
+      }
+    },
+    "themeForm": {
+      "themeColor": "Design-Farbe",
+      "headerAlign": "Kopfzeilenausrichtung",
+      "pageSize": "Seitengröße",
+      "footerLeft": "Fußzeile links",
+      "footerCenter": "Fußzeile mittig",
+      "footerRight": "Fußzeile rechts",
+      "footerText": "Text",
+      "footerTextPlaceholder": "Fußzeilentext eingeben",
+      "showPageNumber": "Seitenzahl anzeigen"
+    }
+  },
+  "themeToggle": {
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System",
+    "toggleTheme": "Design wechseln"
+  },
+  "userButton": {
+    "signOut": "Abmelden",
+    "settings": "Einstellungen"
+  },
+  "pdfViewer": {
+    "noDocument": "Sie rendern kein gültiges Dokument"
+  },
+  "dialogs": {
+    "deleteResume": {
+      "title": "Lebenslauf löschen",
+      "description": "Sind Sie sicher, dass Sie {resumeName} löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+      "button": "Löschen",
+      "cancel": "Abbrechen"
+    },
+    "renameResume": {
+      "title": "Lebenslauf umbenennen",
+      "description": "Geben Sie einen neuen Namen für Ihren Lebenslauf ein.",
+      "button": "Speichern",
+      "cancel": "Abbrechen",
+      "placeholder": "Lebenslaufname"
+    },
+    "createResume": {
+      "title": "Lebenslauf erstellen",
+      "description": "Geben Sie einen Namen für Ihren neuen Lebenslauf ein.",
+      "button": "Erstellen",
+      "cancel": "Abbrechen",
+      "placeholder": "Lebenslaufname"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Willkommen zurück, {name}",
+    "createResume": "Lebenslauf erstellen",
+    "loadingResumes": "Lebensläufe werden geladen...",
+    "noResumes": "Sie haben noch keine Lebensläufe.",
+    "createYourFirstResume": "Erstellen Sie Ihren ersten Lebenslauf",
+    "deletedResume": "Lebenslauf erfolgreich gelöscht",
+    "failedToDeleteResume": "Fehler beim Löschen des Lebenslaufs",
+    "updatedResumeVisibility": "Lebenslauf ist jetzt {visibility}",
+    "failedToUpdateResumeVisibility": "Fehler beim Aktualisieren der Sichtbarkeit des Lebenslaufs",
+    "hero": {
+      "title": "Alle Ihre Lebensläufe. Ein minimalistischer Arbeitsbereich.",
+      "subtitle": "Entwerfen, duplizieren, teilen und exportieren Sie ohne Einschränkungen. Bleiben Sie organisiert und behalten Sie jede Version griffbereit.",
+      "preview": "Öffentlichen Lebenslauf anzeigen"
+    },
+    "stats": {
+      "total": "Lebensläufe gesamt",
+      "public": "Öffentliche Lebensläufe",
+      "views": "Gesamtaufrufe",
+      "downloads": "Gesamtdownloads"
+    },
+    "empty": {
+      "title": "Noch keine Lebensläufe",
+      "subtitle": "Beginnen Sie, indem Sie Ihren ersten Lebenslauf erstellen und jede Iteration hier speichern.",
+      "cta": "Erstellen Sie Ihren ersten Lebenslauf"
+    },
+    "duplicateSuccess": "Lebenslauf dupliziert",
+    "duplicateError": "Fehler beim Duplizieren des Lebenslaufs"
+  },
+  "resumeCard": {
+    "views": "{views} Aufrufe",
+    "downloads": "Downloads",
+    "private": "Privat",
+    "public": "Öffentlich",
+    "rename": "Umbenennen",
+    "makePrivate": "Privat machen",
+    "makePublic": "Öffentlich machen",
+    "duplicate": "Duplizieren",
+    "delete": "Löschen",
+    "updated": "Aktualisiert {distanceToNow}",
+    "share": "Teilen",
+    "download": "PDF herunterladen",
+    "downloading": "Wird heruntergeladen...",
+    "downloadFailed": "Fehler beim Herunterladen des Lebenslaufs"
+  },
+  "shareDialog": {
+    "title": "Lebenslauf teilen",
+    "description": "Kopieren Sie diesen Link, um Ihren Lebenslauf zu teilen",
+    "copy": "Link kopieren",
+    "copied": "Link kopiert!",
+    "close": "Schließen"
+  },
+  "publicViewer": {
+    "download": "Herunterladen",
+    "notFound": "Lebenslauf nicht gefunden",
+    "notPublic": "Dieser Lebenslauf ist privat"
+  },
+  "landing": {
+    "hero": {
+      "headline": "Erstellen Sie professionelle Lebensläufe in Minuten",
+      "subheadline": "Erstellen Sie beeindruckende Lebensläufe mit unserem kostenlosen, benutzerfreundlichen Builder. Für immer 100% kostenlos.",
+      "cta": "Kostenlos starten",
+      "title": "Erstellen Sie professionelle Lebensläufe in Minuten",
+      "subtitle": "Erstellen Sie beeindruckende, ATS-freundliche Lebensläufe mit Echtzeit-Vorschau. Exportieren Sie sofort zu PDF. Für immer 100% kostenlos.",
+      "signIn": "Anmelden",
+      "badge": "Für immer 100% kostenlos",
+      "freeCopy": "Keine Limits, keine Stufen, keine Paywalls. Erstellen Sie unbegrenzt Lebensläufe und exportieren Sie sie, wann immer Sie bereit sind – völlig kostenlos, für immer."
+    },
+    "features": {
+      "realTimePreview": {
+        "title": "Echtzeit-PDF-Vorschau",
+        "description": "Sehen Sie Ihren Lebenslauf zum Leben erwachen, während Sie mit sofortiger PDF-Vorschau tippen"
+      },
+      "customizableThemes": {
+        "title": "Anpassbare Designs",
+        "description": "Wählen Sie aus wunderschönen Farbdesigns, um Ihren Lebenslauf hervorzuheben"
+      },
+      "publicSharing": {
+        "title": "Öffentliches Teilen",
+        "description": "Teilen Sie Ihren Lebenslauf mit einem einfachen Link – keine Downloads erforderlich"
+      },
+      "downloadPdf": {
+        "title": "Als PDF herunterladen",
+        "description": "Exportieren Sie Ihren Lebenslauf als professionelles PDF, bereit für Bewerbungen"
+      },
+      "title": "Alles, was Sie brauchen, um hervorzustechen",
+      "preview": {
+        "title": "Echtzeit-PDF-Vorschau",
+        "description": "Sehen Sie Ihren Lebenslauf zum Leben erwachen, während Sie tippen. Was Sie sehen, ist was Sie bekommen."
+      },
+      "themes": {
+        "title": "Anpassbare Designs",
+        "description": "Wählen Sie aus professionellen Farbschemata und Layouts, die zu Ihrem Stil passen."
+      },
+      "sharing": {
+        "title": "Öffentliches Teilen & Analysen",
+        "description": "Teilen Sie Ihren Lebenslauf online und verfolgen Sie Aufrufe und Downloads in Echtzeit."
+      },
+      "download": {
+        "title": "Sofortige PDF-Downloads",
+        "description": "Exportieren Sie Ihren Lebenslauf sofort ins PDF-Format, bereit zum Senden an Arbeitgeber."
+      },
+      "free": {
+        "title": "Für immer 100% kostenlos",
+        "description": "Keine versteckten Gebühren, keine Premium-Pläne. Alle Funktionen enthalten, völlig kostenlos."
+      },
+      "subtitle": "Alles, was Sie brauchen, um einen herausragenden Lebenslauf in einem eleganten, intuitiven Arbeitsbereich zu erstellen."
+    },
+    "benefits": {
+      "noDesignSkills": "Keine Design-Fähigkeiten erforderlich",
+      "professionalTemplates": "Professionelle Vorlagen",
+      "exportInstantly": "Sofort zu PDF exportieren",
+      "shareOnline": "Teilen Sie Ihren Lebenslauf online",
+      "title": "Warum Vitaes wählen?",
+      "noDesign": "Keine Design-Fähigkeiten erforderlich",
+      "professional": "Professionelle Vorlagen enthalten",
+      "instant": "Sofort zu PDF exportieren",
+      "share": "Teilen Sie Ihren Lebenslauf online mit einem einzigartigen Link"
+    },
+    "header": {
+      "signIn": "Anmelden"
+    },
+    "footer": {
+      "github": "GitHub",
+      "madeWith": "Gemacht mit",
+      "by": "von"
+    },
+    "preview": {
+      "label": "Vorschau",
+      "liveSync": "Live-Synchronisation",
+      "caption": "Jedes Mal pixelgenaue Ausgabe",
+      "items": {
+        "dragDrop": "Abschnitte per Drag & Drop verschieben, sofort neu anordnen",
+        "themes": "Designs wechseln ohne Ihre Struktur zu verlieren",
+        "share": "Öffentlichen Link teilen + Aufrufe & Downloads verfolgen"
+      },
+      "resumeBuilder": "Lebenslauf-Builder"
+    }
+  },
+  "navigation": {
+    "backToDashboard": "Zurück zum Dashboard"
+  }
 }

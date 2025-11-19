@@ -1,0 +1,329 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "login": {
+    "title": "Connexion",
+    "description": "Bienvenue à Vitaes",
+    "social": {
+      "google": "Se connecter avec Google",
+      "github": "Se connecter avec GitHub"
+    },
+    "signInWith": "Se connecter avec",
+    "goBack": "Retour à l'accueil",
+    "systemLabel": "LOGIN.MOD",
+    "hero": {
+      "title": "Authentifiez-vous en toute confiance.",
+      "subtitle": "Accès sécurisé à votre espace de travail Vitaes. L'expérience complète de création de CV est prête dès que vous vous connectez.",
+      "points": {
+        "realTime": "Éditeur en temps réel avec aperçu PDF instantané",
+        "free": "CV illimités, 100% gratuit pour toujours",
+        "sharing": "Partagez des liens publics et suivez l'engagement"
+      }
+    },
+    "form": {
+      "authSystem": "auth.system",
+      "ready": "PRÊT"
+    },
+    "footer": {
+      "left": "Vitaes Platform v1.0.0",
+      "right": "Tous les systèmes opérationnels"
+    }
+  },
+  "settings": {
+    "name": {
+      "label": "Nom",
+      "placeholder": "Nom",
+      "description": "Veuillez entrer votre nom complet ou un nom d'affichage.",
+      "instructions": "Veuillez utiliser un maximum de 32 caractères.",
+      "saveChanges": "Enregistrer"
+    },
+    "providers": {
+      "label": "Fournisseurs",
+      "description": "Gérez les fournisseurs de votre compte.",
+      "saveChanges": "Enregistrer",
+      "link": "Lier",
+      "unlink": "Délier"
+    },
+    "sessions": {
+      "label": "Sessions",
+      "description": "Gérez vos sessions actives.",
+      "placeholder": "Session",
+      "instructions": "Cliquez sur une session pour la terminer.",
+      "saveChanges": "Enregistrer",
+      "currentSession": "Session actuelle",
+      "signOut": "Se déconnecter",
+      "revoke": "Révoquer"
+    },
+    "deleteAccount": {
+      "label": "Supprimer le compte",
+      "description": "Supprimez définitivement votre compte et tout son contenu. Cette action n'est pas réversible, veuillez donc continuer avec prudence.",
+      "button": "Supprimer le compte",
+      "instructions": "Veuillez confirmer la suppression de votre compte. Cette action n'est pas réversible, veuillez donc continuer avec prudence.",
+      "cancel": "Annuler"
+    },
+    "hero": {
+      "title": "Paramètres",
+      "subtitle": "Contrôlez votre profil, vos sessions et l'accès à votre compte."
+    }
+  },
+  "validation": {
+    "name": "Le nom doit contenir au moins 1 caractère"
+  },
+  "editor": {
+    "saving": "Enregistrement...",
+    "lastSaved": "Dernière sauvegarde : {distanceToNow}",
+    "failedToUpdateName": "Échec de la mise à jour du nom du CV",
+    "download": "Télécharger",
+    "failedToSave": "Échec de l'enregistrement du CV",
+    "personalInfo": "Informations Personnelles",
+    "sections": "Sections",
+    "theme": "Thème",
+    "personalForm": {
+      "firstName": "Prénom",
+      "lastName": "Nom de famille",
+      "position": "Poste",
+      "address": "Adresse",
+      "quote": "Citation",
+      "socials": {
+        "socialProfiles": "Profils Sociaux",
+        "addProfile": "Ajouter un Profil",
+        "items": {
+          "profile": "Profil {index}",
+          "platform": "Plateforme",
+          "value": "Valeur (par ex. nom d'utilisateur, e-mail ou URL)",
+          "display": "Texte d'affichage (facultatif)"
+        }
+      }
+    },
+    "sectionsForm": {
+      "text": "Texte",
+      "timeline": "Chronologie",
+      "list": "Liste",
+      "groupedList": "Liste Groupée",
+      "taxonomy": "Taxonomie",
+      "sectionItem": {
+        "title": "Titre"
+      },
+      "sectionEditors": {
+        "timeline": {
+          "entry": "Entrée {index}",
+          "position": "Poste",
+          "date": "Date",
+          "title": "Titre",
+          "location": "Lieu",
+          "description": "Description",
+          "bulletPoints": "Points de Puces",
+          "addEntry": "Ajouter une Entrée"
+        },
+        "list": {
+          "subsectionTitle": "Titre de Sous-section",
+          "item": "Élément {index}",
+          "position": "Poste",
+          "date": "Date",
+          "title": "Titre",
+          "location": "Lieu",
+          "description": "Description",
+          "addItem": "Ajouter un Élément",
+          "addSubsection": "Ajouter une Sous-section"
+        },
+        "taxonomy": {
+          "category": "Catégorie {index}",
+          "addCategory": "Ajouter une Catégorie",
+          "type": "Type",
+          "items": "Éléments"
+        },
+        "text": {
+          "content": "Contenu"
+        }
+      }
+    },
+    "themeForm": {
+      "themeColor": "Couleur du Thème",
+      "headerAlign": "Alignement de l'En-tête",
+      "pageSize": "Taille de Page",
+      "footerLeft": "Pied de Page Gauche",
+      "footerCenter": "Pied de Page Centre",
+      "footerRight": "Pied de Page Droit",
+      "footerText": "Texte",
+      "footerTextPlaceholder": "Entrez le texte du pied de page",
+      "showPageNumber": "Afficher le Numéro de Page"
+    }
+  },
+  "themeToggle": {
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système",
+    "toggleTheme": "Changer de thème"
+  },
+  "userButton": {
+    "signOut": "Se Déconnecter",
+    "settings": "Paramètres"
+  },
+  "pdfViewer": {
+    "noDocument": "Vous ne rendez pas un document valide"
+  },
+  "dialogs": {
+    "deleteResume": {
+      "title": "Supprimer le CV",
+      "description": "Êtes-vous sûr de vouloir supprimer {resumeName} ? Cette action ne peut pas être annulée.",
+      "button": "Supprimer",
+      "cancel": "Annuler"
+    },
+    "renameResume": {
+      "title": "Renommer le CV",
+      "description": "Entrez un nouveau nom pour votre CV.",
+      "button": "Enregistrer",
+      "cancel": "Annuler",
+      "placeholder": "Nom du CV"
+    },
+    "createResume": {
+      "title": "Créer un CV",
+      "description": "Entrez un nom pour votre nouveau CV.",
+      "button": "Créer",
+      "cancel": "Annuler",
+      "placeholder": "Nom du CV"
+    }
+  },
+  "dashboard": {
+    "title": "Tableau de Bord",
+    "welcome": "Bienvenue, {name}",
+    "createResume": "Créer un CV",
+    "loadingResumes": "Chargement des CV...",
+    "noResumes": "Vous n'avez pas encore de CV.",
+    "createYourFirstResume": "Créez Votre Premier CV",
+    "deletedResume": "CV supprimé avec succès",
+    "failedToDeleteResume": "Échec de la suppression du CV",
+    "updatedResumeVisibility": "Le CV est maintenant {visibility}",
+    "failedToUpdateResumeVisibility": "Échec de la mise à jour de la visibilité du CV",
+    "hero": {
+      "title": "Tous vos CV. Un espace de travail minimal.",
+      "subtitle": "Brouillons, dupliquez, partagez et exportez sans limites. Restez organisé et gardez chaque version à portée de main.",
+      "preview": "Voir le CV public"
+    },
+    "stats": {
+      "total": "Total de CV",
+      "public": "CV publics",
+      "views": "Vues totales",
+      "downloads": "Téléchargements totaux"
+    },
+    "empty": {
+      "title": "Pas encore de CV",
+      "subtitle": "Commencez par créer votre premier CV et enregistrez chaque itération ici.",
+      "cta": "Créez votre premier CV"
+    },
+    "duplicateSuccess": "CV dupliqué",
+    "duplicateError": "Échec de la duplication du CV"
+  },
+  "resumeCard": {
+    "views": "{views} vues",
+    "downloads": "Téléchargements",
+    "private": "Privé",
+    "public": "Public",
+    "rename": "Renommer",
+    "makePrivate": "Rendre Privé",
+    "makePublic": "Rendre Public",
+    "duplicate": "Dupliquer",
+    "delete": "Supprimer",
+    "updated": "Mis à jour {distanceToNow}",
+    "share": "Partager",
+    "download": "Télécharger le PDF",
+    "downloading": "Téléchargement...",
+    "downloadFailed": "Échec du téléchargement du CV"
+  },
+  "shareDialog": {
+    "title": "Partager le CV",
+    "description": "Copiez ce lien pour partager votre CV",
+    "copy": "Copier le Lien",
+    "copied": "Lien copié !",
+    "close": "Fermer"
+  },
+  "publicViewer": {
+    "download": "Télécharger",
+    "notFound": "CV non trouvé",
+    "notPublic": "Ce CV est privé"
+  },
+  "landing": {
+    "hero": {
+      "headline": "Créez des CV Professionnels en Minutes",
+      "subheadline": "Créez de superbes CV avec notre constructeur gratuit et facile à utiliser. 100% gratuit pour toujours.",
+      "cta": "Commencer Gratuitement",
+      "title": "Créez des CV Professionnels en Minutes",
+      "subtitle": "Créez de superbes CV compatibles ATS avec aperçu en temps réel. Exportez en PDF instantanément. 100% gratuit, pour toujours.",
+      "signIn": "Se Connecter",
+      "badge": "100% Gratuit Pour Toujours",
+      "freeCopy": "Pas de limites, pas de niveaux, pas de murs payants. Créez des CV illimités et exportez-les quand vous êtes prêt—complètement gratuit, pour toujours."
+    },
+    "features": {
+      "realTimePreview": {
+        "title": "Aperçu PDF en Temps Réel",
+        "description": "Voyez votre CV prendre vie pendant que vous tapez avec un aperçu PDF instantané"
+      },
+      "customizableThemes": {
+        "title": "Thèmes Personnalisables",
+        "description": "Choisissez parmi de beaux thèmes de couleur pour faire ressortir votre CV"
+      },
+      "publicSharing": {
+        "title": "Partage Public",
+        "description": "Partagez votre CV avec un simple lien - aucun téléchargement nécessaire"
+      },
+      "downloadPdf": {
+        "title": "Télécharger en PDF",
+        "description": "Exportez votre CV en PDF professionnel prêt pour les candidatures"
+      },
+      "title": "Tout ce Dont Vous Avez Besoin pour Vous Démarquer",
+      "preview": {
+        "title": "Aperçu PDF en Temps Réel",
+        "description": "Voyez votre CV prendre vie pendant que vous tapez. Ce que vous voyez est ce que vous obtenez."
+      },
+      "themes": {
+        "title": "Thèmes Personnalisables",
+        "description": "Choisissez parmi des schémas de couleurs et des mises en page professionnels qui correspondent à votre style."
+      },
+      "sharing": {
+        "title": "Partage Public et Analyses",
+        "description": "Partagez votre CV en ligne et suivez les vues et les téléchargements en temps réel."
+      },
+      "download": {
+        "title": "Téléchargements PDF Instantanés",
+        "description": "Exportez votre CV au format PDF instantanément, prêt à envoyer aux employeurs."
+      },
+      "free": {
+        "title": "100% Gratuit Pour Toujours",
+        "description": "Pas de frais cachés, pas de plans premium. Toutes les fonctionnalités incluses, complètement gratuit."
+      },
+      "subtitle": "Tout ce dont vous avez besoin pour créer un CV remarquable dans un espace de travail élégant et intuitif."
+    },
+    "benefits": {
+      "noDesignSkills": "Aucune Compétence en Design Requise",
+      "professionalTemplates": "Modèles Professionnels",
+      "exportInstantly": "Exportez en PDF Instantanément",
+      "shareOnline": "Partagez Votre CV en Ligne",
+      "title": "Pourquoi Choisir Vitaes ?",
+      "noDesign": "Aucune compétence en design requise",
+      "professional": "Modèles professionnels inclus",
+      "instant": "Exportez en PDF instantanément",
+      "share": "Partagez votre CV en ligne avec un lien unique"
+    },
+    "header": {
+      "signIn": "Se Connecter"
+    },
+    "footer": {
+      "github": "GitHub",
+      "madeWith": "Fait avec",
+      "by": "par"
+    },
+    "preview": {
+      "label": "Aperçu",
+      "liveSync": "Synchronisation en Direct",
+      "caption": "Résultat parfait au pixel à chaque fois",
+      "items": {
+        "dragDrop": "Glissez-déposez des sections, réorganisez instantanément",
+        "themes": "Changez de thèmes sans perdre votre structure",
+        "share": "Partagez un lien public + suivez les vues et téléchargements"
+      },
+      "resumeBuilder": "Constructeur de CV"
+    }
+  },
+  "navigation": {
+    "backToDashboard": "Retour au tableau de bord"
+  }
+}

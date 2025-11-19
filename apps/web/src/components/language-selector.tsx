@@ -8,16 +8,26 @@ import {
 import { Button } from './ui/button'
 import { getLocale, locales, setLocale } from '@/paraglide/runtime'
 import { setDefaultOptions } from 'date-fns'
-import { enUS, de } from 'date-fns/locale'
+import { enUS, de, ptBR, es, fr, ja, zhCN } from 'date-fns/locale'
 
 export function LanguageSelector() {
   const localeMap = {
     en: 'English',
     de: 'Deutsch',
+    es: 'Español',
+    fr: 'Français',
+    ja: '日本語',
+    pt: 'Português',
+    zh: '中文',
   }
   const dateLocaleMap = {
     en: enUS,
     de: de,
+    es: es,
+    fr: fr,
+    ja: ja,
+    pt: ptBR,
+    zh: zhCN,
   }
   return (
     <DropdownMenu>

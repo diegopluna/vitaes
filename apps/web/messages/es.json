@@ -1,0 +1,329 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "login": {
+    "title": "Iniciar sesión",
+    "description": "Bienvenido de nuevo a Vitaes",
+    "social": {
+      "google": "Iniciar sesión con Google",
+      "github": "Iniciar sesión con GitHub"
+    },
+    "signInWith": "Iniciar sesión con",
+    "goBack": "Volver al inicio",
+    "systemLabel": "LOGIN.MOD",
+    "hero": {
+      "title": "Autentícate con confianza.",
+      "subtitle": "Acceso seguro a tu espacio de trabajo de Vitaes. La experiencia completa de creación de currículum está lista en el momento en que inicias sesión.",
+      "points": {
+        "realTime": "Editor en tiempo real con vista previa instantánea en PDF",
+        "free": "Currículums ilimitados, 100% gratis para siempre",
+        "sharing": "Comparte enlaces públicos y rastrea el compromiso"
+      }
+    },
+    "form": {
+      "authSystem": "auth.system",
+      "ready": "LISTO"
+    },
+    "footer": {
+      "left": "Vitaes Platform v1.0.0",
+      "right": "Todos los sistemas operativos"
+    }
+  },
+  "settings": {
+    "name": {
+      "label": "Nombre",
+      "placeholder": "Nombre",
+      "description": "Por favor ingresa tu nombre completo o un nombre para mostrar.",
+      "instructions": "Por favor usa un máximo de 32 caracteres.",
+      "saveChanges": "Guardar"
+    },
+    "providers": {
+      "label": "Proveedores",
+      "description": "Administra los proveedores de tu cuenta.",
+      "saveChanges": "Guardar",
+      "link": "Vincular",
+      "unlink": "Desvincular"
+    },
+    "sessions": {
+      "label": "Sesiones",
+      "description": "Administra tus sesiones activas.",
+      "placeholder": "Sesión",
+      "instructions": "Haz clic en una sesión para finalizarla.",
+      "saveChanges": "Guardar",
+      "currentSession": "Sesión actual",
+      "signOut": "Cerrar sesión",
+      "revoke": "Revocar"
+    },
+    "deleteAccount": {
+      "label": "Eliminar cuenta",
+      "description": "Elimina permanentemente tu cuenta y todo su contenido. Esta acción no es reversible, así que continúa con precaución.",
+      "button": "Eliminar cuenta",
+      "instructions": "Por favor confirma la eliminación de tu cuenta. Esta acción no es reversible, así que continúa con precaución.",
+      "cancel": "Cancelar"
+    },
+    "hero": {
+      "title": "Configuración",
+      "subtitle": "Controla tu perfil, sesiones y acceso a la cuenta."
+    }
+  },
+  "validation": {
+    "name": "El nombre debe tener al menos 1 carácter"
+  },
+  "editor": {
+    "saving": "Guardando...",
+    "lastSaved": "Guardado por última vez: {distanceToNow}",
+    "failedToUpdateName": "Error al actualizar el nombre del currículum",
+    "download": "Descargar",
+    "failedToSave": "Error al guardar el currículum",
+    "personalInfo": "Información Personal",
+    "sections": "Secciones",
+    "theme": "Tema",
+    "personalForm": {
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "position": "Posición",
+      "address": "Dirección",
+      "quote": "Cita",
+      "socials": {
+        "socialProfiles": "Perfiles Sociales",
+        "addProfile": "Agregar Perfil",
+        "items": {
+          "profile": "Perfil {index}",
+          "platform": "Plataforma",
+          "value": "Valor (ej. nombre de usuario, correo o URL)",
+          "display": "Texto a mostrar (opcional)"
+        }
+      }
+    },
+    "sectionsForm": {
+      "text": "Texto",
+      "timeline": "Línea de tiempo",
+      "list": "Lista",
+      "groupedList": "Lista Agrupada",
+      "taxonomy": "Taxonomía",
+      "sectionItem": {
+        "title": "Título"
+      },
+      "sectionEditors": {
+        "timeline": {
+          "entry": "Entrada {index}",
+          "position": "Posición",
+          "date": "Fecha",
+          "title": "Título",
+          "location": "Ubicación",
+          "description": "Descripción",
+          "bulletPoints": "Viñetas",
+          "addEntry": "Agregar Entrada"
+        },
+        "list": {
+          "subsectionTitle": "Título de Subsección",
+          "item": "Elemento {index}",
+          "position": "Posición",
+          "date": "Fecha",
+          "title": "Título",
+          "location": "Ubicación",
+          "description": "Descripción",
+          "addItem": "Agregar Elemento",
+          "addSubsection": "Agregar Subsección"
+        },
+        "taxonomy": {
+          "category": "Categoría {index}",
+          "addCategory": "Agregar Categoría",
+          "type": "Tipo",
+          "items": "Elementos"
+        },
+        "text": {
+          "content": "Contenido"
+        }
+      }
+    },
+    "themeForm": {
+      "themeColor": "Color del Tema",
+      "headerAlign": "Alineación del Encabezado",
+      "pageSize": "Tamaño de Página",
+      "footerLeft": "Pie de Página Izquierdo",
+      "footerCenter": "Pie de Página Central",
+      "footerRight": "Pie de Página Derecho",
+      "footerText": "Texto",
+      "footerTextPlaceholder": "Ingresa texto del pie de página",
+      "showPageNumber": "Mostrar Número de Página"
+    }
+  },
+  "themeToggle": {
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema",
+    "toggleTheme": "Cambiar tema"
+  },
+  "userButton": {
+    "signOut": "Cerrar Sesión",
+    "settings": "Configuración"
+  },
+  "pdfViewer": {
+    "noDocument": "No estás renderizando un documento válido"
+  },
+  "dialogs": {
+    "deleteResume": {
+      "title": "Eliminar Currículum",
+      "description": "¿Estás seguro de que quieres eliminar {resumeName}? Esta acción no se puede deshacer.",
+      "button": "Eliminar",
+      "cancel": "Cancelar"
+    },
+    "renameResume": {
+      "title": "Renombrar Currículum",
+      "description": "Ingresa un nuevo nombre para tu currículum.",
+      "button": "Guardar",
+      "cancel": "Cancelar",
+      "placeholder": "Nombre del currículum"
+    },
+    "createResume": {
+      "title": "Crear Currículum",
+      "description": "Ingresa un nombre para tu nuevo currículum.",
+      "button": "Crear",
+      "cancel": "Cancelar",
+      "placeholder": "Nombre del currículum"
+    }
+  },
+  "dashboard": {
+    "title": "Panel",
+    "welcome": "Bienvenido de nuevo, {name}",
+    "createResume": "Crear Currículum",
+    "loadingResumes": "Cargando currículums...",
+    "noResumes": "Aún no tienes currículums.",
+    "createYourFirstResume": "Crea Tu Primer Currículum",
+    "deletedResume": "Currículum eliminado exitosamente",
+    "failedToDeleteResume": "Error al eliminar el currículum",
+    "updatedResumeVisibility": "El currículum ahora es {visibility}",
+    "failedToUpdateResumeVisibility": "Error al actualizar la visibilidad del currículum",
+    "hero": {
+      "title": "Todos tus currículums. Un espacio de trabajo minimalista.",
+      "subtitle": "Borradores, duplica, comparte y exporta sin límites. Mantente organizado y mantén cada versión al alcance.",
+      "preview": "Ver currículum público"
+    },
+    "stats": {
+      "total": "Total de currículums",
+      "public": "Currículums públicos",
+      "views": "Vistas totales",
+      "downloads": "Descargas totales"
+    },
+    "empty": {
+      "title": "Aún no hay currículums",
+      "subtitle": "Comienza creando tu primer currículum y guarda cada iteración aquí.",
+      "cta": "Crea tu primer currículum"
+    },
+    "duplicateSuccess": "Currículum duplicado",
+    "duplicateError": "Error al duplicar el currículum"
+  },
+  "resumeCard": {
+    "views": "{views} vistas",
+    "downloads": "Descargas",
+    "private": "Privado",
+    "public": "Público",
+    "rename": "Renombrar",
+    "makePrivate": "Hacer Privado",
+    "makePublic": "Hacer Público",
+    "duplicate": "Duplicar",
+    "delete": "Eliminar",
+    "updated": "Actualizado {distanceToNow}",
+    "share": "Compartir",
+    "download": "Descargar PDF",
+    "downloading": "Descargando...",
+    "downloadFailed": "Error al descargar el currículum"
+  },
+  "shareDialog": {
+    "title": "Compartir Currículum",
+    "description": "Copia este enlace para compartir tu currículum",
+    "copy": "Copiar Enlace",
+    "copied": "¡Enlace copiado!",
+    "close": "Cerrar"
+  },
+  "publicViewer": {
+    "download": "Descargar",
+    "notFound": "Currículum no encontrado",
+    "notPublic": "Este currículum es privado"
+  },
+  "landing": {
+    "hero": {
+      "headline": "Crea Currículums Profesionales en Minutos",
+      "subheadline": "Crea currículums impresionantes con nuestro constructor gratuito y fácil de usar. 100% gratis para siempre.",
+      "cta": "Comienza Gratis",
+      "title": "Crea Currículums Profesionales en Minutos",
+      "subtitle": "Crea currículums impresionantes y compatibles con ATS con vista previa en tiempo real. Exporta a PDF al instante. 100% gratis, para siempre.",
+      "signIn": "Iniciar Sesión",
+      "badge": "100% Gratis Para Siempre",
+      "freeCopy": "Sin límites, sin niveles, sin muros de pago. Crea currículums ilimitados y expórtalos cuando estés listo—completamente gratis, para siempre."
+    },
+    "features": {
+      "realTimePreview": {
+        "title": "Vista Previa en PDF en Tiempo Real",
+        "description": "Ve tu currículum cobrar vida mientras escribes con vista previa instantánea en PDF"
+      },
+      "customizableThemes": {
+        "title": "Temas Personalizables",
+        "description": "Elige entre hermosos temas de color para hacer que tu currículum destaque"
+      },
+      "publicSharing": {
+        "title": "Compartir Público",
+        "description": "Comparte tu currículum con un simple enlace - no se necesitan descargas"
+      },
+      "downloadPdf": {
+        "title": "Descargar como PDF",
+        "description": "Exporta tu currículum como un PDF profesional listo para aplicaciones"
+      },
+      "title": "Todo lo que Necesitas para Destacar",
+      "preview": {
+        "title": "Vista Previa en PDF en Tiempo Real",
+        "description": "Ve tu currículum cobrar vida mientras escribes. Lo que ves es lo que obtienes."
+      },
+      "themes": {
+        "title": "Temas Personalizables",
+        "description": "Elige entre esquemas de color y diseños profesionales que coincidan con tu estilo."
+      },
+      "sharing": {
+        "title": "Compartir Público y Análisis",
+        "description": "Comparte tu currículum en línea y rastrea vistas y descargas en tiempo real."
+      },
+      "download": {
+        "title": "Descargas Instantáneas de PDF",
+        "description": "Exporta tu currículum a formato PDF al instante, listo para enviar a empleadores."
+      },
+      "free": {
+        "title": "100% Gratis Para Siempre",
+        "description": "Sin tarifas ocultas, sin planes premium. Todas las características incluidas, completamente gratis."
+      },
+      "subtitle": "Todo lo que necesitas para crear un currículum destacado en un espacio de trabajo elegante e intuitivo."
+    },
+    "benefits": {
+      "noDesignSkills": "No Se Requieren Habilidades de Diseño",
+      "professionalTemplates": "Plantillas Profesionales",
+      "exportInstantly": "Exporta a PDF Instantáneamente",
+      "shareOnline": "Comparte Tu Currículum En Línea",
+      "title": "¿Por Qué Elegir Vitaes?",
+      "noDesign": "No se requieren habilidades de diseño",
+      "professional": "Plantillas profesionales incluidas",
+      "instant": "Exporta a PDF instantáneamente",
+      "share": "Comparte tu currículum en línea con un enlace único"
+    },
+    "header": {
+      "signIn": "Iniciar Sesión"
+    },
+    "footer": {
+      "github": "GitHub",
+      "madeWith": "Hecho con",
+      "by": "por"
+    },
+    "preview": {
+      "label": "Vista Previa",
+      "liveSync": "Sincronización en Vivo",
+      "caption": "Resultado perfecto al píxel cada vez",
+      "items": {
+        "dragDrop": "Arrastra y suelta secciones, reordena instantáneamente",
+        "themes": "Cambia temas sin perder tu estructura",
+        "share": "Comparte un enlace público + rastrea vistas y descargas"
+      },
+      "resumeBuilder": "Constructor de Currículums"
+    }
+  },
+  "navigation": {
+    "backToDashboard": "Volver al panel"
+  }
+}

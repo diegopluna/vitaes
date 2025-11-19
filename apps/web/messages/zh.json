@@ -1,0 +1,329 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "login": {
+    "title": "登录",
+    "description": "欢迎回到 Vitaes",
+    "social": {
+      "google": "使用 Google 登录",
+      "github": "使用 GitHub 登录"
+    },
+    "signInWith": "登录方式",
+    "goBack": "返回首页",
+    "systemLabel": "LOGIN.MOD",
+    "hero": {
+      "title": "安全认证。",
+      "subtitle": "安全访问您的 Vitaes 工作区。登录后即可立即开始完整的简历构建体验。",
+      "points": {
+        "realTime": "实时编辑器，即时 PDF 预览",
+        "free": "无限简历，永久 100% 免费",
+        "sharing": "分享公开链接并跟踪参与度"
+      }
+    },
+    "form": {
+      "authSystem": "auth.system",
+      "ready": "就绪"
+    },
+    "footer": {
+      "left": "Vitaes Platform v1.0.0",
+      "right": "所有系统正常运行"
+    }
+  },
+  "settings": {
+    "name": {
+      "label": "姓名",
+      "placeholder": "姓名",
+      "description": "请输入您的全名或显示名称。",
+      "instructions": "请最多使用 32 个字符。",
+      "saveChanges": "保存"
+    },
+    "providers": {
+      "label": "提供商",
+      "description": "管理您的账户提供商。",
+      "saveChanges": "保存",
+      "link": "关联",
+      "unlink": "取消关联"
+    },
+    "sessions": {
+      "label": "会话",
+      "description": "管理您的活动会话。",
+      "placeholder": "会话",
+      "instructions": "点击会话以结束它。",
+      "saveChanges": "保存",
+      "currentSession": "当前会话",
+      "signOut": "登出",
+      "revoke": "撤销"
+    },
+    "deleteAccount": {
+      "label": "删除账户",
+      "description": "永久删除您的账户及其所有内容。此操作不可逆，请谨慎操作。",
+      "button": "删除账户",
+      "instructions": "请确认删除您的账户。此操作不可逆，请谨慎操作。",
+      "cancel": "取消"
+    },
+    "hero": {
+      "title": "设置",
+      "subtitle": "控制您的个人资料、会话和账户访问。"
+    }
+  },
+  "validation": {
+    "name": "姓名必须至少包含 1 个字符"
+  },
+  "editor": {
+    "saving": "保存中...",
+    "lastSaved": "上次保存: {distanceToNow}",
+    "failedToUpdateName": "更新简历名称失败",
+    "download": "下载",
+    "failedToSave": "保存简历失败",
+    "personalInfo": "个人信息",
+    "sections": "部分",
+    "theme": "主题",
+    "personalForm": {
+      "firstName": "名",
+      "lastName": "姓",
+      "position": "职位",
+      "address": "地址",
+      "quote": "引言",
+      "socials": {
+        "socialProfiles": "社交资料",
+        "addProfile": "添加资料",
+        "items": {
+          "profile": "资料 {index}",
+          "platform": "平台",
+          "value": "值（例如用户名、电子邮件或 URL）",
+          "display": "显示文本（可选）"
+        }
+      }
+    },
+    "sectionsForm": {
+      "text": "文本",
+      "timeline": "时间线",
+      "list": "列表",
+      "groupedList": "分组列表",
+      "taxonomy": "分类",
+      "sectionItem": {
+        "title": "标题"
+      },
+      "sectionEditors": {
+        "timeline": {
+          "entry": "条目 {index}",
+          "position": "职位",
+          "date": "日期",
+          "title": "标题",
+          "location": "位置",
+          "description": "描述",
+          "bulletPoints": "要点",
+          "addEntry": "添加条目"
+        },
+        "list": {
+          "subsectionTitle": "小节标题",
+          "item": "项目 {index}",
+          "position": "职位",
+          "date": "日期",
+          "title": "标题",
+          "location": "位置",
+          "description": "描述",
+          "addItem": "添加项目",
+          "addSubsection": "添加小节"
+        },
+        "taxonomy": {
+          "category": "类别 {index}",
+          "addCategory": "添加类别",
+          "type": "类型",
+          "items": "项目"
+        },
+        "text": {
+          "content": "内容"
+        }
+      }
+    },
+    "themeForm": {
+      "themeColor": "主题颜色",
+      "headerAlign": "标题对齐",
+      "pageSize": "页面大小",
+      "footerLeft": "页脚左侧",
+      "footerCenter": "页脚中央",
+      "footerRight": "页脚右侧",
+      "footerText": "文本",
+      "footerTextPlaceholder": "输入页脚文本",
+      "showPageNumber": "显示页码"
+    }
+  },
+  "themeToggle": {
+    "light": "浅色",
+    "dark": "深色",
+    "system": "系统",
+    "toggleTheme": "切换主题"
+  },
+  "userButton": {
+    "signOut": "登出",
+    "settings": "设置"
+  },
+  "pdfViewer": {
+    "noDocument": "您未渲染有效文档"
+  },
+  "dialogs": {
+    "deleteResume": {
+      "title": "删除简历",
+      "description": "您确定要删除 {resumeName} 吗？此操作无法撤消。",
+      "button": "删除",
+      "cancel": "取消"
+    },
+    "renameResume": {
+      "title": "重命名简历",
+      "description": "为您的简历输入新名称。",
+      "button": "保存",
+      "cancel": "取消",
+      "placeholder": "简历名称"
+    },
+    "createResume": {
+      "title": "创建简历",
+      "description": "为您的新简历输入名称。",
+      "button": "创建",
+      "cancel": "取消",
+      "placeholder": "简历名称"
+    }
+  },
+  "dashboard": {
+    "title": "仪表板",
+    "welcome": "欢迎回来，{name}",
+    "createResume": "创建简历",
+    "loadingResumes": "正在加载简历...",
+    "noResumes": "您还没有任何简历。",
+    "createYourFirstResume": "创建您的第一份简历",
+    "deletedResume": "简历已成功删除",
+    "failedToDeleteResume": "删除简历失败",
+    "updatedResumeVisibility": "简历现在为 {visibility}",
+    "failedToUpdateResumeVisibility": "更新简历可见性失败",
+    "hero": {
+      "title": "所有简历。一个简约的工作区。",
+      "subtitle": "无限制地起草、复制、分享和导出。保持井然有序，随时可用每个版本。",
+      "preview": "查看公开简历"
+    },
+    "stats": {
+      "total": "简历总数",
+      "public": "公开简历",
+      "views": "总浏览量",
+      "downloads": "总下载量"
+    },
+    "empty": {
+      "title": "还没有简历",
+      "subtitle": "首先创建您的第一份简历，并在此处存储每次迭代。",
+      "cta": "创建您的第一份简历"
+    },
+    "duplicateSuccess": "简历已复制",
+    "duplicateError": "复制简历失败"
+  },
+  "resumeCard": {
+    "views": "{views} 次浏览",
+    "downloads": "下载",
+    "private": "私密",
+    "public": "公开",
+    "rename": "重命名",
+    "makePrivate": "设为私密",
+    "makePublic": "设为公开",
+    "duplicate": "复制",
+    "delete": "删除",
+    "updated": "{distanceToNow} 更新",
+    "share": "分享",
+    "download": "下载 PDF",
+    "downloading": "下载中...",
+    "downloadFailed": "下载简历失败"
+  },
+  "shareDialog": {
+    "title": "分享简历",
+    "description": "复制此链接以分享您的简历",
+    "copy": "复制链接",
+    "copied": "链接已复制！",
+    "close": "关闭"
+  },
+  "publicViewer": {
+    "download": "下载",
+    "notFound": "未找到简历",
+    "notPublic": "此简历为私密"
+  },
+  "landing": {
+    "hero": {
+      "headline": "几分钟内创建专业简历",
+      "subheadline": "使用我们免费、易用的构建器创建令人惊艳的简历。永久 100% 免费。",
+      "cta": "免费开始",
+      "title": "几分钟内创建专业简历",
+      "subtitle": "创建令人惊艳、ATS 友好的简历，实时预览。即时导出为 PDF。永久 100% 免费。",
+      "signIn": "登录",
+      "badge": "永久 100% 免费",
+      "freeCopy": "无限制、无层级、无付费墙。创建无限简历，随时导出——完全免费，永远免费。"
+    },
+    "features": {
+      "realTimePreview": {
+        "title": "实时 PDF 预览",
+        "description": "在您输入时即时 PDF 预览，看到您的简历栩栩如生"
+      },
+      "customizableThemes": {
+        "title": "可定制主题",
+        "description": "从美丽的颜色主题中选择，让您的简历脱颖而出"
+      },
+      "publicSharing": {
+        "title": "公开分享",
+        "description": "通过简单的链接分享您的简历 - 无需下载"
+      },
+      "downloadPdf": {
+        "title": "下载为 PDF",
+        "description": "将您的简历导出为专业的 PDF，随时可用于求职申请"
+      },
+      "title": "脱颖而出所需的一切",
+      "preview": {
+        "title": "实时 PDF 预览",
+        "description": "在您输入时看到您的简历栩栩如生。所见即所得。"
+      },
+      "themes": {
+        "title": "可定制主题",
+        "description": "从符合您风格的专业配色方案和布局中选择。"
+      },
+      "sharing": {
+        "title": "公开分享和分析",
+        "description": "在线分享您的简历并实时跟踪浏览量和下载量。"
+      },
+      "download": {
+        "title": "即时 PDF 下载",
+        "description": "即时将您的简历导出为 PDF 格式，随时可发送给雇主。"
+      },
+      "free": {
+        "title": "永久 100% 免费",
+        "description": "无隐藏费用，无高级计划。所有功能全部包含，完全免费。"
+      },
+      "subtitle": "在一个优雅、直观的工作区中创建出色简历所需的一切。"
+    },
+    "benefits": {
+      "noDesignSkills": "无需设计技能",
+      "professionalTemplates": "专业模板",
+      "exportInstantly": "即时导出为 PDF",
+      "shareOnline": "在线分享您的简历",
+      "title": "为什么选择 Vitaes？",
+      "noDesign": "无需设计技能",
+      "professional": "包含专业模板",
+      "instant": "即时导出为 PDF",
+      "share": "通过唯一链接在线分享您的简历"
+    },
+    "header": {
+      "signIn": "登录"
+    },
+    "footer": {
+      "github": "GitHub",
+      "madeWith": "制作工具",
+      "by": "作者"
+    },
+    "preview": {
+      "label": "预览",
+      "liveSync": "实时同步",
+      "caption": "每次都完美像素输出",
+      "items": {
+        "dragDrop": "拖放部分，即时重新排列",
+        "themes": "切换主题而不丢失结构",
+        "share": "分享公开链接 + 跟踪浏览量和下载量"
+      },
+      "resumeBuilder": "简历构建器"
+    }
+  },
+  "navigation": {
+    "backToDashboard": "返回仪表板"
+  }
+}
