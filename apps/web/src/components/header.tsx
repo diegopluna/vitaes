@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import { ModeToggle } from './mode-toggle'
 import { UserButton } from '@daveyplate/better-auth-ui'
+import { m } from '@/paraglide/messages'
 
 export default function Header() {
   const links = [
@@ -22,7 +23,14 @@ export default function Header() {
         </nav>
         <div className="flex items-center gap-2">
           <ModeToggle />
-          <UserButton className="bg-transparent" />
+          <UserButton
+            className="bg-transparent"
+            localization={{
+              SIGN_OUT: m['userButton.signOut'](),
+              SETTINGS: m['userButton.settings'](),
+            }}
+            size="default"
+          />
         </div>
       </div>
       <hr />

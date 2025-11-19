@@ -106,6 +106,7 @@ export default function BuilderHeader({
               SIGN_OUT: m['userButton.signOut'](),
               SETTINGS: m['userButton.settings'](),
             }}
+            size="default"
           />
         </div>
       </div>
