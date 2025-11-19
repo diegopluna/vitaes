@@ -222,6 +222,8 @@ jobs:
           build-args: |
             VITE_SERVER_URL=${{ vars.VITE_SERVER_URL }}
             VITE_APP_URL=${{ vars.VITE_APP_URL }}
+            VITE_OPENPANEL_CLIENT_ID=${{ vars.VITE_OPENPANEL_CLIENT_ID }}
+            VITE_OPENPANEL_API_URL=${{ vars.VITE_OPENPANEL_API_URL }}
 
   publish_server:
     name: Publish Server
