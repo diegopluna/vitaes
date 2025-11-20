@@ -1,13 +1,20 @@
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 
 const minioEndpoint = process.env.MINIO_ENDPOINT
+const minioPublicEndpoint = process.env.MINIO_PUBLIC_ENDPOINT
 const minioAccessKey = process.env.MINIO_ACCESS_KEY
 const minioSecretKey = process.env.MINIO_SECRET_KEY
 const minioBucket = process.env.MINIO_BUCKET
 
-if (!minioEndpoint || !minioAccessKey || !minioSecretKey || !minioBucket) {
+if (
+  !minioEndpoint ||
+  !minioPublicEndpoint ||
+  !minioAccessKey ||
+  !minioSecretKey ||
+  !minioBucket
+) {
   throw new Error(
-    'Missing MinIO configuration. Please set MINIO_ENDPOINT, MINIO_ACCESS_KEY, MINIO_SECRET_KEY, and MINIO_BUCKET environment variables.',
+    'Missing MinIO configuration. Please set MINIO_ENDPOINT, MINIO_PUBLIC_ENDPOINT, MINIO_ACCESS_KEY, MINIO_SECRET_KEY, and MINIO_BUCKET environment variables.',
   )
 }
 
@@ -38,5 +45,5 @@ export async function uploadThumbnail(
 
   // Return the URL to access the thumbnail
   // Assuming MinIO is accessible at the endpoint
-  return `${minioEndpoint}/${minioBucket}/${key}`
+  return `${minioPublicEndpoint}/${minioBucket}/${key}`
 }
