@@ -8,7 +8,6 @@ import {
   timestamp,
   unique,
 } from 'drizzle-orm/pg-core'
-import { user } from './auth'
 import type { IResume } from '@vitaes/types/resume'
 
 export const resume = pgTable(
@@ -16,9 +15,7 @@ export const resume = pgTable(
   {
     id: text('id').primaryKey(),
     name: text('name').notNull(),
-    userEmail: text('user_email')
-      .notNull()
-      .references(() => user.email, { onDelete: 'cascade' }),
+    userEmail: text('user_email').notNull(),
     data: json('data').$type<IResume>(),
     createdAt: timestamp('created_at').notNull().defaultNow(),
     updatedAt: timestamp('updated_at').notNull().defaultNow(),
