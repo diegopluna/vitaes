@@ -46,6 +46,10 @@ export const Route = createRootRouteWithContext<{
         rel: 'stylesheet',
         href: appCss,
       },
+      {
+        rel: 'icon',
+        href: '/logo.svg',
+      },
     ],
   }),
   beforeLoad: async (ctx) => {
