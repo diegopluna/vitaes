@@ -10,9 +10,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "lint": "eslint",
-    "format": "prettier --check .",
-    "check": "prettier --write . && eslint --fix"
+    "lint": "oxlint",
+    "format": "oxfmt",
+    "check": "oxfmt --check && oxlint --fix"
   },
   "dependencies": {
     "@convex-dev/better-auth": "^0.10.13",
@@ -45,7 +45,8 @@
     "@vitejs/plugin-react": "^5.1.4",
     "babel-plugin-react-compiler": "^1.0.0",
     "jsdom": "^28.1.0",
-    "prettier": "^3.8.1",
+    "oxfmt": "^0.36.0",
+    "oxlint": "^1.51.0",
     "typescript": "^5.7.2",
     "vite": "^7.3.1",
     "vite-tsconfig-paths": "^5.1.4",
