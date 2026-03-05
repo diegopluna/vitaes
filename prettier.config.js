@@ -1,4 +1,10 @@
-import config from "@vitaes/eslint-config/prettier-base";
+//  @ts-check
 
-/** @type {import("prettier").Config} */
+/** @type {import('prettier').Config} */
+const config = {
+  semi: false,
+  singleQuote: true,
+  trailingComma: "all",
+};
+
 export default config;

@@ -2,38 +2,57 @@
   "name": "vitaes",
   "private": true,
   "type": "module",
+  "imports": {
+    "#/*": "./src/*"
+  },
   "scripts": {
-    "dev": "turbo dev",
-    "build": "turbo build",
-    "check-types": "turbo check-types",
-    "dev:native": "turbo -F native dev",
-    "dev:web": "turbo -F web dev",
-    "dev:server": "turbo -F server dev",
-    "db:push": "turbo -F @vitaes/db db:push",
-    "db:studio": "turbo -F @vitaes/db db:studio",
-    "db:generate": "turbo -F @vitaes/db db:generate",
-    "db:migrate": "turbo -F @vitaes/db db:migrate",
-    "db:start": "turbo -F @vitaes/db db:start",
-    "db:watch": "turbo -F @vitaes/db db:watch",
-    "db:stop": "turbo -F @vitaes/db db:stop",
-    "db:down": "turbo -F @vitaes/db db:down",
-    "lint:ci": "turbo lint:ci",
-    "test:projects": "vitest run",
-    "test:projects:watch": "vitest --watch"
+    "dev": "vite dev --port 3000",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "lint": "eslint",
+    "format": "prettier --check .",
+    "check": "prettier --write . && eslint --fix"
   },
   "dependencies": {
-    "dotenv": "^17.2.2",
-    "zod": "^4.1.11"
+    "@convex-dev/react-query": "^0.1.0",
+    "@tailwindcss/vite": "^4.1.18",
+    "@tanstack/react-devtools": "latest",
+    "@tanstack/react-query": "^5.90.21",
+    "@tanstack/react-router": "latest",
+    "@tanstack/react-router-devtools": "latest",
+    "@tanstack/react-router-ssr-query": "latest",
+    "@tanstack/react-router-with-query": "^1.130.17",
+    "@tanstack/react-start": "latest",
+    "@tanstack/router-plugin": "^1.132.0",
+    "convex": "^1.32.0",
+    "lucide-react": "^0.545.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
-    "@types/node": "catalog:",
-    "@vitaes/eslint-config": "workspace:*",
-    "@vitaes/typescript-config": "workspace:*",
-    "prettier": "^3.6.2",
-    "tsdown": "^0.15.5",
-    "turbo": "^2.5.4",
-    "@vitaes/vitest-config": "workspace:*",
-    "vitest": "catalog:"
+    "@tailwindcss/typography": "^0.5.16",
+    "@tanstack/devtools-vite": "latest",
+    "@tanstack/eslint-config": "latest",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.3.0",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.1.4",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "jsdom": "^28.1.0",
+    "prettier": "^3.8.1",
+    "typescript": "^5.7.2",
+    "vite": "^7.3.1",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.0.5"
   },
-  "packageManager": "pnpm@10.18.3"
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "lightningcss"
+    ]
+  }
 }
