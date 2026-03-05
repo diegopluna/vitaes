@@ -6,6 +6,8 @@ import authConfig from './auth.config'
 import { components } from './_generated/api'
 import { query } from './_generated/server'
 import type { GenericCtx } from '@convex-dev/better-auth'
+import { lastLoginMethod } from 'better-auth/plugins'
+
 import type { DataModel } from './_generated/dataModel'
 import authSchema from './betterAuth/schema'
 
@@ -37,10 +39,7 @@ export const createAuthOptions = (ctx: GenericCtx<DataModel>) => {
         clientSecret: process.env.GITHUB_CLIENT_SECRET!,
       },
     },
-    plugins: [
-      // The Convex plugin is required for Convex compatibility
-      convex({ authConfig }),
-    ],
+    plugins: [convex({ authConfig }), lastLoginMethod()],
   } satisfies BetterAuthOptions
 }
 
