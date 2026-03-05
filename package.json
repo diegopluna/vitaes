@@ -6,7 +6,7 @@
     "#/*": "./src/*"
   },
   "scripts": {
-    "dev": "vite dev --port 3000",
+    "dev": "portless vitaes vite dev",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
