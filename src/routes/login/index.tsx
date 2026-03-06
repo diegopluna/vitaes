@@ -40,10 +40,10 @@ function RouteComponent() {
 
         <div></div>
       </div>
-      <div className="h-full w-3/8 flex flex-col justify-between p-15 items-center">
+      <div className="h-full w-full lg:w-3/8 flex flex-col justify-between p-15 items-center">
         <div className="flex flex-row gap-2.5 items-center">
-          <img src="/logo.svg" className="size-9" />
-          <span className="font-bold text-[22px]">Vitaes</span>
+          <img src="/logo.svg" className="size-9 lg:hidden" />
+          <span className="font-bold text-[22px] lg:hidden">Vitaes</span>
         </div>
 
         <div className="flex flex-col items-center gap-8 w-full">
