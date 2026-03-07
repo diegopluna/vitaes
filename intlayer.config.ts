@@ -3,7 +3,13 @@ import type { IntlayerConfig } from 'intlayer'
 
 const config: IntlayerConfig = {
   internationalization: {
-    locales: [Locales.ENGLISH],
+    locales: [
+      Locales.ENGLISH,
+      Locales.FRENCH,
+      Locales.SPANISH,
+      Locales.GERMAN,
+      Locales.PORTUGUESE,
+    ],
     defaultLocale: Locales.ENGLISH,
   },
 }

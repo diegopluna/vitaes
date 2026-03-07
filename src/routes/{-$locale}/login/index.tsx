@@ -9,6 +9,7 @@ import {
 import { LocalizedLink } from '#/components/localized-link'
 import { getIntlayer } from 'intlayer'
 import { useIntlayer } from 'react-intlayer'
+import { LocaleSwitcher } from '#/components/locale-switcher'
 
 export const Route = createFileRoute('/{-$locale}/login/')({
   component: RouteComponent,
@@ -28,9 +29,12 @@ function RouteComponent() {
   return (
     <div className="flex flex-row h-screen">
       <div className="bg-[#111111] hidden lg:flex h-full w-5/8 p-15 items-start flex-col justify-between">
-        <div className="flex flex-row gap-3 items-center">
-          <img src="/logo.svg" className="size-12" />
-          <span className="font-bold font-heading text-[22px]">Vitaes</span>
+        <div className="flex flex-row w-full justify-between items-center">
+          <div className="flex flex-row gap-3 items-center">
+            <img src="/logo.svg" className="size-12" />
+            <span className="font-bold font-heading text-[22px]">Vitaes</span>
+          </div>
+          <LocaleSwitcher />
         </div>
 
         <div className="items-start flex flex-col gap-8 w-full">
@@ -98,6 +102,10 @@ function RouteComponent() {
           <IconArrowLeft className="size-3.5" />
           {content.links.back}
         </LocalizedLink>
+
+        <div className="lg:hidden">
+          <LocaleSwitcher />
+        </div>
       </div>
     </div>
   )
