@@ -4,6 +4,7 @@ import {
   HeadContent,
   Outlet,
   Scripts,
+  useMatches,
   useRouteContext,
 } from '@tanstack/react-router'
 import { ConvexBetterAuthProvider } from '@convex-dev/better-auth/react'
@@ -15,8 +16,8 @@ import { createServerFn } from '@tanstack/react-start'
 import { getToken } from '@/lib/auth-server'
 import type { ConvexQueryClient } from '@convex-dev/react-query'
 import { authClient } from '@/lib/auth-client'
-
-const THEME_INIT_SCRIPT = `(function(){try{var stored=window.localStorage.getItem('theme');var mode=(stored==='light'||stored==='dark'||stored==='auto')?stored:'auto';var prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;var resolved=mode==='auto'?(prefersDark?'dark':'light'):mode;var root=document.documentElement;root.classList.remove('light','dark');root.classList.add(resolved);if(mode==='auto'){root.removeAttribute('data-theme')}else{root.setAttribute('data-theme',mode)}root.style.colorScheme=resolved;}catch(e){}})();`
+import { defaultLocale, getHTMLTextDir } from 'intlayer'
+import { IntlayerProvider } from 'react-intlayer'
 
 const getAuth = createServerFn({ method: 'GET' }).handler(async () => {
   return await getToken()
@@ -81,13 +82,18 @@ function RootComponent() {
 }
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  const matches = useMatches()
+
+  const localeRoute = matches.find((match) => match.routeId === '/{-$locale}')
+  const locale = localeRoute?.params?.locale ?? defaultLocale
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html dir={getHTMLTextDir(locale)} lang={locale} suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
       <body className="dark">
-        {children}
+        <IntlayerProvider locale={locale}>{children}</IntlayerProvider>
         <TanStackDevtools
           config={{
             position: 'bottom-right',

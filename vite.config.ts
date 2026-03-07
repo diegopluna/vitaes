@@ -1,3 +1,4 @@
+import { intlayer } from 'vite-intlayer'
 import { defineConfig } from 'vite'
 import { devtools } from '@tanstack/devtools-vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
@@ -11,6 +12,7 @@ const config = defineConfig({
   plugins: [
     devtools(),
     tsconfigPaths({ projects: ['./tsconfig.json'] }),
+    intlayer(),
     tailwindcss(),
     tanstackStart(),
     viteReact({

@@ -1,16 +1,30 @@
 import { Button } from '#/components/ui/button'
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import {
   IconArrowLeft,
+  IconBrandAppleFilled,
   IconBrandGithubFilled,
   IconBrandGoogleFilled,
 } from '@tabler/icons-react'
+import { LocalizedLink } from '#/components/localized-link'
+import { getIntlayer } from 'intlayer'
+import { useIntlayer } from 'react-intlayer'
 
-export const Route = createFileRoute('/login/')({
+export const Route = createFileRoute('/{-$locale}/login/')({
   component: RouteComponent,
+  head: ({ params }) => {
+    const { locale } = params
+    const metaContent = getIntlayer('login', locale)
+
+    return {
+      meta: [{ title: metaContent.meta.title }],
+    }
+  },
 })
 
 function RouteComponent() {
+  const content = useIntlayer('login')
+
   return (
     <div className="flex flex-row h-screen">
       <div className="bg-[#111111] hidden lg:flex h-full w-5/8 p-15 items-start flex-col justify-between">
@@ -19,16 +33,13 @@ function RouteComponent() {
           <span className="font-bold font-heading text-[22px]">Vitaes</span>
         </div>
 
-        <div className="items-start flex flex-col gap-8">
-          <span className="font-bold font-heading text-[44px]">
-            Your carrer story,
-            <br />
-            perfectly told.
+        <div className="items-start flex flex-col gap-8 w-full">
+          <span className="font-bold font-heading text-[44px] w-2/3">
+            {content.texts.carrer}
           </span>
 
           <span className="text-base text-muted-foreground">
-            Build standout resumes with intelligent formatting, real-time
-            suggestions, and designs that get you noticed.
+            {content.texts.build}
           </span>
 
           <div className="flex flex-col items-start gap-2">
@@ -52,10 +63,10 @@ function RouteComponent() {
           <div className="h-0.75 w-10 bg-primary" />
           <div className="flex flex-col items-center gap-3">
             <span className="font-bold text-[32px] font-heading">
-              Welcome back
+              {content.texts.welcome}
             </span>
             <span className="text-muted-foreground text-[14px]">
-              Sign in to continue building your resume
+              {content.texts.signIn}
             </span>
           </div>
           <div className="flex flex-col items-start gap-3 w-full">
@@ -64,22 +75,29 @@ function RouteComponent() {
               size="lg"
             >
               <IconBrandGoogleFilled className="size-5.5 mr-2.5 text-black" />
-              Continue with Google
+              {content.buttons.login({ provider: 'Google' })}
+            </Button>
+            <Button
+              className="w-full bg-white text-black hover:bg-white/80"
+              size="lg"
+            >
+              <IconBrandAppleFilled className="size-5.5 mr-2.5 text-black" />
+              {content.buttons.login({ provider: 'Apple' })}
             </Button>
             <Button className="w-full" variant="secondary" size="lg">
               <IconBrandGithubFilled className="size-5.5 mr-2.5" />
-              Continue with GitHub
+              {content.buttons.login({ provider: 'GitHub' })}
             </Button>
           </div>
         </div>
 
-        <Link
+        <LocalizedLink
           to="/"
           className="flex flex-row items-center gap-1.5 text-primary text-[13px] hover:underline"
         >
           <IconArrowLeft className="size-3.5" />
-          Back to home
-        </Link>
+          {content.links.back}
+        </LocalizedLink>
       </div>
     </div>
   )
