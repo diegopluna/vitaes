@@ -12,6 +12,8 @@ import { useIntlayer } from 'react-intlayer'
 import { LocaleSwitcher } from '#/components/locale-switcher'
 import { authClient } from '#/lib/auth-client'
 import { tryCatch } from '#/lib/try-catch'
+import { toast } from 'sonner'
+import { useLocalizedNavigate } from '#/hooks/use-localized-navigate'
 
 export const Route = createFileRoute('/{-$locale}/login/')({
   component: RouteComponent,
@@ -27,16 +29,15 @@ export const Route = createFileRoute('/{-$locale}/login/')({
 
 function RouteComponent() {
   const content = useIntlayer('login')
+  const navigate = useLocalizedNavigate()
 
   async function loginWithProvider(provider: 'google' | 'apple' | 'github') {
     const result = await tryCatch(authClient.signIn.social({ provider }))
     if (result.error) {
-      // Handle error (e.g., show a notification)
-      console.error('Login failed:', result.error)
-    } else {
-      // Login successful, you can redirect or update the UI as needed
-      console.log('Login successful:', result.data)
+      toast.error(result.error.message)
+      return
     }
+    navigate({ to: '/dashboard' })
   }
 
   return (

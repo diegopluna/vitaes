@@ -18,6 +18,8 @@ import type { ConvexQueryClient } from '@convex-dev/react-query'
 import { authClient } from '@/lib/auth-client'
 import { defaultLocale, getHTMLTextDir } from 'intlayer'
 import { IntlayerProvider } from 'react-intlayer'
+import { Toaster } from '#/components/ui/sonner'
+import { TooltipProvider } from '#/components/ui/tooltip'
 
 const getAuth = createServerFn({ method: 'GET' }).handler(async () => {
   return await getToken()
@@ -93,7 +95,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="dark">
-        <IntlayerProvider locale={locale}>{children}</IntlayerProvider>
+        <IntlayerProvider locale={locale}>
+          <TooltipProvider>{children}</TooltipProvider>
+          <Toaster />
+        </IntlayerProvider>
         <TanStackDevtools
           config={{
             position: 'bottom-right',
