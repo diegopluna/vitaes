@@ -38,7 +38,12 @@ export const createAuthOptions = (ctx: GenericCtx<DataModel>) => {
         clientId: process.env.GITHUB_CLIENT_ID!,
         clientSecret: process.env.GITHUB_CLIENT_SECRET!,
       },
+      apple: {
+        clientId: process.env.APPLE_CLIENT_ID!,
+        clientSecret: process.env.APPLE_CLIENT_SECRET!,
+      },
     },
+    trustedOrigins: ['https://appleid.apple.com'],
     plugins: [convex({ authConfig }), lastLoginMethod()],
   } satisfies BetterAuthOptions
 }
