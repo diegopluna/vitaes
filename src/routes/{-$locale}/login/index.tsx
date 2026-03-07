@@ -10,6 +10,8 @@ import { LocalizedLink } from '#/components/localized-link'
 import { getIntlayer } from 'intlayer'
 import { useIntlayer } from 'react-intlayer'
 import { LocaleSwitcher } from '#/components/locale-switcher'
+import { authClient } from '#/lib/auth-client'
+import { tryCatch } from '#/lib/try-catch'
 
 export const Route = createFileRoute('/{-$locale}/login/')({
   component: RouteComponent,
@@ -25,6 +27,17 @@ export const Route = createFileRoute('/{-$locale}/login/')({
 
 function RouteComponent() {
   const content = useIntlayer('login')
+
+  async function loginWithProvider(provider: 'google' | 'apple' | 'github') {
+    const result = await tryCatch(authClient.signIn.social({ provider }))
+    if (result.error) {
+      // Handle error (e.g., show a notification)
+      console.error('Login failed:', result.error)
+    } else {
+      // Login successful, you can redirect or update the UI as needed
+      console.log('Login successful:', result.data)
+    }
+  }
 
   return (
     <div className="flex flex-row h-screen">
@@ -77,6 +90,7 @@ function RouteComponent() {
             <Button
               className="w-full bg-white text-black hover:bg-white/80"
               size="lg"
+              onClick={() => loginWithProvider('google')}
             >
               <IconBrandGoogleFilled className="size-5.5 mr-2.5 text-black" />
               {content.buttons.login({ provider: 'Google' })}
@@ -84,11 +98,17 @@ function RouteComponent() {
             <Button
               className="w-full bg-white text-black hover:bg-white/80"
               size="lg"
+              onClick={() => loginWithProvider('apple')}
             >
               <IconBrandAppleFilled className="size-5.5 mr-2.5 text-black" />
               {content.buttons.login({ provider: 'Apple' })}
             </Button>
-            <Button className="w-full" variant="secondary" size="lg">
+            <Button
+              className="w-full"
+              variant="secondary"
+              size="lg"
+              onClick={() => loginWithProvider('github')}
+            >
               <IconBrandGithubFilled className="size-5.5 mr-2.5" />
               {content.buttons.login({ provider: 'GitHub' })}
             </Button>
