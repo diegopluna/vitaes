@@ -1,4 +1,9 @@
-import { IconLayoutDashboard } from '@tabler/icons-react'
+import {
+  IconFileText,
+  IconLayoutDashboard,
+  IconPencilMinus,
+  IconTemplate,
+} from '@tabler/icons-react'
 import {
   Sidebar,
   SidebarContent,
@@ -9,6 +14,7 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
+  SidebarMenuItem,
 } from './ui/sidebar'
 import { useLocation } from '@tanstack/react-router'
 import { getPathWithoutLocale } from 'intlayer'
@@ -37,18 +43,62 @@ export const DashboardSidebar = () => {
             {content.workspace}
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuButton
-                isActive={pathWithoutLocale === '/dashboard'}
-                render={<LocalizedLink to="/dashboard" />}
-              >
-                <IconLayoutDashboard
-                  className={cn(
-                    pathWithoutLocale === '/dashboard' && 'text-primary',
-                  )}
-                />
-                {content.dashboard}
-              </SidebarMenuButton>
+            <SidebarMenu className="flex flex-col gap-0.5">
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  isActive={pathWithoutLocale === '/dashboard'}
+                  render={<LocalizedLink to="/dashboard" />}
+                >
+                  <IconLayoutDashboard
+                    className={cn(
+                      pathWithoutLocale === '/dashboard' && 'text-primary',
+                    )}
+                  />
+                  {content.dashboard}
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  isActive={pathWithoutLocale === '/dashboard/my-resumes'}
+                  render={<LocalizedLink to="/dashboard/my-resumes" />}
+                >
+                  <IconFileText
+                    className={cn(
+                      pathWithoutLocale === '/dashboard/my-resumes' &&
+                        'text-primary',
+                    )}
+                  />
+                  {content.myResumes}
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  isActive={pathWithoutLocale === '/dashboard/templates'}
+                  render={<LocalizedLink to="/dashboard/templates" />}
+                >
+                  <IconTemplate
+                    className={cn(
+                      pathWithoutLocale === '/dashboard/templates' &&
+                        'text-primary',
+                    )}
+                  />
+                  {content.templates}
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  isActive={pathWithoutLocale === '/dashboard/drafts'}
+                  render={<LocalizedLink to="/dashboard/drafts" />}
+                >
+                  <IconPencilMinus
+                    className={cn(
+                      pathWithoutLocale === '/dashboard/drafts' &&
+                        'text-primary',
+                    )}
+                  />
+                  {content.drafts}
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

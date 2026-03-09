@@ -18,6 +18,27 @@ const dashboardSidebarContent = {
       de: 'Instrumententafel',
       pt: 'Painel de controle',
     }),
+    myResumes: t({
+      en: 'My Resumes',
+      fr: 'Mes CV',
+      es: 'Mis currículums',
+      de: 'Meine Lebensläufe',
+      pt: 'Meus currículos',
+    }),
+    templates: t({
+      en: 'Templates',
+      fr: 'Modèles',
+      es: 'Plantillas',
+      de: 'Vorlagen',
+      pt: 'Modelos',
+    }),
+    drafts: t({
+      en: 'Drafts',
+      fr: 'Brouillons',
+      es: 'Borradores',
+      de: 'Entwürfe',
+      pt: 'Rascunhos',
+    }),
   },
 } satisfies Dictionary
 

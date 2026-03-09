@@ -15,6 +15,10 @@ import { Route as Char123LocaleChar125404RouteImport } from './routes/{-$locale}
 import { Route as Char123LocaleChar125DashboardRouteRouteImport } from './routes/{-$locale}/dashboard/route'
 import { Route as Char123LocaleChar125LoginIndexRouteImport } from './routes/{-$locale}/login/index'
 import { Route as Char123LocaleChar125DashboardIndexRouteImport } from './routes/{-$locale}/dashboard/index'
+import { Route as Char123LocaleChar125DashboardTemplatesRouteImport } from './routes/{-$locale}/dashboard/templates'
+import { Route as Char123LocaleChar125DashboardMyResumesRouteImport } from './routes/{-$locale}/dashboard/my-resumes'
+import { Route as Char123LocaleChar125DashboardDraftsRouteImport } from './routes/{-$locale}/dashboard/drafts'
+import { Route as Char123LocaleChar125DashboardArchiveRouteImport } from './routes/{-$locale}/dashboard/archive'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
 const Char123LocaleChar125RouteRoute =
@@ -52,6 +56,30 @@ const Char123LocaleChar125DashboardIndexRoute =
     path: '/',
     getParentRoute: () => Char123LocaleChar125DashboardRouteRoute,
   } as any)
+const Char123LocaleChar125DashboardTemplatesRoute =
+  Char123LocaleChar125DashboardTemplatesRouteImport.update({
+    id: '/templates',
+    path: '/templates',
+    getParentRoute: () => Char123LocaleChar125DashboardRouteRoute,
+  } as any)
+const Char123LocaleChar125DashboardMyResumesRoute =
+  Char123LocaleChar125DashboardMyResumesRouteImport.update({
+    id: '/my-resumes',
+    path: '/my-resumes',
+    getParentRoute: () => Char123LocaleChar125DashboardRouteRoute,
+  } as any)
+const Char123LocaleChar125DashboardDraftsRoute =
+  Char123LocaleChar125DashboardDraftsRouteImport.update({
+    id: '/drafts',
+    path: '/drafts',
+    getParentRoute: () => Char123LocaleChar125DashboardRouteRoute,
+  } as any)
+const Char123LocaleChar125DashboardArchiveRoute =
+  Char123LocaleChar125DashboardArchiveRouteImport.update({
+    id: '/archive',
+    path: '/archive',
+    getParentRoute: () => Char123LocaleChar125DashboardRouteRoute,
+  } as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -64,6 +92,10 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/404': typeof Char123LocaleChar125404Route
   '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/{-$locale}/dashboard/archive': typeof Char123LocaleChar125DashboardArchiveRoute
+  '/{-$locale}/dashboard/drafts': typeof Char123LocaleChar125DashboardDraftsRoute
+  '/{-$locale}/dashboard/my-resumes': typeof Char123LocaleChar125DashboardMyResumesRoute
+  '/{-$locale}/dashboard/templates': typeof Char123LocaleChar125DashboardTemplatesRoute
   '/{-$locale}/dashboard/': typeof Char123LocaleChar125DashboardIndexRoute
   '/{-$locale}/login/': typeof Char123LocaleChar125LoginIndexRoute
 }
@@ -71,6 +103,10 @@ export interface FileRoutesByTo {
   '/{-$locale}/404': typeof Char123LocaleChar125404Route
   '/{-$locale}': typeof Char123LocaleChar125IndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/{-$locale}/dashboard/archive': typeof Char123LocaleChar125DashboardArchiveRoute
+  '/{-$locale}/dashboard/drafts': typeof Char123LocaleChar125DashboardDraftsRoute
+  '/{-$locale}/dashboard/my-resumes': typeof Char123LocaleChar125DashboardMyResumesRoute
+  '/{-$locale}/dashboard/templates': typeof Char123LocaleChar125DashboardTemplatesRoute
   '/{-$locale}/dashboard': typeof Char123LocaleChar125DashboardIndexRoute
   '/{-$locale}/login': typeof Char123LocaleChar125LoginIndexRoute
 }
@@ -81,6 +117,10 @@ export interface FileRoutesById {
   '/{-$locale}/404': typeof Char123LocaleChar125404Route
   '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/{-$locale}/dashboard/archive': typeof Char123LocaleChar125DashboardArchiveRoute
+  '/{-$locale}/dashboard/drafts': typeof Char123LocaleChar125DashboardDraftsRoute
+  '/{-$locale}/dashboard/my-resumes': typeof Char123LocaleChar125DashboardMyResumesRoute
+  '/{-$locale}/dashboard/templates': typeof Char123LocaleChar125DashboardTemplatesRoute
   '/{-$locale}/dashboard/': typeof Char123LocaleChar125DashboardIndexRoute
   '/{-$locale}/login/': typeof Char123LocaleChar125LoginIndexRoute
 }
@@ -92,6 +132,10 @@ export interface FileRouteTypes {
     | '/{-$locale}/404'
     | '/{-$locale}/'
     | '/api/auth/$'
+    | '/{-$locale}/dashboard/archive'
+    | '/{-$locale}/dashboard/drafts'
+    | '/{-$locale}/dashboard/my-resumes'
+    | '/{-$locale}/dashboard/templates'
     | '/{-$locale}/dashboard/'
     | '/{-$locale}/login/'
   fileRoutesByTo: FileRoutesByTo
@@ -99,6 +143,10 @@ export interface FileRouteTypes {
     | '/{-$locale}/404'
     | '/{-$locale}'
     | '/api/auth/$'
+    | '/{-$locale}/dashboard/archive'
+    | '/{-$locale}/dashboard/drafts'
+    | '/{-$locale}/dashboard/my-resumes'
+    | '/{-$locale}/dashboard/templates'
     | '/{-$locale}/dashboard'
     | '/{-$locale}/login'
   id:
@@ -108,6 +156,10 @@ export interface FileRouteTypes {
     | '/{-$locale}/404'
     | '/{-$locale}/'
     | '/api/auth/$'
+    | '/{-$locale}/dashboard/archive'
+    | '/{-$locale}/dashboard/drafts'
+    | '/{-$locale}/dashboard/my-resumes'
+    | '/{-$locale}/dashboard/templates'
     | '/{-$locale}/dashboard/'
     | '/{-$locale}/login/'
   fileRoutesById: FileRoutesById
@@ -161,6 +213,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125DashboardIndexRouteImport
       parentRoute: typeof Char123LocaleChar125DashboardRouteRoute
     }
+    '/{-$locale}/dashboard/templates': {
+      id: '/{-$locale}/dashboard/templates'
+      path: '/templates'
+      fullPath: '/{-$locale}/dashboard/templates'
+      preLoaderRoute: typeof Char123LocaleChar125DashboardTemplatesRouteImport
+      parentRoute: typeof Char123LocaleChar125DashboardRouteRoute
+    }
+    '/{-$locale}/dashboard/my-resumes': {
+      id: '/{-$locale}/dashboard/my-resumes'
+      path: '/my-resumes'
+      fullPath: '/{-$locale}/dashboard/my-resumes'
+      preLoaderRoute: typeof Char123LocaleChar125DashboardMyResumesRouteImport
+      parentRoute: typeof Char123LocaleChar125DashboardRouteRoute
+    }
+    '/{-$locale}/dashboard/drafts': {
+      id: '/{-$locale}/dashboard/drafts'
+      path: '/drafts'
+      fullPath: '/{-$locale}/dashboard/drafts'
+      preLoaderRoute: typeof Char123LocaleChar125DashboardDraftsRouteImport
+      parentRoute: typeof Char123LocaleChar125DashboardRouteRoute
+    }
+    '/{-$locale}/dashboard/archive': {
+      id: '/{-$locale}/dashboard/archive'
+      path: '/archive'
+      fullPath: '/{-$locale}/dashboard/archive'
+      preLoaderRoute: typeof Char123LocaleChar125DashboardArchiveRouteImport
+      parentRoute: typeof Char123LocaleChar125DashboardRouteRoute
+    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
@@ -172,11 +252,23 @@ declare module '@tanstack/react-router' {
 }
 
 interface Char123LocaleChar125DashboardRouteRouteChildren {
+  Char123LocaleChar125DashboardArchiveRoute: typeof Char123LocaleChar125DashboardArchiveRoute
+  Char123LocaleChar125DashboardDraftsRoute: typeof Char123LocaleChar125DashboardDraftsRoute
+  Char123LocaleChar125DashboardMyResumesRoute: typeof Char123LocaleChar125DashboardMyResumesRoute
+  Char123LocaleChar125DashboardTemplatesRoute: typeof Char123LocaleChar125DashboardTemplatesRoute
   Char123LocaleChar125DashboardIndexRoute: typeof Char123LocaleChar125DashboardIndexRoute
 }
 
 const Char123LocaleChar125DashboardRouteRouteChildren: Char123LocaleChar125DashboardRouteRouteChildren =
   {
+    Char123LocaleChar125DashboardArchiveRoute:
+      Char123LocaleChar125DashboardArchiveRoute,
+    Char123LocaleChar125DashboardDraftsRoute:
+      Char123LocaleChar125DashboardDraftsRoute,
+    Char123LocaleChar125DashboardMyResumesRoute:
+      Char123LocaleChar125DashboardMyResumesRoute,
+    Char123LocaleChar125DashboardTemplatesRoute:
+      Char123LocaleChar125DashboardTemplatesRoute,
     Char123LocaleChar125DashboardIndexRoute:
       Char123LocaleChar125DashboardIndexRoute,
   }
