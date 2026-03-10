@@ -2,6 +2,7 @@ import { intlayer } from 'vite-intlayer'
 import { defineConfig } from 'vite'
 import { devtools } from '@tanstack/devtools-vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import { sentryTanstackStart } from '@sentry/tanstackstart-react/vite'
 
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 
@@ -19,6 +20,11 @@ const config = defineConfig({
       babel: {
         plugins: ['babel-plugin-react-compiler'],
       },
+    }),
+    sentryTanstackStart({
+      org: 'dpeter',
+      project: 'vitaes',
+      authToken: process.env.SENTRY_AUTH_TOKEN,
     }),
   ],
   ssr: {

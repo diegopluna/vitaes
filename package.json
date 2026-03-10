@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "portless vitaes vite dev",
-    "build": "vite build",
+    "build": "vite build && cp instrument.server.mjs .output/server",
     "preview": "vite preview",
     "test": "vitest run",
     "lint": "oxlint",
@@ -20,6 +20,7 @@
     "@convex-dev/react-query": "^0.1.0",
     "@fontsource-variable/instrument-sans": "^5.2.8",
     "@fontsource-variable/inter": "^5.2.8",
+    "@sentry/tanstackstart-react": "^10.42.0",
     "@tabler/icons-react": "^3.39.0",
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/react-devtools": "latest",
