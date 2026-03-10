@@ -14,3 +14,5 @@ todos.json
 
 # Intlayer
 .intlayer
+
+.playwright-cli
