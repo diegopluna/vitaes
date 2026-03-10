@@ -18,7 +18,7 @@ export const listPublic = query({
   },
 })
 
-export const list = query({
+export const listMine = query({
   args: {},
   handler: async (ctx) => {
     const userId = await getCurrentUserId(ctx)
@@ -30,7 +30,7 @@ export const list = query({
   },
 })
 
-export const getBySlug = query({
+export const getAccessibleBySlug = query({
   args: {
     slug: v.string(),
   },
@@ -58,7 +58,7 @@ export const getBySlug = query({
   },
 })
 
-export const create = mutation({
+export const createMine = mutation({
   args: {
     slug: v.string(),
     name: v.string(),
@@ -95,7 +95,7 @@ export const create = mutation({
   },
 })
 
-export const update = mutation({
+export const updateMine = mutation({
   args: {
     id: v.id('templates'),
     slug: v.string(),
@@ -143,7 +143,7 @@ export const update = mutation({
   },
 })
 
-export const remove = mutation({
+export const removeMine = mutation({
   args: {
     id: v.id('templates'),
   },
@@ -165,7 +165,7 @@ export const remove = mutation({
   },
 })
 
-export const duplicate = mutation({
+export const duplicateIntoMine = mutation({
   args: {
     id: v.id('templates'),
     slug: v.string(),

@@ -8,7 +8,7 @@ const getCurrentUserId = async (ctx: any) => {
   return user._id.toString()
 }
 
-export const list = query({
+export const listMine = query({
   args: {},
   handler: async (ctx) => {
     const userId = await getCurrentUserId(ctx)
@@ -21,7 +21,7 @@ export const list = query({
   },
 })
 
-export const getById = query({
+export const getMineById = query({
   args: {
     id: v.id('resumes'),
   },
@@ -42,7 +42,7 @@ export const getById = query({
   },
 })
 
-export const create = mutation({
+export const createMine = mutation({
   args: {
     title: v.string(),
     templateId: v.string(),
@@ -65,7 +65,7 @@ export const create = mutation({
   },
 })
 
-export const update = mutation({
+export const updateMine = mutation({
   args: {
     id: v.id('resumes'),
     title: v.optional(v.string()),
@@ -100,7 +100,7 @@ export const update = mutation({
   },
 })
 
-export const remove = mutation({
+export const removeMine = mutation({
   args: {
     id: v.id('resumes'),
   },
@@ -122,7 +122,7 @@ export const remove = mutation({
   },
 })
 
-export const duplicate = mutation({
+export const duplicateMine = mutation({
   args: {
     id: v.id('resumes'),
     title: v.optional(v.string()),
