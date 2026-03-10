@@ -139,22 +139,86 @@ export const TemplateSummaryBlockSchema = z.object({
   title: z.string().optional(),
 })
 
-export const TemplateSectionBlockSchema = z.object({
+export const EntrySectionKindSchema = z.enum([
+  'experience',
+  'projects',
+  'volunteering',
+])
+
+export const TemplateEntrySectionBlockSchema = z.object({
   type: z.literal('section'),
-  section: ResumeSectionKindSchema.exclude(['summary']),
-  variant: z.union([
-    EntryBlockVariantSchema,
-    SkillsBlockVariantSchema,
-    EducationBlockVariantSchema,
-    CertificationsBlockVariantSchema,
-    AwardsBlockVariantSchema,
-    LanguagesBlockVariantSchema,
-    PublicationsBlockVariantSchema,
-    CustomBlockVariantSchema,
-  ]),
+  section: EntrySectionKindSchema,
+  variant: EntryBlockVariantSchema,
   title: z.string().optional(),
   visibleWhen: TemplateVisibilityRuleSchema.optional(),
 })
+
+export const TemplateEducationSectionBlockSchema = z.object({
+  type: z.literal('section'),
+  section: z.literal('education'),
+  variant: EducationBlockVariantSchema,
+  title: z.string().optional(),
+  visibleWhen: TemplateVisibilityRuleSchema.optional(),
+})
+
+export const TemplateSkillsSectionBlockSchema = z.object({
+  type: z.literal('section'),
+  section: z.literal('skills'),
+  variant: SkillsBlockVariantSchema,
+  title: z.string().optional(),
+  visibleWhen: TemplateVisibilityRuleSchema.optional(),
+})
+
+export const TemplateCertificationsSectionBlockSchema = z.object({
+  type: z.literal('section'),
+  section: z.literal('certifications'),
+  variant: CertificationsBlockVariantSchema,
+  title: z.string().optional(),
+  visibleWhen: TemplateVisibilityRuleSchema.optional(),
+})
+
+export const TemplateAwardsSectionBlockSchema = z.object({
+  type: z.literal('section'),
+  section: z.literal('awards'),
+  variant: AwardsBlockVariantSchema,
+  title: z.string().optional(),
+  visibleWhen: TemplateVisibilityRuleSchema.optional(),
+})
+
+export const TemplateLanguagesSectionBlockSchema = z.object({
+  type: z.literal('section'),
+  section: z.literal('languages'),
+  variant: LanguagesBlockVariantSchema,
+  title: z.string().optional(),
+  visibleWhen: TemplateVisibilityRuleSchema.optional(),
+})
+
+export const TemplatePublicationsSectionBlockSchema = z.object({
+  type: z.literal('section'),
+  section: z.literal('publications'),
+  variant: PublicationsBlockVariantSchema,
+  title: z.string().optional(),
+  visibleWhen: TemplateVisibilityRuleSchema.optional(),
+})
+
+export const TemplateCustomSectionBlockSchema = z.object({
+  type: z.literal('section'),
+  section: z.literal('custom'),
+  variant: CustomBlockVariantSchema,
+  title: z.string().optional(),
+  visibleWhen: TemplateVisibilityRuleSchema.optional(),
+})
+
+export const TemplateSectionBlockSchema = z.union([
+  TemplateEntrySectionBlockSchema,
+  TemplateEducationSectionBlockSchema,
+  TemplateSkillsSectionBlockSchema,
+  TemplateCertificationsSectionBlockSchema,
+  TemplateAwardsSectionBlockSchema,
+  TemplateLanguagesSectionBlockSchema,
+  TemplatePublicationsSectionBlockSchema,
+  TemplateCustomSectionBlockSchema,
+])
 
 export const TemplateDividerBlockSchema = z.object({
   type: z.literal('divider'),
@@ -175,7 +239,7 @@ export const TemplateTextBlockSchema = z.object({
 export const TemplateGroupLayoutSchema = z.enum(['stack', 'row'])
 
 export const TemplateBlockSchema: z.ZodTypeAny = z.lazy(() =>
-  z.discriminatedUnion('type', [
+  z.union([
     TemplateBasicsBlockSchema,
     TemplateSummaryBlockSchema,
     TemplateSectionBlockSchema,
@@ -221,6 +285,7 @@ export type TemplateTypography = z.infer<typeof TemplateTypographySchema>
 export type TemplateTheme = z.infer<typeof TemplateThemeSchema>
 export type BasicsBlockVariant = z.infer<typeof BasicsBlockVariantSchema>
 export type SummaryBlockVariant = z.infer<typeof SummaryBlockVariantSchema>
+export type EntrySectionKind = z.infer<typeof EntrySectionKindSchema>
 export type EntryBlockVariant = z.infer<typeof EntryBlockVariantSchema>
 export type SkillsBlockVariant = z.infer<typeof SkillsBlockVariantSchema>
 export type EducationBlockVariant = z.infer<typeof EducationBlockVariantSchema>
@@ -240,6 +305,30 @@ export type TemplateVisibilityRule = z.infer<
 >
 export type TemplateBasicsBlock = z.infer<typeof TemplateBasicsBlockSchema>
 export type TemplateSummaryBlock = z.infer<typeof TemplateSummaryBlockSchema>
+export type TemplateEntrySectionBlock = z.infer<
+  typeof TemplateEntrySectionBlockSchema
+>
+export type TemplateEducationSectionBlock = z.infer<
+  typeof TemplateEducationSectionBlockSchema
+>
+export type TemplateSkillsSectionBlock = z.infer<
+  typeof TemplateSkillsSectionBlockSchema
+>
+export type TemplateCertificationsSectionBlock = z.infer<
+  typeof TemplateCertificationsSectionBlockSchema
+>
+export type TemplateAwardsSectionBlock = z.infer<
+  typeof TemplateAwardsSectionBlockSchema
+>
+export type TemplateLanguagesSectionBlock = z.infer<
+  typeof TemplateLanguagesSectionBlockSchema
+>
+export type TemplatePublicationsSectionBlock = z.infer<
+  typeof TemplatePublicationsSectionBlockSchema
+>
+export type TemplateCustomSectionBlock = z.infer<
+  typeof TemplateCustomSectionBlockSchema
+>
 export type TemplateSectionBlock = z.infer<typeof TemplateSectionBlockSchema>
 export type TemplateDividerBlock = z.infer<typeof TemplateDividerBlockSchema>
 export type TemplateSpacerBlock = z.infer<typeof TemplateSpacerBlockSchema>
