@@ -14,20 +14,13 @@ export default defineSchema({
     slug: v.string(),
     name: v.string(),
     description: v.optional(v.string()),
-    authorId: v.string(),
-    visibility: v.union(
-      v.literal('system'),
-      v.literal('public'),
-      v.literal('private'),
-    ),
-    status: v.union(
-      v.literal('draft'),
-      v.literal('published'),
-      v.literal('archived'),
-    ),
-    currentVersion: v.number(),
+    version: v.number(),
+    isBuiltIn: v.boolean(),
+    isPublic: v.boolean(),
+    ownerId: v.string(),
     definition: v.any(),
+    thumbnailUrl: v.optional(v.string()),
   })
     .index('by_slug', ['slug'])
-    .index('by_author', ['authorId']),
+    .index('by_owner', ['ownerId']),
 })
