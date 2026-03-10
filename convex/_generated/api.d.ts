@@ -10,8 +10,10 @@
 
 import type * as auth from "../auth.js";
 import type * as http from "../http.js";
+import type * as resumes from "../resumes.js";
 import type * as shared_resume from "../shared/resume.js";
 import type * as shared_template from "../shared/template.js";
+import type * as templates from "../templates.js";
 
 import type {
   ApiFromModules,
@@ -22,8 +24,10 @@ import type {
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   http: typeof http;
+  resumes: typeof resumes;
   "shared/resume": typeof shared_resume;
   "shared/template": typeof shared_template;
+  templates: typeof templates;
 }>;
 
 /**

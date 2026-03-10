@@ -5,7 +5,7 @@ export default defineSchema({
   resumes: defineTable({
     userId: v.string(),
     title: v.string(),
-    templateId: v.id('templates'),
+    templateId: v.string(),
     templateVersion: v.number(),
     documentVersion: v.number(),
     data: v.any(),
@@ -22,5 +22,6 @@ export default defineSchema({
     thumbnailUrl: v.optional(v.string()),
   })
     .index('by_slug', ['slug'])
-    .index('by_owner', ['ownerId']),
+    .index('by_owner', ['ownerId'])
+    .index('by_public', ['isPublic']),
 })
