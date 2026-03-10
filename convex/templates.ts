@@ -3,6 +3,11 @@ import { mutation, query } from './_generated/server'
 import { authComponent } from './auth'
 import { ResumeTemplateDefinitionSchema } from './shared/template'
 
+const getCurrentUserId = async (ctx: any) => {
+  const user = await authComponent.getAuthUser(ctx)
+  return user._id.toString()
+}
+
 export const listPublic = query({
   args: {},
   handler: async (ctx) => {
@@ -16,11 +21,11 @@ export const listPublic = query({
 export const list = query({
   args: {},
   handler: async (ctx) => {
-    const user = await authComponent.getAuthUser(ctx)
+    const userId = await getCurrentUserId(ctx)
 
     return await ctx.db
       .query('templates')
-      .withIndex('by_owner', (q) => q.eq('ownerId', user._id.toString()))
+      .withIndex('by_owner', (q) => q.eq('ownerId', userId))
       .collect()
   },
 })
@@ -43,9 +48,9 @@ export const getBySlug = query({
       return template
     }
 
-    const user = await authComponent.getAuthUser(ctx)
+    const user = await authComponent.safeGetAuthUser(ctx)
 
-    if (template.ownerId !== user._id.toString()) {
+    if (!user || template.ownerId !== user._id.toString()) {
       throw new ConvexError('FORBIDDEN')
     }
 
@@ -63,8 +68,7 @@ export const create = mutation({
     thumbnailUrl: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const user = await authComponent.getAuthUser(ctx)
-
+    const userId = await getCurrentUserId(ctx)
     const parsed = ResumeTemplateDefinitionSchema.parse(args.definition)
 
     const existing = await ctx.db
@@ -83,9 +87,10 @@ export const create = mutation({
       version: parsed.version,
       isBuiltIn: false,
       isPublic: args.isPublic,
-      ownerId: user._id.toString(),
+      ownerId: userId,
       definition: parsed,
       thumbnailUrl: args.thumbnailUrl,
+      updatedAt: Date.now(),
     })
   },
 })
@@ -101,14 +106,14 @@ export const update = mutation({
     thumbnailUrl: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const user = await authComponent.getAuthUser(ctx)
+    const userId = await getCurrentUserId(ctx)
     const existing = await ctx.db.get(args.id)
 
     if (!existing) {
       throw new ConvexError('NOT_FOUND')
     }
 
-    if (existing.isBuiltIn || existing.ownerId !== user._id.toString()) {
+    if (existing.isBuiltIn || existing.ownerId !== userId) {
       throw new ConvexError('FORBIDDEN')
     }
 
@@ -131,6 +136,7 @@ export const update = mutation({
       isPublic: args.isPublic,
       definition: parsed,
       thumbnailUrl: args.thumbnailUrl,
+      updatedAt: Date.now(),
     })
 
     return args.id
@@ -142,14 +148,14 @@ export const remove = mutation({
     id: v.id('templates'),
   },
   handler: async (ctx, args) => {
-    const user = await authComponent.getAuthUser(ctx)
+    const userId = await getCurrentUserId(ctx)
     const existing = await ctx.db.get(args.id)
 
     if (!existing) {
       throw new ConvexError('NOT_FOUND')
     }
 
-    if (existing.isBuiltIn || existing.ownerId !== user._id.toString()) {
+    if (existing.isBuiltIn || existing.ownerId !== userId) {
       throw new ConvexError('FORBIDDEN')
     }
 
@@ -167,14 +173,14 @@ export const duplicate = mutation({
     isPublic: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
-    const user = await authComponent.getAuthUser(ctx)
+    const userId = await getCurrentUserId(ctx)
     const existing = await ctx.db.get(args.id)
 
     if (!existing) {
       throw new ConvexError('NOT_FOUND')
     }
 
-    if (!existing.isBuiltIn && existing.ownerId !== user._id.toString()) {
+    if (!existing.isBuiltIn && existing.ownerId !== userId) {
       throw new ConvexError('FORBIDDEN')
     }
 
@@ -194,9 +200,10 @@ export const duplicate = mutation({
       version: existing.definition.version,
       isBuiltIn: false,
       isPublic: args.isPublic ?? false,
-      ownerId: user._id.toString(),
+      ownerId: userId,
       definition: existing.definition,
       thumbnailUrl: existing.thumbnailUrl,
+      updatedAt: Date.now(),
     })
   },
 })

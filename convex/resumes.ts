@@ -3,14 +3,19 @@ import { mutation, query } from './_generated/server'
 import { authComponent } from './auth'
 import { ResumeDocumentSchema } from './shared/resume'
 
+const getCurrentUserId = async (ctx: any) => {
+  const user = await authComponent.getAuthUser(ctx)
+  return user._id.toString()
+}
+
 export const list = query({
   args: {},
   handler: async (ctx) => {
-    const user = await authComponent.getAuthUser(ctx)
+    const userId = await getCurrentUserId(ctx)
 
     return await ctx.db
       .query('resumes')
-      .withIndex('by_user', (q) => q.eq('userId', user._id))
+      .withIndex('by_user_updated_at', (q) => q.eq('userId', userId))
       .order('desc')
       .collect()
   },
@@ -21,7 +26,7 @@ export const getById = query({
     id: v.id('resumes'),
   },
   handler: async (ctx, args) => {
-    const user = await authComponent.getAuthUser(ctx)
+    const userId = await getCurrentUserId(ctx)
 
     const resume = await ctx.db.get(args.id)
 
@@ -29,7 +34,7 @@ export const getById = query({
       return null
     }
 
-    if (resume.userId !== user._id.toString()) {
+    if (resume.userId !== userId) {
       throw new ConvexError('FORBIDDEN')
     }
 
@@ -45,17 +50,17 @@ export const create = mutation({
     data: v.any(),
   },
   handler: async (ctx, args) => {
-    const user = await authComponent.getAuthUser(ctx)
-
+    const userId = await getCurrentUserId(ctx)
     const parsed = ResumeDocumentSchema.parse(args.data)
 
     return await ctx.db.insert('resumes', {
-      userId: user._id,
+      userId,
       title: args.title,
       templateId: args.templateId,
       templateVersion: args.templateVersion,
       documentVersion: parsed.version,
       data: parsed,
+      updatedAt: Date.now(),
     })
   },
 })
@@ -69,14 +74,14 @@ export const update = mutation({
     data: v.any(),
   },
   handler: async (ctx, args) => {
-    const user = await authComponent.getAuthUser(ctx)
+    const userId = await getCurrentUserId(ctx)
     const existing = await ctx.db.get(args.id)
 
     if (!existing) {
       throw new ConvexError('Not found')
     }
 
-    if (existing.userId !== user._id.toString()) {
+    if (existing.userId !== userId) {
       throw new ConvexError('FORBIDDEN')
     }
 
@@ -88,6 +93,7 @@ export const update = mutation({
       templateVersion: args.templateVersion,
       documentVersion: parsed.version,
       data: parsed,
+      updatedAt: Date.now(),
     })
 
     return args.id
@@ -99,14 +105,14 @@ export const remove = mutation({
     id: v.id('resumes'),
   },
   handler: async (ctx, args) => {
-    const user = await authComponent.getAuthUser(ctx)
+    const userId = await getCurrentUserId(ctx)
     const existing = await ctx.db.get(args.id)
 
     if (!existing) {
       throw new ConvexError('Not found')
     }
 
-    if (existing.userId !== user._id.toString()) {
+    if (existing.userId !== userId) {
       throw new ConvexError('FORBIDDEN')
     }
 
@@ -122,24 +128,25 @@ export const duplicate = mutation({
     title: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const user = await authComponent.getAuthUser(ctx)
+    const userId = await getCurrentUserId(ctx)
     const existing = await ctx.db.get(args.id)
 
     if (!existing) {
       throw new ConvexError('Not found')
     }
 
-    if (existing.userId !== user._id.toString()) {
+    if (existing.userId !== userId) {
       throw new ConvexError('FORBIDDEN')
     }
 
     return await ctx.db.insert('resumes', {
-      userId: user._id,
+      userId,
       title: args.title || `${existing.title} (Copy)`,
       templateId: existing.templateId,
       templateVersion: existing.templateVersion,
       documentVersion: existing.documentVersion,
       data: existing.data,
+      updatedAt: Date.now(),
     })
   },
 })

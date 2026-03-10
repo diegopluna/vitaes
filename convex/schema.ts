@@ -9,7 +9,10 @@ export default defineSchema({
     templateVersion: v.number(),
     documentVersion: v.number(),
     data: v.any(),
-  }).index('by_user', ['userId']),
+    updatedAt: v.number(),
+  })
+    .index('by_user', ['userId'])
+    .index('by_user_updated_at', ['userId', 'updatedAt']),
   templates: defineTable({
     slug: v.string(),
     name: v.string(),
@@ -20,6 +23,7 @@ export default defineSchema({
     ownerId: v.string(),
     definition: v.any(),
     thumbnailUrl: v.optional(v.string()),
+    updatedAt: v.number(),
   })
     .index('by_slug', ['slug'])
     .index('by_owner', ['ownerId'])
