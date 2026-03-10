@@ -3,7 +3,10 @@ import { v } from 'convex/values'
 
 export default defineSchema({
   resumes: defineTable({
-    name: v.string(),
-    userEmail: v.string(),
-  }).index('userEmail', ['userEmail']),
+    userId: v.string(),
+    title: v.string(),
+    templateId: v.string(),
+    documentVersion: v.number(),
+    data: v.any(),
+  }).index('userId', ['userId']),
 })
