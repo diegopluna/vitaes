@@ -7,7 +7,8 @@
   },
   "scripts": {
     "dev": "portless vitaes vite dev",
-    "build": "vite build && cp instrument.server.mjs .output/server",
+    "build": "vite build && cp instrument.server.mjs dist/server",
+    "check-types": "tsc --noEmit",
     "serve": "vite preview",
     "test": "vitest run --config vitest.config.ts",
     "test:watch": "vitest --config vitest.config.ts"
@@ -41,7 +42,7 @@
     "react-pdf": "^10.4.1",
     "sonner": "catalog:",
     "tailwindcss": "catalog:",
-    "vite-tsconfig-paths": "^5.1.4",
+    "vite-tsconfig-paths": "^6.1.1",
     "zod": "catalog:"
   },
   "devDependencies": {

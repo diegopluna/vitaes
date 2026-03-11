@@ -6,12 +6,16 @@
   "exports": {
     "./web": "./src/web.ts"
   },
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
   "dependencies": {
     "@t3-oss/env-core": "^0.13.10",
     "dotenv": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@types/node": "^25.4.0",
     "@vitaes/config": "workspace:*",
     "typescript": "^5"
   }
