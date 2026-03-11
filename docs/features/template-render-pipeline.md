@@ -108,6 +108,11 @@ Deliverables:
 - `react-pdf` style builder
 - renderer file becomes mostly structural
 
+Status:
+
+- completed in the playground
+- implemented at `src/features/pdf-playground/renderers/react-pdf/react-pdf-styles.ts`
+
 ## Phase 3: Layout IR
 
 Introduce a lower-level render tree that removes resume semantics from the
@@ -176,4 +181,8 @@ This gives Vitaes a path to:
 
 ## Current Phase
 
-We are now implementing Phase 1 in the playground.
+Phase 1 and Phase 2 are complete in the playground.
+
+Next target:
+
+- Phase 3: introduce a lower-level layout/render IR
