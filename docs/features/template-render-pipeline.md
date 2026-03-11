@@ -66,7 +66,8 @@ Two layers are useful:
 - resolved semantic document
 - lower-level layout/render IR
 
-For phase 1, we are only introducing the resolved semantic document.
+Phase 1 introduced the resolved semantic document. Phase 3 adds the lower-level
+render tree used by the renderer adapter.
 
 ### 4. Renderer Adapter
 
@@ -129,6 +130,14 @@ Deliverables:
 - spacing primitives
 - render hints
 
+Status:
+
+- completed in the playground
+- implemented at `src/features/pdf-playground/template-compiler/render-ir.ts`
+- planned at `src/features/pdf-playground/template-compiler/plan-render-document.ts`
+- emitted at
+  `src/features/pdf-playground/renderers/react-pdf/react-pdf-adapter.tsx`
+
 ## Phase 4: Section Planning
 
 Move section variant logic into a layout planning pass.
@@ -155,10 +164,10 @@ Recommended playground-local structure:
 
 - `src/features/pdf-playground/template-compiler/resolved-template-document.ts`
 - `src/features/pdf-playground/template-compiler/resolve-template-document.ts`
+- `src/features/pdf-playground/template-compiler/render-ir.ts`
+- `src/features/pdf-playground/template-compiler/plan-render-document.ts`
 - `src/features/pdf-playground/renderers/react-pdf/react-pdf-adapter.tsx`
 - `src/features/pdf-playground/renderers/react-pdf/react-pdf-styles.ts`
-
-Phase 1 only requires the first two files.
 
 ## Architectural Rules
 
@@ -181,8 +190,8 @@ This gives Vitaes a path to:
 
 ## Current Phase
 
-Phase 1 and Phase 2 are complete in the playground.
+Phase 1, Phase 2, and Phase 3 are complete in the playground.
 
 Next target:
 
-- Phase 3: introduce a lower-level layout/render IR
+- Phase 4: move more section/layout planning behind the IR boundary
