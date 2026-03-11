@@ -7,6 +7,7 @@ This folder tracks product and architecture decisions for the Vitaes remake.
 - [ATS Scoring System](./features/ats-scoring-system.md)
 - [PDF Template System](./features/pdf-template-system.md)
 - [Template DSL](./features/template-dsl.md)
+- [Template Render Pipeline](./features/template-render-pipeline.md)
 - [Template Store and Authoring](./features/template-store-and-authoring.md)
 - [Implementation Roadmap](./features/pdf-template-roadmap.md)
 

@@ -17,18 +17,20 @@ import type {
   LanguagesSection,
   PublicationsSection,
   ResumeDocument,
-  ResumeSection,
   SkillsSection,
-  SummarySection,
 } from '../../../convex/shared/resume'
 import type {
+  TemplateBasicsBlock,
   ResumeTemplateDefinition,
   TemplateAlign,
-  TemplateBlock,
   TemplateSectionBlock,
   TemplateTextStyleRef,
-  TemplateVisibilityRule,
 } from '../../../convex/shared/template'
+import { resolveTemplateDocument } from './template-compiler/resolve-template-document'
+import type {
+  ResolvedTemplateBlock,
+  ResolvedTemplateDocument,
+} from './template-compiler/resolved-template-document'
 
 type PlaygroundPdfDocumentProps = {
   document: ResumeDocument
@@ -47,39 +49,22 @@ export function PlaygroundPdfDocument({
   document,
   template,
 }: PlaygroundPdfDocumentProps) {
-  const styles = createTemplateStyles(template)
-  const summary = findSection(document.sections, 'summary')
-  const headerBlocks = filterVisibleBlocks(
-    template.regions.header ?? [],
-    document.sections,
-  )
-  const sidebarBlocks = filterVisibleBlocks(
-    template.regions.sidebar ?? [],
-    document.sections,
-  )
-  const mainBlocks = filterVisibleBlocks(
-    template.regions.main,
-    document.sections,
-  )
-  const footerBlocks = filterVisibleBlocks(
-    template.regions.footer ?? [],
-    document.sections,
-  )
-  const hasSidebar = sidebarBlocks.length > 0
+  const resolvedDocument = resolveTemplateDocument({ document, template })
+  const styles = createTemplateStyles(resolvedDocument.template)
+  const { header, sidebar, main, footer } = resolvedDocument.regions
+  const hasSidebar = sidebar.length > 0
 
   return (
-    <Document title={`${document.basics.fullName} Resume`}>
-      <Page size={template.page.size} style={styles.page}>
-        {headerBlocks.length > 0 ? (
+    <Document title={resolvedDocument.title}>
+      <Page size={resolvedDocument.template.page.size} style={styles.page}>
+        {header.length > 0 ? (
           <View style={styles.header}>
-            {headerBlocks.map((block, index) => (
+            {header.map((block, index) => (
               <RenderBlock
                 key={`header-${index}`}
                 block={block}
-                document={document}
-                template={template}
+                resolvedDocument={resolvedDocument}
                 styles={styles}
-                summary={summary}
               />
             ))}
           </View>
@@ -90,43 +75,37 @@ export function PlaygroundPdfDocument({
         >
           {hasSidebar ? (
             <View style={styles.sidebar}>
-              {sidebarBlocks.map((block, index) => (
+              {sidebar.map((block, index) => (
                 <RenderBlock
                   key={`sidebar-${index}`}
                   block={block}
-                  document={document}
-                  template={template}
+                  resolvedDocument={resolvedDocument}
                   styles={styles}
-                  summary={summary}
                 />
               ))}
             </View>
           ) : null}
 
           <View style={hasSidebar ? styles.main : styles.stack}>
-            {mainBlocks.map((block, index) => (
+            {main.map((block, index) => (
               <RenderBlock
                 key={`main-${index}`}
                 block={block}
-                document={document}
-                template={template}
+                resolvedDocument={resolvedDocument}
                 styles={styles}
-                summary={summary}
               />
             ))}
           </View>
         </View>
 
-        {footerBlocks.length > 0 ? (
+        {footer.length > 0 ? (
           <View style={styles.footer}>
-            {footerBlocks.map((block, index) => (
+            {footer.map((block, index) => (
               <RenderBlock
                 key={`footer-${index}`}
                 block={block}
-                document={document}
-                template={template}
+                resolvedDocument={resolvedDocument}
                 styles={styles}
-                summary={summary}
               />
             ))}
           </View>
@@ -137,45 +116,111 @@ export function PlaygroundPdfDocument({
 }
 
 type RenderBlockProps = {
-  block: TemplateBlock
-  document: ResumeDocument
-  template: ResumeTemplateDefinition
+  block: ResolvedTemplateBlock
+  resolvedDocument: ResolvedTemplateDocument
   styles: TemplateStyles
-  summary?: SummarySection
 }
 
-function RenderBlock({
-  block,
-  document,
-  template,
-  styles,
-  summary,
-}: RenderBlockProps) {
+function RenderBlock({ block, resolvedDocument, styles }: RenderBlockProps) {
   switch (block.type) {
     case 'basics':
-      return <RenderBasics block={block} document={document} styles={styles} />
+      return (
+        <RenderBasics
+          block={block.block}
+          document={resolvedDocument}
+          styles={styles}
+        />
+      )
     case 'summary':
-      if (!summary || summary.visible === false || !summary.content.trim()) {
-        return null
-      }
-
       return (
         <View
           style={getSummaryContainerStyle(block.variant, styles)}
           minPresenceAhead={36}
         >
-          <SectionHeading
-            title={block.title ?? summary.title ?? 'Summary'}
-            styles={styles}
-          />
+          <SectionHeading title={block.title} styles={styles} />
           <Text style={getSummaryTextStyle(block.variant, styles)}>
-            {summary.content}
+            {block.content}
           </Text>
         </View>
       )
-    case 'section':
+    case 'entry-section':
       return (
-        <RenderSectionBlock block={block} document={document} styles={styles} />
+        <View style={styles.section} minPresenceAhead={48}>
+          <SectionHeading title={block.title} styles={styles} />
+          <View style={styles.entryList}>
+            {block.section.items.map((item) => (
+              <RenderEntry
+                key={item.id}
+                item={item}
+                variant={block.variant}
+                styles={styles}
+              />
+            ))}
+          </View>
+        </View>
+      )
+    case 'education-section':
+      return (
+        <RenderEducation
+          section={block.section}
+          title={block.title}
+          variant={block.variant}
+          styles={styles}
+        />
+      )
+    case 'skills-section':
+      return (
+        <RenderSkills
+          section={block.section}
+          title={block.title}
+          variant={block.variant}
+          styles={styles}
+        />
+      )
+    case 'languages-section':
+      return (
+        <RenderLanguages
+          section={block.section}
+          title={block.title}
+          variant={block.variant}
+          styles={styles}
+        />
+      )
+    case 'certifications-section':
+      return (
+        <RenderCertifications
+          section={block.section}
+          title={block.title}
+          variant={block.variant}
+          styles={styles}
+        />
+      )
+    case 'awards-section':
+      return (
+        <RenderAwards
+          section={block.section}
+          title={block.title}
+          variant={block.variant}
+          styles={styles}
+        />
+      )
+    case 'publications-section':
+      return (
+        <RenderPublications
+          section={block.section}
+          title={block.title}
+          variant={block.variant}
+          styles={styles}
+        />
+      )
+    case 'custom-section':
+      return (
+        <RenderCustom
+          section={block.section}
+          title={block.title}
+          variant={block.variant}
+          styles={styles}
+        />
       )
     case 'divider':
       return <View style={styles.divider} />
@@ -192,17 +237,15 @@ function RenderBlock({
         <View
           style={{
             flexDirection: block.layout === 'row' ? 'row' : 'column',
-            gap: block.gap ?? template.theme.spacing.md,
+            gap: block.gap ?? resolvedDocument.template.theme.spacing.md,
           }}
         >
           {block.children.map((child, index) => (
             <RenderBlock
               key={`group-${index}`}
               block={child}
-              document={document}
-              template={template}
+              resolvedDocument={resolvedDocument}
               styles={styles}
-              summary={summary}
             />
           ))}
         </View>
@@ -217,8 +260,8 @@ function RenderBasics({
   document,
   styles,
 }: {
-  block: Extract<TemplateBlock, { type: 'basics' }>
-  document: ResumeDocument
+  block: TemplateBasicsBlock
+  document: ResolvedTemplateDocument
   styles: TemplateStyles
 }) {
   const hasProfiles =
@@ -284,174 +327,6 @@ function RenderBasics({
       {hasContacts || hasProfiles ? metaContent : null}
     </View>
   )
-}
-
-function RenderSectionBlock({
-  block,
-  document,
-  styles,
-}: {
-  block: TemplateSectionBlock
-  document: ResumeDocument
-  styles: TemplateStyles
-}) {
-  switch (block.section) {
-    case 'experience':
-    case 'projects':
-    case 'volunteering': {
-      const section = findSection(document.sections, block.section)
-
-      if (!section || section.visible === false) {
-        return null
-      }
-
-      const title = block.title ?? section.title ?? toTitle(section.kind)
-
-      return (
-        <View style={styles.section} minPresenceAhead={48}>
-          <SectionHeading title={title} styles={styles} />
-          <View style={styles.entryList}>
-            {section.items.map((item) => (
-              <RenderEntry
-                key={item.id}
-                item={item}
-                variant={block.variant}
-                styles={styles}
-              />
-            ))}
-          </View>
-        </View>
-      )
-    }
-    case 'education': {
-      const section = findSection(document.sections, 'education')
-
-      if (!section || section.visible === false) {
-        return null
-      }
-
-      const title = block.title ?? section.title ?? toTitle(section.kind)
-
-      return (
-        <RenderEducation
-          section={section}
-          title={title}
-          variant={block.variant}
-          styles={styles}
-        />
-      )
-    }
-    case 'skills': {
-      const section = findSection(document.sections, 'skills')
-
-      if (!section || section.visible === false) {
-        return null
-      }
-
-      const title = block.title ?? section.title ?? toTitle(section.kind)
-
-      return (
-        <RenderSkills
-          section={section}
-          title={title}
-          variant={block.variant}
-          styles={styles}
-        />
-      )
-    }
-    case 'languages': {
-      const section = findSection(document.sections, 'languages')
-
-      if (!section || section.visible === false) {
-        return null
-      }
-
-      const title = block.title ?? section.title ?? toTitle(section.kind)
-
-      return (
-        <RenderLanguages
-          section={section}
-          title={title}
-          variant={block.variant}
-          styles={styles}
-        />
-      )
-    }
-    case 'certifications': {
-      const section = findSection(document.sections, 'certifications')
-
-      if (!section || section.visible === false) {
-        return null
-      }
-
-      const title = block.title ?? section.title ?? toTitle(section.kind)
-
-      return (
-        <RenderCertifications
-          section={section}
-          title={title}
-          variant={block.variant}
-          styles={styles}
-        />
-      )
-    }
-    case 'awards': {
-      const section = findSection(document.sections, 'awards')
-
-      if (!section || section.visible === false) {
-        return null
-      }
-
-      const title = block.title ?? section.title ?? toTitle(section.kind)
-
-      return (
-        <RenderAwards
-          section={section}
-          title={title}
-          variant={block.variant}
-          styles={styles}
-        />
-      )
-    }
-    case 'publications': {
-      const section = findSection(document.sections, 'publications')
-
-      if (!section || section.visible === false) {
-        return null
-      }
-
-      const title = block.title ?? section.title ?? toTitle(section.kind)
-
-      return (
-        <RenderPublications
-          section={section}
-          title={title}
-          variant={block.variant}
-          styles={styles}
-        />
-      )
-    }
-    case 'custom': {
-      const section = findSection(document.sections, 'custom')
-
-      if (!section || section.visible === false) {
-        return null
-      }
-
-      const title = block.title ?? section.title ?? toTitle(section.kind)
-
-      return (
-        <RenderCustom
-          section={section}
-          title={title}
-          variant={block.variant}
-          styles={styles}
-        />
-      )
-    }
-    default:
-      return null
-  }
 }
 
 function RenderEntry({
@@ -978,93 +853,6 @@ function SectionHeading({
   )
 }
 
-function filterVisibleBlocks(
-  blocks: TemplateBlock[],
-  sections: ResumeSection[],
-) {
-  return blocks.filter((block) => {
-    if (block.type === 'summary') {
-      const summary = findSection(sections, 'summary')
-      return !!summary && summary.visible !== false && !!summary.content.trim()
-    }
-
-    if (block.type !== 'section' || !block.visibleWhen) {
-      return true
-    }
-
-    return satisfiesVisibilityRule(sections, block.section, block.visibleWhen)
-  })
-}
-
-function satisfiesVisibilityRule(
-  sections: ResumeSection[],
-  sectionKind: ResumeSection['kind'],
-  rule: TemplateVisibilityRule,
-) {
-  const section = sections.find((candidate) => candidate.kind === sectionKind)
-
-  if (!section || section.visible === false) {
-    return false
-  }
-
-  if (rule.sectionKinds?.length) {
-    const visibleKinds = new Set(
-      sections
-        .filter((candidate) => candidate.visible !== false)
-        .map((candidate) => candidate.kind),
-    )
-
-    if (!rule.sectionKinds.every((kind) => visibleKinds.has(kind))) {
-      return false
-    }
-  }
-
-  if (typeof rule.minItems === 'number') {
-    return getSectionItemCount(section) >= rule.minItems
-  }
-
-  return true
-}
-
-function getSectionItemCount(section: ResumeSection) {
-  switch (section.kind) {
-    case 'summary':
-      return section.content.trim() ? 1 : 0
-    case 'experience':
-    case 'projects':
-    case 'volunteering':
-      return section.items.length
-    case 'education':
-      return section.items.length
-    case 'skills':
-      return section.groups.reduce(
-        (count, group) => count + group.items.length,
-        0,
-      )
-    case 'certifications':
-      return section.items.length
-    case 'awards':
-      return section.items.length
-    case 'languages':
-      return section.items.length
-    case 'publications':
-      return section.items.length
-    case 'custom':
-      return section.blocks.length
-    default:
-      return 0
-  }
-}
-
-function findSection<TKind extends ResumeSection['kind']>(
-  sections: ResumeSection[],
-  kind: TKind,
-) {
-  return sections.find((section) => section.kind === kind) as
-    | Extract<ResumeSection, { kind: TKind }>
-    | undefined
-}
-
 function resolveTextStyle(
   styles: TemplateStyles,
   style?: TemplateTextStyleRef,
@@ -1136,10 +924,6 @@ function alignToFlex(align: 'left' | 'center' | 'right') {
     default:
       return 'flex-start'
   }
-}
-
-function toTitle(value: string) {
-  return value.charAt(0).toUpperCase() + value.slice(1)
 }
 
 function createTemplateStyles(template: ResumeTemplateDefinition) {
