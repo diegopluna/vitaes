@@ -7,6 +7,7 @@ import {
   getSelectedDraftBlock,
   getSupportedSectionKinds,
   moveRegionBlock,
+  resetTemplateDraft,
   setBlockVariant,
   updateRegionBlock,
 } from './playground-state'
@@ -106,5 +107,37 @@ describe('playground-state', () => {
       section: 'skills',
       variant: 'badges',
     })
+  })
+
+  it('returns the original draft when updating or moving an invalid block index', () => {
+    const draftTemplate = createTemplateDraft(sampleResumeTemplate)
+
+    expect(updateRegionBlock(draftTemplate, 'main', -1, (block) => block)).toBe(
+      draftTemplate,
+    )
+
+    expect(moveRegionBlock(draftTemplate, 'main', 0, 'up')).toEqual({
+      template: draftTemplate,
+      nextLocation: null,
+    })
+  })
+
+  it('resets from the source template without sharing nested region references', () => {
+    const mutatedDraft = updateRegionBlock(
+      createTemplateDraft(sampleResumeTemplate),
+      'main',
+      0,
+      (block) =>
+        block.type === 'summary'
+          ? { ...block, title: 'Mutated Summary' }
+          : block,
+    )
+
+    const resetDraft = resetTemplateDraft(sampleResumeTemplate)
+
+    expect(resetDraft).toEqual(sampleResumeTemplate)
+    expect(resetDraft).not.toBe(sampleResumeTemplate)
+    expect(resetDraft.regions.main).not.toBe(sampleResumeTemplate.regions.main)
+    expect(resetDraft).not.toEqual(mutatedDraft)
   })
 })
