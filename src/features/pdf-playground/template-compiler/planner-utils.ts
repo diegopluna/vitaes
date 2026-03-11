@@ -1,5 +1,3 @@
-import type { Style } from '@react-pdf/types'
-
 import type {
   TemplateBasicsBlock,
   TemplateTextStyleRef,
@@ -138,7 +136,7 @@ export function alignStyle(
   return {
     textAlign: align,
     alignItems: alignToFlex(align),
-  } as Style
+  }
 }
 
 export function styleValues(

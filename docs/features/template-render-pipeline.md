@@ -168,6 +168,18 @@ Possible future adapters:
 - HTML preview adapter
 - alternate PDF adapter
 
+Status:
+
+- completed in the playground
+- compiler entrypoint added at
+  `src/features/pdf-playground/template-compiler/compile-template-document.ts`
+- adapter-neutral style values now live in
+  `src/features/pdf-playground/template-compiler/render-ir.ts`
+- adapter contract added at
+  `src/features/pdf-playground/renderers/render-adapter.ts`
+- playground document now consumes compiled output instead of separate resolve
+  and plan calls
+
 ## Initial File Structure
 
 Recommended playground-local structure:
@@ -175,9 +187,11 @@ Recommended playground-local structure:
 - `src/features/pdf-playground/template-compiler/resolved-template-document.ts`
 - `src/features/pdf-playground/template-compiler/resolve-template-document.ts`
 - `src/features/pdf-playground/template-compiler/render-ir.ts`
+- `src/features/pdf-playground/template-compiler/compile-template-document.ts`
 - `src/features/pdf-playground/template-compiler/plan-render-document.ts`
 - `src/features/pdf-playground/template-compiler/planner-utils.ts`
 - `src/features/pdf-playground/template-compiler/block-planners/`
+- `src/features/pdf-playground/renderers/render-adapter.ts`
 - `src/features/pdf-playground/renderers/react-pdf/react-pdf-adapter.tsx`
 - `src/features/pdf-playground/renderers/react-pdf/react-pdf-styles.ts`
 
@@ -202,8 +216,9 @@ This gives Vitaes a path to:
 
 ## Current Phase
 
-Phase 1, Phase 2, Phase 3, and Phase 4 are complete in the playground.
+Phase 1, Phase 2, Phase 3, Phase 4, and Phase 5 are complete in the
+playground.
 
 Next target:
 
-- Phase 5: keep the compiler/IR stable enough for alternate adapter work
+- build editor-facing tooling on top of the compiler output

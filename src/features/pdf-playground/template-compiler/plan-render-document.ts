@@ -1,5 +1,3 @@
-import type { Style } from '@react-pdf/types'
-
 import type { PlannedRenderDocument, RenderNode } from './render-ir'
 import { planBasicsBlock } from './block-planners/plan-basics-block'
 import { planCustomSectionBlock } from './block-planners/plan-custom-section-block'
@@ -106,7 +104,7 @@ function planBlock(
           {
             flexDirection: block.layout === 'row' ? 'row' : 'column',
             gap: block.gap ?? resolvedDocument.template.theme.spacing.md,
-          } as Style,
+          },
         ],
         children: planBlocks(block.children, resolvedDocument),
       }

@@ -1,10 +1,14 @@
+import type { ReactNode } from 'react'
 import { Link, Text, View } from '@react-pdf/renderer'
+import type { Style } from '@react-pdf/types'
 
 import type {
+  CompiledTemplateDocument,
   RenderNode,
   RenderStyleValue,
   RenderTextSegment,
 } from '../../template-compiler/render-ir'
+import type { RenderAdapter, RenderAdapterContext } from '../render-adapter'
 import { styleList } from './react-pdf-styles'
 import type { ReactPdfTemplateStyles } from './react-pdf-styles'
 
@@ -19,16 +23,14 @@ export function ReactPdfRenderNodeTree({
   styles,
   path,
 }: ReactPdfRenderNodeTreeProps) {
-  return nodes.map((node, index) =>
-    renderNode(node, styles, `${path}-${index}`),
-  )
+  return reactPdfRenderAdapter.renderNodes(nodes, { path, styles })
 }
 
 function renderNode(
   node: RenderNode,
   styles: ReactPdfTemplateStyles,
   path: string,
-) {
+): ReactNode {
   switch (node.type) {
     case 'view':
       return (
@@ -103,11 +105,31 @@ function resolveNodeStyles(
     ...(values ?? []).map((value) =>
       typeof value === 'string'
         ? styles[value as keyof ReactPdfTemplateStyles]
-        : value,
+        : (value as Style),
     ),
   )
 }
 
 function assertNever(value: never): never {
   throw new Error(`Unexpected React PDF node: ${JSON.stringify(value)}`)
+}
+
+export const reactPdfRenderAdapter: RenderAdapter<
+  ReactNode[],
+  ReactPdfTemplateStyles
+> = {
+  renderDocument(
+    document: CompiledTemplateDocument,
+    context: RenderAdapterContext<ReactPdfTemplateStyles>,
+  ) {
+    return this.renderNodes(document.regions.main, context)
+  },
+  renderNodes(
+    nodes: RenderNode[],
+    context: RenderAdapterContext<ReactPdfTemplateStyles>,
+  ) {
+    return nodes.map((node, index) =>
+      renderNode(node, context.styles, `${context.path}-${index}`),
+    )
+  },
 }

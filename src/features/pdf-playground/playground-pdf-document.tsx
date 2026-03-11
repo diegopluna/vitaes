@@ -4,8 +4,7 @@ import type { ResumeDocument } from '../../../convex/shared/resume'
 import type { ResumeTemplateDefinition } from '../../../convex/shared/template'
 import { ReactPdfRenderNodeTree } from './renderers/react-pdf/react-pdf-adapter'
 import { createReactPdfTemplateStyles } from './renderers/react-pdf/react-pdf-styles'
-import { planRenderDocument } from './template-compiler/plan-render-document'
-import { resolveTemplateDocument } from './template-compiler/resolve-template-document'
+import { compileTemplateDocument } from './template-compiler/compile-template-document'
 
 type PlaygroundPdfDocumentProps = {
   document: ResumeDocument
@@ -16,15 +15,14 @@ export function PlaygroundPdfDocument({
   document,
   template,
 }: PlaygroundPdfDocumentProps) {
-  const resolvedDocument = resolveTemplateDocument({ document, template })
-  const plannedDocument = planRenderDocument(resolvedDocument)
-  const styles = createReactPdfTemplateStyles(plannedDocument.template)
-  const { header, sidebar, main, footer } = plannedDocument.regions
+  const compiledDocument = compileTemplateDocument({ document, template })
+  const styles = createReactPdfTemplateStyles(compiledDocument.template)
+  const { header, sidebar, main, footer } = compiledDocument.regions
   const hasSidebar = sidebar.length > 0
 
   return (
-    <Document title={plannedDocument.title}>
-      <Page size={plannedDocument.template.page.size} style={styles.page}>
+    <Document title={compiledDocument.title}>
+      <Page size={compiledDocument.template.page.size} style={styles.page}>
         {header.length > 0 ? (
           <View style={styles.header}>
             <ReactPdfRenderNodeTree

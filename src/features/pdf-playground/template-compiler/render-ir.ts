@@ -1,8 +1,12 @@
-import type { Style } from '@react-pdf/types'
-
 import type { ResumeTemplateDefinition } from '../../../../convex/shared/template'
 
-export type RenderStyleValue = string | Style
+export type RenderInlineStyle = Readonly<
+  Record<string, number | string | undefined>
+>
+
+export type RenderStyleRef = string
+
+export type RenderStyleValue = RenderStyleRef | RenderInlineStyle
 
 export type RenderTextSegment = {
   text: string
@@ -49,3 +53,5 @@ export type PlannedRenderDocument = {
     footer: RenderNode[]
   }
 }
+
+export type CompiledTemplateDocument = PlannedRenderDocument
