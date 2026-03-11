@@ -37,6 +37,31 @@ export class TemplateCompatibilityError extends Error {
   }
 }
 
+export type TemplateCompatibilityReport = {
+  issues: TemplateCompatibilityIssue[]
+  warnings: TemplateCompatibilityIssue[]
+  errors: TemplateCompatibilityIssue[]
+  hasWarnings: boolean
+  hasErrors: boolean
+}
+
+export function getResumeTemplateCompatibilityReport(params: {
+  document: ResumeDocument
+  template: ResumeTemplateDefinition
+}): TemplateCompatibilityReport {
+  const issues = validateResumeTemplateCompatibility(params)
+  const warnings = issues.filter((issue) => issue.severity === 'warning')
+  const errors = issues.filter((issue) => issue.severity === 'error')
+
+  return {
+    issues,
+    warnings,
+    errors,
+    hasWarnings: warnings.length > 0,
+    hasErrors: errors.length > 0,
+  }
+}
+
 export function validateResumeTemplateCompatibility({
   document,
   template,
@@ -84,14 +109,14 @@ export function assertResumeTemplateCompatibility(params: {
   document: ResumeDocument
   template: ResumeTemplateDefinition
 }) {
-  const issues = validateResumeTemplateCompatibility(params)
-  const errors = issues.filter((issue) => issue.severity === 'error')
+  const report = getResumeTemplateCompatibilityReport(params)
+  const errors = report.errors
 
   if (errors.length > 0) {
     throw new TemplateCompatibilityError(errors)
   }
 
-  return issues
+  return report
 }
 
 function validateBlockCompatibility({

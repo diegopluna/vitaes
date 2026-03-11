@@ -17,8 +17,7 @@ import { PdfPreview } from './pdf-preview'
 import { PlaygroundPdfDocument } from './playground-pdf-document'
 import type { ResumeFixture, TemplateFixture } from './sample-data'
 import { resumeFixtures, templateFixtures } from './sample-data'
-import { compileTemplateDocument } from './template-compiler/compile-template-document'
-import { resolveTemplateDocument } from './template-compiler/resolve-template-document'
+import { getCompileTemplateReport } from './template-compiler/compile-template-document'
 import { PlaygroundDraftControls } from './playground-draft-controls'
 import { PlaygroundInspector } from './playground-inspector'
 import type {
@@ -65,14 +64,12 @@ export function PlaygroundWorkbench({
     useState<SelectedBlockLocation | null>(null)
   const [inspectorView, setInspectorView] = useState<InspectorView>('summary')
 
-  const resolvedDocument = resolveTemplateDocument({
+  const compileReport = getCompileTemplateReport({
     document: effectiveDocument,
     template: draftTemplate,
   })
-  const compiledDocument = compileTemplateDocument({
-    document: effectiveDocument,
-    template: draftTemplate,
-  })
+  const { compatibilityReport, resolvedDocument, compiledDocument } =
+    compileReport
   const selectedDraftBlock = getSelectedDraftBlock(
     draftTemplate,
     selectedBlockLocation,
@@ -167,10 +164,62 @@ export function PlaygroundWorkbench({
           <Button variant="outline" onClick={handleResetTemplate}>
             Reset Draft
           </Button>
-          <Button onClick={handleDownload}>
+          <Button
+            disabled={compatibilityReport.hasErrors}
+            onClick={handleDownload}
+          >
             <IconDownload className="size-4" />
             Download Snapshot
           </Button>
+        </div>
+
+        <div
+          className={`mt-6 rounded-[1.5rem] border p-4 ${
+            compatibilityReport.hasErrors
+              ? 'border-red-400/25 bg-red-500/8'
+              : compatibilityReport.hasWarnings
+                ? 'border-amber-400/20 bg-amber-500/8'
+                : 'border-emerald-400/20 bg-emerald-500/8'
+          }`}
+        >
+          <p
+            className={`text-xs font-medium tracking-[0.2em] uppercase ${
+              compatibilityReport.hasErrors
+                ? 'text-red-200/80'
+                : compatibilityReport.hasWarnings
+                  ? 'text-amber-100/80'
+                  : 'text-emerald-100/80'
+            }`}
+          >
+            Compatibility Report
+          </p>
+          <p className="mt-3 text-sm leading-6 text-white/75">
+            {compatibilityReport.hasErrors
+              ? 'The current resume and template pair has blocking errors. Preview/download should be treated as invalid until they are fixed.'
+              : compatibilityReport.hasWarnings
+                ? 'The current pair is valid, but some content will be omitted or rendered sparsely for this resume.'
+                : 'The current pair is valid with no compatibility issues.'}
+          </p>
+
+          {compatibilityReport.issues.length > 0 ? (
+            <ul className="mt-4 space-y-2 text-sm">
+              {compatibilityReport.issues.map((issue) => (
+                <li
+                  key={`${issue.code}-${issue.path.join('.')}`}
+                  className={`rounded-2xl border px-3 py-2 ${
+                    issue.severity === 'error'
+                      ? 'border-red-400/20 bg-red-500/10 text-red-100'
+                      : 'border-amber-400/20 bg-amber-500/10 text-amber-50'
+                  }`}
+                >
+                  <span className="font-medium uppercase tracking-[0.14em]">
+                    {issue.severity}
+                  </span>{' '}
+                  {issue.message}
+                </li>
+              ))}
+            </ul>
+          ) : null}
         </div>
 
         <div className="mt-6 max-h-[calc(100vh-12.5rem)] space-y-6 overflow-y-auto pr-1">
@@ -278,6 +327,7 @@ export function PlaygroundWorkbench({
           <Separator className="bg-white/10" />
 
           <PlaygroundInspector
+            compatibilityReport={compatibilityReport}
             compiledDocument={compiledDocument}
             inspectorView={inspectorView}
             resolvedDocument={resolvedDocument}

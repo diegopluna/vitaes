@@ -6,7 +6,10 @@ import {
   sampleResumeTemplate,
   templateFixtures,
 } from '../sample-data'
-import { compileTemplateDocument } from './compile-template-document'
+import {
+  compileTemplateDocument,
+  getCompileTemplateReport,
+} from './compile-template-document'
 import { TemplateCompatibilityError } from './validate-template-compatibility'
 
 describe('compileTemplateDocument', () => {
@@ -127,6 +130,15 @@ describe('compileTemplateDocument', () => {
       ),
     }
 
+    const report = getCompileTemplateReport({
+      document,
+      template: sampleResumeTemplate,
+    })
+
+    expect(report.compatibilityReport.hasWarnings).toBe(true)
+    expect(report.compatibilityReport.hasErrors).toBe(false)
+    expect(report.compiledDocument).not.toBeNull()
+
     expect(() =>
       compileTemplateDocument({
         document,
@@ -153,6 +165,14 @@ describe('compileTemplateDocument', () => {
         }
       }),
     }
+
+    const report = getCompileTemplateReport({
+      document,
+      template: sampleResumeTemplate,
+    })
+
+    expect(report.compatibilityReport.hasErrors).toBe(true)
+    expect(report.compiledDocument).toBeNull()
 
     expect(() =>
       compileTemplateDocument({

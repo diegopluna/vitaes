@@ -1,5 +1,6 @@
 import type { CompiledTemplateDocument } from './template-compiler/render-ir'
 import type { ResolvedTemplateDocument } from './template-compiler/resolved-template-document'
+import type { TemplateCompatibilityReport } from './template-compiler/validate-template-compatibility'
 import type { TemplateBlock } from '../../../convex/shared/template'
 import type { InspectorView } from './playground-state'
 import {
@@ -12,7 +13,8 @@ import {
 import { getBlockLabel } from './playground-state'
 
 type PlaygroundInspectorProps = {
-  compiledDocument: CompiledTemplateDocument
+  compatibilityReport: TemplateCompatibilityReport
+  compiledDocument: CompiledTemplateDocument | null
   inspectorView: InspectorView
   resolvedDocument: ResolvedTemplateDocument
   selectedDraftBlock: TemplateBlock | null
@@ -21,6 +23,7 @@ type PlaygroundInspectorProps = {
 }
 
 export function PlaygroundInspector({
+  compatibilityReport,
   compiledDocument,
   inspectorView,
   resolvedDocument,
@@ -68,7 +71,7 @@ export function PlaygroundInspector({
             <Metric
               label="Render Nodes"
               value={String(
-                Object.values(compiledDocument.regions).reduce(
+                Object.values(compiledDocument?.regions ?? {}).reduce(
                   (count, nodes) => count + nodes.length,
                   0,
                 ),
@@ -83,6 +86,14 @@ export function PlaygroundInspector({
               value={
                 selectedDraftBlock ? getBlockLabel(selectedDraftBlock) : 'None'
               }
+            />
+            <Metric
+              label="Warnings"
+              value={String(compatibilityReport.warnings.length)}
+            />
+            <Metric
+              label="Errors"
+              value={String(compatibilityReport.errors.length)}
             />
           </dl>
 
@@ -100,10 +111,22 @@ export function PlaygroundInspector({
               regions={resolvedDocument.regions}
               title="Resolved Regions"
             />
-            <InspectorRegionSummary
-              regions={compiledDocument.regions}
-              title="Compiled Regions"
-            />
+            {compiledDocument ? (
+              <InspectorRegionSummary
+                regions={compiledDocument.regions}
+                title="Compiled Regions"
+              />
+            ) : (
+              <div className="rounded-[1.5rem] border border-red-400/20 bg-red-500/5 p-4">
+                <p className="text-xs font-medium tracking-[0.2em] text-red-200/70 uppercase">
+                  Compiled Regions
+                </p>
+                <p className="mt-3 text-sm leading-6 text-red-100/80">
+                  Compilation is blocked because the current template and resume
+                  pair has compatibility errors.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       ) : null}
@@ -113,7 +136,15 @@ export function PlaygroundInspector({
       ) : null}
 
       {inspectorView === 'compiled' ? (
-        <JsonPanel data={compiledDocument} title="Compiled Document" />
+        <JsonPanel
+          data={
+            compiledDocument ?? {
+              blocked: true,
+              errors: compatibilityReport.errors,
+            }
+          }
+          title="Compiled Document"
+        />
       ) : null}
     </section>
   )

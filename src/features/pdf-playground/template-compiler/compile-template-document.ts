@@ -4,11 +4,44 @@ import type { ResumeTemplateDefinition } from '../../../../convex/shared/templat
 import type { CompiledTemplateDocument } from './render-ir'
 import { planRenderDocument } from './plan-render-document'
 import { resolveTemplateDocument } from './resolve-template-document'
-import { assertResumeTemplateCompatibility } from './validate-template-compatibility'
+import type { ResolvedTemplateDocument } from './resolved-template-document'
+import { assertResumeTemplateCompatibility, getResumeTemplateCompatibilityReport } from './validate-template-compatibility';
+import type { TemplateCompatibilityReport } from './validate-template-compatibility';
 
 type CompileTemplateDocumentParams = {
   document: ResumeDocument
   template: ResumeTemplateDefinition
+}
+
+export type CompileTemplateReport = {
+  template: ResumeTemplateDefinition
+  resolvedDocument: ResolvedTemplateDocument
+  compiledDocument: CompiledTemplateDocument | null
+  compatibilityReport: TemplateCompatibilityReport
+}
+
+export function getCompileTemplateReport({
+  document,
+  template,
+}: CompileTemplateDocumentParams): CompileTemplateReport {
+  const parsedTemplate = parseResumeTemplateDefinition(template)
+  const resolvedDocument = resolveTemplateDocument({
+    document,
+    template: parsedTemplate,
+  })
+  const compatibilityReport = getResumeTemplateCompatibilityReport({
+    document,
+    template: parsedTemplate,
+  })
+
+  return {
+    template: parsedTemplate,
+    resolvedDocument,
+    compiledDocument: compatibilityReport.hasErrors
+      ? null
+      : planRenderDocument(resolvedDocument),
+    compatibilityReport,
+  }
 }
 
 export function compileTemplateDocument({
@@ -16,16 +49,12 @@ export function compileTemplateDocument({
   template,
 }: CompileTemplateDocumentParams): CompiledTemplateDocument {
   const parsedTemplate = parseResumeTemplateDefinition(template)
-
   assertResumeTemplateCompatibility({
     document,
     template: parsedTemplate,
   })
-
-  const resolvedDocument = resolveTemplateDocument({
+  return getCompileTemplateReport({
     document,
     template: parsedTemplate,
-  })
-
-  return planRenderDocument(resolvedDocument)
+  }).compiledDocument as CompiledTemplateDocument
 }
