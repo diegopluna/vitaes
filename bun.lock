@@ -73,9 +73,9 @@
       "version": "1.0.0",
       "dependencies": {
         "@convex-dev/better-auth": "catalog:",
+        "@vitaes/env": "workspace:*",
         "better-auth": "catalog:",
         "convex": "catalog:",
-        "dotenv": "catalog:",
         "zod": "catalog:",
       },
       "devDependencies": {
@@ -93,7 +93,6 @@
       "version": "0.0.0",
       "dependencies": {
         "@t3-oss/env-core": "^0.13.10",
-        "dotenv": "catalog:",
         "zod": "catalog:",
       },
       "devDependencies": {
