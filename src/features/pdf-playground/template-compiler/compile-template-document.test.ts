@@ -7,6 +7,7 @@ import {
   templateFixtures,
 } from '../sample-data'
 import { compileTemplateDocument } from './compile-template-document'
+import { TemplateCompatibilityError } from './validate-template-compatibility'
 
 describe('compileTemplateDocument', () => {
   it('produces a compiled document with region output for the sample template', () => {
@@ -116,5 +117,48 @@ describe('compileTemplateDocument', () => {
       'Community',
       'Languages',
     ])
+  })
+
+  it('allows compilation when compatibility only produces warnings', () => {
+    const document = {
+      ...sampleResumeDocument,
+      sections: sampleResumeDocument.sections.filter(
+        (section) => section.kind !== 'summary',
+      ),
+    }
+
+    expect(() =>
+      compileTemplateDocument({
+        document,
+        template: sampleResumeTemplate,
+      }),
+    ).not.toThrow()
+  })
+
+  it('throws when compatibility validation finds a hard error', () => {
+    const document = {
+      ...sampleResumeDocument,
+      sections: sampleResumeDocument.sections.map((section) => {
+        switch (section.kind) {
+          case 'summary':
+            return { ...section, content: '' }
+          case 'experience':
+          case 'education':
+          case 'projects':
+          case 'publications':
+          case 'awards':
+            return { ...section, visible: false }
+          default:
+            return section
+        }
+      }),
+    }
+
+    expect(() =>
+      compileTemplateDocument({
+        document,
+        template: sampleResumeTemplate,
+      }),
+    ).toThrow(TemplateCompatibilityError)
   })
 })

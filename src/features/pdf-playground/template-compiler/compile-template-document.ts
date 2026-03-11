@@ -4,6 +4,7 @@ import type { ResumeTemplateDefinition } from '../../../../convex/shared/templat
 import type { CompiledTemplateDocument } from './render-ir'
 import { planRenderDocument } from './plan-render-document'
 import { resolveTemplateDocument } from './resolve-template-document'
+import { assertResumeTemplateCompatibility } from './validate-template-compatibility'
 
 type CompileTemplateDocumentParams = {
   document: ResumeDocument
@@ -14,9 +15,16 @@ export function compileTemplateDocument({
   document,
   template,
 }: CompileTemplateDocumentParams): CompiledTemplateDocument {
+  const parsedTemplate = parseResumeTemplateDefinition(template)
+
+  assertResumeTemplateCompatibility({
+    document,
+    template: parsedTemplate,
+  })
+
   const resolvedDocument = resolveTemplateDocument({
     document,
-    template: parseResumeTemplateDefinition(template),
+    template: parsedTemplate,
   })
 
   return planRenderDocument(resolvedDocument)
