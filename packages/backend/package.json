@@ -10,6 +10,7 @@
     "check-types": "tsc --noEmit -p convex/tsconfig.json"
   },
   "dependencies": {
+    "@better-auth/expo": "catalog:",
     "@convex-dev/better-auth": "catalog:",
     "better-auth": "catalog:",
     "convex": "catalog:",
