@@ -4,7 +4,13 @@ import {
   sampleResumeTemplate,
   templateFixtures,
 } from '../../src/features/pdf-playground/sample-data'
-import { ResumeTemplateDefinitionSchema } from './template'
+import {
+  getTemplateLayoutMode,
+  migrateResumeTemplateDefinition,
+  parseResumeTemplateDefinition,
+  ResumeTemplateDefinitionSchema,
+  TemplateVersion,
+} from './template'
 
 describe('ResumeTemplateDefinitionSchema', () => {
   it('accepts the built-in template fixtures', () => {
@@ -12,7 +18,27 @@ describe('ResumeTemplateDefinitionSchema', () => {
       expect(
         ResumeTemplateDefinitionSchema.safeParse(fixture.template).success,
       ).toBe(true)
+      expect(parseResumeTemplateDefinition(fixture.template)).toEqual(
+        fixture.template,
+      )
     }
+  })
+
+  it('derives layout mode from columns and sidebar content', () => {
+    expect(getTemplateLayoutMode(sampleResumeTemplate)).toBe('two-column')
+    expect(
+      getTemplateLayoutMode({
+        ...sampleResumeTemplate,
+        page: {
+          ...sampleResumeTemplate.page,
+          columns: undefined,
+        },
+        regions: {
+          ...sampleResumeTemplate.regions,
+          sidebar: [],
+        },
+      }),
+    ).toBe('single-column')
   })
 
   it('rejects summary blocks outside the main region', () => {
@@ -134,5 +160,54 @@ describe('ResumeTemplateDefinitionSchema', () => {
     expect(result.error.issues[0]?.message).toContain(
       'not allowed in the footer region',
     )
+  })
+
+  it('rejects sidebar content without page columns and dead columns without sidebar content', () => {
+    const missingColumns = ResumeTemplateDefinitionSchema.safeParse({
+      ...sampleResumeTemplate,
+      page: {
+        ...sampleResumeTemplate.page,
+        columns: undefined,
+      },
+    })
+
+    expect(missingColumns.success).toBe(false)
+
+    if (missingColumns.success) {
+      throw new Error(
+        'Expected sidebar template without columns to be invalid.',
+      )
+    }
+
+    expect(missingColumns.error.issues[0]?.message).toContain(
+      'must define page.columns',
+    )
+
+    const deadColumns = ResumeTemplateDefinitionSchema.safeParse({
+      ...sampleResumeTemplate,
+      regions: {
+        ...sampleResumeTemplate.regions,
+        sidebar: [],
+      },
+    })
+
+    expect(deadColumns.success).toBe(false)
+
+    if (deadColumns.success) {
+      throw new Error('Expected columns without sidebar content to be invalid.')
+    }
+
+    expect(deadColumns.error.issues[0]?.message).toContain(
+      'must not define page.columns',
+    )
+  })
+
+  it('rejects unsupported template versions at the migration boundary', () => {
+    expect(() =>
+      migrateResumeTemplateDefinition({
+        ...sampleResumeTemplate,
+        version: TemplateVersion + 1,
+      }),
+    ).toThrow('Unsupported template version')
   })
 })

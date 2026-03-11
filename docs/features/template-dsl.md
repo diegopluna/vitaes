@@ -132,6 +132,18 @@ Validation should cover:
 - compatible layout combinations
 - token constraints and defaults
 
+Currently enforced:
+
+- `main` must contain at least one content-bearing block
+- only one `basics` block may exist in a template
+- `summary` blocks are only valid in `main`
+- `section` blocks are only valid in `main` or `sidebar`
+- `footer` is limited to `text`, `divider`, `spacer`, and `group`
+- empty `group` blocks are invalid
+- `basics.variant = "sidebar"` is only valid in `sidebar`
+- two-column layout requires both `page.columns` and sidebar content
+- dead column configuration without sidebar content is invalid
+
 ## Versioning
 
 Every template should be versioned.
@@ -141,6 +153,14 @@ We should plan for:
 - schema migrations
 - renderer compatibility checks
 - template upgrade paths for stored user templates
+
+Current boundary:
+
+- `version: 1` is the only supported persisted template version
+- parsing routes through a migration boundary now, even though version `1` is
+  currently a no-op migration target
+- unsupported versions are rejected explicitly so future upgrades can be added
+  without changing the parser contract
 
 ## Benefits
 

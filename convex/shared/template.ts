@@ -382,6 +382,26 @@ function validateResumeTemplateDefinition(template: any, ctx: z.RefinementCtx) {
     })
   }
 
+  const hasSidebarBlocks = (template.regions.sidebar?.length ?? 0) > 0
+
+  if (hasSidebarBlocks && !template.page.columns) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['page', 'columns'],
+      message:
+        'Templates with sidebar content must define page.columns for two-column layout.',
+    })
+  }
+
+  if (!hasSidebarBlocks && template.page.columns) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['regions', 'sidebar'],
+      message:
+        'Templates without sidebar content must not define page.columns.',
+    })
+  }
+
   if (!hasContentBlock(template.regions.main)) {
     ctx.addIssue({
       code: 'custom',
@@ -397,10 +417,45 @@ export const ResumeTemplateDefinitionSchema =
     validateResumeTemplateDefinition,
   )
 
-export function parseResumeTemplateDefinition(template: unknown) {
+export type TemplateLayoutMode = 'single-column' | 'two-column'
+
+function parseResumeTemplateDefinitionV1(template: unknown) {
   return ResumeTemplateDefinitionSchema.parse(
     template,
   ) as ResumeTemplateDefinition
+}
+
+export function getTemplateLayoutMode(
+  template: Pick<ResumeTemplateDefinition, 'page' | 'regions'>,
+): TemplateLayoutMode {
+  return template.page.columns && (template.regions.sidebar?.length ?? 0) > 0
+    ? 'two-column'
+    : 'single-column'
+}
+
+export function migrateResumeTemplateDefinition(template: unknown) {
+  const versionResult = z.object({ version: z.number() }).safeParse(template)
+
+  if (!versionResult.success) {
+    return parseResumeTemplateDefinitionV1(template)
+  }
+
+  switch (versionResult.data.version) {
+    case TemplateVersion:
+      return parseResumeTemplateDefinitionV1(template)
+    default:
+      throw new z.ZodError([
+        {
+          code: 'custom',
+          path: ['version'],
+          message: `Unsupported template version: ${versionResult.data.version}`,
+        },
+      ])
+  }
+}
+
+export function parseResumeTemplateDefinition(template: unknown) {
+  return migrateResumeTemplateDefinition(template)
 }
 
 export type TemplateVersionType = typeof TemplateVersion
