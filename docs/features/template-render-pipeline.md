@@ -149,6 +149,16 @@ Deliverables:
 - skills planner
 - custom section planner
 
+Status:
+
+- completed in the playground
+- dispatcher kept at
+  `src/features/pdf-playground/template-compiler/plan-render-document.ts`
+- shared helpers extracted to
+  `src/features/pdf-playground/template-compiler/planner-utils.ts`
+- block-family planners extracted under
+  `src/features/pdf-playground/template-compiler/block-planners/`
+
 ## Phase 5: Alternate Adapter Readiness
 
 Keep the option open for another backend without changing the editor model.
@@ -166,6 +176,8 @@ Recommended playground-local structure:
 - `src/features/pdf-playground/template-compiler/resolve-template-document.ts`
 - `src/features/pdf-playground/template-compiler/render-ir.ts`
 - `src/features/pdf-playground/template-compiler/plan-render-document.ts`
+- `src/features/pdf-playground/template-compiler/planner-utils.ts`
+- `src/features/pdf-playground/template-compiler/block-planners/`
 - `src/features/pdf-playground/renderers/react-pdf/react-pdf-adapter.tsx`
 - `src/features/pdf-playground/renderers/react-pdf/react-pdf-styles.ts`
 
@@ -190,8 +202,8 @@ This gives Vitaes a path to:
 
 ## Current Phase
 
-Phase 1, Phase 2, and Phase 3 are complete in the playground.
+Phase 1, Phase 2, Phase 3, and Phase 4 are complete in the playground.
 
 Next target:
 
-- Phase 4: move more section/layout planning behind the IR boundary
+- Phase 5: keep the compiler/IR stable enough for alternate adapter work
