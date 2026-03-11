@@ -9,7 +9,8 @@
     "dev": "portless vitaes vite dev",
     "build": "vite build && cp instrument.server.mjs .output/server",
     "preview": "vite preview",
-    "test": "vitest run",
+    "test": "vitest run --config vitest.config.ts",
+    "test:watch": "vitest --config vitest.config.ts",
     "lint": "oxlint",
     "format": "oxfmt",
     "check": "oxfmt --check && oxlint --fix"
@@ -69,7 +70,7 @@
     "vite": "^7.3.1",
     "vite-intlayer": "^8.2.2",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.0.5"
+    "vitest": "^4.0.18"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
