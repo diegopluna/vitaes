@@ -1,7 +1,7 @@
 import { ConvexError, v } from 'convex/values'
 import { mutation, query } from './_generated/server'
 import { authComponent } from './auth'
-import { ResumeTemplateDefinitionSchema } from './shared/template'
+import { parseResumeTemplateDefinition } from './shared/template'
 
 const getCurrentUserId = async (ctx: any) => {
   const user = await authComponent.getAuthUser(ctx)
@@ -69,7 +69,7 @@ export const createMine = mutation({
   },
   handler: async (ctx, args) => {
     const userId = await getCurrentUserId(ctx)
-    const parsed = ResumeTemplateDefinitionSchema.parse(args.definition)
+    const parsed = parseResumeTemplateDefinition(args.definition)
 
     const existing = await ctx.db
       .query('templates')
@@ -126,7 +126,7 @@ export const updateMine = mutation({
       throw new ConvexError('CONFLICT')
     }
 
-    const parsed = ResumeTemplateDefinitionSchema.parse(args.definition)
+    const parsed = parseResumeTemplateDefinition(args.definition)
 
     await ctx.db.patch(args.id, {
       slug: args.slug,

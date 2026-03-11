@@ -262,7 +262,7 @@ export const TemplateRegionsSchema = z.object({
   footer: z.array(TemplateBlockSchema).optional(),
 })
 
-export const ResumeTemplateDefinitionSchema = z.object({
+const ResumeTemplateDefinitionBaseSchema = z.object({
   id: z.string().min(1),
   version: z.literal(TemplateVersion),
   name: z.string().min(1),
@@ -271,6 +271,137 @@ export const ResumeTemplateDefinitionSchema = z.object({
   theme: TemplateThemeSchema,
   regions: TemplateRegionsSchema,
 })
+
+type TemplateSchemaRegionKey = 'header' | 'sidebar' | 'main' | 'footer'
+
+const REGION_ALLOWED_BLOCK_TYPES: Record<
+  TemplateSchemaRegionKey,
+  Array<
+    'basics' | 'summary' | 'section' | 'divider' | 'spacer' | 'text' | 'group'
+  >
+> = {
+  header: ['basics', 'text', 'divider', 'spacer', 'group'],
+  sidebar: ['basics', 'section', 'text', 'divider', 'spacer', 'group'],
+  main: ['basics', 'summary', 'section', 'text', 'divider', 'spacer', 'group'],
+  footer: ['text', 'divider', 'spacer', 'group'],
+}
+
+function hasContentBlock(blocks: any[]): boolean {
+  return blocks.some((block) => {
+    switch (block.type) {
+      case 'basics':
+      case 'summary':
+      case 'section':
+      case 'text':
+        return true
+      case 'group':
+        return hasContentBlock(block.children)
+      default:
+        return false
+    }
+  })
+}
+
+function validateBlockForRegion(
+  block: any,
+  ctx: z.RefinementCtx,
+  region: TemplateSchemaRegionKey,
+  path: Array<string | number>,
+  basicsCount: { value: number },
+) {
+  if (!REGION_ALLOWED_BLOCK_TYPES[region].includes(block.type)) {
+    ctx.addIssue({
+      code: 'custom',
+      path,
+      message: `"${block.type}" blocks are not allowed in the ${region} region.`,
+    })
+  }
+
+  if (block.type === 'basics') {
+    basicsCount.value += 1
+
+    if (basicsCount.value > 1) {
+      ctx.addIssue({
+        code: 'custom',
+        path,
+        message: 'A template may only contain one basics block.',
+      })
+    }
+
+    if (block.variant === 'sidebar' && region !== 'sidebar') {
+      ctx.addIssue({
+        code: 'custom',
+        path: [...path, 'variant'],
+        message:
+          'The "sidebar" basics variant may only be used in the sidebar region.',
+      })
+    }
+  }
+
+  if (block.type === 'group') {
+    if (block.children.length === 0) {
+      ctx.addIssue({
+        code: 'custom',
+        path: [...path, 'children'],
+        message: 'Group blocks must contain at least one child block.',
+      })
+    }
+
+    block.children.forEach((child: any, index: number) => {
+      validateBlockForRegion(
+        child,
+        ctx,
+        region,
+        [...path, 'children', index],
+        basicsCount,
+      )
+    })
+  }
+}
+
+function validateResumeTemplateDefinition(template: any, ctx: z.RefinementCtx) {
+  const basicsCount = { value: 0 }
+  const regions: TemplateSchemaRegionKey[] = [
+    'header',
+    'sidebar',
+    'main',
+    'footer',
+  ]
+
+  for (const region of regions) {
+    const blocks = template.regions[region] ?? []
+
+    blocks.forEach((block: any, index: number) => {
+      validateBlockForRegion(
+        block,
+        ctx,
+        region,
+        ['regions', region, index],
+        basicsCount,
+      )
+    })
+  }
+
+  if (!hasContentBlock(template.regions.main)) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['regions', 'main'],
+      message:
+        'The main region must contain at least one content block such as basics, summary, section, text, or a non-empty group.',
+    })
+  }
+}
+
+export const ResumeTemplateDefinitionSchema =
+  ResumeTemplateDefinitionBaseSchema.superRefine(
+    validateResumeTemplateDefinition,
+  )
+
+export function parseResumeTemplateDefinition(template: unknown) {
+  return ResumeTemplateDefinitionSchema.parse(
+    template,
+  ) as ResumeTemplateDefinition
+}
 
 export type TemplateVersionType = typeof TemplateVersion
 export type TemplatePageSize = z.infer<typeof TemplatePageSizeSchema>

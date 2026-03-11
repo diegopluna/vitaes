@@ -4,7 +4,7 @@ import {
 } from '../../../convex/shared/resume'
 import type { ResumeDocument } from '../../../convex/shared/resume'
 import {
-  ResumeTemplateDefinitionSchema,
+  parseResumeTemplateDefinition,
   TemplateVersion,
 } from '../../../convex/shared/template'
 import type { ResumeTemplateDefinition } from '../../../convex/shared/template'
@@ -24,7 +24,7 @@ export type TemplateFixture = {
 }
 
 const parseTemplateDefinition = (template: ResumeTemplateDefinition) =>
-  ResumeTemplateDefinitionSchema.parse(template) as ResumeTemplateDefinition
+  parseResumeTemplateDefinition(template)
 
 const atelierResume = ResumeDocumentSchema.parse({
   version: ResumeDocumentVersion,
