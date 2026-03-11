@@ -1,3 +1,7 @@
 {
-  "recommendations": ["oxc.oxc-vscode", "intlayer.intlayer-vs-code-extension"]
+  "recommendations": [
+    "oxc.oxc-vscode",
+    "intlayer.intlayer-vs-code-extension",
+    "expo.vscode-expo-tools",
+  ],
 }
