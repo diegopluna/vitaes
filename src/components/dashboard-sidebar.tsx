@@ -1,4 +1,5 @@
 import {
+  IconFlask,
   IconFileText,
   IconLayoutDashboard,
   IconPencilMinus,
@@ -83,6 +84,20 @@ export const DashboardSidebar = () => {
                     )}
                   />
                   {content.templates}
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  isActive={pathWithoutLocale === '/dashboard/playground'}
+                  render={<LocalizedLink to="/dashboard/playground" />}
+                >
+                  <IconFlask
+                    className={cn(
+                      pathWithoutLocale === '/dashboard/playground' &&
+                        'text-primary',
+                    )}
+                  />
+                  {content.playground}
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>

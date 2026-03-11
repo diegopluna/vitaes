@@ -42,7 +42,7 @@ export const useLocalizedNavigate = () => {
 
     return navigate({
       to: localizedTo,
-      params: { locale: localePrefix, ...rest } as any,
+      params: { locale: localePrefix, ...rest },
     })
   }
 

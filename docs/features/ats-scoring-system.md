@@ -109,7 +109,7 @@ Suggested shape:
 ```ts
 type AtsAnalysis = {
   version: 1
-  resumeId: Id<"resumes">
+  resumeId: Id<'resumes'>
   targetHash: string
   sourceScore: number
   artifactScore?: number
@@ -131,20 +131,20 @@ type AtsAnalysis = {
   parseWarnings: string[]
   suggestions: Array<{
     id: string
-    severity: "high" | "medium" | "low"
+    severity: 'high' | 'medium' | 'low'
     category:
-      | "keywords"
-      | "summary"
-      | "experience"
-      | "skills"
-      | "format"
-      | "contact"
-      | "parsing"
-      | "template"
+      | 'keywords'
+      | 'summary'
+      | 'experience'
+      | 'skills'
+      | 'format'
+      | 'contact'
+      | 'parsing'
+      | 'template'
     message: string
     sectionId?: string
   }>
-  artifactId?: Id<"resumeArtifacts">
+  artifactId?: Id<'resumeArtifacts'>
   computedAt: number
 }
 ```

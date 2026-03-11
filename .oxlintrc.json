@@ -17,7 +17,8 @@
     "**/vite.config.*.timestamp-*.*",
     "eslint.config.js",
     "prettier.config.js",
-    "convex/__generated__/**"
+    "convex/_generated/**",
+    "convex/betterAuth/_generated/**"
   ],
   "rules": {},
   "overrides": [

@@ -11,24 +11,12 @@
     "target": "ES2022",
     "jsx": "react-jsx",
     "module": "ESNext",
-    "ignoreDeprecations": "6.0",
-    "baseUrl": ".",
     "paths": {
-      "#/*": [
-        "./src/*"
-      ],
-      "@/*": [
-        "./src/*"
-      ]
+      "#/*": ["./src/*"],
+      "@/*": ["./src/*"]
     },
-    "lib": [
-      "ES2022",
-      "DOM",
-      "DOM.Iterable"
-    ],
-    "types": [
-      "vite/client"
-    ],
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": ["vite/client"],
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,

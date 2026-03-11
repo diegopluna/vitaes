@@ -54,7 +54,7 @@ type ResumeTemplate = {
   name: string
   version: number
   page: {
-    size: "A4" | "LETTER"
+    size: 'A4' | 'LETTER'
     margins: { top: number; right: number; bottom: number; left: number }
     columns?: { left: number; right: number }
   }
@@ -69,7 +69,7 @@ type ResumeTemplate = {
       muted: string
       background: string
     }
-    density: "compact" | "comfortable" | "airy"
+    density: 'compact' | 'comfortable' | 'airy'
   }
   regions: {
     header?: Block[]
@@ -88,13 +88,17 @@ Examples:
 
 ```ts
 type Block =
-  | { type: "identity"; variant: "centered" | "split" | "sidebar" }
-  | { type: "section"; source: "experience"; variant: "timeline" | "compact-list" }
-  | { type: "section"; source: "skills"; variant: "badges" | "categories" }
-  | { type: "text"; source: "summary" }
-  | { type: "divider" }
-  | { type: "spacer"; size: number }
-  | { type: "group"; layout: "stack" | "row"; children: Block[] }
+  | { type: 'identity'; variant: 'centered' | 'split' | 'sidebar' }
+  | {
+      type: 'section'
+      source: 'experience'
+      variant: 'timeline' | 'compact-list'
+    }
+  | { type: 'section'; source: 'skills'; variant: 'badges' | 'categories' }
+  | { type: 'text'; source: 'summary' }
+  | { type: 'divider' }
+  | { type: 'spacer'; size: number }
+  | { type: 'group'; layout: 'stack' | 'row'; children: Block[] }
 ```
 
 ## DSL Constraints

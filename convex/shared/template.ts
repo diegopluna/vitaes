@@ -298,6 +298,7 @@ export type PublicationsBlockVariant = z.infer<
   typeof PublicationsBlockVariantSchema
 >
 export type CustomBlockVariant = z.infer<typeof CustomBlockVariantSchema>
+export type TemplateGroupLayout = z.infer<typeof TemplateGroupLayoutSchema>
 export type TemplateTextStyleRef = z.infer<typeof TemplateTextStyleRefSchema>
 export type TemplateAlign = z.infer<typeof TemplateAlignSchema>
 export type TemplateVisibilityRule = z.infer<
@@ -333,8 +334,32 @@ export type TemplateSectionBlock = z.infer<typeof TemplateSectionBlockSchema>
 export type TemplateDividerBlock = z.infer<typeof TemplateDividerBlockSchema>
 export type TemplateSpacerBlock = z.infer<typeof TemplateSpacerBlockSchema>
 export type TemplateTextBlock = z.infer<typeof TemplateTextBlockSchema>
-export type TemplateBlock = z.infer<typeof TemplateBlockSchema>
-export type TemplateRegions = z.infer<typeof TemplateRegionsSchema>
-export type ResumeTemplateDefinition = z.infer<
-  typeof ResumeTemplateDefinitionSchema
->
+export type TemplateGroupBlock = {
+  type: 'group'
+  layout: TemplateGroupLayout
+  gap?: number
+  children: TemplateBlock[]
+}
+export type TemplateBlock =
+  | TemplateBasicsBlock
+  | TemplateSummaryBlock
+  | TemplateSectionBlock
+  | TemplateDividerBlock
+  | TemplateSpacerBlock
+  | TemplateTextBlock
+  | TemplateGroupBlock
+export type TemplateRegions = {
+  header?: TemplateBlock[]
+  sidebar?: TemplateBlock[]
+  main: TemplateBlock[]
+  footer?: TemplateBlock[]
+}
+export type ResumeTemplateDefinition = {
+  id: string
+  version: TemplateVersionType
+  name: string
+  description?: string
+  page: TemplatePage
+  theme: TemplateTheme
+  regions: TemplateRegions
+}

@@ -9,6 +9,7 @@
     "package-lock.json",
     "pnpm-lock.yaml",
     "yarn.lock",
-    "convex/__generated__/**"
+    "convex/_generated/**",
+    "convex/betterAuth/_generated/**"
   ]
 }

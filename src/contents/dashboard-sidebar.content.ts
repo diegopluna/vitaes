@@ -39,6 +39,13 @@ const dashboardSidebarContent = {
       de: 'Entwürfe',
       pt: 'Rascunhos',
     }),
+    playground: t({
+      en: 'Playground',
+      fr: 'Bac à sable',
+      es: 'Laboratorio',
+      de: 'Spielplatz',
+      pt: 'Playground',
+    }),
   },
 } satisfies Dictionary
 

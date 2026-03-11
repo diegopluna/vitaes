@@ -21,13 +21,13 @@ string "20pt"    ->  20pt (absolute)
 **Do this:**
 
 ```ts
-lineHeight: typography.lineHeight   // e.g., 1.45
+lineHeight: typography.lineHeight // e.g., 1.45
 ```
 
 **Not this:**
 
 ```ts
-lineHeight: typography.baseSize * typography.lineHeight   // WRONG: double-multiplied
+lineHeight: typography.baseSize * typography.lineHeight // WRONG: double-multiplied
 ```
 
 The second form produces `fontSize * (fontSize * multiplier)` internally, resulting in absurdly tall lines (e.g., 145pt instead of 14.5pt for 10pt text).
@@ -47,11 +47,13 @@ Nested arrays are recursively flattened. This is intentional design, confirmed b
 Every CSS property used in our template styles has a dedicated handler in `@react-pdf/stylesheet`. The full list relevant to us:
 
 ### Layout (flexbox)
+
 `flexDirection`, `justifyContent`, `alignItems`, `alignSelf`, `flexWrap`, `flexGrow`, `flexShrink`, `flexBasis`, `gap`
 
 `gap` is a shorthand that expands to `rowGap` + `columnGap`. We only use `gap` (not `rowGap`/`columnGap` directly).
 
 ### Spacing
+
 `margin`, `marginTop`, `marginRight`, `marginBottom`, `marginLeft`, `marginHorizontal`, `marginVertical`
 
 `padding`, `paddingTop`, `paddingRight`, `paddingBottom`, `paddingLeft`, `paddingHorizontal`, `paddingVertical`
@@ -59,21 +61,25 @@ Every CSS property used in our template styles has a dedicated handler in `@reac
 The `*Horizontal` and `*Vertical` shorthands expand to their individual sides (e.g., `paddingHorizontal` -> `paddingRight` + `paddingLeft`).
 
 ### Dimensions
+
 `width`, `height`, `maxWidth`, `maxHeight`, `minWidth`, `minHeight`
 
 Values accept numbers (interpreted as `pt`) or strings with units (`pt`, `in`, `mm`, `cm`, `%`, `vw`, `vh`).
 
 ### Text
+
 `fontSize`, `fontFamily`, `fontWeight`, `lineHeight`, `letterSpacing`, `textAlign`, `textTransform`, `textDecoration`
 
 `textTransform` supports: `'capitalize'`, `'lowercase'`, `'uppercase'`, `'upperfirst'`, `'none'`
 
 ### Borders
+
 `borderWidth`, `borderColor`, `borderTopWidth`, `borderRightWidth`, `borderBottomWidth`, `borderLeftWidth`, `borderTopColor`, `borderRightColor`, `borderBottomColor`, `borderLeftColor`
 
 We use individual side borders (`borderLeftWidth`/`borderLeftColor` for timeline, `borderBottomWidth`/`borderBottomColor` for compact entry separators). All are fully supported.
 
 ### Visual
+
 `backgroundColor`, `color`, `opacity`
 
 ## Page wrapping
@@ -92,14 +98,14 @@ Supported units for string values: `pt`, `in`, `mm`, `cm`, `%`, `vw`, `vh`.
 
 ## Available components
 
-| Component | Purpose | Notes |
-|-----------|---------|-------|
-| `<Document>` | Root container | Required wrapper |
-| `<Page>` | Individual page | Accepts `size` (`A4`, `LETTER`, etc.) |
-| `<View>` | Generic container | Like `<div>`, supports flexbox |
-| `<Text>` | Text content | Required for all text; supports nesting |
-| `<Link>` | Hyperlinks | Inherits default styles (blue, underline) |
-| `<Image>` | Images | Accepts `src` prop |
+| Component    | Purpose           | Notes                                     |
+| ------------ | ----------------- | ----------------------------------------- |
+| `<Document>` | Root container    | Required wrapper                          |
+| `<Page>`     | Individual page   | Accepts `size` (`A4`, `LETTER`, etc.)     |
+| `<View>`     | Generic container | Like `<div>`, supports flexbox            |
+| `<Text>`     | Text content      | Required for all text; supports nesting   |
+| `<Link>`     | Hyperlinks        | Inherits default styles (blue, underline) |
+| `<Image>`    | Images            | Accepts `src` prop                        |
 
 Text must always be inside a `<Text>` component. Bare strings inside `<View>` will not render.
 
@@ -119,10 +125,10 @@ Custom fonts require `Font.register()`. Our templates currently use `Helvetica` 
 
 With correct `lineHeight` rendering, these spacing scales work well:
 
-| Density | xs | sm | md | lg | xl | Page margins |
-|---------|----|----|----|----|-----|-------------|
-| compact | 3 | 6 | 10 | 14 | 18 | ~30pt |
-| airy | 4 | 8 | 14 | 20 | 26 | ~34-36pt |
+| Density | xs  | sm  | md  | lg  | xl  | Page margins |
+| ------- | --- | --- | --- | --- | --- | ------------ |
+| compact | 3   | 6   | 10  | 14  | 18  | ~30pt        |
+| airy    | 4   | 8   | 14  | 20  | 26  | ~34-36pt     |
 
 These values assume `baseSize` of 9.5-10pt and `lineHeight` of 1.42-1.45.
 

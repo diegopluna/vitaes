@@ -11,11 +11,13 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as Char123LocaleChar125RouteRouteImport } from './routes/{-$locale}/route'
 import { Route as Char123LocaleChar125IndexRouteImport } from './routes/{-$locale}/index'
+import { Route as Char123LocaleChar125PlaygroundRouteImport } from './routes/{-$locale}/playground'
 import { Route as Char123LocaleChar125404RouteImport } from './routes/{-$locale}/404'
 import { Route as Char123LocaleChar125DashboardRouteRouteImport } from './routes/{-$locale}/dashboard/route'
 import { Route as Char123LocaleChar125LoginIndexRouteImport } from './routes/{-$locale}/login/index'
 import { Route as Char123LocaleChar125DashboardIndexRouteImport } from './routes/{-$locale}/dashboard/index'
 import { Route as Char123LocaleChar125DashboardTemplatesRouteImport } from './routes/{-$locale}/dashboard/templates'
+import { Route as Char123LocaleChar125DashboardPlaygroundRouteImport } from './routes/{-$locale}/dashboard/playground'
 import { Route as Char123LocaleChar125DashboardMyResumesRouteImport } from './routes/{-$locale}/dashboard/my-resumes'
 import { Route as Char123LocaleChar125DashboardDraftsRouteImport } from './routes/{-$locale}/dashboard/drafts'
 import { Route as Char123LocaleChar125DashboardArchiveRouteImport } from './routes/{-$locale}/dashboard/archive'
@@ -31,6 +33,12 @@ const Char123LocaleChar125IndexRoute =
   Char123LocaleChar125IndexRouteImport.update({
     id: '/',
     path: '/',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125PlaygroundRoute =
+  Char123LocaleChar125PlaygroundRouteImport.update({
+    id: '/playground',
+    path: '/playground',
     getParentRoute: () => Char123LocaleChar125RouteRoute,
   } as any)
 const Char123LocaleChar125404Route = Char123LocaleChar125404RouteImport.update({
@@ -62,6 +70,12 @@ const Char123LocaleChar125DashboardTemplatesRoute =
     path: '/templates',
     getParentRoute: () => Char123LocaleChar125DashboardRouteRoute,
   } as any)
+const Char123LocaleChar125DashboardPlaygroundRoute =
+  Char123LocaleChar125DashboardPlaygroundRouteImport.update({
+    id: '/playground',
+    path: '/playground',
+    getParentRoute: () => Char123LocaleChar125DashboardRouteRoute,
+  } as any)
 const Char123LocaleChar125DashboardMyResumesRoute =
   Char123LocaleChar125DashboardMyResumesRouteImport.update({
     id: '/my-resumes',
@@ -90,22 +104,26 @@ export interface FileRoutesByFullPath {
   '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
   '/{-$locale}/dashboard': typeof Char123LocaleChar125DashboardRouteRouteWithChildren
   '/{-$locale}/404': typeof Char123LocaleChar125404Route
+  '/{-$locale}/playground': typeof Char123LocaleChar125PlaygroundRoute
   '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/{-$locale}/dashboard/archive': typeof Char123LocaleChar125DashboardArchiveRoute
   '/{-$locale}/dashboard/drafts': typeof Char123LocaleChar125DashboardDraftsRoute
   '/{-$locale}/dashboard/my-resumes': typeof Char123LocaleChar125DashboardMyResumesRoute
+  '/{-$locale}/dashboard/playground': typeof Char123LocaleChar125DashboardPlaygroundRoute
   '/{-$locale}/dashboard/templates': typeof Char123LocaleChar125DashboardTemplatesRoute
   '/{-$locale}/dashboard/': typeof Char123LocaleChar125DashboardIndexRoute
   '/{-$locale}/login/': typeof Char123LocaleChar125LoginIndexRoute
 }
 export interface FileRoutesByTo {
   '/{-$locale}/404': typeof Char123LocaleChar125404Route
+  '/{-$locale}/playground': typeof Char123LocaleChar125PlaygroundRoute
   '/{-$locale}': typeof Char123LocaleChar125IndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/{-$locale}/dashboard/archive': typeof Char123LocaleChar125DashboardArchiveRoute
   '/{-$locale}/dashboard/drafts': typeof Char123LocaleChar125DashboardDraftsRoute
   '/{-$locale}/dashboard/my-resumes': typeof Char123LocaleChar125DashboardMyResumesRoute
+  '/{-$locale}/dashboard/playground': typeof Char123LocaleChar125DashboardPlaygroundRoute
   '/{-$locale}/dashboard/templates': typeof Char123LocaleChar125DashboardTemplatesRoute
   '/{-$locale}/dashboard': typeof Char123LocaleChar125DashboardIndexRoute
   '/{-$locale}/login': typeof Char123LocaleChar125LoginIndexRoute
@@ -115,11 +133,13 @@ export interface FileRoutesById {
   '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
   '/{-$locale}/dashboard': typeof Char123LocaleChar125DashboardRouteRouteWithChildren
   '/{-$locale}/404': typeof Char123LocaleChar125404Route
+  '/{-$locale}/playground': typeof Char123LocaleChar125PlaygroundRoute
   '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/{-$locale}/dashboard/archive': typeof Char123LocaleChar125DashboardArchiveRoute
   '/{-$locale}/dashboard/drafts': typeof Char123LocaleChar125DashboardDraftsRoute
   '/{-$locale}/dashboard/my-resumes': typeof Char123LocaleChar125DashboardMyResumesRoute
+  '/{-$locale}/dashboard/playground': typeof Char123LocaleChar125DashboardPlaygroundRoute
   '/{-$locale}/dashboard/templates': typeof Char123LocaleChar125DashboardTemplatesRoute
   '/{-$locale}/dashboard/': typeof Char123LocaleChar125DashboardIndexRoute
   '/{-$locale}/login/': typeof Char123LocaleChar125LoginIndexRoute
@@ -130,22 +150,26 @@ export interface FileRouteTypes {
     | '/{-$locale}'
     | '/{-$locale}/dashboard'
     | '/{-$locale}/404'
+    | '/{-$locale}/playground'
     | '/{-$locale}/'
     | '/api/auth/$'
     | '/{-$locale}/dashboard/archive'
     | '/{-$locale}/dashboard/drafts'
     | '/{-$locale}/dashboard/my-resumes'
+    | '/{-$locale}/dashboard/playground'
     | '/{-$locale}/dashboard/templates'
     | '/{-$locale}/dashboard/'
     | '/{-$locale}/login/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/{-$locale}/404'
+    | '/{-$locale}/playground'
     | '/{-$locale}'
     | '/api/auth/$'
     | '/{-$locale}/dashboard/archive'
     | '/{-$locale}/dashboard/drafts'
     | '/{-$locale}/dashboard/my-resumes'
+    | '/{-$locale}/dashboard/playground'
     | '/{-$locale}/dashboard/templates'
     | '/{-$locale}/dashboard'
     | '/{-$locale}/login'
@@ -154,11 +178,13 @@ export interface FileRouteTypes {
     | '/{-$locale}'
     | '/{-$locale}/dashboard'
     | '/{-$locale}/404'
+    | '/{-$locale}/playground'
     | '/{-$locale}/'
     | '/api/auth/$'
     | '/{-$locale}/dashboard/archive'
     | '/{-$locale}/dashboard/drafts'
     | '/{-$locale}/dashboard/my-resumes'
+    | '/{-$locale}/dashboard/playground'
     | '/{-$locale}/dashboard/templates'
     | '/{-$locale}/dashboard/'
     | '/{-$locale}/login/'
@@ -183,6 +209,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/{-$locale}/'
       preLoaderRoute: typeof Char123LocaleChar125IndexRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/playground': {
+      id: '/{-$locale}/playground'
+      path: '/playground'
+      fullPath: '/{-$locale}/playground'
+      preLoaderRoute: typeof Char123LocaleChar125PlaygroundRouteImport
       parentRoute: typeof Char123LocaleChar125RouteRoute
     }
     '/{-$locale}/404': {
@@ -220,6 +253,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125DashboardTemplatesRouteImport
       parentRoute: typeof Char123LocaleChar125DashboardRouteRoute
     }
+    '/{-$locale}/dashboard/playground': {
+      id: '/{-$locale}/dashboard/playground'
+      path: '/playground'
+      fullPath: '/{-$locale}/dashboard/playground'
+      preLoaderRoute: typeof Char123LocaleChar125DashboardPlaygroundRouteImport
+      parentRoute: typeof Char123LocaleChar125DashboardRouteRoute
+    }
     '/{-$locale}/dashboard/my-resumes': {
       id: '/{-$locale}/dashboard/my-resumes'
       path: '/my-resumes'
@@ -255,6 +295,7 @@ interface Char123LocaleChar125DashboardRouteRouteChildren {
   Char123LocaleChar125DashboardArchiveRoute: typeof Char123LocaleChar125DashboardArchiveRoute
   Char123LocaleChar125DashboardDraftsRoute: typeof Char123LocaleChar125DashboardDraftsRoute
   Char123LocaleChar125DashboardMyResumesRoute: typeof Char123LocaleChar125DashboardMyResumesRoute
+  Char123LocaleChar125DashboardPlaygroundRoute: typeof Char123LocaleChar125DashboardPlaygroundRoute
   Char123LocaleChar125DashboardTemplatesRoute: typeof Char123LocaleChar125DashboardTemplatesRoute
   Char123LocaleChar125DashboardIndexRoute: typeof Char123LocaleChar125DashboardIndexRoute
 }
@@ -267,6 +308,8 @@ const Char123LocaleChar125DashboardRouteRouteChildren: Char123LocaleChar125Dashb
       Char123LocaleChar125DashboardDraftsRoute,
     Char123LocaleChar125DashboardMyResumesRoute:
       Char123LocaleChar125DashboardMyResumesRoute,
+    Char123LocaleChar125DashboardPlaygroundRoute:
+      Char123LocaleChar125DashboardPlaygroundRoute,
     Char123LocaleChar125DashboardTemplatesRoute:
       Char123LocaleChar125DashboardTemplatesRoute,
     Char123LocaleChar125DashboardIndexRoute:
@@ -281,6 +324,7 @@ const Char123LocaleChar125DashboardRouteRouteWithChildren =
 interface Char123LocaleChar125RouteRouteChildren {
   Char123LocaleChar125DashboardRouteRoute: typeof Char123LocaleChar125DashboardRouteRouteWithChildren
   Char123LocaleChar125404Route: typeof Char123LocaleChar125404Route
+  Char123LocaleChar125PlaygroundRoute: typeof Char123LocaleChar125PlaygroundRoute
   Char123LocaleChar125IndexRoute: typeof Char123LocaleChar125IndexRoute
   Char123LocaleChar125LoginIndexRoute: typeof Char123LocaleChar125LoginIndexRoute
 }
@@ -290,6 +334,7 @@ const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChil
     Char123LocaleChar125DashboardRouteRoute:
       Char123LocaleChar125DashboardRouteRouteWithChildren,
     Char123LocaleChar125404Route: Char123LocaleChar125404Route,
+    Char123LocaleChar125PlaygroundRoute: Char123LocaleChar125PlaygroundRoute,
     Char123LocaleChar125IndexRoute: Char123LocaleChar125IndexRoute,
     Char123LocaleChar125LoginIndexRoute: Char123LocaleChar125LoginIndexRoute,
   }
